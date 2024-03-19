@@ -2,8 +2,13 @@ const mongoose = require('mongoose');
 const mongoutil = require('../connection/mongoutil');
 
 const resumeSchema = new mongoose.Schema({
-    createdAt :{
+    createdAt: {
         type: Date,
+        required : true
+
+    },
+    fileName: {
+        type: String,
         required : true
 
     }
