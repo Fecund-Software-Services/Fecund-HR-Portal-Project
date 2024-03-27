@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/common-background-image.png";
+import popupBackground from "../assets/popup-background.png";
 import "./SignupForm.css";
+import SignupSuccessfully from "./SignupSuccessfully.js";
 
 const SignUpForm = () => {
   // State for form handling
@@ -11,20 +13,18 @@ const SignUpForm = () => {
   const [employeeId, setEmployeeId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [securityQuestion, setSecurityQuestion] = useState("");
-  // const [securityAnswer, setSecurityAnswer] = useState("");
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formCanceled, setFormCanceled] = useState(false);
+  const [showPopup, setShowPopup] = React.useState(false);
 
-  const navigate = useNavigate();
+  const navigate1 = useNavigate();
+  const navigate2 = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted: ", {
+    let data = {
       firstName,
       lastName,
       employeeId,
@@ -33,14 +33,20 @@ const SignUpForm = () => {
       answer1,
       answer2,
       answer3,
-    });
-    setFormSubmitted(true);
+    };
+    console.log("Form submitted: ", data);
+
+    setShowPopup(true);
+    e.preventDefault();
   };
 
-  const handleCancel = (e) => {
-    setFormCanceled(true);
-    navigate('/')
-  };
+  const handleCancel = (e) => navigate1("/");
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+    navigate2("/")
+
+  }
 
   return (
     <div
@@ -191,13 +197,41 @@ const SignUpForm = () => {
           >
             Cancel
           </button>
-          <button type="submit" className="Signup-button">
+          <button
+            type="submit"
+            onClick={() => setShowPopup(!showPopup)}
+            className="Signup-button"
+          >
             Sign-up
           </button>
         </div>
       </form>
-      {formSubmitted && <p className="message">Form submitted successfully!</p>}
-      {formCanceled && <p className="error">Form cancelled.</p>}
+      {showPopup && (
+        <div className="popup" onClick={togglePopup}>
+          <div
+            className="popup-content"
+            style={{ backgroundImage: `url(${popupBackground})` }}
+          >
+            <SignupSuccessfully
+              firstName={firstName}
+              lastName={lastName}
+              employeeId={employeeId}
+              email={email}
+              answer1={answer1}
+              answer2={answer2}
+              answer3={answer3}
+            />
+            <p className="popup-message">
+              Form submitted successfully!<a href="/"> Login Here</a>
+            </p>
+            <button className="popup-close-button" onClick={togglePopup}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      {/* {formSubmitted && <p className="message">Form submitted successfully!</p>} */}
+      {/* {formCanceled && <p className="error">Form cancelled.</p>} */}
     </div>
   );
 };

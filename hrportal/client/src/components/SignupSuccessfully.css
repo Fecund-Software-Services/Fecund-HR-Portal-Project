@@ -1,0 +1,22 @@
+.readonly-fields {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    width: 400px;
+  }
+  
+  .field-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .field-label {
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .field-value {
+    color: rgb(255, 255, 255);
+  }
