@@ -1,5 +1,5 @@
 const express = require('express')
-const User = require('../collections/userModel')
+const User = require('../collections/users')
 const {signupUser, loginUser} = require('../controllers/userController')
 
 // for creating the instance of the route

@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
-require('dotenv').config()
-const userRoutes = require('./routes/userRoutes')
+const url = require('./src/connection/constants');
+const userRoutes = require('./src/routes/userRoutes')
+const candidateRoutes = require('./src/routes/candidateRoutes')
+
 
 // express app
 const app = express()
@@ -16,19 +18,28 @@ app.use((req, res, next) => {
 
 // routes
 app.use('/api/user', userRoutes)
-
+app.use('/api/candidate', candidateRoutes)
 
 // connect to db
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        // listen for requests
-        app.listen(process.env.PORT, () => {
-            console.log('connected to db and listening on port', process.env.PORT)
-          })
+// mongoose.connect(process.env.MONGO_URI)
+//     .then(() => {
+//         // listen for requests
+//         app.listen(process.env.PORT, () => {
+//             console.log('connected to db and listening on port', process.env.PORT)
+//           })
+//     })
+//     .catch((error) => {
+//         console.log(error)
+//     })
+
+mongoose.connect('mongodb:' + url.databaseURL)
+    .then((res) => {
+      console.log('Connected to MongoDB and Schemas is successfully created!');
+      return false;
     })
-    .catch((error) => {
-        console.log(error)
-    })
+    .catch((err) => {
+      console.log('Error in connecting to MongoDB' + err);
+    });
     
 
 

@@ -1,4 +1,4 @@
-const User = require('../collections/userModel')
+const User = require('../collections/users')
 const bcrypt = require('bcrypt')
 
 // login user
