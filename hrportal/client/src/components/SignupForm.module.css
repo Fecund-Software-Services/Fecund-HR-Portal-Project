@@ -1,4 +1,4 @@
-.signup-container {
+.signup_container {
     display: flex;
     justify-content: center;
     /* flex-direction: column; */
@@ -13,7 +13,7 @@
 
   }
   
-  .signup-form {
+  .signup_form {
     display: flex;
     flex-direction: column;
      /* justify-content: center; */
@@ -26,50 +26,62 @@
     /* box-shadow: 2px 2px 2px 8px #61dafb; */
   }
 
-  .title-container {
+  .title_container {
     display: flex;
     justify-content: space-around;
   }
 
-  .form-title {
+  .form_title {
     align-items: center;
     color: #ffffff;
     font-size: 25px;
     margin-top: 5px;
   }
 
-  .sub-container {
+  .sub_container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     /* justify-content: flex-start; */
   }
 
-  .sub-container-question {
+  .sub_container_question {
     display: flex;
     flex-direction: row;
     /* justify-content: space-between; */
     justify-content: flex-start;
   }
 
-  .label-type {
+  .label_type {
     margin-right: 30px;
     /* align-self: flex-end; */
     padding: 8px;
+    padding-top: 10px;
     color: #ffffff;
     align-items: start;
   }
 
-  .p-type {
+  .p_type {
     /* margin-right: 30px; */
     align-items: flex-start;
     /* padding: 8px; */
     color: #ffffff;
     align-items: end;
-    margin: 15px 0 15px 0;
+    margin: 12px 0 15px 0;
   }
 
-  .Signup-input {
+  /* .Signup-input {
+    padding: -10px;
+    margin-bottom: 10px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-items: end;
+    background: transparent;
+    color: #ffffff;
+  } */
+
+  .login_input {
     /* padding: -10px; */
     /* margin-bottom: 10px; */
     height: 30px;
@@ -80,12 +92,12 @@
     color: #ffffff;
   }
 
-  .Signup-button-container {
+  .Signup_button_container {
     display: flex;
     flex-direction: row;
   }
 
-  .Signup-button {
+  .Signup_button {
     padding: 10px 30px;
     background-color: #d4d4d4;
     color: #000;
@@ -98,7 +110,7 @@
     transition: background-color 0.3s ease;
   }
   
-  .Signup-button:hover {
+  .Signup_button:hover {
     background-color: #0069d9;
   }
 
@@ -115,7 +127,7 @@
     z-index: 1;
   }
   
-  .popup-content {
+  .popup_content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,12 +140,12 @@
     z-index: 10;
   }
 
-  .popup-message {
+  .popup_message {
     color: #ffffff;
     text-align: center;
   }
 
-  .popup-close-button {
+  .popup_close_button {
     padding: 10px 10px;
     background-color: #d4d4d4;
     color: #000;
@@ -145,6 +157,6 @@
     transition: background-color 0.3s ease;
   }
 
-  .popup-close-button:hover {
+  .popup_close_button:hover {
     background-color: #0069d9;
   }
