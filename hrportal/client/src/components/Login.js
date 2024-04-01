@@ -8,15 +8,40 @@ import styles from './Login.module.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    // Call API endpoint for login
+    const login = async () => {
+      const loginResponse = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (!loginResponse.ok) {
+        setError("Login failed, please check your email and password.");
+        return;
+      }
+
+      // Redirect to another page if login is successful
+      window.location.href = "/dashboard";
+    };
+
+    if (email && password) {
+      login();
+    }
+  }, [email, password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(email , password)
-    setEmail('')
-    setPassword('')
+    setError("");
   };
-
-  
 
   return (
     <div className={styles.login_container} style={{ backgroundImage: `url(${backgroundImage})` }}>
