@@ -1,7 +1,7 @@
 /* Login.css */
 
 
-.login-container {
+.login_container {
     display: flex;
     /* justify-content: center; */
     /* flex-direction: column; */
@@ -16,7 +16,7 @@
 
   }
   
-  .login-form {
+  .login_form {
     display: flex;
     flex-direction: column;
      /* justify-content: center; */
@@ -26,28 +26,29 @@
     border-radius: 30px;
     border: solid;
     border-color: #ffffff;
+    width: 25%;
     /* box-shadow: 2px 2px 2px 8px #61dafb; */
   }
 
-  .sub-container {
+  .sub_container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  .label-type {
+  .label_type {
     margin-right: 30px;
     padding: 8px;
     color: #ffffff;
     align-items: start;
   }
   
-  .login-title {
+  .login_title {
     text-align: center;
     margin-bottom: 20px;
   }
   
-  .login-input {
+  .login_input {
     /* padding: -10px; */
     /* margin-bottom: 10px; */
     height: 30px;
@@ -56,14 +57,16 @@
     align-items: end;
     background: transparent;
     color: #ffffff;
+    width: 60%;
   }
   
-  .login-input:focus {
+  .login_input:focus {
     outline: none;
     box-shadow: 0 0 3px 1px rgba(0, 122, 255, 0.5);
+    /* background: transparent; */
   }
   
-  .login-button {
+  .login_button {
     padding: 10px 30px;
     background-color: #d4d4d4;
     color: #000;
@@ -76,28 +79,28 @@
     transition: background-color 0.3s ease;
   }
   
-  .login-button:hover {
+  .login_button:hover {
     background-color: #0069d9;
   }
   
 
-  .login-link {
+  .login_link {
     text-decoration: none;
     color: #ffffff;
-    margin-left: 27%;
+    margin-left: 32%;
     margin-right: 5%;
   }
 
-  .signup-link {
+  .signup_link {
     text-decoration: none;
     color: #ffffff;
-    margin-left: 10%;
+    margin-left: 19%;
   }
 
-  .login-link:hover {
+  .login_link:hover {
     color: #0069d9;
   }
   
-  .signup-link:hover {
+  .signup_link:hover {
     color: #0069d9;
   }
