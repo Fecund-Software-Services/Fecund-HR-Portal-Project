@@ -192,7 +192,7 @@ const SignUpForm = () => {
           <div className={styles.sub_container}>
             <label className={styles.label_type}>Answer</label>
             <input
-              type="text"
+              type="password"
               value={answer1}
               // onChange={(e) => setEmployeeFirstName(e.target.value)}
               onChange={(e) => setAnswer1(e.target.value)}
@@ -212,7 +212,7 @@ const SignUpForm = () => {
           <div className={styles.sub_container}>
             <label className={styles.label_type}>Answer</label>
             <input
-              type="text"
+              type="password"
               value={answer2}
               // onChange={(e) => setEmployeeFirstName(e.target.value)}
               onChange={(e) => setAnswer2(e.target.value)}
@@ -232,7 +232,7 @@ const SignUpForm = () => {
           <div className={styles.sub_container}>
             <label className={styles.label_type}>Answer</label>
             <input
-              type="text"
+              type="password"
               value={answer3}
               // onChange={(e) => setEmployeeFirstName(e.target.value)}
               onChange={(e) => setAnswer3(e.target.value)}
