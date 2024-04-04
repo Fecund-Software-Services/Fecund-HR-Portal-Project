@@ -4,49 +4,103 @@ import backgroundImage from "../assets/common-background-image.png";
 import popupBackground from "../assets/popup-background.png";
 import styles from "./SignupForm.module.css";
 import SignupSuccessfully from "./SignupSuccessfully.js";
+// import { useSignup } from "./useSignup.js";
 
 const SignUpForm = () => {
   // State for form handling
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [employeeId, setEmployeeId] = useState("");
+  const [employeeID, setEmployeeID] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
-
-  const [showPopup, setShowPopup] = React.useState(false);
+  const [error, setError] = useState(null);
+  const [isSubmitting, setisSubmitting] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const navigate1 = useNavigate();
   const navigate2 = useNavigate();
 
-  const handleSubmit = (e) => {
+  // const signUp = useSignup()
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let data = {
+    let signUpData = {
       firstName,
       lastName,
-      employeeId,
+      employeeID,
       email,
       password,
       answer1,
       answer2,
       answer3,
     };
-    console.log("Form submitted: ", data);
+    console.log("Form submitted: ", signUpData);
 
-    setShowPopup(true);
-    e.preventDefault();
+    // const output = await signUp(signUpData)
+
+    // const signup = async ({
+    //   firstName,
+    //   lastName,
+    //   employeeID,
+    //   email,
+    //   password,
+    //   answer1,
+    //   answer2,
+    //   answer3,
+    // }) => {
+      setisSubmitting(true);
+      setError(null);
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          employeeID,
+          email,
+          password,
+          answer1,
+          answer2,
+          answer3,
+        }),
+      };
+
+      try {
+        const response = await fetch(
+          "http://localhost:8080/api/user/signup",
+          requestOptions
+        );
+        const data = await response.json();
+        console.log(response);
+        console.log(data);
+
+        if (!response.ok) {
+          throw new Error(data.message);
+        }
+        if (response.ok) {
+          setisSubmitting(false);
+          setShowPopup(!showPopup);
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setisSubmitting(false);
+      }
+    // };
+    // signup(signUpData);
   };
 
   const handleCancel = (e) => navigate1("/");
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
-    navigate2("/")
-
-  }
+    navigate2("/");
+  };
 
   return (
     <div
@@ -92,8 +146,8 @@ const SignUpForm = () => {
           </label>
           <input
             type="number"
-            value={employeeId}
-            onChange={(e) => setEmployeeId(e.target.value)}
+            value={employeeID}
+            onChange={(e) => setEmployeeID(e.target.value)}
             className={styles.login_input}
             name="EmployeeID"
             required
@@ -189,6 +243,8 @@ const SignUpForm = () => {
           </div>
         </div>
         <br />
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        <br />
         <div className={styles.Signup_button_container}>
           <button
             type="button"
@@ -199,10 +255,11 @@ const SignUpForm = () => {
           </button>
           <button
             type="submit"
-            onClick={() => setShowPopup(!showPopup)}
+            // onClick={() => setShowPopup(!showPopup)}
             className={styles.Signup_button}
+            disabled={isSubmitting}
           >
-            Sign-up
+            {isSubmitting ? "Submitting..." : "Sign-up"}
           </button>
         </div>
       </form>
@@ -215,7 +272,7 @@ const SignUpForm = () => {
             <SignupSuccessfully
               firstName={firstName}
               lastName={lastName}
-              employeeId={employeeId}
+              employeeId={employeeID}
               email={email}
               answer1={answer1}
               answer2={answer2}
@@ -230,8 +287,6 @@ const SignUpForm = () => {
           </div>
         </div>
       )}
-      {/* {formSubmitted && <p className="message">Form submitted successfully!</p>} */}
-      {/* {formCanceled && <p className="error">Form cancelled.</p>} */}
     </div>
   );
 };

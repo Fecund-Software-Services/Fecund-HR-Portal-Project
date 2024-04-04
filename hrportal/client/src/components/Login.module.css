@@ -106,5 +106,7 @@
   }
 
   .errorMessage {
-    color: #fffff0
-  }
+    /* margin-left:20px; */
+    align-self: center;
+    color: rgb(225, 78, 78)
+  } 
