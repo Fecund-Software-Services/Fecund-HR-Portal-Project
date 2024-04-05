@@ -1,5 +1,5 @@
-const User = require('../collections/users')
-const bcrypt = require('bcrypt')
+const User = require("../collections/users");
+const bcrypt = require("bcrypt");
 
 // login user
 const loginUser = async (req, res) => {
@@ -14,7 +14,14 @@ const loginUser = async (req, res) => {
   }
 
   if (!existingUser) {
-    return res.status(404).json({ message: "User does not exist" });
+    return res.status(404).json({ message: "Error: Email ID not found !" });
+  }
+
+  // Domain Check
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@fecundservices+\.com/;
+  const validateEmail = emailRegex.test(email);
+  if (!validateEmail) {
+    return res.status(404).json({ message: "Error: Invalid Email ID" });
   }
 
   // CHECKING IF THE PASSWORD IS CORRECT
@@ -24,16 +31,32 @@ const loginUser = async (req, res) => {
   );
 
   if (!isPasswordCorrect) {
-    return res.status(400).json({ message: "Invalid credentials" });
+    return res.status(400).json({ message: "Error: Invalid Password !" });
   }
 
   return res.status(200).json({ message: "Sucessfully logged in " });
 };
-  
+
 // signup user
 const signupUser = async (req, res) => {
   try {
-    const { firstName, lastName, employeeID, email, password, answer1, answer2, answer3 } = req.body;
+    const {
+      firstName,
+      lastName,
+      employeeID,
+      email,
+      password,
+      answer1,
+      answer2,
+      answer3,
+    } = req.body;
+
+    // DOMIANCHECK
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@fecundservices+\.com/;
+    const validateEmail = emailRegex.test(email);
+    if (!validateEmail){
+      return res.status(400).json({ message: "Error: Invalid Email ID!" });
+    }
 
     // CHECKING IF THE USER ALREADY EXISTS
     let existingUser;
@@ -44,8 +67,20 @@ const signupUser = async (req, res) => {
     }
 
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ message: "Error: Email ID already exists !" });
     }
+
+     // CHECKING IF EMPLOYEE ID ALREADY EXISTS
+     let existingID
+     try {
+       existingID = await User.findOne({ employeeID });
+     } catch (error) {
+       console.log(error.message);
+     }
+  
+     if (existingID) {
+       return res.status(400).json({ message: "Error: Employee ID already exists !"})
+     }
 
     // HASHING THE PASSWORD
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -59,7 +94,7 @@ const signupUser = async (req, res) => {
       password: hashedPassword,
       answer1,
       answer2,
-      answer3
+      answer3,
     });
     await user.save();
     return res.status(201).json({ message: user });
@@ -68,5 +103,4 @@ const signupUser = async (req, res) => {
   }
 };
 
-
-module.exports = {loginUser, signupUser}
+module.exports = { loginUser, signupUser };
