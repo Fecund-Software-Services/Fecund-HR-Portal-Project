@@ -1,9 +1,9 @@
 import React from "react";
 
-const NewCondidate = () => {
+const NewCandidate = () => {
     return (
         <p>Refer New Candidate Here </p>
     )
 }
 
-export default NewCondidate
+export default NewCandidate

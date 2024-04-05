@@ -3,8 +3,8 @@ import Login from './components/Login';
 import SignUpForm from './components/SignupForm';
 import './App.css';
 import HomePage from './components/HomePage';
-import ViewSearchConadidatePage from './components/viewSearchCondidatePage';
-import NewCondidate from './components/NewCondidate';
+import ViewSearchCandidatePage from './components/ViewSearchCandidatePage';
+import NewCandidate from './components/NewCandidate';
 
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/home" element={<HomePage/>} />
-          <Route path="/add-new-candidate" element={<NewCondidate/>} />
-          <Route path="/search-candidate" element={<ViewSearchConadidatePage/>} />
+          <Route path="/add-new-candidate" element={<NewCandidate/>} />
+          <Route path="/search-candidate" element={<ViewSearchCandidatePage/>} />
         </Routes>
       </BrowserRouter>
     </>
