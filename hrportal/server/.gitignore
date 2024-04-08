@@ -1,0 +1,2 @@
+# this file is to ignore node modules on the server side. Please download the node modules by running "npm install" command once you pull the code in your local
+/node_modules

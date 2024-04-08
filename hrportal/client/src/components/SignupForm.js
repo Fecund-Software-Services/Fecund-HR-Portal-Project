@@ -4,103 +4,37 @@ import backgroundImage from "../assets/common-background-image.png";
 import popupBackground from "../assets/popup-background.png";
 import styles from "./SignupForm.module.css";
 import SignupSuccessfully from "./SignupSuccessfully.js";
-// import { useSignup } from "./useSignup.js";
+// importing "useSignup" from hooks
+import { useSignup } from "../hooks/useSignup.js";
 
 const SignUpForm = () => {
   // State for form handling
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [employeeID, setEmployeeID] = useState("");
+  const [employeeID, setEmployeeId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
-  const [error, setError] = useState(null);
-  const [isSubmitting, setisSubmitting] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  //const [showPopup, setShowPopup] = React.useState(false);
+  // using 'useSignup' for integrating with backend 
+  const {signup, error, isLoading, showPopup} = useSignup()
+  const navigateToLogin = useNavigate();
+  const navigateToPopup = useNavigate();
 
-  const navigate1 = useNavigate();
-  const navigate2 = useNavigate();
+  // function that calls signup hok
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    await signup(firstName, lastName, employeeID, email, password, answer1, answer2, answer3)
+  }
 
-  // const signUp = useSignup()
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let signUpData = {
-      firstName,
-      lastName,
-      employeeID,
-      email,
-      password,
-      answer1,
-      answer2,
-      answer3,
-    };
-    console.log("Form submitted: ", signUpData);
-
-    // const output = await signUp(signUpData)
-
-    // const signup = async ({
-    //   firstName,
-    //   lastName,
-    //   employeeID,
-    //   email,
-    //   password,
-    //   answer1,
-    //   answer2,
-    //   answer3,
-    // }) => {
-      setisSubmitting(true);
-      setError(null);
-
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          employeeID,
-          email,
-          password,
-          answer1,
-          answer2,
-          answer3,
-        }),
-      };
-
-      try {
-        const response = await fetch(
-          "http://localhost:8080/api/user/signup",
-          requestOptions
-        );
-        const data = await response.json();
-        console.log(response);
-        console.log(data);
-
-        if (!response.ok) {
-          throw new Error(data.message);
-        }
-        if (response.ok) {
-          setisSubmitting(false);
-          setShowPopup(!showPopup);
-        }
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setisSubmitting(false);
-      }
-    // };
-    // signup(signUpData);
-  };
-
-  const handleCancel = (e) => navigate1("/");
+  const handleCancel = (e) => navigateToLogin("/");
 
   const togglePopup = () => {
-    setShowPopup(!showPopup);
-    navigate2("/");
-  };
+    //setShowPopup(!showPopup);
+    navigateToPopup("/")
+  }
 
   return (
     <div
@@ -108,9 +42,11 @@ const SignUpForm = () => {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <form onSubmit={handleSubmit} className={styles.signup_form}>
+
         <div className={styles.title_container}>
           <p className={styles.form_title}>Sign up to Hiring Portal</p>
         </div>
+
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
             Employee First Name
@@ -126,6 +62,7 @@ const SignUpForm = () => {
           />
         </div>
         <br />
+
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeLastName" className={styles.label_type}>
             Employee Last Name
@@ -140,6 +77,7 @@ const SignUpForm = () => {
           />
         </div>
         <br />
+
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeID" className={styles.label_type}>
             Employee ID
@@ -147,13 +85,14 @@ const SignUpForm = () => {
           <input
             type="number"
             value={employeeID}
-            onChange={(e) => setEmployeeID(e.target.value)}
+            onChange={(e) => setEmployeeId(e.target.value)}
             className={styles.login_input}
             name="EmployeeID"
             required
           />
         </div>
         <br />
+
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>
             Email ID
@@ -168,6 +107,7 @@ const SignUpForm = () => {
           />
         </div>
         <br />
+
         <div className={styles.sub_container}>
           <label htmlFor="password" className={styles.label_type}>
             Password
@@ -182,6 +122,7 @@ const SignUpForm = () => {
           />
         </div>
         {/* <br /> */}
+
         <div>
           <div className={styles.sub_container_question}>
             <label className={styles.label_type}>Security Question 1</label>
@@ -202,10 +143,11 @@ const SignUpForm = () => {
             />
           </div>
         </div>
+
         <div>
           <div className={styles.sub_container_question}>
             <label className={styles.label_type}>Security Question 2</label>
-            <p htmlFor="SecurityQuestion1" className={styles.p_type}>
+            <p htmlFor="SecurityQuestion2" className={styles.p_type}>
               What was your childhood nickname ?
             </p>
           </div>
@@ -222,6 +164,7 @@ const SignUpForm = () => {
             />
           </div>
         </div>
+
         <div>
           <div className={styles.sub_container_question}>
             <label className={styles.label_type}>Security Question 3</label>
@@ -243,8 +186,9 @@ const SignUpForm = () => {
           </div>
         </div>
         <br />
+
         {error && <p className={styles.errorMessage}>{error}</p>}
-        <br />
+
         <div className={styles.Signup_button_container}>
           <button
             type="button"
@@ -253,15 +197,16 @@ const SignUpForm = () => {
           >
             Cancel
           </button>
+
           <button
             type="submit"
-            // onClick={() => setShowPopup(!showPopup)}
+            //onClick={() => setShowPopup(!showPopup)}
             className={styles.Signup_button}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Submitting..." : "Signup"}
+            disabled = {isLoading}>
+              {isLoading ? "Sunmitting...": "Signup"}
           </button>
         </div>
+
       </form>
       {showPopup && (
         <div className={styles.popup} onClick={togglePopup}>
@@ -272,7 +217,7 @@ const SignUpForm = () => {
             <SignupSuccessfully
               firstName={firstName}
               lastName={lastName}
-              employeeId={employeeID}
+              employeeID={employeeID}
               email={email}
               answer1={answer1}
               answer2={answer2}
