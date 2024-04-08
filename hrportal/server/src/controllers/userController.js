@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@fecundservices+\.com/;
   const validateEmail = emailRegex.test(email);
   if (!validateEmail) {
-    return res.status(404).json({ message: "Error: Invalid Email ID" });
+    return res.status(404).json({ message: "Error: Invalid Email ID!" });
   }
 
   // CHECKING IF THE PASSWORD IS CORRECT
@@ -31,7 +31,7 @@ const loginUser = async (req, res) => {
   );
 
   if (!isPasswordCorrect) {
-    return res.status(400).json({ message: "Error: Invalid Password !" });
+    return res.status(400).json({ message: "Error: Invalid Password!" });
   }
 
   return res.status(200).json({ message: "Sucessfully logged in " });
