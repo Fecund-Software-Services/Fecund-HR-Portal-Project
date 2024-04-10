@@ -109,7 +109,7 @@ const signupUser = async (req, res) => {
 };
 
 // reset Password for the user.
-const resetPassword = async (req, res) => {
+const forgotPassword = async (req, res) => {
   try {
     const {email, employeeID, selectedQuestion, answer} = req.body;
 
@@ -176,7 +176,7 @@ const resetPassword = async (req, res) => {
  
 };
 
-module.exports = { loginUser, signupUser, resetPassword };
+module.exports = { loginUser, signupUser, forgotPassword };
 
 
 
