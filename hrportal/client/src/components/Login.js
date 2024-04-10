@@ -1,8 +1,8 @@
-// Login.js
 import React, { useState } from 'react';
 // Replace with the path to your background image
 import backgroundImage from '../assets/login-background-static-image.png'; 
 import styles from './Login.module.css';
+// import PasswordInput from './PasswordInput';
 // importing "useLogin" from hooks
 import { useLogin } from '../hooks/useLogin';
 
@@ -18,12 +18,6 @@ const Login = () => {
     event.preventDefault();
     await login(email, password)
   }
-    
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  // };
 
   return (
     <div className={styles.login_container} style={{ backgroundImage: `url(${backgroundImage})` }}>
