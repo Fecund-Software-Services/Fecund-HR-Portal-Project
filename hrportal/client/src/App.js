@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import SignUpForm from './components/SignupForm';
 import './App.css';
+import ResetPassword from './components/ResetPassword';
 import HomePage from './components/HomePage';
 import ViewSearchCandidatePage from './components/ViewSearchCandidatePage';
 import NewCandidate from './components/NewCandidate';
@@ -17,6 +18,7 @@ function App() {
           <Route path="/home" element={<HomePage/>} />
           <Route path="/add-new-candidate" element={<NewCandidate/>} />
           <Route path="/search-candidate" element={<ViewSearchCandidatePage/>} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </>
