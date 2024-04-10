@@ -14,7 +14,7 @@ const loginUser = async (req, res) => {
   }
 
   if (!existingUser) {
-    return res.status(404).json({ message: "Error: Email ID not found !" });
+    return res.status(404).json({ message: "Error: Email ID not found!" });
   }
 
   // Domain Check
@@ -67,7 +67,7 @@ const signupUser = async (req, res) => {
     }
 
     if (existingUser) {
-      return res.status(400).json({ message: "Error: Email ID already exists !" });
+      return res.status(400).json({ message: "Error: Email ID already exists!" });
     }
 
      // CHECKING IF EMPLOYEE ID ALREADY EXISTS
@@ -79,11 +79,16 @@ const signupUser = async (req, res) => {
      }
   
      if (existingID) {
-       return res.status(400).json({ message: "Error: Employee ID already exists !"})
+       return res.status(400).json({ message: "Error: Employee ID already exists!"})
      }
 
     // HASHING THE PASSWORD
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // HASHING THE ANSWERS OF SECURITY QUESTIONS
+    const hashedAnswer1 = await bcrypt.hash(answer1, 10);
+    const hashedAnswer2 = await bcrypt.hash(answer2, 10);
+    const hashedAnswer3 = await bcrypt.hash(answer3, 10);
 
     // CREATING A NEW USER
     const user = new User({
@@ -92,9 +97,9 @@ const signupUser = async (req, res) => {
       employeeID,
       email,
       password: hashedPassword,
-      answer1,
-      answer2,
-      answer3,
+      answer1: hashedAnswer1,
+      answer2: hashedAnswer2,
+      answer3: hashedAnswer3,
     });
     await user.save();
     return res.status(201).json({ message: user });
@@ -103,4 +108,75 @@ const signupUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, signupUser };
+// reset Password for the user.
+const forgotPassword = async (req, res) => {
+  try {
+    const {email, employeeID, selectedQuestion, answer} = req.body;
+
+    // CHECKING IF EMAIL EXISTS
+    let existingUser;
+    try {
+      existingUser = await User.findOne({ email });
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    if (!existingUser) {
+      return res.status(400).json({ message: "Error: Email ID not found!" });
+    }
+
+     // CHECKING IF EMPLOYEE ID  EXISTS
+    let existingID;
+    try {
+      existingID = await User.findOne({ employeeID });
+    } catch (error) {
+      console.log(error.message);
+    }
+  
+    if (!existingID) {
+      return res.status(400).json({ message: "Error: Employee ID not found!"})
+    }
+
+
+    // Validate security question answer based on selected question.
+    try {
+      if (selectedQuestion == existingUser.securityQuestion1){
+        const isAnswer1Correct = await bcrypt.compare(
+          answer,
+          existingUser.answer1
+        );
+        if (!isAnswer1Correct) {
+          return res.status(400).json({ message: "Error: Invalid Answer!" });
+        }
+      } else if(selectedQuestion == existingUser.securityQuestion2) {
+        const isAnswer2Correct = await bcrypt.compare(
+          answer,
+          existingUser.answer2
+        );
+        if (!isAnswer2Correct) {
+          return res.status(400).json({ message: "Error: Invalid Answer!" });
+        }
+      } else {
+        const isAnswer3Correct = await bcrypt.compare(
+          answer,
+          existingUser.answer2
+        );
+        if (!isAnswer3Correct) {
+          return res.status(400).json({ message: "Error: Invalid Answer!" });
+        }
+      }
+
+    } catch (error) {
+      console.log(error.message)
+    }
+    return res.status(200).json({ message: "You can reset password now " });
+  } catch (error) {
+    console.log (error.message)
+  }
+ 
+};
+
+module.exports = { loginUser, signupUser, forgotPassword };
+
+
+

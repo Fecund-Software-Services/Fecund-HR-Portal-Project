@@ -1,6 +1,6 @@
 const express = require('express')
 const User = require('../collections/users')
-const {signupUser, loginUser} = require('../controllers/userController')
+const {signupUser, loginUser, resetPassword} = require('../controllers/userController')
 
 // for creating the instance of the route
 const router = express.Router()
@@ -8,10 +8,11 @@ const router = express.Router()
 // login user
 router.post('/login', loginUser)
 
-
 // signup user
 router.post('/signup', signupUser)
 
+// resetting password for a user
+router.post('/forgotPassword', resetPassword)
 
 // exporting router
 module.exports = router
