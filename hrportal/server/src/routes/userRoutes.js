@@ -14,5 +14,7 @@ router.post('/signup', signupUser)
 // resetting password for a user
 router.post('/forgotPassword', forgotPassword)
 
+router.post('/resetPassword', resetPassword)
+
 // exporting router
 module.exports = router
