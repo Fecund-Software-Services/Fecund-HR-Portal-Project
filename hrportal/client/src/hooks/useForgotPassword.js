@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { useNavigate} from "react-router-dom"
 
-export const useLogin = () => {
+export const useForgotPassword = () => {
     const [error, setError] = useState(" ")
     const [isVerifying, setIsVerifying] = useState(null)
     const navigateResetPassword = useNavigate()

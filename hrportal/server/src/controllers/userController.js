@@ -111,7 +111,7 @@ const signupUser = async (req, res) => {
 // reset Password for the user.
 const forgotPassword = async (req, res) => {
   try {
-    const {email, employeeID, selectedQuestion, answer} = req.body;
+    const {email, employeeID, securityQuestion, answer} = req.body;
 
     // CHECKING IF EMAIL EXISTS
     let existingUser;
@@ -137,10 +137,18 @@ const forgotPassword = async (req, res) => {
       return res.status(400).json({ message: "Error: Employee ID not found!"})
     }
 
+    // to check whether the employeeID belongs to the user
+    try {
+      if (employeeID != existingUser.employeeID) {
+        return res.status(400).json({ message: "Error: Employee ID not found!"})
+      }
+    } catch (error){
+      console.log(error.message)
+    }
 
     // Validate security question answer based on selected question.
     try {
-      if (selectedQuestion == existingUser.securityQuestion1){
+      if (securityQuestion == existingUser.securityQuestion1){
         const isAnswer1Correct = await bcrypt.compare(
           answer,
           existingUser.answer1
@@ -148,7 +156,7 @@ const forgotPassword = async (req, res) => {
         if (!isAnswer1Correct) {
           return res.status(400).json({ message: "Error: Incorrect Answer!" });
         }
-      } else if(selectedQuestion == existingUser.securityQuestion2) {
+      } else if(securityQuestion == existingUser.securityQuestion2) {
         const isAnswer2Correct = await bcrypt.compare(
           answer,
           existingUser.answer2
