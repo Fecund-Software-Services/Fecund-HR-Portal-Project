@@ -146,7 +146,7 @@ const forgotPassword = async (req, res) => {
           existingUser.answer1
         );
         if (!isAnswer1Correct) {
-          return res.status(400).json({ message: "Error: Invalid Answer!" });
+          return res.status(400).json({ message: "Error: Incorrect Answer!" });
         }
       } else if(selectedQuestion == existingUser.securityQuestion2) {
         const isAnswer2Correct = await bcrypt.compare(
@@ -154,7 +154,7 @@ const forgotPassword = async (req, res) => {
           existingUser.answer2
         );
         if (!isAnswer2Correct) {
-          return res.status(400).json({ message: "Error: Invalid Answer!" });
+          return res.status(400).json({ message: "Error: Incorrect Answer!" });
         }
       } else {
         const isAnswer3Correct = await bcrypt.compare(
@@ -162,7 +162,7 @@ const forgotPassword = async (req, res) => {
           existingUser.answer2
         );
         if (!isAnswer3Correct) {
-          return res.status(400).json({ message: "Error: Invalid Answer!" });
+          return res.status(400).json({ message: "Error: Incorrect Answer!" });
         }
       }
 

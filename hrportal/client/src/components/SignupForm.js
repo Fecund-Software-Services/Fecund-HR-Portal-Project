@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/common-background-image.png";
 import popupBackground from "../assets/popup-background.png";
 import styles from "./SignupForm.module.css";
-import SignupSuccessfully from "./SignupSuccessfully.js";
+
 // importing "useSignup" from hooks
 import { useSignup } from "../hooks/useSignup.js";
 
@@ -18,34 +18,43 @@ const SignUpForm = () => {
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
   //const [showPopup, setShowPopup] = React.useState(false);
-  // using 'useSignup' for integrating with backend 
-  const {signup, error, isLoading, showPopup} = useSignup()
+  // using 'useSignup' for integrating with backend
+  const { signup, error, isLoading, showPopup } = useSignup();
   const navigateToLogin = useNavigate();
   const navigateToPopup = useNavigate();
 
   // function that calls signup hok
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    await signup(firstName, lastName, employeeID, email, password, answer1, answer2, answer3)
-  }
+    event.preventDefault();
+    await signup(
+      firstName,
+      lastName,
+      employeeID,
+      email,
+      password,
+      answer1,
+      answer2,
+      answer3
+    );
+  };
 
   const handleCancel = (e) => navigateToLogin("/");
 
   const togglePopup = () => {
     //setShowPopup(!showPopup);
-    navigateToPopup("/")
-  }
+    navigateToPopup("/");
+  };
 
   return (
     <div
       className={styles.signup_container}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <form onSubmit={handleSubmit} className={styles.signup_form}>
-
-        <div className={styles.title_container}>
+      <div className={styles.title_container}>
           <p className={styles.form_title}>Sign up to Hiring Portal</p>
         </div>
+      <form onSubmit={handleSubmit} className={styles.signup_form}>
+        
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
@@ -125,7 +134,7 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type}>Security Question 1</label>
+            <label className={styles.label_type_q}>Security Question 1</label>
             <p htmlFor="SecurityQuestion1" className={styles.p_type}>
               What is your first pet name ?
             </p>
@@ -146,7 +155,7 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type}>Security Question 2</label>
+            <label className={styles.label_type_q}>Security Question 2</label>
             <p htmlFor="SecurityQuestion2" className={styles.p_type}>
               What was your childhood nickname ?
             </p>
@@ -167,7 +176,7 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type}>Security Question 3</label>
+            <label className={styles.label_type_q}>Security Question 3</label>
             <p htmlFor="SecurityQuestion3" className={styles.p_type}>
               What was your first mobile brand name ?
             </p>
@@ -202,11 +211,11 @@ const SignUpForm = () => {
             type="submit"
             //onClick={() => setShowPopup(!showPopup)}
             className={styles.Signup_button}
-            disabled = {isLoading}>
-              {isLoading ? "Sunmitting...": "Signup"}
+            disabled={isLoading}
+          >
+            {isLoading ? "Sunmitting..." : "Signup"}
           </button>
         </div>
-
       </form>
       {showPopup && (
         <div className={styles.popup} onClick={togglePopup}>
@@ -214,21 +223,12 @@ const SignUpForm = () => {
             className={styles.popup_content}
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
-            <SignupSuccessfully
-              firstName={firstName}
-              lastName={lastName}
-              employeeID={employeeID}
-              email={email}
-              answer1={answer1}
-              answer2={answer2}
-              answer3={answer3}
-            />
             <p className={styles.popup_message}>
-              Form submitted successfully!<a href="/"> Login Here</a>
+              Form submitted successfully!<br/><a href="/" className={styles.login_here}> Login Here</a>
             </p>
-            <button className={styles.popup_close_button} onClick={togglePopup}>
+            {/* <button className={styles.popup_close_button} onClick={togglePopup}>
               Close
-            </button>
+            </button> */}
           </div>
         </div>
       )}
