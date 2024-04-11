@@ -4,37 +4,36 @@ import backgroundImage from "../assets/common-background-image.png"; // Import t
 import styles from "./ResetPassword.module.css"; // Import the CSS file
 //import Login from './Login'; // Import the Login component
 
+import { useForgotPassword } from '../hooks/useForgotPassword'
+
 const securityQuestions = [
   {
-    value: "What is your first pet name?",
-    label: "What is your first pet name?",
+    value: "What is your first pet name ?",
+    label: "What is your first pet name ?",
   },
   {
-    value: "What was your childhood nickname?",
-    label: "What was your childhood nickname?",
+    value: "What was your childhood nickname ?",
+    label: "What was your childhood nickname ?",
   },
   {
-    value: "What was your first mobile brand name?",
-    label: "What was your first mobile brand name?",
+    value: "What was your first mobile brand name ?",
+    label: "What was your first mobile brand name ?",
   },
 ];
 
 function ResetPassword() {
   const [employeeId, setEmployeeId] = useState("");
   const [email, setEmail] = useState("");
-  const [securityQuestion, setSecurityQuestion] = useState(
-    securityQuestions[0].value
-  );
+  const [securityQuestion, setSecurityQuestion] = useState("What is your first pet name ?");
   const [answer, setAnswer] = useState("");
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [error, setError] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
 
   const navigateToLogin = useNavigate();
   // const navigateToPopup = useNavigate();
 
-  const handleSubmit = (event) => {
-    setIsVerifying(true);
+  const { forgotPassword, error, isVerifying } = useForgotPassword()
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const userData = {
@@ -44,22 +43,21 @@ function ResetPassword() {
       answer: answer,
     };
 
-    setShowPopup(true);
-
     console.log(userData);
+ // Implement back-end logic here
+
+    await forgotPassword(email, employeeId, securityQuestion, answer)
+
+
     // Implement logic to reset password based on user input
-    console.log("Employee ID:", employeeId);
-    console.log("Email:", email);
-    console.log("Security Question:", securityQuestion);
-    console.log("Answer:", answer);
-    setIsVerifying(false);
+  
   };
 
   const handleCancel = (e) => navigateToLogin("/");
 
-  const togglePopup = () => {
-    navigateToLogin("/");
-  };
+  // const togglePopup = () => {
+  //   navigateToLogin("/");
+  // };
 
   return (
     <div
@@ -156,7 +154,7 @@ function ResetPassword() {
           </button>
         </div>
       </form>
-      {showPopup && (
+      {/* {showPopup && (
         <div className={styles.popup} onClick={togglePopup}>
           <div
             className={styles.popup_content}
@@ -172,7 +170,7 @@ function ResetPassword() {
             </p>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
