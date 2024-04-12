@@ -184,7 +184,21 @@ const forgotPassword = async (req, res) => {
  
 };
 
-module.exports = { loginUser, signupUser, forgotPassword };
+// reset password to new password
+const resetPassword = async (req, res) => {
+  try {
+    const {employeeID, newPassword} = req.body
+    // hashing password
+    const hashednewPassword = await bcrypt.hash(newPassword, 10);
+    // updating new password
+    await User.updateOne({employeeID}, {password: hashednewPassword})
+    return res.status(200).json({message: "Password Reset Successful"})
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+module.exports = { loginUser, signupUser, forgotPassword, resetPassword};
 
 
 
