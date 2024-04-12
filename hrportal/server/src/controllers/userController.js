@@ -167,7 +167,7 @@ const forgotPassword = async (req, res) => {
       } else {
         const isAnswer3Correct = await bcrypt.compare(
           answer,
-          existingUser.answer2
+          existingUser.answer3
         );
         if (!isAnswer3Correct) {
           return res.status(400).json({ message: "Error: Incorrect Answer!" });
