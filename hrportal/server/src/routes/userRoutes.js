@@ -1,3 +1,17 @@
+/*
+Project: Hiring Portal Project
+Author: Sanjay HS
+Date: 01/04/2024
+Sprint: Sprint 2
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
 const express = require('express')
 const User = require('../collections/users')
 const {signupUser, loginUser, forgotPassword, resetPassword} = require('../controllers/userController')

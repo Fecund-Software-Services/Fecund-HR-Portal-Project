@@ -1,3 +1,17 @@
+/*
+Project: Hiring Portal Project
+Author: Sanjay HS
+Date: 29/03/2024
+Sprint: Sprint 1
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
 const express = require('express');
 const mongoose = require('mongoose');
 const url = require('./src/connection/constants');

@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar & Vishal
+Date: 05/04/2024
+Sprint: Sprint 1 
+User Story: Successful Login and Home Page
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
 import React from "react";
 import { Link } from "react-router-dom";
 import backgroundImage from "../assets/common-background-image.png";

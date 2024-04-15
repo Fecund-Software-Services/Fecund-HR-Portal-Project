@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 01/04/2024
+Sprint: Sprint 2
+User Story: Sign up screen
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/common-background-image.png";
