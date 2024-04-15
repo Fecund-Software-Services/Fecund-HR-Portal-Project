@@ -18,7 +18,7 @@ export const useResetPassword = () => {
             })
 
             const json = await response.json()
-            console.log(json)
+            console.log("password changed")
 
             if (!response.ok){
                 throw new Error(json.message)

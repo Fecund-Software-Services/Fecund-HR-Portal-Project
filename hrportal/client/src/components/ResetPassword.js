@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import backgroundImage from "../assets/common-background-image.png"; // Import the background image
 import styles from "./ResetPassword.module.css"; // Import the CSS file
 //import Login from './Login'; // Import the Login component
 
-import { useForgotPassword } from '../hooks/useForgotPassword'
+import { useForgotPassword } from "../hooks/useForgotPassword";
 
 const securityQuestions = [
   {
@@ -24,14 +24,17 @@ const securityQuestions = [
 function ResetPassword() {
   const [employeeId, setEmployeeId] = useState("");
   const [email, setEmail] = useState("");
-  const [securityQuestion, setSecurityQuestion] = useState("What is your first pet name ?");
+  // const [isAnswerCorrect, setIsAnswerCorrect ] = useState(false)
+  const [securityQuestion, setSecurityQuestion] = useState(
+    "What is your first pet name ?"
+  );
   const [answer, setAnswer] = useState("");
-  // const [showPopup, setShowPopup] = useState(false);
+  const [isSecurityQuestionCorrect, setIsSecurityQuestionCorrect] =
+    useState(false);
 
   const navigateToLogin = useNavigate();
-  // const navigateToPopup = useNavigate();
 
-  const { forgotPassword, error, isVerifying } = useForgotPassword()
+  const { forgotPassword, error, isVerifying } = useForgotPassword();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,20 +47,20 @@ function ResetPassword() {
     };
 
     console.log(userData);
- // Implement back-end logic here
+    // Implement back-end logic here
+    const data = await forgotPassword(
+      email,
+      employeeId,
+      securityQuestion,
+      answer
+    );
 
-    await forgotPassword(email, employeeId, securityQuestion, answer)
-
-
-    // Implement logic to reset password based on user input
-  
+    if (data) {
+      setIsSecurityQuestionCorrect(true);
+    }
   };
 
   const handleCancel = (e) => navigateToLogin("/");
-
-  // const togglePopup = () => {
-  //   navigateToLogin("/");
-  // };
 
   return (
     <div
@@ -72,105 +75,104 @@ function ResetPassword() {
         alignItems: "center",
       }}
     >
-      <form onSubmit={handleSubmit} className={styles.reset_password_form}>
-        <h1 className={styles.reset_password_title}>Reset Password</h1>
-        <div className={styles.form_field}>
-          <label htmlFor="employeeId" className={styles.form_label}>
-            Employee ID:
-          </label>
-          <input
-            type="number"
-            id="employeeId"
-            value={employeeId}
-            onChange={(e) => setEmployeeId(e.target.value)}
-            required
-            className={styles.form_input}
-          />
-        </div>
-        <div className={styles.form_field}>
-          <label htmlFor="emailId" className={styles.form_label}>
-            Email ID:
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className={styles.form_input}
-          />
-        </div>
-        <div className={styles.form_field}>
-          <label htmlFor="securityQuestion" className={styles.form_label}>
-            Security Question:
-          </label>
-          <select
-            id="securityQuestion"
-            value={securityQuestion}
-            onChange={(e) => setSecurityQuestion(e.target.value)}
-            required
-            className={styles.form_input}
-          >
-            {/* // <option value="">Select a question</option> */}
-            {securityQuestions.map((question) => (
-              <option key={question.value} value={question.value}>
-                {question.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={styles.form_field}>
-          <label htmlFor="answer" className={styles.form_label}>
-            Answer:
-          </label>
-          <input
-            type="text"
-            id="answer"
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-            required
-            className={styles.form_input}
-          />
-        </div>
-
-        {error && <p className={styles.errorMessage}>{error}</p>}
-
-        <div className={styles.Signup_button_container}>
-          <button
-            type="button"
-            onClick={handleCancel}
-            className={styles.Signup_button}
-          >
-            Cancel
-          </button>
-
-          <button
-            type="submit"
-            //onClick={() => setShowPopup(!showPopup)}
-            className={styles.Signup_button}
-            disabled={isVerifying}
-          >
-            {isVerifying ? "Verifying..." : "Verify"}
-          </button>
-        </div>
-      </form>
-      {/* {showPopup && (
-        <div className={styles.popup} onClick={togglePopup}>
-          <div
-            className={styles.popup_content}
-            // style={{ backgroundImage: `url(${popupBackground})` }}
-          >
-            <p className={styles.popup_message}>
-              Form submitted successfully!
-              <br />
-              <a href="/" className={styles.login_here}>
-                {" "}
-                Login Here
-              </a>
-            </p>
+      {!isSecurityQuestionCorrect && (
+        <div className={styles.container}>
+          <div>
+            <h1 className={styles.reset_password_title}>Reset Password</h1>
           </div>
+          <form onSubmit={handleSubmit} className={styles.reset_password_form}>
+            <div className={styles.form_field}>
+              <label htmlFor="employeeId" className={styles.form_label}>
+                Employee ID:
+              </label>
+              <input
+                type="number"
+                id="employeeId"
+                value={employeeId}
+                onChange={(e) => setEmployeeId(e.target.value)}
+                required
+                className={styles.form_input}
+              />
+            </div>
+            <div className={styles.form_field}>
+              <label htmlFor="emailId" className={styles.form_label}>
+                Email ID:
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className={styles.form_input}
+              />
+            </div>
+            <div className={styles.form_field}>
+              <label htmlFor="securityQuestion" className={styles.form_label}>
+                Security Question:
+              </label>
+              <select
+                id="securityQuestion"
+                value={securityQuestion}
+                onChange={(e) => setSecurityQuestion(e.target.value)}
+                required
+                className={styles.form_input_question}
+              >
+                {/* // <option value="">Select a question</option> */}
+                {securityQuestions.map((question) => (
+                  <option key={question.value} value={question.value}>
+                    {question.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.form_field}>
+              <label htmlFor="answer" className={styles.form_label}>
+                Answer:
+              </label>
+              <input
+                type="text"
+                id="answer"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                required
+                className={styles.form_input}
+              />
+            </div>
+
+            {error && <p className={styles.errorMessage}>{error}</p>}
+
+            <div className={styles.Signup_button_container}>
+              <button
+                type="button"
+                onClick={handleCancel}
+                className={styles.Signup_button}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                //onClick={() => setShowPopup(!showPopup)}
+                className={styles.Signup_button}
+                disabled={isVerifying}
+              >
+                {isVerifying ? "Verifying..." : "Verify"}
+              </button>
+            </div>
+          </form>
         </div>
-      )} */}
+      )}
+      {isSecurityQuestionCorrect && (
+        <div className={styles.link_container}>
+          <p className={styles.verified_text}>
+            Security question verified. Proceed to set new password.
+          </p>
+          <Link className={styles.link} to={`/new-password/${employeeId}`}>
+            Next
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

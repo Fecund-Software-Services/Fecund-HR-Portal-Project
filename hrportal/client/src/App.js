@@ -6,7 +6,7 @@ import ResetPassword from './components/ResetPassword';
 import HomePage from './components/HomePage';
 import ViewSearchCandidatePage from './components/ViewSearchCandidatePage';
 import NewCandidate from './components/NewCandidate';
-import NewPassword from './components/NewPassword'
+import EnterNewPassword from './components/EnterNewPassword'
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <Route path="/add-new-candidate" element={<NewCandidate/>} />
           <Route path="/search-candidate" element={<ViewSearchCandidatePage/>} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/new-password" element={<NewPassword/>} />
+          <Route path="/new-password/:employeeId" element={<EnterNewPassword/>} />
         </Routes>
       </BrowserRouter>
     </>
