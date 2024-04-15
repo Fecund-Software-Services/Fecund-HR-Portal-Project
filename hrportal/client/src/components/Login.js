@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar & Vishal
+Date: 25/03/2024
+Sprint: Sprint 1
+User Story: Hiring Portal Login
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
 import React, { useState } from 'react';
 // Replace with the path to your background image
 import backgroundImage from '../assets/login-background-static-image.png'; 

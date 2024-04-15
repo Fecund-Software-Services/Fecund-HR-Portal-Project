@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Sanjay HS
+Date: 11/04/2024
+Sprint: Sprint 2
+User Story: Enter New Password
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
 // importing useState
 import { useState } from "react"
 

@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Sanjay HS
+Date: 25/03/2024
+Sprint: Sprint 1
+User Story: Hiring Login Portal
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
 const User = require("../collections/users");
 const bcrypt = require("bcrypt");
 
