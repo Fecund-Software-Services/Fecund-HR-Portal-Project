@@ -1,5 +1,26 @@
+/*
+Project: Hiring Portal Project
+Author: Sanjay HS
+Date: 25/03/2024
+Sprint: Sprint 1
+User Story: Hiring Login Portal
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+16/04/2024      HS                            2         Authentication & Authorization - Login
+-------------------------------------------------------------------------------------------------------
+*/
+
 const User = require("../collections/users");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+
+// create token function for authentication
+const createToken = (_id) => {
+  return jwt.sign({_id}, process.env.SECRET, { expiresIn: '2d'})
+}
 
 // login user
 const loginUser = async (req, res) => {
@@ -7,7 +28,7 @@ const loginUser = async (req, res) => {
 
   // CHECKING IF THE USER ALREADY EXISTS
   let existingUser;
-  try {
+  try { 
     existingUser = await User.findOne({ email });
   } catch (error) {
     console.log(error.message);
@@ -33,8 +54,12 @@ const loginUser = async (req, res) => {
   if (!isPasswordCorrect) {
     return res.status(400).json({ message: "Error: Invalid Password!" });
   }
+  // authentication token
+  const token = createToken(existingUser._id)
 
-  return res.status(200).json({ message: "Sucessfully logged in " });
+  return res.status(201).json({ email, token });
+
+ // return res.status(200).json({ message: "Sucessfully logged in " });
 };
 
 // signup user
@@ -102,7 +127,9 @@ const signupUser = async (req, res) => {
       answer3: hashedAnswer3,
     });
     await user.save();
-    return res.status(201).json({ message: user });
+    // authentication token
+    const token = createToken(user._id)
+    return res.status(201).json({ email, token });
   } catch (error) {
     console.log(error.message);
   }

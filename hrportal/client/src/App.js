@@ -21,7 +21,7 @@ function App() {
           <Route path="/add-new-candidate" element={<AddCandidateForm/>} />
           <Route path="/search-candidate" element={<ViewSearchCandidatePage/>} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/new-password" element={<NewPassword/>} />
+          <Route path="/new-password/:employeeId" element={<NewPassword/>} />
         </Routes>
       </BrowserRouter>
     </>
