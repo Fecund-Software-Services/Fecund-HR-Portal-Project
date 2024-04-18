@@ -63,7 +63,7 @@
     width: 38%;
   }
   
-  .checkbox_conatiner {
+  .checkbox_container {
     /* margin-left: 10px; */
     display: flex;
     flex-direction: row;
@@ -71,7 +71,7 @@
     width: 41%;
   }
    
-  .checkbox_conatiner label {
+  .checkbox_container label {
     width: 50px;
   }
   
@@ -123,6 +123,15 @@
   
   .disclaimer {
     padding-top: 20px;
-    color: #ffffff;
+    color: white;
     font-size: 12px;
+  }
+
+  .asterisk {
+color: red;
+  }
+
+  textarea {
+    width: 40px;
+    height: 10px;
   }

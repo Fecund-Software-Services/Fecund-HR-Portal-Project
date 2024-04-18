@@ -14,6 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 */
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from './NewCandidate.module.css';
 
 const NewCandidate = () => {
@@ -38,12 +39,16 @@ const NewCandidate = () => {
 
   const [showLastWorkingDay, setShowLastWorkingDay] = useState(false);
 
+  const nav = useNavigate()
+
   const skillSetOptions = ["Java", "Python", "JavaScript", "C++"];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+  const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -81,7 +86,7 @@ const NewCandidate = () => {
         <div className={styles.form_left}>
           {/* Left side form fields here */}
           <div className={styles.sub_container}>
-            <label htmlFor="firstName">First Name*:</label>
+            <label htmlFor="firstName">First Name<span className={styles.asterisk}>*</span>:</label>
             <input
               type="text"
               name="firstName"
@@ -92,7 +97,7 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="lastName">Last Name*:</label>
+            <label htmlFor="lastName">Last Name<span className={styles.asterisk}>*</span>:</label>
             <input
               type="text"
               name="lastName"
@@ -103,7 +108,7 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="email">Email ID*:</label>
+            <label htmlFor="email">Email ID<span className={styles.asterisk}>*</span>:</label>
             <input
               type="email"
               name="email"
@@ -114,7 +119,7 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="mobileNumber">Mobile Number*:</label>
+            <label htmlFor="mobileNumber">Mobile Number<span className={styles.asterisk}>*</span>:</label>
             <input
               type="tel"
               name="mobileNumber"
@@ -124,26 +129,10 @@ const NewCandidate = () => {
               required
             />
           </div>
-          <div className={styles.sub_container}>
-            <label htmlFor="skillSet">Skill Set*:</label>
-            <select
-              name="skillSet"
-              id="skillSet"
-              value={formData.skillSet}
-              onChange={handleInputChange}
-              required
-            >
-              <option value="">Select Skill Set*</option>
-              {skillSetOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
+          
           <div className={styles.sub_container}>
             <label htmlFor="totalRelevantExperience">
-              Total Relevant Experience* (Yrs):
+              Total Relevant Experience<span className={styles.asterisk}>*</span> (Yrs):
             </label>
             <input
               type="number"
@@ -154,9 +143,10 @@ const NewCandidate = () => {
               required
             />
           </div>
+         
           <div className={styles.sub_container}>
             <label htmlFor="totalITExperience">
-              Total IT Experience* (Yrs):
+              Total IT Experience<span className={styles.asterisk}>*</span> (Yrs):
             </label>
             <input
               type="number"
@@ -167,8 +157,27 @@ const NewCandidate = () => {
               required
             />
           </div>
+
           <div className={styles.sub_container}>
-            <label htmlFor="currentCompany">Current Company*:</label>
+            <label htmlFor="skillSet">Skill Set<span className={styles.asterisk}>*</span>:</label>
+            <select
+              name="skillSet"
+              id="skillSet"
+              value={formData.skillSet}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="">Select Skills </option>
+              {skillSetOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="currentCompany">Current Company<span className={styles.asterisk}>*</span>:</label>
             <input
               type="text"
               name="currentCompany"
@@ -179,7 +188,7 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="currentCTC">Current CTC (LPA)*:</label>
+            <label htmlFor="currentCTC">Current CTC (LPA)<span className={styles.asterisk}>*</span>:</label>
             <input
               type="number"
               name="currentCTC"
@@ -190,7 +199,7 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="expectedCTC">Expected CTC*:</label>
+            <label htmlFor="expectedCTC">Expected CTC<span className={styles.asterisk}>*</span>:</label>
             <input
               type="number"
               name="expectedCTC"
@@ -201,7 +210,7 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Notice Period (Days)*:</label>
+            <label htmlFor="noticePeriod">Notice Period<span className={styles.asterisk}>*</span> (Days):</label>
             <input
               type="number"
               name="noticePeriod"
@@ -212,8 +221,8 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="servingNoticePeriod">Serving Notice Period*:</label>
-            <div className={styles.checkbox_conatiner}>
+            <label htmlFor="servingNoticePeriod">Serving Notice Period<span className={styles.asterisk}>*</span>:</label>
+            <div className={styles.checkbox_container}>
             <label>
               <input
                 type="checkbox"
@@ -234,17 +243,11 @@ const NewCandidate = () => {
             </label>
             </div>
             
-            {/* <input
-              type="checkbox"
-              name="servingNoticePeriod"
-              id="servingNoticePeriod"
-              checked={formData.servingNoticePeriod}
-              onChange={handleServingNoticePeriodChange}
-            /> */}
+            
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="certified">Certified?*</label>
-            <div className={styles.checkbox_conatiner}>
+            <label htmlFor="certified">Certified?<span className={styles.asterisk}>*</span></label>
+            <div className={styles.checkbox_container}>
               <label >
                 <input
                   type="checkbox"
@@ -265,16 +268,10 @@ const NewCandidate = () => {
               </label>
             </div>
 
-            {/* <input
-              type="checkbox"
-              name="certified"
-              id="certified"
-              checked={formData.certified}
-              onChange={handleInputChange}
-            /> */}
+          
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="lastWorkingDay">Last Working Day*:</label>
+            <label htmlFor="lastWorkingDay">Last Working Day<span className={styles.asterisk}>*</span>:</label>
             <input
               type="date"
               name="lastWorkingDay"
@@ -296,7 +293,7 @@ const NewCandidate = () => {
             ></textarea>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="resume">Resume*:</label>
+            <label htmlFor="resume">Resume<span className={styles.asterisk}>*</span>:</label>
             <input
               type="file"
               name="resume"
@@ -308,7 +305,9 @@ const NewCandidate = () => {
           </div>
         </div>
         <div className={styles.button_container}>
-          <button type="button" className={styles.cancel_button}>
+          <button type="button" className={styles.cancel_button}
+          onClick={handleCancel}
+          >
             Cancel
           </button>
           <button type="submit" className={styles.submit_button}>
@@ -317,7 +316,7 @@ const NewCandidate = () => {
         </div>
       </form>
       <div className={styles.disclaimer}>
-      <p>Fields marked with an asterisk (*) are required.</p>
+      <p>Fields marked with an asterisk<span className={styles.asterisk}>(*)</span> are required.</p>
       </div>
     </div>
   );
