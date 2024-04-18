@@ -1,15 +1,15 @@
 /*
 Project: Hiring Portal Project
-Author: Vishal
+Author: Omkar & Vishal
 Date: 01/04/2024
 Sprint: Sprint 2
-User Story:
+User Story:Add New Candidate
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+18/4/2024       Omkar & Vishal               2           Add New Candidate
 -------------------------------------------------------------------------------------------------------
 */
 
