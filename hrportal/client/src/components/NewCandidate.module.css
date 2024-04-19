@@ -1,137 +1,138 @@
 .addcandidateform_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url('../assets/common-background-image.png');
-    /* background-size: cover; */
-    /* background-position: center; */
-    background-position: center;
-      background-repeat: no-repeat;
-      background-color: #122030;
-  }
-  
-  .addcandidateform_form {
-    display: flex; /* Make the form a flex container */
-    flex-direction: column;
-    /* justify-content: space-around; */
-    background-color: transparent; 
-    padding: 30px;
-    border-radius: 5px;
-    border-radius: 30px;
-    border: solid;
-    border-color: #ada14c;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 75%; /* Adjust width as needed */
-    margin: 0 auto; /* Center the form horizontally */
-  }
-  
-  .title_container {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .form_title {
-    align-items: center;
-    color: #ffffff;
-    font-size: 20px;
-    margin-top: 1px;
-  }
-  
-  .form_left,
-  .form_right {
-    flex: 1; /* Divide form into two equal parts */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 10px;
-    color: #ffffff;
-  }
-  
-  .sub_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 40%;
-    padding: 10px;
-  }
-  
-  input {
-    /* margin-left: 20px; */
-    width: 38%;
-  }
-  
-  .checkbox_container {
-    /* margin-left: 10px; */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 41%;
-  }
-   
-  .checkbox_container label {
-    width: 50px;
-  }
-  
-  .button_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around; /* Center buttons horizontally */
-    /* margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../assets/common-background-image.png");
+  /* background-size: cover; */
+  /* background-position: center; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #122030;
+}
+
+.addcandidateform_form {
+  display: flex; /* Make the form a flex container */
+  flex-direction: column;
+  /* justify-content: space-around; */
+  background-color: transparent;
+  padding: 30px;
+  border-radius: 5px;
+  border-radius: 30px;
+  border: solid;
+  border-color: #ada14c;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 75%; /* Adjust width as needed */
+  margin: 0 auto; /* Center the form horizontally */
+}
+
+.title_container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form_title {
+  align-items: center;
+  color: #ffffff;
+  font-size: 20px;
+  margin-top: 1px;
+}
+
+.form_left,
+.form_right {
+  flex: 1; /* Divide form into two equal parts */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px;
+  color: #ffffff;
+}
+
+.sub_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
+  padding: 10px;
+}
+
+input {
+  /* margin-left: 20px; */
+  width: 38%;
+}
+
+.checkbox_container {
+  /* margin-left: 10px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 41%;
+}
+
+.checkbox_container label {
+  width: 50px;
+}
+
+.button_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* Center buttons horizontally */
+  /* margin-top: 20px;
     width: 100%; Span across both halves */
-  }
-  
-  .sub_container select {
-    width: 39.5%;
-  }
-  
-  .sub_container textarea {
-    width: 38%;
-  }
-  
-  .resume {
-    width: 40%;
-  }
-  
-  .submit_button,
-  .cancel_button {
-    padding: 10px 30px;
-    background-color: #d4d4d4;
-    color: #000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit_button {
-    background-color: #cccf;
-    color: #000;
-  }
-  
-  .cancel_button {
-    background-color: #ccc;
-    color: #000;
-  }
-  
-  h2 {
-    text-align: center; /* Center the title */
-    margin-bottom: 30px;
-  }
-  
-  .disclaimer {
-    padding-top: 20px;
-    color: white;
-    font-size: 12px;
-  }
+}
 
-  .asterisk {
-color: red;
-  }
+.sub_container select {
+  width: 39.5%;
+}
 
-  textarea {
-    width: 40px;
-    height: 10px;
-  }
+.sub_container textarea {
+  width: 38%;
+}
+
+.resume {
+  width: 40%;
+}
+
+.submit_button,
+.cancel_button {
+  padding: 10px 30px;
+  background-color: #d4d4d4;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit_button {
+  background-color: #cccf;
+  color: #000;
+}
+
+.cancel_button {
+  background-color: #ccc;
+  color: #000;
+}
+
+h2 {
+  text-align: center; /* Center the title */
+  margin-bottom: 30px;
+}
+
+.disclaimer {
+  padding-top: 20px;
+  color: white;
+  font-size: 12px;
+}
+
+.asterisk {
+  color: red;
+}
+
+textarea {
+  width: 40px;
+  height: 30px;
+  resize: none;
+}
