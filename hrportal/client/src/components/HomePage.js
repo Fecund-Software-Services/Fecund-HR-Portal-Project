@@ -9,7 +9,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -17,6 +17,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import backgroundImage from "../assets/common-background-image.png";
 import styles from "./HomePage.module.css";
+import LogoutButton from "./LogoutButton";
 
 function HomePage() {
   return (
@@ -25,16 +26,18 @@ function HomePage() {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className={styles.container}>
-        
-          <h1 className={styles.title}>Welcome to Fecund Hiring Portal </h1>
-      
+        <h1 className={styles.title}>Welcome to Fecund Hiring Portal </h1>
+
         <div className={styles.link_container}>
-          <Link to="/search-candidate" className={styles.link}>
+          <Link to="/home/search-candidate" className={styles.link}>
             <p>View/Search Candidate</p>
           </Link>
-          <Link to="/add-new-candidate" className={styles.link}>
+          <Link to="/home/add-new-candidate" className={styles.link}>
             <p>Add New Candidate</p>
           </Link>
+          <div>
+            <LogoutButton />
+          </div>
         </div>
       </div>
     </div>

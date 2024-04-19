@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import styles from './NewCandidate.module.css';
 
 const NewCandidate = () => {
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
