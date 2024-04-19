@@ -1,22 +1,22 @@
 /*
 Project: Hiring Portal Project
-Author: Vishal
+Author: Omkar & Vishal
 Date: 01/04/2024
 Sprint: Sprint 2
-User Story:
+User Story:Add New Candidate
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
--------------------------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------------------
+ 
 -------------------------------------------------------------------------------------------------------
 */
 
 import React from "react";
 
 const NewCandidate = () => {
-    return (
+    return ( 
         <p>Refer New Candidate Here </p>
     )
 }
