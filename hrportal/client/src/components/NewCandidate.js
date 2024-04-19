@@ -51,20 +51,19 @@ const NewCandidate = () => {
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    let newValue = checked ? "Yes" : "No";
+    const { name, checked, value } = e.target;
+    let newValue = checked ? value : "";
     setFormData((prevData) => ({ ...prevData, [name]: newValue }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked } = e.target;
-    let newValue = checked ? "Yes" : "No";
+    const { name, checked, value } = e.target;
+    let newValue = checked ? value : "";
     setFormData((prevData) => ({
       ...prevData,
       [name]: newValue,
-    }));
-    // let value = newValue = "Yes" ? true : false
-    setShowLastWorkingDay(newValue);
+    })); 
+    setShowLastWorkingDay(value);
   };
 
   const handleResumeChange = (e) => {
@@ -227,6 +226,7 @@ const NewCandidate = () => {
               <input
                 type="checkbox"
                 name="servingNoticePeriod"
+                value="Yes"
                 onChange={handleServingNoticePeriodChange}
                 checked={formData.servingNoticePeriod === "Yes"} // Check if the value is 'Yes'
               />
@@ -236,6 +236,7 @@ const NewCandidate = () => {
               <input
                 type="checkbox"
                 name="servingNoticePeriod"
+                value="No"
                 onChange={handleServingNoticePeriodChange}
                 checked={formData.servingNoticePeriod === "No"} // Check if the value is 'No'
               />
@@ -252,6 +253,7 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="certified"
+                  value="Yes"
                   onChange={handleCheckboxChange}
                   checked={formData.certified === "Yes"} // Check if the value is 'Yes'
                 />
@@ -261,6 +263,7 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="certified"
+                  value="No"
                   onChange={handleCheckboxChange}
                   checked={formData.certified === "No"} // Check if the value is 'No'
                 />
@@ -270,7 +273,7 @@ const NewCandidate = () => {
 
           
           </div>
-          <div className={styles.sub_container}>
+          <div  className={styles.sub_container} style={{ display: showLastWorkingDay === "Yes" ? "flex" : "none" }}>
             <label htmlFor="lastWorkingDay">Last Working Day<span className={styles.asterisk}>*</span>:</label>
             <input
               type="date"
@@ -279,7 +282,7 @@ const NewCandidate = () => {
               value={formData.lastWorkingDay}
               onChange={handleInputChange}
               required={showLastWorkingDay}
-              style={{ display: showLastWorkingDay ? "block" : "none" }}
+              
             />
           </div>
           
@@ -292,7 +295,7 @@ const NewCandidate = () => {
               onChange={handleInputChange}
             ></textarea>
           </div>
-          <div className={styles.sub_container}>
+          <div className={styles.sub_container} >
             <label htmlFor="resume">Resume<span className={styles.asterisk}>*</span>:</label>
             <input
               type="file"
@@ -302,6 +305,9 @@ const NewCandidate = () => {
               required
               className={styles.resume}
             />
+          </div>
+          <div className={styles.sub_container} >
+           
           </div>
         </div>
         <div className={styles.button_container}>
