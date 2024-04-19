@@ -1,9 +1,8 @@
 /*
 Project: Hiring Portal Project
-Author: Vishal
-Date: 01/04/2024
-Sprint: Sprint 1
-User Story: Successful Login and Home Page
+Author: HS
+Date: 17/4/2024
+Sprint: Sprint 2
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
@@ -13,12 +12,9 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 */
 
-import React  from "react";
+const Candidate = require("../collections/candidates");
+const Resume = require("../collections/resumes")
 
-const ViewSearchCandidatePage = () => {
-    return(
-        <p>View Search Candidate Page</p>
-    )
+{
+    // functions for candidate
 }
-
-export default ViewSearchCandidatePage

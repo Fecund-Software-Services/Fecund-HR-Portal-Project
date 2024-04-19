@@ -81,7 +81,7 @@ function ResetPassword() {
     <div
       className={styles.reset_container}
       style={{
-        // backgroundImage: `url(${backgroundImage})`,
+      
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         height: "100vh",

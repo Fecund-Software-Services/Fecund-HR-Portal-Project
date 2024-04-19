@@ -28,7 +28,7 @@ const loginUser = async (req, res) => {
 
   // CHECKING IF THE USER ALREADY EXISTS
   let existingUser;
-  try {
+  try { 
     existingUser = await User.findOne({ email });
   } catch (error) {
     console.log(error.message);
