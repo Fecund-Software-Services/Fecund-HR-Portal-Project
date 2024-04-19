@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Vishal
+Date: 17/04/2024
+Sprint: Sprint 2
+User Story: Authentication and Authorization - Login
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
+-------------------------------------------------------------------------------------------------------
+*/
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Login from "./components/Login";
