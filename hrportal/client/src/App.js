@@ -53,19 +53,4 @@ function App() {
   );
 }
 
-// const PrivateRoute = ({ element }) => {
-//   const { isAuthenticated } = useAuth();
-
-//   return <Route
-//   path="/home"
-//   Component={
-//     isAuthenticated ? (
-//       <element />
-//     ) : (
-//       <Navigate to="/login" replace />
-//     )
-//   }
-// />;
-// };
-
 export default App;
