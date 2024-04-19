@@ -24,7 +24,7 @@ function HomePage() {
       className={styles.home_page_container}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div class={styles.container}>
+      <div className={styles.container}>
         
           <h1 className={styles.title}>Welcome to Fecund Hiring Portal </h1>
       

@@ -2,7 +2,7 @@
 Project: Hiring Portal Project
 Author: Vishal
 Date: 01/04/2024
-Sprint: Sprint 2
+Sprint: Sprint 1
 User Story: Successful Login and Home Page
 
 Modification Log:

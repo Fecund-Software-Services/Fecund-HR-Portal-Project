@@ -1,0 +1,38 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 4/04/2024
+Sprint: Sprint 1
+User Story: Successful Sign-up
+
+ 
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description
+-------------------------------------------------------------------------------------------------------
+ 
+-------------------------------------------------------------------------------------------------------
+*/
+
+.readonly_fields {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    width: 400px;
+  }
+  
+  .field_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .field_label {
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .field_value {
+    color: rgb(255, 255, 255);
+  }

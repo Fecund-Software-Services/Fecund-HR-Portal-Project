@@ -1,3 +1,16 @@
+/*
+Project: Hiring Portal Project
+Author: Vishal
+Date: 26/03/2024
+Sprint: Sprint 1
+ 
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description
+-------------------------------------------------------------------------------------------------------
+ 8/04/2024      Vishal                        2          For updating the User Stories Navigation
+-------------------------------------------------------------------------------------------------------
+*/
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import SignUpForm from './components/SignupForm';
@@ -5,6 +18,7 @@ import './App.css';
 import ResetPassword from './components/ResetPassword';
 import HomePage from './components/HomePage';
 import ViewSearchCandidatePage from './components/ViewSearchCandidatePage';
+//import NewCandidate from './components/NewCandidate';
 import NewCandidate from './components/NewCandidate';
 import NewPassword from './components/NewPassword'
 
