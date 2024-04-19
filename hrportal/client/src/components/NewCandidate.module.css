@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar & Vishal
+Date: 15/04/2024
+Sprint: Sprint 2
+User Story:Add New Candidate
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+18/4/2024       Omkar & Vishal               2           Add New Candidate
+-------------------------------------------------------------------------------------------------------
+*/
+
 .addcandidateform_container {
     display: flex;
     flex-direction: column;
@@ -134,4 +149,5 @@ color: red;
   textarea {
     width: 40px;
     height: 10px;
+    resize: none;
   }
