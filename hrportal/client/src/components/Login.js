@@ -1,64 +1,59 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar & Vishal
+Date: 25/03/2024
+Sprint: Sprint 1
+User Story: Hiring Portal Login
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
+-------------------------------------------------------------------------------------------------------
+*/
+
+
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import backgroundImage from "../assets/login-background-static-image.png"; // Replace with the path to your background image
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../context/AuthContext";
+// Replace with the path to your background image
+import backgroundImage from "../assets/login-background-static-image.png";
 import styles from "./Login.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(" ");
+  // Accessing login function and loading variable from AuthContext
+  const { login, isLoading } = useAuth();
+  const navigate = useNavigate();
 
-  const navigate1 = useNavigate();
-
-  const handleSubmit = async (event) => {
+  // handleLogin is a function that triggers after clicking login button uses login hook
+  const handleLogin = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
 
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    };
+    // Prevent form submission if loading is true
+    if (isLoading) {
+      return;
+    }
 
     try {
-      console.log("hello");
-      const response = await fetch(
-        "http://localhost:8080/api/user/login",
-        requestOptions
-      );
-      console.log(response);
-
-      const data = await response.json();
-      console.log(data);
-      
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-      
-      // handle successful login, e.g. set a token in local storage
-      if(response.ok) {
-        navigate1("/home")
-      }
-
+      setError(null);
+      await login(email, password);
+      navigate('/home')
     } catch (error) {
+      // Handle login failure
       setError(error.message);
-    } finally {
-      setIsLoading(false);
     }
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  // };
 
   return (
     <div
       className={styles.login_container}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <form onSubmit={handleSubmit} className={styles.login_form}>
+      <form onSubmit={handleLogin} className={styles.login_form}>
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>
             Email ID
@@ -87,9 +82,10 @@ const Login = () => {
             required
           />
         </div>
-        {error && <p className={styles.errorMessage}>{error}</p>}
 
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <br />
+
         <button
           type="submit"
           className={styles.login_button}
@@ -98,10 +94,12 @@ const Login = () => {
           {isLoading ? "Logging in..." : "Login"}
         </button>
         <br />
+
         <a href="/reset-password" className={styles.login_link}>
           Reset Password
         </a>
         <br />
+
         <div>
           <a href="/signup" className={styles.signup_link}>
             Sign up to create new Account

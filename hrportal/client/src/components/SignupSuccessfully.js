@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 4/04/2024
+Sprint: Sprint 1
+User Story: Successful Sign-up
+
+ 
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description
+-------------------------------------------------------------------------------------------------------
+ 
+-------------------------------------------------------------------------------------------------------
+*/
 import React from "react";
 import styles from "./SignupSuccessfully.module.css";
 // import backgroundImage from "../assets/common-background-image.png"

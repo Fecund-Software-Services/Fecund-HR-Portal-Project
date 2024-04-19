@@ -1,5 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Harshini C
+Date: 25/03/2024
+Sprint: Sprint 1
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+17/4/2024           hs                          2           Add New Candidate
+-------------------------------------------------------------------------------------------------------
+*/
+
 const mongoose = require('mongoose');
-const mongoutil = require('../connection/mongoutil');
 
 const candidateSchema = new mongoose.Schema({
     firstName: {
@@ -22,11 +35,14 @@ const candidateSchema = new mongoose.Schema({
     },
     skillSet: {
         type: String,
+        enum : ['Guidewire BA (PC)','Guidewire BA (BC)','Guidewire BA (CC)','Guidewire QA (PC)','Guidewire QA (BC)','Guidewire QA (CC)','Guidewire DEV (PC)','Guidewire DEV (BC)','Guidewire DEV (CC)','Guidewire Lead (CC)',
+        'Guidewire Lead (PC)','Guidewire Lead (BC)','Buisness Analyst','Technical Specialist','Guidewire Integration Developer','Guidewire Architect','Guidewire QA','Guidewire Portal','Guidewire Datahub','Guidewire Infocentre',
+        'Recruitment Executive','Business Development Executive','Guidewire Backend Developer','Duckcreek Developer','Coldfusion Developer','Oneshield Designer','Digital Marketing Executive','Mulesoft Developer','Scrum Master',
+        'Project Leader','Oneshield BA','Oneshield QA'],
         required: true,  // Dropdown list to choose from
     },
     otherSkillSet: {
-        type: String,
-        required: true,  // input field to add candidate's skills set that are not avaiable in dropdown options
+        type: String,  // input field to add candidate's skills set that are not avaiable in dropdown options
         default: "" // Optional: Set an empty string as default
     },
     itExperience: {
@@ -70,6 +86,8 @@ const candidateSchema = new mongoose.Schema({
     },
     status: {
         type: String,
+        enum : ['Submitted','Cleared 1st Round','Cleared 2nd Round','Offer Issued','On-Hold','Rejected','Candidate Not Interested'],
+        default: "Submitted",
         required: true
     },
     certified: {
@@ -80,21 +98,14 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         default: "" // Optional: Set an empty string as default
     },
-    resume: {
-        type: String, // Can be Base64 encoded string or reference to GridFS storage depending on your choice
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now // This automatically sets the creation time
-    },
-    lastUpdatedAt: {
-        type: Date,
-        default: Date.now // This automatically sets the last updated time
-    }
-});
+    resumeUploaded: { 
+        type: Boolean, 
+        default: false // Indication if resume is uploaded
+    }, 
+ 
+} , {timestamps: true});
 
 // intializing 
-const candidates = mongoose.model('Candidates', candidateSchema)
-     
+module.exports = mongoose.model('Candidates', candidateSchema)   
 
 

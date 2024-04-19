@@ -1,5 +1,26 @@
+/*
+Project: Hiring Portal Project
+Author: Sanjay HS
+Date: 25/03/2024
+Sprint: Sprint 1
+User Story: Hiring Login Portal
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+16/04/2024      HS                            2         Authentication & Authorization - Login
+-------------------------------------------------------------------------------------------------------
+*/
+
 const User = require("../collections/users");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+
+// create token function for authentication
+const createToken = (_id) => {
+  return jwt.sign({_id}, process.env.SECRET, { expiresIn: '2d'})
+}
 
 // login user
 const loginUser = async (req, res) => {
@@ -7,21 +28,21 @@ const loginUser = async (req, res) => {
 
   // CHECKING IF THE USER ALREADY EXISTS
   let existingUser;
-  try {
+  try { 
     existingUser = await User.findOne({ email });
   } catch (error) {
     console.log(error.message);
   }
 
   if (!existingUser) {
-    return res.status(404).json({ message: "Error: Email ID not found !" });
+    return res.status(404).json({ message: "Error: Email ID not found!" });
   }
 
   // Domain Check
   const emailRegex = /^[a-zA-Z0-9._%+-]+@fecundservices+\.com/;
   const validateEmail = emailRegex.test(email);
   if (!validateEmail) {
-    return res.status(404).json({ message: "Error: Invalid Email ID" });
+    return res.status(404).json({ message: "Error: Invalid Email ID!" });
   }
 
   // CHECKING IF THE PASSWORD IS CORRECT
@@ -31,10 +52,14 @@ const loginUser = async (req, res) => {
   );
 
   if (!isPasswordCorrect) {
-    return res.status(400).json({ message: "Error: Invalid Password !" });
+    return res.status(400).json({ message: "Error: Invalid Password!" });
   }
+  // authentication token
+  const token = createToken(existingUser._id)
 
-  return res.status(200).json({ message: "Sucessfully logged in " });
+  return res.status(201).json({ email, token });
+
+ // return res.status(200).json({ message: "Sucessfully logged in " });
 };
 
 // signup user
@@ -67,7 +92,7 @@ const signupUser = async (req, res) => {
     }
 
     if (existingUser) {
-      return res.status(400).json({ message: "Error: Email ID already exists !" });
+      return res.status(400).json({ message: "Error: Email ID already exists!" });
     }
 
      // CHECKING IF EMPLOYEE ID ALREADY EXISTS
@@ -79,11 +104,16 @@ const signupUser = async (req, res) => {
      }
   
      if (existingID) {
-       return res.status(400).json({ message: "Error: Employee ID already exists !"})
+       return res.status(400).json({ message: "Error: Employee ID already exists!"})
      }
 
     // HASHING THE PASSWORD
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // HASHING THE ANSWERS OF SECURITY QUESTIONS
+    const hashedAnswer1 = await bcrypt.hash(answer1, 10);
+    const hashedAnswer2 = await bcrypt.hash(answer2, 10);
+    const hashedAnswer3 = await bcrypt.hash(answer3, 10);
 
     // CREATING A NEW USER
     const user = new User({
@@ -92,15 +122,110 @@ const signupUser = async (req, res) => {
       employeeID,
       email,
       password: hashedPassword,
-      answer1,
-      answer2,
-      answer3,
+      answer1: hashedAnswer1,
+      answer2: hashedAnswer2,
+      answer3: hashedAnswer3,
     });
     await user.save();
-    return res.status(201).json({ message: user });
+    // authentication token
+    const token = createToken(user._id)
+    return res.status(201).json({ email, token });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-module.exports = { loginUser, signupUser };
+// reset Password for the user.
+const forgotPassword = async (req, res) => {
+  try {
+    const {email, employeeID, securityQuestion, answer} = req.body;
+
+    // CHECKING IF EMAIL EXISTS
+    let existingUser;
+    try {
+      existingUser = await User.findOne({ email });
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    if (!existingUser) {
+      return res.status(400).json({ message: "Error: Email ID not found!" });
+    }
+
+     // CHECKING IF EMPLOYEE ID  EXISTS
+    let existingID;
+    try {
+      existingID = await User.findOne({ employeeID });
+    } catch (error) {
+      console.log(error.message);
+    }
+  
+    if (!existingID) {
+      return res.status(400).json({ message: "Error: Employee ID not found!"})
+    }
+
+    // to check whether the employeeID belongs to the user
+    try {
+      if (employeeID != existingUser.employeeID) {
+        return res.status(400).json({ message: "Error: Employee ID not found!"})
+      }
+    } catch (error){
+      console.log(error.message)
+    }
+
+    // Validate security question answer based on selected question.
+    try {
+      if (securityQuestion == existingUser.securityQuestion1){
+        const isAnswer1Correct = await bcrypt.compare(
+          answer,
+          existingUser.answer1
+        );
+        if (!isAnswer1Correct) {
+          return res.status(400).json({ message: "Error: Incorrect Answer!" });
+        }
+      } else if(securityQuestion == existingUser.securityQuestion2) {
+        const isAnswer2Correct = await bcrypt.compare(
+          answer,
+          existingUser.answer2
+        );
+        if (!isAnswer2Correct) {
+          return res.status(400).json({ message: "Error: Incorrect Answer!" });
+        }
+      } else {
+        const isAnswer3Correct = await bcrypt.compare(
+          answer,
+          existingUser.answer3
+        );
+        if (!isAnswer3Correct) {
+          return res.status(400).json({ message: "Error: Incorrect Answer!" });
+        }
+      }
+
+    } catch (error) {
+      console.log(error.message)
+    }
+    return res.status(200).json({ message: "You can reset password now " });
+  } catch (error) {
+    console.log (error.message)
+  }
+ 
+};
+
+// reset password to new password
+const resetPassword = async (req, res) => {
+  try {
+    const {employeeID, newPassword} = req.body
+    // hashing password
+    const hashednewPassword = await bcrypt.hash(newPassword, 10);
+    // updating new password
+    await User.updateOne({employeeID}, {password: hashednewPassword})
+    return res.status(200).json({message: "Password Reset Successful"})
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+module.exports = { loginUser, signupUser, forgotPassword, resetPassword};
+
+
+

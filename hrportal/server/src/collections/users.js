@@ -1,3 +1,17 @@
+/*
+Project: Hiring Portal Project
+Author: Harshini C
+Date: 25/03/2024
+Sprint: Sprint 1
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
@@ -27,19 +41,33 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "Admin" // default is set for admin, in future other roles can be added.
     },
-    answer1: {
-        type : String,
-        required: true
-    },
-    answer2: {
+    securityQuestion1:{
         type: String,
+        default: 'What is your first pet name ?',
         required: true
     },
-    answer3: {
-        type:String,
+    answer1:{
+        type: String,
+        required: [true]
+    },
+    securityQuestion2:{
+        type: String,
+        default: 'What was your childhood nickname ?',
         required: true
+    },
+    answer2:{
+        type: String,
+        required: [true]
+    },
+    securityQuestion3:{
+        type: String,
+        default: 'What was your first mobile brand name ?',
+        required: true
+    },
+    answer3:{
+        type: String,
+        required: [true]
     }
-
 }, {timestamps: true})
 
 
