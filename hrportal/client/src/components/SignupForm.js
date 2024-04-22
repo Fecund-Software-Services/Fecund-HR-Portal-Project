@@ -228,7 +228,7 @@ const SignUpForm = () => {
             className={styles.Signup_button}
             disabled={isLoading}
           >
-            {isLoading ? "Sunmitting..." : "Signup"}
+            {isLoading ? "Submitting..." : "Signup"}
           </button>
         </div>
       </form>
