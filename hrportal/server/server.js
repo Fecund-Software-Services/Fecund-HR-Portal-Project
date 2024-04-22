@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/user', userRoutes)
 app.use('/api/candidate', candidateRoutes)
-app.use('/api/candidate.resume', resumeRoutes)
+app.use('/api/candidate-resume', resumeRoutes)
 
 // mongodb connection and port connection.
 mongoose.connect('mongodb:' + url.databaseURL)
