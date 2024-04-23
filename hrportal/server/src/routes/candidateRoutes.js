@@ -1,11 +1,12 @@
 const express = require('express')
+const mongoose = require('mongoose');
 const Candidate = require('../collections/candidates')
-const { addCandidate } = require('../controllers/candidateController')
-// for creating the instance of the route
+const { addCandidate, upload } = require('../controllers/candidateController')
+
 const router = express.Router()
 
-// login user
-router.post('/add-candidate', addCandidate)
+// add new candidate
+router.post('/add-candidate', /*upload.single('resume'),*/addCandidate)
 
 // exporting router
 module.exports = router

@@ -9,6 +9,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 17/4/2024           hs                      2               Add New Candidate
+22/4/2024              hs                      3            Add New Candidate Validations
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -19,14 +20,16 @@ const resumeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Candidates' // Reference to candidate
     }, 
     fileName: {
-        type: String,
-        required : true // store the filename
+        type: String // store the filename
     },
-    contentType: {
-        type: String
-    },
-    fileData :{
-        type: Buffer
+    // contentType: {
+    //     type: String 
+    // },
+    // fileData :{
+    //     type: Buffer
+    // }
+    metadata: {
+        type: Object  // additional information about the resume
     }
 }, {timestamps: true}); 
 

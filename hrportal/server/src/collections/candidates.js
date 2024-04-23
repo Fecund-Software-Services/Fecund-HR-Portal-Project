@@ -9,6 +9,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 17/4/2024           hs                          2           Add New Candidate
+22/4/2024           hs                         3            Add New Candidate validations
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -41,10 +42,10 @@ const candidateSchema = new mongoose.Schema({
         'Project Leader','Oneshield BA','Oneshield QA'],
         required: true,  // Dropdown list to choose from
     },
-    otherSkillSet: {
-        type: String,  // input field to add candidate's skills set that are not avaiable in dropdown options
-        default: "" // Optional: Set an empty string as default
-    },
+    // otherSkillSet: {
+    //     type: String,  // input field to add candidate's skills set that are not avaiable in dropdown options
+    //     default: "" // Optional: Set an empty string as default
+    // },
     itExperience: {
         type: Number,
         required: [true, "experience is required"],
@@ -98,9 +99,9 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         default: "" // Optional: Set an empty string as default
     },
-    resumeUploaded: { 
-        type: Boolean, 
-        default: false // Indication if resume is uploaded
+    resume: { 
+        type: String, 
+        ref: 'Resume' // Indication if resume is uploaded
     }, 
  
 } , {timestamps: true});
