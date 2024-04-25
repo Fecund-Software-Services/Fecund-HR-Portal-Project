@@ -9,7 +9,8 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 16/4/2024     HS                            2              Authentication & Authorization - Login    
-17/4/2024       HS                           2              Add New Candidate                           
+17/4/2024       HS                           2              Add New Candidate  
+24/4/2024       HS                            3                     Add New Candidate Validation                         
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -20,7 +21,7 @@ const server_port = require('./src/connection/constants');
 const client_port = require('./src/connection/constants');
 const userRoutes = require('./src/routes/userRoutes');
 const candidateRoutes = require('./src/routes/candidateRoutes');
-const resumeRoutes = require('./src/routes/resumeRoutes')
+//const resumeRoutes = require('./src/routes/resumeRoutes')
 const cors = require('cors')
 require("dotenv").config();
 
@@ -41,7 +42,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/user', userRoutes)
 app.use('/api/candidate', candidateRoutes)
-app.use('/api/candidate-resume', resumeRoutes)
+//app.use('/api/candidate-resume', resumeRoutes)
 
 // mongodb connection and port connection.
 mongoose.connect('mongodb:' + url.databaseURL)

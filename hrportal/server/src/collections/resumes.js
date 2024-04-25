@@ -17,17 +17,16 @@ const mongoose = require('mongoose');
 
 const resumeSchema = new mongoose.Schema({
     candidateId: { 
-        type: mongoose.Schema.Types.ObjectId, ref: 'Candidates' // Reference to candidate
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Candidates' // Reference to candidate
     }, 
+    fsFileId: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'fs.field'
+    },
     fileName: {
         type: String // store the filename
     },
-    // contentType: {
-    //     type: String 
-    // },
-    // fileData :{
-    //     type: Buffer
-    // }
     metadata: {
         type: Object  // additional information about the resume
     }
