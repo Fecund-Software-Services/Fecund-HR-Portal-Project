@@ -69,8 +69,6 @@ const SignUpForm = () => {
           <p className={styles.form_title}>Sign up to Hiring Portal</p>
         </div>
       <form onSubmit={handleSubmit} className={styles.signup_form}>
-        
-
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
             Employee First Name

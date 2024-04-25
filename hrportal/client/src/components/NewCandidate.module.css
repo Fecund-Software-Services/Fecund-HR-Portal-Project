@@ -151,3 +151,8 @@ textarea {
   height: 30px;
   resize: none;
 }
+
+.errorMessage {
+  align-self: center;
+  color: red;
+}
