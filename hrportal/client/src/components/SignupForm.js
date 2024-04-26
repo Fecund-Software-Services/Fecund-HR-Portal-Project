@@ -7,9 +7,10 @@ User Story: Sign up screen
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        | Author                  | Sprint   | Description 
 -------------------------------------------------------------------------------------------------------
-24/4/2024       Vishal                       3           Search Candidate
+22/04/2024  | Harshini C              | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
+24/4/2024   | Vishal                  | 3        | Search Candidate
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -71,7 +72,7 @@ const SignUpForm = () => {
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
-            Employee First Name
+            Employee First Name <span className={styles.asterisk}>*</span>
           </label>
           <input
             type="text"
@@ -87,7 +88,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeLastName" className={styles.label_type}>
-            Employee Last Name
+            Employee Last Name <span className={styles.asterisk}>*</span>
           </label>
           <input
             type="text"
@@ -102,7 +103,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeID" className={styles.label_type}>
-            Employee ID
+            Employee ID <span className={styles.asterisk}>*</span>
           </label>
           <input
             type="number"
@@ -117,7 +118,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>
-            Email ID
+            Email ID <span className={styles.asterisk}>*</span>
           </label>
           <input
             type="email"
@@ -132,7 +133,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="password" className={styles.label_type}>
-            Password
+            Password <span className={styles.asterisk}>*</span>
           </label>
           <input
             type="password"
@@ -147,13 +148,13 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>Security Question 1</label>
+            <label className={styles.label_type_q}>Security Question 1 <span className={styles.asterisk}>*</span></label>
             <p htmlFor="SecurityQuestion1" className={styles.p_type}>
               What is your first pet name ?
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label className={styles.label_type}>Answer</label>
+            <label className={styles.label_type}>Answer <span className={styles.asterisk}>*</span></label>
             <input
               type="password"
               value={answer1}
@@ -168,13 +169,13 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>Security Question 2</label>
+            <label className={styles.label_type_q}>Security Question 2 <span className={styles.asterisk}>*</span></label>
             <p htmlFor="SecurityQuestion2" className={styles.p_type}>
               What was your childhood nickname ?
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label className={styles.label_type}>Answer</label>
+            <label className={styles.label_type}>Answer <span className={styles.asterisk}>*</span></label>
             <input
               type="password"
               value={answer2}
@@ -189,13 +190,13 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>Security Question 3</label>
+            <label className={styles.label_type_q}>Security Question 3 <span className={styles.asterisk}>*</span></label>
             <p htmlFor="SecurityQuestion3" className={styles.p_type}>
               What was your first mobile brand name ?
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label className={styles.label_type}>Answer</label>
+            <label className={styles.label_type}>Answer <span className={styles.asterisk}>*</span></label>
             <input
               type="password"
               value={answer3}
@@ -230,6 +231,11 @@ const SignUpForm = () => {
           </button>
         </div>
       </form>
+
+      <div className={styles.disclaimer}>
+        <p>Fields marked with an asterisk (<span className={styles.asterisk}>*</span>) are required.</p>
+      </div>
+
       {showPopup && (
         <div className={styles.popup} onClick={togglePopup}>
           <div
