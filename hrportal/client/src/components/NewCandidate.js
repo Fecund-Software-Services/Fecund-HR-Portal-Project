@@ -17,6 +17,7 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from './NewCandidate.module.css';
+import popupBackground from "../assets/popup-background.png";
 
 const NewCandidate = () => {
 
@@ -40,6 +41,8 @@ const NewCandidate = () => {
   });
 
   const [showLastWorkingDay, setShowLastWorkingDay] = useState(false);
+  const navigateToPopup = useNavigate();
+  const [showPopup, setShowPopup] = useState(false)
 
   const nav = useNavigate()
 
@@ -75,7 +78,13 @@ const NewCandidate = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
+    setShowPopup(true)
     console.log(formData);
+  };
+
+  const togglePopup = () => {
+    //setShowPopup(!showPopup);
+    navigateToPopup("/home");
   };
 
   return (
@@ -326,6 +335,18 @@ const NewCandidate = () => {
       <div className={styles.disclaimer}>
       <p>Fields marked with an asterisk<span className={styles.asterisk}>(*)</span> are required.</p>
       </div>
+      {showPopup && (
+        <div className={styles.popup} onClick={togglePopup}>
+          <div
+            className={styles.popup_content}
+            style={{ backgroundImage: `url(${popupBackground})` }}
+          >
+            <p className={styles.popup_message}>
+              Form submitted successfully!<br/><a href="/home" className={styles.login_here}> Go to Home Page Here</a>
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

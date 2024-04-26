@@ -22,7 +22,7 @@ const ProtectedRoute = ({ component: Component }) => {
   const { isAuthenticated } = useAuth();
 //   const navigate = useNavigate();
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />
 };
 
 export default ProtectedRoute;
