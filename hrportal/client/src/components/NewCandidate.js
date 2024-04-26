@@ -10,6 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 18/4/2024       Omkar & Vishal               2           Add New Candidate
+24/4/2024       Vishal                       3           Search Candidate
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -39,6 +40,7 @@ const NewCandidate = () => {
   });
 
   const [showLastWorkingDay, setShowLastWorkingDay] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const nav = useNavigate()
 
@@ -68,7 +70,18 @@ const NewCandidate = () => {
   };
 
   const handleResumeChange = (e) => {
-    setFormData((prevData) => ({ ...prevData, resume: e.target.files[0] }));
+
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      if (selectedFile.size > 250 * 1024) { // 250 KB (in bytes)
+        setErrorMessage('File size exceeds 250 KB limit.');
+      } else if (!['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(selectedFile.type)) {
+        setErrorMessage('Invalid file type. Only PDF, DOC, DOCX files are allowed.');
+      } else {
+        setFormData((prevData) => ({ ...prevData, resume: e.target.files[0] }));
+        setErrorMessage('');
+      }
+    }
   };
 
   const handleSubmit = (e) => {
@@ -311,6 +324,7 @@ const NewCandidate = () => {
            
           </div>
         </div>
+        {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
         <div className={styles.button_container}>
           <button type="button" className={styles.cancel_button}
           onClick={handleCancel}

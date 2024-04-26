@@ -10,6 +10,7 @@ Modification Log:
 Date        | Author                  | Sprint   | Description 
 -------------------------------------------------------------------------------------------------------
 22/04/2024  | Harshini C              | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
+24/4/2024   | Vishal                  | 3        | Search Candidate
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -69,8 +70,6 @@ const SignUpForm = () => {
           <p className={styles.form_title}>Sign up to Hiring Portal</p>
         </div>
       <form onSubmit={handleSubmit} className={styles.signup_form}>
-        
-
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
             Employee First Name <span className={styles.asterisk}>*</span>

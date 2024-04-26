@@ -10,6 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 18/4/2024       Omkar & Vishal               2           Add New Candidate
+24/4/2024       Vishal                       3           Search Candidate
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -150,4 +151,9 @@ textarea {
   width: 40px;
   height: 30px;
   resize: none;
+}
+
+.errorMessage {
+  align-self: center;
+  color: red;
 }
