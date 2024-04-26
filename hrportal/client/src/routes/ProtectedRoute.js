@@ -10,6 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 17/4/2024     Vishal Garg                    2         configure Authorization
+24/4/2024     Vishal Garg                    3         Search Candidate
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -22,7 +23,7 @@ const ProtectedRoute = ({ component: Component }) => {
   const { isAuthenticated } = useAuth();
 //   const navigate = useNavigate();
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />
 };
 
 export default ProtectedRoute;
