@@ -1,3 +1,19 @@
+/*
+Project: Hiring Portal Project
+Author: Vishal
+Date: 24/04/2024
+Sprint: Sprint 3
+User Story: Search Candidate
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+24/4/2024      Vishal                        3          Search Candidate
+-------------------------------------------------------------------------------------------------------
+*/
+
+
 .search_container {
     background-image: url('../assets/common-background-image.png');
   background-size: cover;
