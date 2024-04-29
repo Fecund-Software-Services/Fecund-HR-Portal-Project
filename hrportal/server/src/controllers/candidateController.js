@@ -8,7 +8,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+29/4/2024           HS                          3           Search candidate validation
 -------------------------------------------------------------------------------------------------------
 */ 
 
@@ -30,15 +30,6 @@ const storage = new GridFsStorage({
         contentType: file.mimetype,
         originalname: file.originalname
       };
-      // valid file size
-      // if (file.size > maxFileSize) {
-      //   return cb(new Error('File size exceeds limit (250 KB).'));
-      // }
-  
-      // // Validate file type
-      // if (!allowedMimeTypes.includes(file.mimetype)) {
-      //   return cb(new Error('Invalid file type. Only PDF and Word documents are allowed.'));
-      // }
       resolve({ fileName, metadata});
     });
   }
@@ -130,5 +121,41 @@ const addCandidate = async (req, res) => {
       console.log(error.message);
     }
   };
+  
+const searchCandidate = async (req,res) => {
 
-module.exports = { addCandidate,upload };
+  const searchTerm = req.query.searchTerm; // Get the search term from query parameter
+
+  // Validate if at least one search field has data
+  if (!searchTerm || searchTerm.trim() === '') {
+    return res.status(400).json({ error: 'Enter data for at least one of the given fields!' });
+  }
+
+  const regex = new RegExp('^' + searchTerm + '$', 'i');
+  // Build the query based on searchTerm
+  let query = {};
+  if (searchTerm) {
+    query = {
+      $or: [
+        { firstName: regex },
+        { lastName: regex},
+        { emailAddress:  regex}
+      ]
+    };
+  }
+
+  try {
+  candidate = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
+    // Check if any matching users were found
+    if (!candidate.length) {
+      return res.status(404).json({ error: 'No match found!' });
+    }
+    res.json(candidate); // Send the matching users back to the client
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error searching users'); // Handle errors
+  }
+}
+
+
+module.exports = { addCandidate,searchCandidate, upload };
