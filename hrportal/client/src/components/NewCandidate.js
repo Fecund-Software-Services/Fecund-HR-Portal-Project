@@ -19,14 +19,14 @@ import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
 import popupBackground from "../assets/popup-background.png";
 
-import { useAddCandidate } from "../hooks/useAddCandidate.js";
+// import { useAddCandidate } from "../hooks/useAddCandidate.js";
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     emailAddress: "",
-    mobileNumber: "" ,
+    mobileNumber: "",
     skillSet: "",
     itExperience: "",
     totalRelevantExperience: "",
@@ -46,8 +46,11 @@ const NewCandidate = () => {
   const navigateToPopup = useNavigate();
   // const [showPopup, setShowPopup] = useState(false)
   const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState(" ");
+  const [isLoading, setIsLoading] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
-  const { addCandidate, error, isLoading, showPopup } = useAddCandidate();
+  // const { addCandidate, error, isLoading, showPopup } = useAddCandidate();
 
   const nav = useNavigate();
 
@@ -94,6 +97,7 @@ const NewCandidate = () => {
         );
       } else {
         setFormData((prevData) => ({ ...prevData, resume: e.target.files[0] }));
+        console.log("in resume field ")
         setErrorMessage("");
       }
     }
@@ -101,26 +105,36 @@ const NewCandidate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    await addCandidate(
-      formData.firstName,
-      formData.lastName,
-      formData.emailAddress,
-      formData.mobileNumber,
-      formData.skillSet,
-      formData.itExperience,
-      formData.totalRelevantExperience,
-      formData.currentCompany,
-      formData.currentCTC,
-      formData.expectedCTC,
-      formData.noticePeriod,
-      formData.servingNoticePeriod,
-      formData.lastWorkingDay,
-      formData.status,
-      formData.certified,
-      formData.comments,
-      formData.resume
-    );
+    // console.log(formData);
+
+    const addCandidate = async (formData) => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await fetch("/api/candidate/add-candidate", {
+          method: "POST",
+          // headers: {'Content-Type': 'application/json'},
+          body: formData,
+        });
+        console.log(response)
+
+        const json = await response.json();
+        console.log(json);
+
+        if (!response.ok) {
+          throw new Error(json.message);
+        }
+        if (response.ok) {
+          setShowPopup(!showPopup);
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    addCandidate(formData)
   };
 
   const togglePopup = () => {
@@ -205,15 +219,15 @@ const NewCandidate = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="totalITExperience">
+            <label htmlFor="itExperience">
               Total IT Experience<span className={styles.asterisk}>*</span>{" "}
               (Yrs):
             </label>
             <input
               type="number"
-              name="totalITExperience"
+              name="itExperience"
               id="totalITExperience"
-              value={formData.totalITExperience}
+              value={formData.itExperience}
               onChange={handleInputChange}
               required
             />
@@ -387,6 +401,9 @@ const NewCandidate = () => {
           <div className={styles.sub_container}></div>
         </div>
         {error && <div className={styles.errorMessage}>{error}</div>}
+        {errorMessage && (
+          <div className={styles.errorMessage}>{errorMessage}</div>
+        )}
         <div className={styles.button_container}>
           <button
             type="button"

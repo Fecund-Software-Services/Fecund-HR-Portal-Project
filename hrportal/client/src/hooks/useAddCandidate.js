@@ -30,7 +30,7 @@ export const useAddCandidate = () => {
         try{
             const response = await fetch('/api/candidate/add-candidate',{
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                // headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({firstName, lastName, emailAddress, mobileNumber,skillSet,
                     itExperience, totalRelevantExperience, currentCompany, currentCTC, expectedCTC,
                     noticePeriod, servingNoticePeriod, lastWorkingDay, status,certified, comments, resume}),
