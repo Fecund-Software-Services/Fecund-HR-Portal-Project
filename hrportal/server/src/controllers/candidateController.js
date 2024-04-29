@@ -6,9 +6,9 @@ Sprint: Sprint 3
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        | Author                  | Sprint   | Description 
 -------------------------------------------------------------------------------------------------------
-
+29-04-2024  | Harshini C              | 3        | View Candidates applied in
 -------------------------------------------------------------------------------------------------------
 */ 
 
@@ -76,8 +76,9 @@ const addCandidate = async (req, res) => {
       let existingCandidate;
       try {
         existingCandidate = await Candidate.findOne({ emailAddress });
+        res.send({ status :"ok" , data : existingCandidate})
       } catch (error) {
-        console.log(error.message);
+        console.log(error);
       }
   
       if (existingCandidate) {
@@ -127,8 +128,46 @@ const addCandidate = async (req, res) => {
       }
       return res.status(201).json({message: " Candidate added Successfully"});
     } catch (error) {
-      console.log(error.message);
+      //console.log(error.message);
     }
   };
 
 module.exports = { addCandidate,upload };
+
+//Fetch records using View method of returning candidate details
+const viewCandidateRecord = async (req, res) => {
+  try {
+    const {year, month} = req.body;
+
+    // CHECKING IF SELECTED YEAR RECORD(S) EXISTS
+    let existingCandidateYear;
+    try {
+      existingCandidateYear = await Candidate.findOne({ year });
+    } 
+    catch (error) {
+      //console.log(error.message);
+    }
+
+    if (!existingCandidateYear) {
+      return res.status(400).json({ message: "Error: No records found for selected year!" });
+    }
+
+    // CHECKING IF SELECTED MONTH RECORD(S) EXISTS
+    let existingCandidateMonth;
+    try {
+      existingCandidateMonth = await Candidate.findOne({ month });
+    } 
+    catch (error) {
+      //console.log(error.message);
+    }
+
+    if (!existingCandidateMonth) {
+      return res.status(400).json({ message: "Error: No records found for selected year!" });
+    }
+  }
+  catch (error) {
+    //console.log (error.message)
+  }
+}
+
+module.exports = { viewCandidateRecord,upload };
