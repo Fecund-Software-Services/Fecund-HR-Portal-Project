@@ -8,11 +8,8 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        | Author                  | Sprint   | Description 
 -------------------------------------------------------------------------------------------------------
-<<<<<<< HEAD
-29-04-2024  | Harshini C              | 3        | View Candidates applied in
-=======
-29/4/2024           HS                          3           Search candidate validation
->>>>>>> 998017741928fb00d8eb69bbe608168059c78d05
+29/4/2024   | HS                      | 3        | Search candidate validation
+29/4/2024   | Harshini C              | 3        | View Candidates applied in
 -------------------------------------------------------------------------------------------------------
 */ 
 
@@ -129,46 +126,6 @@ const addCandidate = async (req, res) => {
   
 const searchCandidate = async (req,res) => {
 
-module.exports = { addCandidate,upload };
-
-//Fetch records using View method of returning candidate details
-const viewCandidateRecord = async (req, res) => {
-  try {
-    const {year, month} = req.body;
-
-    // CHECKING IF SELECTED YEAR RECORD(S) EXISTS
-    let existingCandidateYear;
-    try {
-      existingCandidateYear = await Candidate.findOne({ year });
-    } 
-    catch (error) {
-      //console.log(error.message);
-    }
-
-    if (!existingCandidateYear) {
-      return res.status(400).json({ message: "Error: No records found for selected year!" });
-    }
-
-    // CHECKING IF SELECTED MONTH RECORD(S) EXISTS
-    let existingCandidateMonth;
-    try {
-      existingCandidateMonth = await Candidate.findOne({ month });
-    } 
-    catch (error) {
-      //console.log(error.message);
-    }
-
-    if (!existingCandidateMonth) {
-      return res.status(400).json({ message: "Error: No records found for selected year!" });
-    }
-  }
-  catch (error) {
-    //console.log (error.message)
-  }
-}
-
-module.exports = { viewCandidateRecord,upload };
-
 const searchTerm = req.query.searchTerm; // Get the search term from query parameter
 
   // Validate if at least one search field has data
@@ -202,5 +159,38 @@ const searchTerm = req.query.searchTerm; // Get the search term from query param
   }
 }
 
+//Fetch records using View method of returning candidate details
+const viewCandidate = async (req, res) => {
 
-module.exports = { addCandidate,searchCandidate, upload };
+const viewFilterData = req.query.viewFilterData; // Get the search term from query parameter
+
+  // Validate if at least one search field has data
+  if (!viewFilterData || viewFilterData.trim() === '') {
+    return res.status(400).json({ error: 'Choose option for both the fields!' });
+  }
+
+  // Build the query based on searchTerm
+  let query = {};
+    query = {
+      $dateFromParts: {
+        "year": viewFilterData.year,
+        "month": viewFilterData.month
+      }
+  };
+
+  try {
+    candidate = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
+
+    // Check if any matching users were found
+    if (!candidate.length) {
+      return res.status(404).json({ error: 'No match found!' });
+    }
+    res.json(candidate); // Send the matching users back to the client
+  } 
+  catch (error) {
+    console.error(error);
+    res.status(500).send('Error searching users'); // Handle errors
+  }
+}
+
+module.exports = { addCandidate, searchCandidate, viewCandidate, upload };
