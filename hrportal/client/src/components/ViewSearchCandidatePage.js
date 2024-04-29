@@ -14,6 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 */
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
 import backgroundImage from "../assets/common-background-image.png";
 
@@ -27,6 +28,78 @@ function ViewSearchCandidatePage() {
     email: "",
   });
   const [searchResult, setSearchResult] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(2);
+
+  // const data = [id = 12345, firstName = 'Vishal', lastName = 'garg', email = "vishal.garg@fecundservices.com", mobileNumber = 8728976049 ]
+
+  const data = [
+    {
+      // Create an object to hold user data
+      id: 12345,
+      firstName: "Vishal",
+      lastName: "Garg",
+      email: "vishal.garg@fecundservices.com",
+      mobileNumber: 8728976049,
+      status: "Submitted",
+    },
+    {
+      // Create an object to hold user data
+      id: 123488,
+      firstName: "Sanjay",
+      lastName: "HS",
+      email: "Sanjay.HS@fecundservices.com",
+      mobileNumber: 9999999999,
+      status: "Submitted",
+    },
+    {
+      // Create an object to hold user data
+      id: 12348,
+      firstName: "Omkar",
+      lastName: "Tajane",
+      email: "Omkar.tajane@fecundservices.com",
+      mobileNumber: 9999988888,
+      status: "Submitted",
+    },
+    {
+      // Create an object to hold user data
+      id: 123,
+      firstName: "Vandit",
+      lastName: "Goel",
+      email: "Vandit.goel@fecundservices.com",
+      mobileNumber: 9999988888,
+      status: "Submitted",
+    },
+    {
+      // Create an object to hold user data
+      id: 12346,
+      firstName: "Deepika",
+      lastName: "Polina",
+      email: "Deepika.polina@fecundservices.com",
+      mobileNumber: 9999988888,
+      status: "Submitted",
+    },
+    {
+      // Create an object to hold user data
+      id: 12347,
+      firstName: "Tushar",
+      lastName: "Pareek",
+      email: "Tushar.parik@fecundservices.com",
+      mobileNumber: 9999988888,
+      status: "Submitted",
+    },
+    {
+      // Create an object to hold user data
+      id: 12365,
+      firstName: "Sanjay",
+      lastName: "Rathi",
+      email: "Sanjay.rathi@fecundservices.com",
+      mobileNumber: 9999988888,
+      status: "Submitted",
+    },
+  ];
+
+  const nav = useNavigate();
 
   const handleSearchTypeChange = (event) => {
     setSearchType(event.target.value);
@@ -45,17 +118,32 @@ function ViewSearchCandidatePage() {
       //     response = await fetch(`/api/data?firstName=${searchData.firstName}&lastName=${searchData.lastName}&email=${searchData.email}`);
       //   }
       //   const data = await response.json();
-      //   setSearchResult(data);
+      // setSearchResult(data);
+      setSearchResult(data);
       console.log("done");
+      console.log(searchResult)
     } catch (error) {
       console.error("Error searching data:", error);
     }
   };
 
   const handleViewDetails = (id) => {
+    // nav(`/home/search-candidate/candidate/${id}`)
+    nav(`/home/search-candidate/candiadte`);
     // Handle view details logic, e.g., open modal or navigate to a new page
     console.log("View details for ID:", id);
   };
+
+  // Logic for pagination
+  const indexOfLastResult = currentPage * resultsPerPage;
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
+  const currentResults = searchResult.slice(
+    indexOfFirstResult,
+    indexOfLastResult
+  );
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className={styles.search_container}>
@@ -150,10 +238,9 @@ function ViewSearchCandidatePage() {
           </div>
         )}
         <div className={styles.button_container}>
-
-        <button onClick={handleSearch} className={styles.button}>
-          Search
-        </button>
+          <button onClick={handleSearch} className={styles.button}>
+            Search
+          </button>
         </div>
       </div>
       <div>
@@ -164,11 +251,12 @@ function ViewSearchCandidatePage() {
               <th>First Name</th>
               <th>Last Name</th>
               <th>Mobile Number</th>
+              <th>Email</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {searchResult.map((item, index) => (
+            {currentResults.map((item, index) => (
               <tr key={index}>
                 <td>
                   <button
@@ -181,11 +269,29 @@ function ViewSearchCandidatePage() {
                 <td>{item.firstName}</td>
                 <td>{item.lastName}</td>
                 <td>{item.mobileNumber}</td>
+                <td>{item.email}</td>
                 <td>{item.status}</td>
               </tr>
             ))}
           </tbody>
         </table>
+        {searchResult.length ? (
+          <div className={styles.pagination}>
+            <button
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <span>{currentPage}</span>
+            <button
+              onClick={() => paginate(currentPage + 1)}
+              disabled={indexOfLastResult >= searchResult.length}
+            >
+              Next
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

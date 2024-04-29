@@ -31,7 +31,7 @@ Date        |   Author                  |   Sprint   |    Description
   display: flex;
   justify-content: space-around;
   /* padding: 30px; */
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .form_title {
@@ -107,7 +107,7 @@ Date        |   Author                  |   Sprint   |    Description
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  color: #fff;
+  color: #ffffff;
 }
 
 .table th,
@@ -121,7 +121,7 @@ Date        |   Author                  |   Sprint   |    Description
 }
 
 .table tbody tr:hover {
-  background-color: #f9f9f9;
+  background-color: #53657e;
 }
 
 .button_container {

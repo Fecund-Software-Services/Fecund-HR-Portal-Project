@@ -24,6 +24,7 @@ import ViewSearchCandidatePage from "./components/ViewSearchCandidatePage";
 import NewCandidate from "./components/NewCandidate";
 import NewPassword from "./components/NewPassword";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import ViewCandidateDetail from "./components/ViewCandidateDetail";
 // import { useAuth } from "./context/AuthContext";
 
 function App() {
@@ -56,6 +57,19 @@ function App() {
                 exact
                 path="/home/add-new-candidate"
                 element={<NewCandidate />}
+              />
+            </Route>
+            <Route
+              exact
+              // path="/home/search-candidate/candiadte/:id"
+              path="/home/search-candidate/candiadte"
+              element={<ProtectedRoute />}
+            >
+              <Route
+                exact
+                // path="/home/search-candidate/candiadte/:id"
+                path="/home/search-candidate/candiadte"
+                element={<ViewCandidateDetail />}
               />
             </Route>
             <Route path="/signup" element={<SignUpForm />} />
