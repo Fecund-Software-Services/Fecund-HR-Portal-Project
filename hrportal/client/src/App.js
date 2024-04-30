@@ -10,6 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
+28/4/2024     Omkar And Vishal               3         View Candidate Details
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -24,6 +25,7 @@ import ViewSearchCandidatePage from "./components/ViewSearchCandidatePage";
 import NewCandidate from "./components/NewCandidate";
 import NewPassword from "./components/NewPassword";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import ViewCandidateDetail from "./components/ViewCandidateDetail";
 // import { useAuth } from "./context/AuthContext";
 
 function App() {
@@ -56,6 +58,19 @@ function App() {
                 exact
                 path="/home/add-new-candidate"
                 element={<NewCandidate />}
+              />
+            </Route>
+            <Route
+              exact
+              // path="/home/search-candidate/candiadte/:id"
+              path="/home/search-candidate/candiadte"
+              element={<ProtectedRoute />}
+            >
+              <Route
+                exact
+                // path="/home/search-candidate/candiadte/:id"
+                path="/home/search-candidate/candiadte"
+                element={<ViewCandidateDetail />}
               />
             </Route>
             <Route path="/signup" element={<SignUpForm />} />
