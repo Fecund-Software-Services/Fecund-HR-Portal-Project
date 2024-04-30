@@ -11,6 +11,8 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 18/4/2024       Omkar & Vishal               2           Add New Candidate
 24/4/2024       Vishal                       3           Search Candidate
+29/4/2024       Vishal                       3           Add New Candidate Validations - Code Integration
+
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -54,7 +56,10 @@ const NewCandidate = () => {
 
   const nav = useNavigate();
 
-  const skillSetOptions = ["Java", "Python", "JavaScript", "C++"];
+  const skillSetOptions = ['Guidewire BA (PC)','Guidewire BA (BC)','Guidewire BA (CC)','Guidewire QA (PC)','Guidewire QA (BC)','Guidewire QA (CC)','Guidewire DEV (PC)','Guidewire DEV (BC)','Guidewire DEV (CC)','Guidewire Lead (CC)',
+  'Guidewire Lead (PC)','Guidewire Lead (BC)','Buisness Analyst','Technical Specialist','Guidewire Integration Developer','Guidewire Architect','Guidewire QA','Guidewire Portal','Guidewire Datahub','Guidewire Infocentre',
+  'Recruitment Executive','Business Development Executive','Guidewire Backend Developer','Duckcreek Developer','Coldfusion Developer','Oneshield Designer','Digital Marketing Executive','Mulesoft Developer','Scrum Master',
+  'Project Leader','Oneshield BA','Oneshield QA'];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -64,14 +69,14 @@ const NewCandidate = () => {
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
-    const { name, checked, value } = e.target;
-    let newValue = checked ? value : "";
+    const { name, checked , value } = e.target;
+    let newValue = value ? checked : null;
     setFormData((prevData) => ({ ...prevData, [name]: newValue }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked, value } = e.target;
-    let newValue = checked ? value : "";
+    const { name, checked, value} = e.target;
+    let newValue = checked ;
     setFormData((prevData) => ({
       ...prevData,
       [name]: newValue,
@@ -107,14 +112,37 @@ const NewCandidate = () => {
     e.preventDefault();
     // console.log(formData);
 
-    const addCandidate = async (formData) => {
+    const formDataToSend = new FormData(); // Create a new FormData object
+
+    // Append all form data fields to the FormData object
+    formDataToSend.append("firstName", formData.firstName);
+    formDataToSend.append("lastName", formData.lastName);
+    formDataToSend.append("emailAddress", formData.emailAddress);
+    formDataToSend.append("mobileNumber", formData.mobileNumber);
+    formDataToSend.append("skillSet", formData.skillSet);
+    formDataToSend.append("itExperience", formData.itExperience);
+    formDataToSend.append("totalRelevantExperience", formData.totalRelevantExperience);
+    formDataToSend.append("currentCompany", formData.currentCompany);
+    formDataToSend.append("currentCTC", formData.currentCTC);
+    formDataToSend.append("expectedCTC", formData.expectedCTC);
+    formDataToSend.append("noticePeriod", formData.noticePeriod);
+    formDataToSend.append("servingNoticePeriod", formData.servingNoticePeriod);
+    formDataToSend.append("lastWorkingDay", formData.lastWorkingDay);
+    formDataToSend.append("status", formData.status);
+    formDataToSend.append("certified", formData.certified);
+    formDataToSend.append("comments", formData.comments);
+  
+    // Append the resume file to the FormData object
+    formDataToSend.append("resume", formData.resume);
+
+    const addCandidate = async (    end) => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch("/api/candidate/add-candidate", {
-          method: "POST",
+        const response = await fetch('/api/candidate/add-candidate', {
+          method: 'POST',
           // headers: {'Content-Type': 'application/json'},
-          body: formData,
+          body: formDataToSend
         });
         console.log(response)
 
@@ -134,7 +162,7 @@ const NewCandidate = () => {
       }
     };
 
-    addCandidate(formData)
+    addCandidate(formDataToSend)
   };
 
   const togglePopup = () => {
@@ -314,9 +342,9 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="servingNoticePeriod"
-                  value="Yes"
+                  value= "Yes"
                   onChange={handleServingNoticePeriodChange}
-                  checked={formData.servingNoticePeriod === "Yes"} // Check if the value is 'Yes'
+                  checked={formData.servingNoticePeriod === true} // Check if the value is 'Yes'
                 />
                 Yes
               </label>
@@ -324,9 +352,9 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="servingNoticePeriod"
-                  value="No"
+                  value= "No"
                   onChange={handleServingNoticePeriodChange}
-                  checked={formData.servingNoticePeriod === "No"} // Check if the value is 'No'
+                  checked={formData.servingNoticePeriod === false} // Check if the value is 'No'
                 />
                 No
               </label>
@@ -341,9 +369,9 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="certified"
-                  value="Yes"
+                  value= "Yes"
                   onChange={handleCheckboxChange}
-                  checked={formData.certified === "Yes"} // Check if the value is 'Yes'
+                  checked={formData.certified === true} // Check if the value is 'Yes'
                 />
                 Yes
               </label>
@@ -351,9 +379,9 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="certified"
-                  value="No"
+                  // value= "No"
                   onChange={handleCheckboxChange}
-                  checked={formData.certified === "No"} // Check if the value is 'No'
+                  checked={formData.certified === false}// Check if the value is 'No'
                 />
                 No
               </label>

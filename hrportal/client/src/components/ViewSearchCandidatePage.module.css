@@ -43,7 +43,6 @@ Date        |   Author                  |   Sprint   |    Description
 
 .form_container {
     width: 50%;
-
 }
 
 .input_group {
@@ -61,6 +60,18 @@ Date        |   Author                  |   Sprint   |    Description
     width: 50%;
     /* align-items:self-start; */
 }
+
+.divide {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Horizontally centers the child element(s) */
+  align-items: center;
+  width: 90%
+}
+
+/* .table_container {
+  width: ;
+} */
 
 .label {
   display: block;

@@ -29,7 +29,7 @@ function ViewSearchCandidatePage() {
   });
   const [searchResult, setSearchResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(2);
+  const [resultsPerPage, setResultsPerPage] = useState(10);
 
   // const data = [id = 12345, firstName = 'Vishal', lastName = 'garg', email = "vishal.garg@fecundservices.com", mobileNumber = 8728976049 ]
 
@@ -97,6 +97,33 @@ function ViewSearchCandidatePage() {
       mobileNumber: 9999988888,
       status: "Submitted",
     },
+    {
+      // Create an object to hold user data
+      id: 123488,
+      firstName: "Sanjay",
+      lastName: "HS",
+      email: "Sanjay.HS@fecundservices.com",
+      mobileNumber: 9999999999,
+      status: "Submitted",
+    },
+    {
+      // Create an object to hold user data
+      id: 12348,
+      firstName: "Omkar",
+      lastName: "Tajane",
+      email: "Omkar.tajane@fecundservices.com",
+      mobileNumber: 9999988888,
+      status: "Submitted",
+    },
+    {
+      // Create an object to hold user data
+      id: 123,
+      firstName: "Vandit",
+      lastName: "Goel",
+      email: "Vandit.goel@fecundservices.com",
+      mobileNumber: 9999988888,
+      status: "Submitted",
+    },
   ];
 
   const nav = useNavigate();
@@ -121,7 +148,7 @@ function ViewSearchCandidatePage() {
       // setSearchResult(data);
       setSearchResult(data);
       console.log("done");
-      console.log(searchResult)
+      console.log(searchResult);
     } catch (error) {
       console.error("Error searching data:", error);
     }
@@ -150,148 +177,150 @@ function ViewSearchCandidatePage() {
       <div className={styles.title_container}>
         <p className={styles.form_title}>View/Serach Candidate</p>
       </div>
-      <div className={styles.form_container}>
-        <div className={styles.radio_group}>
-          <div className={styles.flex_conatiner}>
-            <input
-              type="radio"
-              id="dateSearch"
-              name="searchType"
-              value="date"
-              checked={searchType === "date"}
-              onChange={handleSearchTypeChange}
-            />
-            <label className={styles.radio_label} htmlFor="dateSearch">
-              Search by Date
-            </label>
+      <div className={styles.divide}>
+        <div className={styles.form_container}>
+          <div className={styles.radio_group}>
+            <div className={styles.flex_conatiner}>
+              <input
+                type="radio"
+                id="dateSearch"
+                name="searchType"
+                value="date"
+                checked={searchType === "date"}
+                onChange={handleSearchTypeChange}
+              />
+              <label className={styles.radio_label} htmlFor="dateSearch">
+                Search by Date
+              </label>
+            </div>
+            <div className={styles.flex_conatiner}>
+              <input
+                type="radio"
+                id="userSearch"
+                name="searchType"
+                value="user"
+                checked={searchType === "user"}
+                onChange={handleSearchTypeChange}
+              />
+              <label className={styles.radio_label} htmlFor="userSearch">
+                Search by User Detail
+              </label>
+            </div>
           </div>
-          <div className={styles.flex_conatiner}>
-            <input
-              type="radio"
-              id="userSearch"
-              name="searchType"
-              value="user"
-              checked={searchType === "user"}
-              onChange={handleSearchTypeChange}
-            />
-            <label className={styles.radio_label} htmlFor="userSearch">
-              Search by User Detail
-            </label>
+          {searchType === "date" && (
+            <div className={styles.input_group}>
+              <div className={styles.flex_conatiner}>
+                <label className={styles.label}>Year:</label>
+                <input
+                  type="text"
+                  name="year"
+                  value={searchData.year}
+                  onChange={handleInputChange}
+                  className={styles.input_field}
+                />
+              </div>
+              <div className={styles.flex_conatiner}>
+                <label className={styles.label}>Month:</label>
+                <input
+                  type="text"
+                  name="month"
+                  value={searchData.month}
+                  onChange={handleInputChange}
+                  className={styles.input_field}
+                />
+              </div>
+            </div>
+          )}
+          {searchType === "user" && (
+            <div className={styles.input_group}>
+              <div className={styles.flex_conatiner}>
+                <label className={styles.label}>First Name:</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={searchData.firstName}
+                  onChange={handleInputChange}
+                  className={styles.input_field}
+                />
+              </div>
+              <div className={styles.flex_conatiner}>
+                <label className={styles.label}>Last Name:</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={searchData.lastName}
+                  onChange={handleInputChange}
+                  className={styles.input_field}
+                />
+              </div>
+              <div className={styles.flex_conatiner}>
+                <label className={styles.label}>Email:</label>
+                <input
+                  type="text"
+                  name="email"
+                  value={searchData.email}
+                  onChange={handleInputChange}
+                  className={styles.input_field}
+                />
+              </div>
+            </div>
+          )}
+          <div className={styles.button_container}>
+            <button onClick={handleSearch} className={styles.button}>
+              Search
+            </button>
           </div>
         </div>
-        {searchType === "date" && (
-          <div className={styles.input_group}>
-            <div className={styles.flex_conatiner}>
-              <label className={styles.label}>Year:</label>
-              <input
-                type="text"
-                name="year"
-                value={searchData.year}
-                onChange={handleInputChange}
-                className={styles.input_field}
-              />
-            </div>
-            <div className={styles.flex_conatiner}>
-              <label className={styles.label}>Month:</label>
-              <input
-                type="text"
-                name="month"
-                value={searchData.month}
-                onChange={handleInputChange}
-                className={styles.input_field}
-              />
-            </div>
-          </div>
-        )}
-        {searchType === "user" && (
-          <div className={styles.input_group}>
-            <div className={styles.flex_conatiner}>
-              <label className={styles.label}>First Name:</label>
-              <input
-                type="text"
-                name="firstName"
-                value={searchData.firstName}
-                onChange={handleInputChange}
-                className={styles.input_field}
-              />
-            </div>
-            <div className={styles.flex_conatiner}>
-              <label className={styles.label}>Last Name:</label>
-              <input
-                type="text"
-                name="lastName"
-                value={searchData.lastName}
-                onChange={handleInputChange}
-                className={styles.input_field}
-              />
-            </div>
-            <div className={styles.flex_conatiner}>
-              <label className={styles.label}>Email:</label>
-              <input
-                type="text"
-                name="email"
-                value={searchData.email}
-                onChange={handleInputChange}
-                className={styles.input_field}
-              />
-            </div>
-          </div>
-        )}
-        <div className={styles.button_container}>
-          <button onClick={handleSearch} className={styles.button}>
-            Search
-          </button>
-        </div>
-      </div>
-      <div>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>View</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Mobile Number</th>
-              <th>Email</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentResults.map((item, index) => (
-              <tr key={index}>
-                <td>
-                  <button
-                    onClick={() => handleViewDetails(item.id)}
-                    className={styles.button_view}
-                  >
-                    View
-                  </button>
-                </td>
-                <td>{item.firstName}</td>
-                <td>{item.lastName}</td>
-                <td>{item.mobileNumber}</td>
-                <td>{item.email}</td>
-                <td>{item.status}</td>
+        <div className={styles.table_container}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>View</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mobile Number</th>
+                <th>Email</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        {searchResult.length ? (
-          <div className={styles.pagination}>
-            <button
-              onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-            <span>{currentPage}</span>
-            <button
-              onClick={() => paginate(currentPage + 1)}
-              disabled={indexOfLastResult >= searchResult.length}
-            >
-              Next
-            </button>
-          </div>
-        ) : null}
+            </thead>
+            <tbody>
+              {currentResults.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <button
+                      onClick={() => handleViewDetails(item.id)}
+                      className={styles.button_view}
+                    >
+                      View
+                    </button>
+                  </td>
+                  <td>{item.firstName}</td>
+                  <td>{item.lastName}</td>
+                  <td>{item.mobileNumber}</td>
+                  <td>{item.email}</td>
+                  <td>{item.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {searchResult.length ? (
+            <div className={styles.pagination}>
+              <button
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+              <span>{currentPage}</span>
+              <button
+                onClick={() => paginate(currentPage + 1)}
+                disabled={indexOfLastResult >= searchResult.length}
+              >
+                Next
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );
