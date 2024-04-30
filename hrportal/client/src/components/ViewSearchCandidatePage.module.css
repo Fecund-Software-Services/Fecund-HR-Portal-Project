@@ -31,7 +31,7 @@ Date        |   Author                  |   Sprint   |    Description
   display: flex;
   justify-content: space-around;
   /* padding: 30px; */
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .form_title {
@@ -43,7 +43,6 @@ Date        |   Author                  |   Sprint   |    Description
 
 .form_container {
     width: 50%;
-
 }
 
 .input_group {
@@ -61,6 +60,18 @@ Date        |   Author                  |   Sprint   |    Description
     width: 50%;
     /* align-items:self-start; */
 }
+
+.divide {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Horizontally centers the child element(s) */
+  align-items: center;
+  width: 90%
+}
+
+/* .table_container {
+  width: ;
+} */
 
 .label {
   display: block;
@@ -107,7 +118,7 @@ Date        |   Author                  |   Sprint   |    Description
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  color: #fff;
+  color: #ffffff;
 }
 
 .table th,
@@ -121,7 +132,7 @@ Date        |   Author                  |   Sprint   |    Description
 }
 
 .table tbody tr:hover {
-  background-color: #f9f9f9;
+  background-color: #53657e;
 }
 
 .button_container {

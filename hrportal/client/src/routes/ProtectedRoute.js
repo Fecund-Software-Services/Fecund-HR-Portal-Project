@@ -9,8 +9,9 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-17/4/2024     Vishal Garg                    2         configure Authorization
-24/4/2024     Vishal Garg                    3         Search Candidate
+17/4/2024     Vishal Garg               |     2      |   configure Authorization
+24/4/2024     Vishal Garg               |     3      |   Search Candidate
+26/4/2024   |   Vishal                  |    3       |   View Candidate Details
 -------------------------------------------------------------------------------------------------------
 */
 

@@ -15,6 +15,7 @@ Date        |   Author                  |   Sprint   |    Description
 import { useState, useEffect } from 'react';
 
 const useSearchCandidate = (searchTerm) => {
+  
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -47,3 +48,4 @@ const useSearchCandidate = (searchTerm) => {
 };
 
 export default useSearchCandidate;
+

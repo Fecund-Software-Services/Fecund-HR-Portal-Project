@@ -11,42 +11,55 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 18/4/2024       Omkar & Vishal               2           Add New Candidate
 24/4/2024       Vishal                       3           Search Candidate
+29/4/2024       Vishal                       3           Add New Candidate Validations - Code Integration
+
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from './NewCandidate.module.css';
+import styles from "./NewCandidate.module.css";
 import popupBackground from "../assets/popup-background.png";
 
-const NewCandidate = () => {
+// import { useAddCandidate } from "../hooks/useAddCandidate.js";
 
+const NewCandidate = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    emailAddress: "",
     mobileNumber: "",
     skillSet: "",
-    totalITExperience: 0,
-    totalRelevantExperience: 0,
+    itExperience: "",
+    totalRelevantExperience: "",
     currentCompany: "",
-    currentCTC: 0,
-    expectedCTC: 0,
-    noticePeriod: 0,
+    currentCTC: "",
+    expectedCTC: "",
+    noticePeriod: "",
     servingNoticePeriod: false,
     lastWorkingDay: "",
     certified: false,
     comments: "",
+    status: "Submitted",
     resume: null,
   });
 
   const [showLastWorkingDay, setShowLastWorkingDay] = useState(false);
   const navigateToPopup = useNavigate();
-  const [showPopup, setShowPopup] = useState(false)
-  
-  const nav = useNavigate()
+  // const [showPopup, setShowPopup] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState(" ");
+  const [isLoading, setIsLoading] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
-  const skillSetOptions = ["Java", "Python", "JavaScript", "C++"];
+  // const { addCandidate, error, isLoading, showPopup } = useAddCandidate();
+
+  const nav = useNavigate();
+
+  const skillSetOptions = ['Guidewire BA (PC)','Guidewire BA (BC)','Guidewire BA (CC)','Guidewire QA (PC)','Guidewire QA (BC)','Guidewire QA (CC)','Guidewire DEV (PC)','Guidewire DEV (BC)','Guidewire DEV (CC)','Guidewire Lead (CC)',
+  'Guidewire Lead (PC)','Guidewire Lead (BC)','Buisness Analyst','Technical Specialist','Guidewire Integration Developer','Guidewire Architect','Guidewire QA','Guidewire Portal','Guidewire Datahub','Guidewire Infocentre',
+  'Recruitment Executive','Business Development Executive','Guidewire Backend Developer','Duckcreek Developer','Coldfusion Developer','Oneshield Designer','Digital Marketing Executive','Mulesoft Developer','Scrum Master',
+  'Project Leader','Oneshield BA','Oneshield QA'];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,41 +69,100 @@ const NewCandidate = () => {
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
-    const { name, checked, value } = e.target;
-    let newValue = checked ? value : "";
+    const { name, checked , value } = e.target;
+    let newValue = value ? checked : null;
     setFormData((prevData) => ({ ...prevData, [name]: newValue }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked, value } = e.target;
-    let newValue = checked ? value : "";
+    const { name, checked, value} = e.target;
+    let newValue = checked ;
     setFormData((prevData) => ({
       ...prevData,
       [name]: newValue,
-    })); 
+    }));
     setShowLastWorkingDay(value);
   };
 
   const handleResumeChange = (e) => {
-
     const selectedFile = e.target.files[0];
     if (selectedFile) {
-      if (selectedFile.size > 250 * 1024) { // 250 KB (in bytes)
-        setErrorMessage('File size exceeds 250 KB limit.');
-      } else if (!['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(selectedFile.type)) {
-        setErrorMessage('Invalid file type. Only PDF, DOC, DOCX files are allowed.');
+      if (selectedFile.size > 250 * 1024) {
+        // 250 KB (in bytes)
+        setErrorMessage("File size exceeds 250 KB limit.");
+      } else if (
+        ![
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ].includes(selectedFile.type)
+      ) {
+        setErrorMessage(
+          "Invalid file type. Only PDF, DOC, DOCX files are allowed."
+        );
       } else {
         setFormData((prevData) => ({ ...prevData, resume: e.target.files[0] }));
-        setErrorMessage('');
+        console.log("in resume field ")
+        setErrorMessage("");
       }
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    setShowPopup(true)
-    console.log(formData);
+    // console.log(formData);
+
+    const formDataToSend = new FormData(); // Create a new FormData object
+
+    // Append all form data fields to the FormData object
+    formDataToSend.append("firstName", formData.firstName);
+    formDataToSend.append("lastName", formData.lastName);
+    formDataToSend.append("emailAddress", formData.emailAddress);
+    formDataToSend.append("mobileNumber", formData.mobileNumber);
+    formDataToSend.append("skillSet", formData.skillSet);
+    formDataToSend.append("itExperience", formData.itExperience);
+    formDataToSend.append("totalRelevantExperience", formData.totalRelevantExperience);
+    formDataToSend.append("currentCompany", formData.currentCompany);
+    formDataToSend.append("currentCTC", formData.currentCTC);
+    formDataToSend.append("expectedCTC", formData.expectedCTC);
+    formDataToSend.append("noticePeriod", formData.noticePeriod);
+    formDataToSend.append("servingNoticePeriod", formData.servingNoticePeriod);
+    formDataToSend.append("lastWorkingDay", formData.lastWorkingDay);
+    formDataToSend.append("status", formData.status);
+    formDataToSend.append("certified", formData.certified);
+    formDataToSend.append("comments", formData.comments);
+  
+    // Append the resume file to the FormData object
+    formDataToSend.append("resume", formData.resume);
+
+    const addCandidate = async (    end) => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await fetch('/api/candidate/add-candidate', {
+          method: 'POST',
+          // headers: {'Content-Type': 'application/json'},
+          body: formDataToSend
+        });
+        console.log(response)
+
+        const json = await response.json();
+        console.log(json);
+
+        if (!response.ok) {
+          throw new Error(json.message);
+        }
+        if (response.ok) {
+          setShowPopup(!showPopup);
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    addCandidate(formDataToSend)
   };
 
   const togglePopup = () => {
@@ -107,7 +179,9 @@ const NewCandidate = () => {
         <div className={styles.form_left}>
           {/* Left side form fields here */}
           <div className={styles.sub_container}>
-            <label htmlFor="firstName">First Name<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="firstName">
+              First Name<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="text"
               name="firstName"
@@ -118,7 +192,9 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="lastName">Last Name<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="lastName">
+              Last Name<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="text"
               name="lastName"
@@ -129,18 +205,22 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="email">Email ID<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="emailAddress">
+              Email ID<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="email"
-              name="email"
+              name="emailAddress"
               id="email"
-              value={formData.email}
+              value={formData.emailAddress}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="mobileNumber">Mobile Number<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="mobileNumber">
+              Mobile Number<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="tel"
               name="mobileNumber"
@@ -150,10 +230,11 @@ const NewCandidate = () => {
               required
             />
           </div>
-          
+
           <div className={styles.sub_container}>
             <label htmlFor="totalRelevantExperience">
-              Total Relevant Experience<span className={styles.asterisk}>*</span> (Yrs):
+              Total Relevant Experience
+              <span className={styles.asterisk}>*</span> (Yrs):
             </label>
             <input
               type="number"
@@ -164,23 +245,26 @@ const NewCandidate = () => {
               required
             />
           </div>
-         
+
           <div className={styles.sub_container}>
-            <label htmlFor="totalITExperience">
-              Total IT Experience<span className={styles.asterisk}>*</span> (Yrs):
+            <label htmlFor="itExperience">
+              Total IT Experience<span className={styles.asterisk}>*</span>{" "}
+              (Yrs):
             </label>
             <input
               type="number"
-              name="totalITExperience"
+              name="itExperience"
               id="totalITExperience"
-              value={formData.totalITExperience}
+              value={formData.itExperience}
               onChange={handleInputChange}
               required
             />
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="skillSet">Skill Set<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="skillSet">
+              Skill Set<span className={styles.asterisk}>*</span>:
+            </label>
             <select
               name="skillSet"
               id="skillSet"
@@ -198,7 +282,9 @@ const NewCandidate = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="currentCompany">Current Company<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="currentCompany">
+              Current Company<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="text"
               name="currentCompany"
@@ -209,7 +295,9 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="currentCTC">Current CTC (LPA)<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="currentCTC">
+              Current CTC (LPA)<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="number"
               name="currentCTC"
@@ -220,7 +308,9 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="expectedCTC">Expected CTC<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="expectedCTC">
+              Expected CTC<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="number"
               name="expectedCTC"
@@ -231,7 +321,9 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Notice Period<span className={styles.asterisk}>*</span> (Days):</label>
+            <label htmlFor="noticePeriod">
+              Notice Period<span className={styles.asterisk}>*</span> (Days):
+            </label>
             <input
               type="number"
               name="noticePeriod"
@@ -242,42 +334,44 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="servingNoticePeriod">Serving Notice Period<span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="servingNoticePeriod">
+              Serving Notice Period<span className={styles.asterisk}>*</span>:
+            </label>
             <div className={styles.checkbox_container}>
-            <label>
-              <input
-                type="checkbox"
-                name="servingNoticePeriod"
-                value="Yes"
-                onChange={handleServingNoticePeriodChange}
-                checked={formData.servingNoticePeriod === "Yes"} // Check if the value is 'Yes'
-              />
-              Yes
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="servingNoticePeriod"
-                value="No"
-                onChange={handleServingNoticePeriodChange}
-                checked={formData.servingNoticePeriod === "No"} // Check if the value is 'No'
-              />
-              No
-            </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="servingNoticePeriod"
+                  value= "Yes"
+                  onChange={handleServingNoticePeriodChange}
+                  checked={formData.servingNoticePeriod === true} // Check if the value is 'Yes'
+                />
+                Yes
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="servingNoticePeriod"
+                  value= "No"
+                  onChange={handleServingNoticePeriodChange}
+                  checked={formData.servingNoticePeriod === false} // Check if the value is 'No'
+                />
+                No
+              </label>
             </div>
-            
-            
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="certified">Certified?<span className={styles.asterisk}>*</span></label>
+            <label htmlFor="certified">
+              Certified?<span className={styles.asterisk}>*</span>
+            </label>
             <div className={styles.checkbox_container}>
-              <label >
+              <label>
                 <input
                   type="checkbox"
                   name="certified"
-                  value="Yes"
+                  value= "Yes"
                   onChange={handleCheckboxChange}
-                  checked={formData.certified === "Yes"} // Check if the value is 'Yes'
+                  checked={formData.certified === true} // Check if the value is 'Yes'
                 />
                 Yes
               </label>
@@ -285,18 +379,21 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="certified"
-                  value="No"
+                  // value= "No"
                   onChange={handleCheckboxChange}
-                  checked={formData.certified === "No"} // Check if the value is 'No'
+                  checked={formData.certified === false}// Check if the value is 'No'
                 />
                 No
               </label>
             </div>
-
-          
           </div>
-          <div  className={styles.sub_container} style={{ display: showLastWorkingDay === "Yes" ? "flex" : "none" }}>
-            <label htmlFor="lastWorkingDay">Last Working Day<span className={styles.asterisk}>*</span>:</label>
+          <div
+            className={styles.sub_container}
+            style={{ display: showLastWorkingDay === "Yes" ? "flex" : "none" }}
+          >
+            <label htmlFor="lastWorkingDay">
+              Last Working Day<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="date"
               name="lastWorkingDay"
@@ -304,10 +401,9 @@ const NewCandidate = () => {
               value={formData.lastWorkingDay}
               onChange={handleInputChange}
               required={showLastWorkingDay}
-              
             />
           </div>
-          
+
           <div className={styles.sub_container}>
             <label htmlFor="comments">Comments:</label>
             <textarea
@@ -317,8 +413,10 @@ const NewCandidate = () => {
               onChange={handleInputChange}
             ></textarea>
           </div>
-          <div className={styles.sub_container} >
-            <label htmlFor="resume">Resume<span className={styles.asterisk}>*</span>:</label>
+          <div className={styles.sub_container}>
+            <label htmlFor="resume">
+              Resume<span className={styles.asterisk}>*</span>:
+            </label>
             <input
               type="file"
               name="resume"
@@ -328,24 +426,34 @@ const NewCandidate = () => {
               className={styles.resume}
             />
           </div>
-          <div className={styles.sub_container} >
-           
-          </div>
+          <div className={styles.sub_container}></div>
         </div>
-        {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+        {error && <div className={styles.errorMessage}>{error}</div>}
+        {errorMessage && (
+          <div className={styles.errorMessage}>{errorMessage}</div>
+        )}
         <div className={styles.button_container}>
-          <button type="button" className={styles.cancel_button}
-          onClick={handleCancel}
+          <button
+            type="button"
+            className={styles.cancel_button}
+            onClick={handleCancel}
           >
             Cancel
           </button>
-          <button type="submit" className={styles.submit_button}>
-            Submit
+          <button
+            type="submit"
+            className={styles.submit_button}
+            disabled={isLoading}
+          >
+            {isLoading ? "Submitting..." : "Submit"}
           </button>
         </div>
       </form>
       <div className={styles.disclaimer}>
-      <p>Fields marked with an asterisk<span className={styles.asterisk}>(*)</span> are required.</p>
+        <p>
+          Fields marked with an asterisk
+          <span className={styles.asterisk}>(*)</span> are required.
+        </p>
       </div>
       {showPopup && (
         <div className={styles.popup} onClick={togglePopup}>
@@ -354,7 +462,12 @@ const NewCandidate = () => {
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
             <p className={styles.popup_message}>
-              Form submitted successfully!<br/><a href="/home" className={styles.login_here}> Go to Home Page Here</a>
+              Form submitted successfully!
+              <br />
+              <a href="/home" className={styles.login_here}>
+                {" "}
+                Go to Home Page Here
+              </a>
             </p>
           </div>
         </div>
