@@ -165,20 +165,22 @@ const viewCandidate = async (req, res) => {
 const viewFilterData = req.query.viewFilterData; // Get the search term from query parameter
 
   // Validate if at least one search field has data
-  if (!viewFilterData || viewFilterData.trim() === '') {
+  /*if (!viewFilterData || viewFilterData.trim() === '') {
     return res.status(400).json({ error: 'Choose option for both the fields!' });
-  }
+  }*/
 
+  const regex = new RegExp('viewFilterData.year-viewFilterData.month-', '');
   // Build the query based on searchTerm
   let query = {};
+  if (viewFilterData) {
     query = {
-      $dateFromParts: {
-        "year": viewFilterData.year,
-        "month": viewFilterData.month
-      }
-  };
+      $and: [
+        { createdAt: regex }
+      ]
+    };
+  }
 
-  try {
+ try {
     candidate = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
 
     // Check if any matching users were found
