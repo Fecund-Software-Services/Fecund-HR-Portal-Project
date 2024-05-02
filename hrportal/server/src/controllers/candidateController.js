@@ -16,6 +16,7 @@ const Candidate = require("../collections/candidates");
 const Resume = require("../collections/resumes");
 const multer = require('multer');
 const {GridFsStorage} = require('multer-gridfs-storage');
+const mongoose = require('mongoose');
 
 // STORING RESUMES USING MULTER AND GRIDFS
 const allowedMimeTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
@@ -28,7 +29,7 @@ const storage = new GridFsStorage({
       const fileName = '${Date.now()}-${file.originalname}';
       const metadata = {
         contentType: file.mimetype,
-        originalname: file.originalname
+        originalname: file.originalname,
       };
       resolve({ fileName, metadata});
     });
@@ -37,7 +38,7 @@ const storage = new GridFsStorage({
 
 const upload = multer({storage});
 
-// ADD NEW CANDIDATE
+// ADD NEW CANDIDATEs
 const addCandidate = async (req, res) => {
     try {
       const {
@@ -122,13 +123,14 @@ const addCandidate = async (req, res) => {
     }
   };
   
+// SEARCH CANDIDATE
 const searchCandidate = async (req,res) => {
 
   const searchTerm = req.query.searchTerm; // Get the search term from query parameter
 
   // Validate if at least one search field has data
   if (!searchTerm || searchTerm.trim() === '') {
-    return res.status(400).json({ error: 'Enter data for at least one of the given fields!' });
+    return res.status(400).json({message: "Error: Enter data for at least one of the given fields!"});
   }
 
   const regex = new RegExp('^' + searchTerm + '$', 'i');
@@ -139,7 +141,7 @@ const searchCandidate = async (req,res) => {
       $or: [
         { firstName: regex },
         { lastName: regex},
-        { emailAddress:  regex}
+        { emailAddress: regex}
       ]
     };
   }
@@ -148,7 +150,7 @@ const searchCandidate = async (req,res) => {
   candidate = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
     // Check if any matching users were found
     if (!candidate.length) {
-      return res.status(404).json({ error: 'No match found!' });
+      return res.status(404).json({message: "Error: No match found!"} );
     }
     res.json(candidate); // Send the matching users back to the client
   } catch (error) {
@@ -157,5 +159,60 @@ const searchCandidate = async (req,res) => {
   }
 }
 
+// VIEW SINGLE CANDIDATE
+const viewCandidate = async (req,res) => {
+  const candidateId = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(candidateId)) {
+    return res.status(400).send('Invalid candidate ID');
+  }
 
-module.exports = { addCandidate,searchCandidate, upload };
+  try {
+    const candidate = await Candidate.findById(candidateId);
+    if (!candidate) {
+      return res.status(404).send('Candidate not found');
+    }
+    res.json(candidate);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching candidate');
+  }
+
+}
+
+// Edit SELECTED CANDIDATE
+const editCandidate = async (req, res) => {
+  const candidateId = req.params.id;
+  const filter = { _id: candidateId }; // Use ObjectId for MongoDB document ID
+  
+  const update = {
+    $set: {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      emailAddress: req.body.emailAddress,
+      mobileNumber: req.body.mobileNumber,
+      skillSet: req.body.skillSet,
+      itExperience: req.body.itExperience,
+      totalRelevantExperience: req.body.totalRelevantExperience,
+      currentCompany: req.body.currentCompany,
+      currentCTC: req.body.currentCTC,
+      expectedCTC: req.body.expectedCTC,
+      noticePeriod: req.body.noticePeriod,
+      servingNoticePeriod: req.body.servingNoticePeriod,
+      lastWorkingDay: req.body.lastWorkingDay,
+      status: req.body.status,
+      certified: req.body.certified,
+      comments: req.body.comments
+      //resume: req.file
+    },
+  };
+
+  try {
+    const result = await Candidate.updateOne(filter, update);
+    return res.status(201).json(result);
+  } catch (err) {
+    return res.status(400).json({message: "Error: Update failed"});
+  }
+}
+
+
+module.exports = { addCandidate,searchCandidate, editCandidate, viewCandidate, upload };
