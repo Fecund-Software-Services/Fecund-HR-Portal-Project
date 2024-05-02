@@ -6,9 +6,11 @@ Sprint: Sprint 3
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        | Author                  | Sprint   | Description 
 -------------------------------------------------------------------------------------------------------
-29/4/2024           HS                          3           Search candidate validation
+29/4/2024   | HS                      | 3        | Search candidate validation
+29/4/2024   | Harshini C              | 3        | View Candidates applied in
+5/2/2024        HS                      3           Edit candidate and view single candidate
 -------------------------------------------------------------------------------------------------------
 */ 
 
@@ -68,8 +70,9 @@ const addCandidate = async (req, res) => {
       let existingCandidate;
       try {
         existingCandidate = await Candidate.findOne({ emailAddress });
+        res.send({ status :"ok" , data : existingCandidate})
       } catch (error) {
-        console.log(error.message);
+        console.log(error);
       }
   
       if (existingCandidate) {
@@ -119,14 +122,14 @@ const addCandidate = async (req, res) => {
       }
       return res.status(201).json({message: " Candidate added Successfully"});
     } catch (error) {
-      console.log(error.message);
+      //console.log(error.message);
     }
   };
   
-// SEARCH CANDIDATE
+// SEARCH CANDIDATE BY FIELD
 const searchCandidate = async (req,res) => {
 
-  const searchTerm = req.query.searchTerm; // Get the search term from query parameter
+const searchTerm = req.query.searchTerm; // Get the search term from query parameter
 
   // Validate if at least one search field has data
   if (!searchTerm || searchTerm.trim() === '') {
@@ -158,6 +161,42 @@ const searchCandidate = async (req,res) => {
     res.status(500).send('Error searching users'); // Handle errors
   }
 }
+
+// VIEW BY DATE
+const viewCandidatebydate = async (req, res) => {
+
+  const viewBydate = req.query.viewBydate; // Get the search term from query parameter
+  
+    // Validate if at least one search field has data
+    if (!viewBydate || viewBydate.trim() === '') {
+      return res.status(400).json({ error: 'Choose option for both the fields!' });
+    }
+  
+    const regex = new RegExp('viewBydate.year-viewBydate.month-', '');
+    // Build the query based on searchTerm
+    let query = {};
+    if (viewBydate) {
+      query = {
+        $and: [
+          { createdAt: regex }
+        ]
+      };
+    }
+  
+   try {
+      candidate = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
+  
+      // Check if any matching users were found
+      if (!candidate.length) {
+        return res.status(404).json({ error: 'No match found!' });
+      }
+      res.json(candidate); // Send the matching users back to the client
+    } 
+    catch (error) {
+      console.error(error);
+      res.status(500).send('Error searching users'); // Handle errors
+    }
+  }
 
 // VIEW SINGLE CANDIDATE
 const viewCandidate = async (req,res) => {
@@ -215,4 +254,6 @@ const editCandidate = async (req, res) => {
 }
 
 
-module.exports = { addCandidate,searchCandidate, editCandidate, viewCandidate, upload };
+module.exports = { addCandidate,searchCandidate, editCandidate, viewCandidate, viewCandidatebydate,upload };
+
+

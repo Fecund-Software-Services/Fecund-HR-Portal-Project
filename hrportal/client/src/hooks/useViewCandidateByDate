@@ -1,9 +1,9 @@
 /*
 Project: Hiring Portal Project
 Author: Sanjay HS
-Date: 29/04/2024
+Date: 02/05/2024
 Sprint: Sprint 3
-User Story: Seach Candidate integration
+User Story: View By Date
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 */
 import { useState, useEffect } from 'react';
 
-const useSearchCandidate = (searchTerm) => {
+const useViewCandidateByDate = (viewBydate) => {
   
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,7 @@ const useSearchCandidate = (searchTerm) => {
       setError(null);
 
       try {
-        const response = await fetch(`/api/candidate/search-candidate?searchTerm=${searchTerm}`);
+        const response = await fetch(`/api/candidate/view-candidate-bydate?year=????&month=??`);
         if (!response.ok) {
           throw new Error(`Error fetching data: ${response.status}`);
         }
@@ -39,13 +39,13 @@ const useSearchCandidate = (searchTerm) => {
       }
     };
 
-    if (searchTerm) {
+    if (viewBydate) {
       fetchData();
     }
-  }, [searchTerm]); // Re-run effect when searchTerm changes
+  }, [viewBydate]); // Re-run effect when searchTerm changes
 
   return { searchResults, isLoading, error };
 };
 
-export default useSearchCandidate;
+export default useViewCandidateByDate;
 
