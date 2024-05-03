@@ -16,7 +16,6 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
-import backgroundImage from "../assets/common-background-image.png";
 
 function ViewSearchCandidatePage() {
   const [searchType, setSearchType] = useState("date");
@@ -27,104 +26,105 @@ function ViewSearchCandidatePage() {
     lastName: "",
     email: "",
   });
-  const [searchResult, setSearchResult] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // const data = [id = 12345, firstName = 'Vishal', lastName = 'garg', email = "vishal.garg@fecundservices.com", mobileNumber = 8728976049 ]
-
-  const data = [
-    {
-      // Create an object to hold user data
-      id: 12345,
-      firstName: "Vishal",
-      lastName: "Garg",
-      email: "vishal.garg@fecundservices.com",
-      mobileNumber: 8728976049,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 123488,
-      firstName: "Sanjay",
-      lastName: "HS",
-      email: "Sanjay.HS@fecundservices.com",
-      mobileNumber: 9999999999,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 12348,
-      firstName: "Omkar",
-      lastName: "Tajane",
-      email: "Omkar.tajane@fecundservices.com",
-      mobileNumber: 9999988888,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 123,
-      firstName: "Vandit",
-      lastName: "Goel",
-      email: "Vandit.goel@fecundservices.com",
-      mobileNumber: 9999988888,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 12346,
-      firstName: "Deepika",
-      lastName: "Polina",
-      email: "Deepika.polina@fecundservices.com",
-      mobileNumber: 9999988888,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 12347,
-      firstName: "Tushar",
-      lastName: "Pareek",
-      email: "Tushar.parik@fecundservices.com",
-      mobileNumber: 9999988888,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 12365,
-      firstName: "Sanjay",
-      lastName: "Rathi",
-      email: "Sanjay.rathi@fecundservices.com",
-      mobileNumber: 9999988888,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 123488,
-      firstName: "Sanjay",
-      lastName: "HS",
-      email: "Sanjay.HS@fecundservices.com",
-      mobileNumber: 9999999999,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 12348,
-      firstName: "Omkar",
-      lastName: "Tajane",
-      email: "Omkar.tajane@fecundservices.com",
-      mobileNumber: 9999988888,
-      status: "Submitted",
-    },
-    {
-      // Create an object to hold user data
-      id: 123,
-      firstName: "Vandit",
-      lastName: "Goel",
-      email: "Vandit.goel@fecundservices.com",
-      mobileNumber: 9999988888,
-      status: "Submitted",
-    },
-  ];
+  // const data = [
+  //   {
+  //     // Create an object to hold user data
+  //     id: 12345,
+  //     firstName: "Vishal",
+  //     lastName: "Garg",
+  //     email: "vishal.garg@fecundservices.com",
+  //     mobileNumber: 8728976049,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 123488,
+  //     firstName: "Sanjay",
+  //     lastName: "HS",
+  //     email: "Sanjay.HS@fecundservices.com",
+  //     mobileNumber: 9999999999,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 12348,
+  //     firstName: "Omkar",
+  //     lastName: "Tajane",
+  //     email: "Omkar.tajane@fecundservices.com",
+  //     mobileNumber: 9999988888,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 123,
+  //     firstName: "Vandit",
+  //     lastName: "Goel",
+  //     email: "Vandit.goel@fecundservices.com",
+  //     mobileNumber: 9999988888,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 12346,
+  //     firstName: "Deepika",
+  //     lastName: "Polina",
+  //     email: "Deepika.polina@fecundservices.com",
+  //     mobileNumber: 9999988888,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 12347,
+  //     firstName: "Tushar",
+  //     lastName: "Pareek",
+  //     email: "Tushar.parik@fecundservices.com",
+  //     mobileNumber: 9999988888,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 12365,
+  //     firstName: "Sanjay",
+  //     lastName: "Rathi",
+  //     email: "Sanjay.rathi@fecundservices.com",
+  //     mobileNumber: 9999988888,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 123488,
+  //     firstName: "Sanjay",
+  //     lastName: "HS",
+  //     email: "Sanjay.HS@fecundservices.com",
+  //     mobileNumber: 9999999999,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 12348,
+  //     firstName: "Omkar",
+  //     lastName: "Tajane",
+  //     email: "Omkar.tajane@fecundservices.com",
+  //     mobileNumber: 9999988888,
+  //     status: "Submitted",
+  //   },
+  //   {
+  //     // Create an object to hold user data
+  //     id: 123,
+  //     firstName: "Vandit",
+  //     lastName: "Goel",
+  //     email: "Vandit.goel@fecundservices.com",
+  //     mobileNumber: 9999988888,
+  //     status: "Submitted",
+  //   },
+  // ];
 
   const nav = useNavigate();
 
@@ -134,23 +134,40 @@ function ViewSearchCandidatePage() {
 
   const handleInputChange = (event) => {
     setSearchData({ ...searchData, [event.target.name]: event.target.value });
+    console.log(searchData)
   };
 
-  const handleSearch = async () => {
-    try {
-      //   let response;
-      //   if (searchType === 'date') {
-      //     response = await fetch(`/api/data?year=${searchData.year}&month=${searchData.month}`);
-      //   } else if (searchType === 'user') {
-      //     response = await fetch(`/api/data?firstName=${searchData.firstName}&lastName=${searchData.lastName}&email=${searchData.email}`);
-      //   }
-      //   const data = await response.json();
-      // setSearchResult(data);
-      setSearchResult(data);
-      console.log("done");
-      console.log(searchResult);
-    } catch (error) {
-      console.error("Error searching data:", error);
+  const handleSearch = () => {
+    const fetchData = async (searchTerm) => {
+      const { firstName, lastName, email } = searchTerm;
+
+      // Constructing the query parameters based on user input
+      const queryParams = new URLSearchParams({
+        searchTerm: `${firstName} ${lastName} ${email}`.trim(), // Concatenating firstName, lastName, and email
+      });
+
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(
+          `/api/candidate/search-candidate?${queryParams.toString()}`
+        );
+        console.log(response)
+        if (!response.ok) {
+          throw new Error(`Error fetching data: ${response.status}`);
+        }
+        const data = await response.json();
+        setSearchResults(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (searchData) {
+      fetchData(searchData);
     }
   };
 
@@ -164,10 +181,14 @@ function ViewSearchCandidatePage() {
   // Logic for pagination
   const indexOfLastResult = currentPage * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;
-  const currentResults = searchResult.slice(
+  const currentResults = searchResults.slice(
     indexOfFirstResult,
     indexOfLastResult
   );
+  // const currentResults = searchResult.slice(
+  //   indexOfFirstResult,
+  //   indexOfLastResult
+  // );
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -175,7 +196,7 @@ function ViewSearchCandidatePage() {
   return (
     <div className={styles.search_container}>
       <div className={styles.title_container}>
-        <p className={styles.form_title}>View/Serach Candidate</p>
+        <p className={styles.form_title}>View/Search Candidate</p>
       </div>
       <div className={styles.divide}>
         <div className={styles.form_container}>
@@ -188,9 +209,10 @@ function ViewSearchCandidatePage() {
                 value="date"
                 checked={searchType === "date"}
                 onChange={handleSearchTypeChange}
+                className={styles.checkbox}
               />
               <label className={styles.radio_label} htmlFor="dateSearch">
-                Search by Date
+                View the candidates applied in
               </label>
             </div>
             <div className={styles.flex_conatiner}>
@@ -201,9 +223,10 @@ function ViewSearchCandidatePage() {
                 value="user"
                 checked={searchType === "user"}
                 onChange={handleSearchTypeChange}
+                className={styles.checkbox}
               />
               <label className={styles.radio_label} htmlFor="userSearch">
-                Search by User Detail
+                Search candidate
               </label>
             </div>
           </div>
@@ -265,12 +288,18 @@ function ViewSearchCandidatePage() {
               </div>
             </div>
           )}
+          {error && <p className={styles.errorMessage}>{error}</p>}
           <div className={styles.button_container}>
-            <button onClick={handleSearch} className={styles.button}>
-              Search
+            <button
+              onClick={handleSearch}
+              className={styles.button}
+              disabled={isLoading}
+            >
+              {isLoading ? "Searching..." : "Search"}
             </button>
           </div>
         </div>
+        {searchResults.length ? (
         <div className={styles.table_container}>
           <table className={styles.table}>
             <thead>
@@ -297,30 +326,30 @@ function ViewSearchCandidatePage() {
                   <td>{item.firstName}</td>
                   <td>{item.lastName}</td>
                   <td>{item.mobileNumber}</td>
-                  <td>{item.email}</td>
+                  <td>{item.emailAddress}</td>
                   <td>{item.status}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          {searchResult.length ? (
             <div className={styles.pagination}>
               <button
                 onClick={() => paginate(currentPage - 1)}
                 disabled={currentPage === 1}
+                className={styles.table_button}
               >
                 Previous
               </button>
               <span>{currentPage}</span>
               <button
                 onClick={() => paginate(currentPage + 1)}
-                disabled={indexOfLastResult >= searchResult.length}
+                disabled={indexOfLastResult >= searchResults.length}
+                className={styles.table_button}
               >
                 Next
               </button>
             </div>
-          ) : null}
-        </div>
+        </div> ) : null}
       </div>
     </div>
   );
