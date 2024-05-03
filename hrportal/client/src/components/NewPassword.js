@@ -10,7 +10,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+12/02/2024     Vishal                        2          Enter New Password
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -35,7 +35,6 @@ function NewPassword() {
     event.preventDefault();
     // Implement logic to reset password with new password
     await resetPassword(employeeId, newPassword);
-    console.log("New password submitted");
   };
 
   const togglePopup = () => {
@@ -105,8 +104,7 @@ function NewPassword() {
             <p className={styles.popup_message}>
               Password change successfully!
               <br />
-              <a href="/" className={styles.login_here}>
-                
+              <a href="/" className={styles.login_here}>  
                 Login Here
               </a>
             </p>

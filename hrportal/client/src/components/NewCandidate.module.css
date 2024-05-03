@@ -10,6 +10,8 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 18/4/2024       Omkar & Vishal               2           Add New Candidate
+24/4/2024       Vishal                       3           Search Candidate
+29/4/2024       Vishal                       3           Add New Candidate Validations - Code Integration
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -150,4 +152,70 @@ textarea {
   width: 40px;
   height: 30px;
   resize: none;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  /* background: rgba(0, 0, 0, 0.5); */
+  z-index: 1;
+}
+
+.popup_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  padding: 20px;
+  background: white;
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+}
+
+.popup_message {
+  color: #ffffff;
+  text-align: center;
+}
+
+.popup_close_button {
+  padding: 10px 10px;
+  background-color: #d4d4d4;
+  color: #000;
+  width:25%;
+  margin: 10px 32%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup_close_button:hover {
+  background-color: #0069d9;
+}
+
+.errorMessage {
+  /* margin-left:20px; */
+  align-self: center;
+  color: rgb(225, 78, 78);
+  margin: 0;
+  margin-bottom: 10px;
+} 
+
+.login_here {
+  color: white;
+  text-underline-offset: 3px;
+}
+
+.login_here:hover {
+  color: #0069d9;
+  text-underline-offset: 3px;
 }
