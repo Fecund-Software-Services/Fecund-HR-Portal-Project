@@ -10,6 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 24/4/2024      Vishal                        3          Search Candidate
+2/5/2024       Vishal                        3          Search Candidate Validations - Code Integration
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -32,99 +33,6 @@ function ViewSearchCandidatePage() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // const data = [
-  //   {
-  //     // Create an object to hold user data
-  //     id: 12345,
-  //     firstName: "Vishal",
-  //     lastName: "Garg",
-  //     email: "vishal.garg@fecundservices.com",
-  //     mobileNumber: 8728976049,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 123488,
-  //     firstName: "Sanjay",
-  //     lastName: "HS",
-  //     email: "Sanjay.HS@fecundservices.com",
-  //     mobileNumber: 9999999999,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 12348,
-  //     firstName: "Omkar",
-  //     lastName: "Tajane",
-  //     email: "Omkar.tajane@fecundservices.com",
-  //     mobileNumber: 9999988888,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 123,
-  //     firstName: "Vandit",
-  //     lastName: "Goel",
-  //     email: "Vandit.goel@fecundservices.com",
-  //     mobileNumber: 9999988888,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 12346,
-  //     firstName: "Deepika",
-  //     lastName: "Polina",
-  //     email: "Deepika.polina@fecundservices.com",
-  //     mobileNumber: 9999988888,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 12347,
-  //     firstName: "Tushar",
-  //     lastName: "Pareek",
-  //     email: "Tushar.parik@fecundservices.com",
-  //     mobileNumber: 9999988888,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 12365,
-  //     firstName: "Sanjay",
-  //     lastName: "Rathi",
-  //     email: "Sanjay.rathi@fecundservices.com",
-  //     mobileNumber: 9999988888,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 123488,
-  //     firstName: "Sanjay",
-  //     lastName: "HS",
-  //     email: "Sanjay.HS@fecundservices.com",
-  //     mobileNumber: 9999999999,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 12348,
-  //     firstName: "Omkar",
-  //     lastName: "Tajane",
-  //     email: "Omkar.tajane@fecundservices.com",
-  //     mobileNumber: 9999988888,
-  //     status: "Submitted",
-  //   },
-  //   {
-  //     // Create an object to hold user data
-  //     id: 123,
-  //     firstName: "Vandit",
-  //     lastName: "Goel",
-  //     email: "Vandit.goel@fecundservices.com",
-  //     mobileNumber: 9999988888,
-  //     status: "Submitted",
-  //   },
-  // ];
 
   const nav = useNavigate();
 
