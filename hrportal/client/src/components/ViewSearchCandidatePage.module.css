@@ -63,15 +63,16 @@ Date        |   Author                  |   Sprint   |    Description
 
 .divide {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center; /* Horizontally centers the child element(s) */
   align-items: center;
   width: 90%
 }
 
-/* .table_container {
-  width: ;
-} */
+.table_container {
+  display:flex;
+  flex-direction: column;
+}
 
 .label {
   display: block;
@@ -80,7 +81,13 @@ Date        |   Author                  |   Sprint   |    Description
 }
 
 .radio_label {
-    color: white;  
+    color: white; 
+    /* width:60%;  */
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
 }
 
 .input_field {
@@ -93,7 +100,7 @@ Date        |   Author                  |   Sprint   |    Description
 
 .radio_group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   margin-bottom: 20px;
 }
 
@@ -135,6 +142,27 @@ Date        |   Author                  |   Sprint   |    Description
   background-color: #53657e;
 }
 
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+  /* align-content: flex-end; */
+  /* align-items: end; */
+}
+
+.table_button {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.table_button:hover {
+  background-color: #b99b9b;
+}
+
 .button_container {
     display: flex;
     justify-content: space-around;
@@ -151,4 +179,12 @@ Date        |   Author                  |   Sprint   |    Description
 
 .button_view:hover {
   background-color: #218838;
+}
+
+.errorMessage {
+  /* margin-left:20px; */
+  align-self: center;
+  color: rgb(225, 78, 78);
+  margin: 0;
+  margin-bottom: 10px;
 }

@@ -135,7 +135,7 @@ const NewCandidate = () => {
     // Append the resume file to the FormData object
     formDataToSend.append("resume", formData.resume);
 
-    const addCandidate = async (    end) => {
+    const addCandidate = async (formDataToSend) => {
       setIsLoading(true);
       setError(null);
       try {
