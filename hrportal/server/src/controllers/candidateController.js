@@ -175,7 +175,7 @@ const viewCandidateByYearMonth = async (req,res) => {
       return res.status(400).json({message: "Error: Enter data for both the given fields!"});
     }
 
-    const searchTerms = searchTerm.split('&')
+    const searchTerms = searchTerm.split(' ')
 
     const regexYear = searchTerms[0];
     const regexMonth = searchTerms[1];
@@ -260,7 +260,6 @@ const editCandidate = async (req, res) => {
     return res.status(400).json({message: "Error: Update failed"});
   }
 }
-
 
 module.exports = { addCandidate,searchCandidate, viewCandidateByYearMonth, editCandidate, viewCandidate,upload };
 
