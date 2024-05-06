@@ -18,7 +18,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../context/AuthContext";
 // Replace with the path to your background image
-import backgroundImage from "../assets/login-background-static-image.png";
+// import backgroundImage from "../assets/login-background-static-image.png";
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -51,8 +51,10 @@ const Login = () => {
   return (
     <div
       className={styles.login_container}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
     >
+    <div className={styles.title_container}>
+          <p className={styles.form_title}>Hiring Portal</p>
+        </div>
       <form onSubmit={handleLogin} className={styles.login_form}>
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>

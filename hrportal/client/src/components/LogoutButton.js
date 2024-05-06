@@ -16,6 +16,7 @@ Date        |   Author                  |   Sprint   |    Description
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
+import styles from './LogoutButton.module.css'
 
 const LogoutButton = () => {
     const { logout } = useAuth();
@@ -26,7 +27,7 @@ const LogoutButton = () => {
         nav('/')
     };
 
-    return <button onClick={handleLogout}>Logout</button>;
+    return <button onClick={handleLogout} className={styles.logout_button}>Logout</button>;
 };
 
 export default LogoutButton;
