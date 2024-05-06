@@ -6,10 +6,11 @@ Sprint: Sprint 1
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  | Sprint   | Description 
 -------------------------------------------------------------------------------------------------------
-17/4/2024           hs                          2           Add New Candidate
-22/4/2024           hs                         3            Add New Candidate validations
+17/4/2024   |   hs                      | 2        | Add New Candidate
+22/4/2024   |   hs                      | 3        | Add New Candidate validations
+06/05/2024  |   Harshini C              | 4        | View Candidates applied in
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -103,10 +104,16 @@ const candidateSchema = new mongoose.Schema({
         type: String, 
         ref: 'Resume' // Indication if resume is uploaded
     }, 
+    enteredYear: { 
+        type: String, 
+        default: new Date().getFullYear()  
+    }, 
+    enteredMonth: { 
+        type: String, 
+        default: new Date().getMonth()+1  
+    }, 
  
 } , {timestamps: true});
 
 // intializing 
 module.exports = mongoose.model('Candidates', candidateSchema)   
-
-

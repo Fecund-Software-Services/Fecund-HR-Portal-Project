@@ -9,8 +9,8 @@ Modification Log:
 Date        | Author                  | Sprint   | Description 
 -------------------------------------------------------------------------------------------------------
 29/4/2024   | HS                      | 3        | Search candidate validation
-29/4/2024   | Harshini C              | 3        | View Candidates applied in
-5/2/2024        HS                      3           Edit candidate and view single candidate
+5/2/2024    | HS                      | 3        | Edit candidate and view single candidate
+03/05/2024  | Harshini C              | 4        | View Candidates applied in
 -------------------------------------------------------------------------------------------------------
 */ 
 
@@ -136,21 +136,24 @@ const searchTerm = req.query.searchTerm; // Get the search term from query param
     return res.status(400).json({message: "Error: Enter data for at least one of the given fields!"});
   }
 
-  const regex = new RegExp('^' + searchTerm + '$', 'i');
+  const searchTerms = searchTerm.split('/\s+|\+|,/');
+  const regexFirstName = new RegExp('^' + searchTerms[0] + '$', 'i');
+  const regexLastName = new RegExp('^' + searchTerms[1] + '$', 'i');
+  const regexemailAddress = new RegExp('^' + searchTerms[2] + '$', 'i');
   // Build the query based on searchTerm
   let query = {};
   if (searchTerm) {
     query = {
       $or: [
-        { firstName: regex },
-        { lastName: regex},
-        { emailAddress: regex}
+        { firstName: regexFirstName },
+        { lastName: regexLastName},
+        { emailAddress: regexemailAddress}
       ]
     };
   }
 
   try {
-  candidate = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
+  const candidate = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
     // Check if any matching users were found
     if (!candidate.length) {
       return res.status(404).json({message: "Error: No match found!"} );
@@ -162,41 +165,46 @@ const searchTerm = req.query.searchTerm; // Get the search term from query param
   }
 }
 
-// VIEW BY DATE
-const viewCandidatebydate = async (req, res) => {
+//VIEW CANDIDATE RECORD BY YEAR AND MONTH
+const viewCandidateByYearMonth = async (req,res) => {
 
-  const viewBydate = req.query.viewBydate; // Get the search term from query parameter
+  const searchTerm = req.query.searchTerm; // Get the search term from query parameter
   
     // Validate if at least one search field has data
-    if (!viewBydate || viewBydate.trim() === '') {
-      return res.status(400).json({ error: 'Choose option for both the fields!' });
+    if (!searchTerm || searchTerm.trim() === '') {
+      return res.status(400).json({message: "Error: Enter data for both the given fields!"});
     }
-  
-    const regex = new RegExp('viewBydate.year-viewBydate.month-', '');
+
+    const searchTerms = searchTerm.split('&')
+
+    const regexYear = searchTerms[0];
+    const regexMonth = searchTerms[1];
+    
     // Build the query based on searchTerm
     let query = {};
-    if (viewBydate) {
+    if(searchTerm){
       query = {
         $and: [
-          { createdAt: regex }
+          { enteredYear: regexYear},
+          { enteredMonth: regexMonth}
         ]
       };
     }
-  
-   try {
-      candidate = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
-  
-      // Check if any matching users were found
-      if (!candidate.length) {
-        return res.status(404).json({ error: 'No match found!' });
+
+  try {
+   candidateDetails = await Candidate.find(query,'firstName lastName emailAddress mobileNumber status'); // Find users matching the query
+     
+    // Check if any matching users were found
+      if (!candidateDetails.length) {
+        return res.status(404).json({message: "Error: No match found!"} );
       }
-      res.json(candidate); // Send the matching users back to the client
-    } 
-    catch (error) {
+      res.json(candidateDetails); // Send the matching users back to the client
+    } catch (error) {
       console.error(error);
       res.status(500).send('Error searching users'); // Handle errors
     }
   }
+
 
 // VIEW SINGLE CANDIDATE
 const viewCandidate = async (req,res) => {
@@ -254,6 +262,6 @@ const editCandidate = async (req, res) => {
 }
 
 
-module.exports = { addCandidate,searchCandidate, editCandidate, viewCandidate, viewCandidatebydate,upload };
+module.exports = { addCandidate,searchCandidate, viewCandidateByYearMonth, editCandidate, viewCandidate,upload };
 
 
