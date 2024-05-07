@@ -62,14 +62,14 @@ function App() {
             </Route>
             <Route
               exact
-              // path="/home/search-candidate/candiadte/:id"
-              path="/home/search-candidate/candiadte"
+              path="/home/search-candidate/candiadte/:id"
+              // path="/home/search-candidate/candiadte"
               element={<ProtectedRoute />}
             >
               <Route
                 exact
-                // path="/home/search-candidate/candiadte/:id"
-                path="/home/search-candidate/candiadte"
+                path="/home/search-candidate/candiadte/:id"
+                // path="/home/search-candidate/candiadte"
                 element={<ViewCandidateDetail />}
               />
             </Route>

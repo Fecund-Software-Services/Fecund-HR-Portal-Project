@@ -107,8 +107,8 @@ function ViewSearchCandidatePage() {
   };
 
   const handleViewDetails = (id) => {
-    // nav(`/home/search-candidate/candidate/${id}`)
-    nav(`/home/search-candidate/candiadte`);
+    nav(`/home/search-candidate/candiadte/${id}`)
+    // nav(`/home/search-candidate/candiadte`);
     // Handle view details logic, e.g., open modal or navigate to a new page
     console.log("View details for ID:", id);
   };
@@ -120,10 +120,6 @@ function ViewSearchCandidatePage() {
     indexOfFirstResult,
     indexOfLastResult
   );
-  // const currentResults = searchResult.slice(
-  //   indexOfFirstResult,
-  //   indexOfLastResult
-  // );
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -267,7 +263,7 @@ function ViewSearchCandidatePage() {
                   <tr key={index}>
                     <td>
                       <button
-                        onClick={() => handleViewDetails(item.id)}
+                        onClick={() => handleViewDetails(item._id)}
                         className={styles.button_view}
                       >
                         View

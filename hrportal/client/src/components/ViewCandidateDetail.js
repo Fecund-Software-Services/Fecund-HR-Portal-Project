@@ -6,7 +6,7 @@ import styles from "./ViewCandidateDetail.module.css";
 
 function ViewCandidateDetail() {
   const { id } = useParams(); // Get the Candidate ID from URL parameters
-
+console.log(id)
   // State variables
   const [candidateDetails, setCandidateDetails] = useState({}); // Candidate details
   const [editMode, setEditMode] = useState(false); // Edit mode
@@ -23,13 +23,14 @@ function ViewCandidateDetail() {
 
   // Function to fetch Candidate details based on the ID (you can implement this logic)
   const fetchCandidateDetails = async (CandidateId) => {
-    try {
-      const response = await fetch(`/api/candidate/${CandidateId}`);
-      const candidateData = await response.json();
-      setCandidateDetails(candidateData);
-    } catch (error) {
-      console.error("Error fetching Candidate details:", error);
-    }
+      try {
+        const response = await fetch(`/api/candidate/view-candidate/${CandidateId}`);
+        const candidateData = await response.json();
+        setCandidateDetails(candidateData);
+        console.log(candidateData)
+      } catch (error) {
+        console.error("Error fetching Candidate details:", error);
+      } 
   };
 
   const handleResumeChange = (e) => {
@@ -95,13 +96,14 @@ function ViewCandidateDetail() {
 
   // Fetch Candidate details when the component mounts
   useEffect(() => {
-    fetchCandidateDetails(id);
+    setTimeout(() =>fetchCandidateDetails(id) , 2000)
+    ;
   }, [id]);
 
   return (
     <div className={styles.search_container}>
       <div className={styles.title_container}>
-        <p className={styles.form_title}>Candidate Details</p>
+        <p className={styles.form_title}>View Candidate Details</p>
       </div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
@@ -110,7 +112,7 @@ function ViewCandidateDetail() {
           {editMode ? (
             <input
               type="text"
-              value={candidateDetails.firstName}
+              value={candidateDetails.firstName || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -119,7 +121,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.firstName}</p>
+            <p className={styles.text}>{candidateDetails.firstName}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -127,7 +129,7 @@ function ViewCandidateDetail() {
           {editMode ? (
             <input
               type="text"
-              value={candidateDetails.lastName}
+              value={candidateDetails.lastName || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -136,7 +138,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.lastName}</p>
+            <p className={styles.text}>{candidateDetails.lastName}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -144,16 +146,16 @@ function ViewCandidateDetail() {
           {editMode ? (
             <input
               type="email"
-              value={candidateDetails.email}
+              value={candidateDetails.emailAddress || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
-                  email: e.target.value,
+                  emailAddress: e.target.value,
                 })
               }
             />
           ) : (
-            <p>{candidateDetails.email}</p>
+            <p className={styles.text}>{candidateDetails.emailAddress}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -161,7 +163,7 @@ function ViewCandidateDetail() {
           {editMode ? (
             <input
               type="tel"
-              value={candidateDetails.mobileNumber}
+              value={candidateDetails.mobileNumber || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -170,7 +172,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.mobileNumber}</p>
+            <p className={styles.text}>{candidateDetails.mobileNumber}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -178,7 +180,7 @@ function ViewCandidateDetail() {
           {editMode ? (
             <input
               type="number"
-              value={candidateDetails.totalRelevantExperience}
+              value={candidateDetails.totalRelevantExperience || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -187,7 +189,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.totalRelevantExperience}</p>
+            <p className={styles.text}>{candidateDetails.totalRelevantExperience}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -196,7 +198,7 @@ function ViewCandidateDetail() {
             <select
               name="skillSet"
               id="skillSet"
-              value={candidateDetails.skillSet}
+              value={candidateDetails.skillSet || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -213,7 +215,7 @@ function ViewCandidateDetail() {
               ))}
             </select>
           ) : (
-            <p>{candidateDetails.skillSet}</p>
+            <p className={styles.text}>{candidateDetails.skillSet}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -221,7 +223,7 @@ function ViewCandidateDetail() {
           {editMode ? (
             <input
               type="text"
-              value={candidateDetails.currentCompany}
+              value={candidateDetails.currentCompany || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -230,7 +232,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.currentCompany}</p>
+            <p className={styles.text}>{candidateDetails.currentCompany}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -239,7 +241,7 @@ function ViewCandidateDetail() {
             <input
               type="text"
               name="currentCTC"
-              value={candidateDetails.currentCTC}
+              value={candidateDetails.currentCTC || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -248,7 +250,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.currentCTC}</p>
+            <p className={styles.text}>{candidateDetails.currentCTC}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -257,7 +259,7 @@ function ViewCandidateDetail() {
             <input
               type="text"
               name="expectedCTC"
-              value={candidateDetails.expectedCTC}
+              value={candidateDetails.expectedCTC || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -266,7 +268,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.expectedCTC}</p>
+            <p className={styles.text}>{candidateDetails.expectedCTC}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -275,7 +277,7 @@ function ViewCandidateDetail() {
             <input
               type="text"
               name="noticePeriod"
-              value={candidateDetails.noticePeriod}
+              value={candidateDetails.noticePeriod || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -284,7 +286,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.noticePeriod}</p>
+            <p className={styles.text}>{candidateDetails.noticePeriod}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -341,7 +343,8 @@ function ViewCandidateDetail() {
               </label>
             </div>
           ) : (
-            <p>{candidateDetails.noticePeriod}</p>
+            <p className={styles.text}>{candidateDetails.servingNoticePeriod ? 'Yes' : 'No'
+            }</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -372,7 +375,7 @@ function ViewCandidateDetail() {
               </label>
             </div>
           ) : (
-            <p>{candidateDetails.noticePeriod}</p>
+            <p className={styles.text}>{candidateDetails.certified ? 'Yes' : 'No'}</p>
           )}
         </div>
         <div className={styles.sub_container}
@@ -383,8 +386,7 @@ function ViewCandidateDetail() {
             <input
               type="date"
               name="lastWorkingDay"
-              id="lastWorkingDay1"
-              value={candidateDetails.lastWorkingDay}
+              value={candidateDetails.lastWorkingDay || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -393,7 +395,7 @@ function ViewCandidateDetail() {
               }
             />
           ) : (
-            <p>{candidateDetails.lastWorkingDay}</p>
+            <p className={styles.text}>{candidateDetails.lastWorkingDay}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -401,7 +403,7 @@ function ViewCandidateDetail() {
           {editMode ? (
             <textarea
               name="comments"
-              value={candidateDetails.comments}
+              value={candidateDetails.comments || ' '}
               onChange={(e) =>
                 setCandidateDetails({
                   ...candidateDetails,
@@ -410,7 +412,7 @@ function ViewCandidateDetail() {
               }
             ></textarea>
           ) : (
-            <p>{candidateDetails.comments}</p>
+            <p className={styles.text}>{candidateDetails.comments ? candidateDetails.comments : 'No comments entered'}</p>
           )}
         </div>
         <div className={styles.sub_container}>
