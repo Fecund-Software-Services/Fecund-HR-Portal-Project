@@ -42,35 +42,62 @@ function ViewSearchCandidatePage() {
 
   const handleInputChange = (event) => {
     setSearchData({ ...searchData, [event.target.name]: event.target.value });
-    console.log(searchData)
+    console.log(searchData);
   };
 
   const handleSearch = () => {
     const fetchData = async (searchTerm) => {
-      const { firstName, lastName, email } = searchTerm;
+      if (searchTerm.firstName || searchTerm.lastName || searchTerm.email) {
+        const { firstName, lastName, email } = searchTerm;
 
-      // Constructing the query parameters based on user input
-      const queryParams = new URLSearchParams({
-        searchTerm: `${firstName} ${lastName} ${email}`.trim(), // Concatenating firstName, lastName, and email
-      });
+        // Constructing the query parameters based on user input
+        const queryParams = new URLSearchParams({
+          searchTerm: `${firstName} ${lastName} ${email}`.trim(), // Concatenating firstName, lastName, and email
+        });
 
-      setIsLoading(true);
-      setError(null);
+        setIsLoading(true);
+        setError(null);
 
-      try {
-        const response = await fetch(
-          `/api/candidate/search-candidate?${queryParams.toString()}`
-        );
-        console.log(response)
-        if (!response.ok) {
-          throw new Error(`Error fetching data: ${response.status}`);
+        try {
+          const response = await fetch(
+            `/api/candidate/search-candidate?${queryParams.toString()}`
+          );
+          if (!response.ok) {
+            throw new Error(`Error fetching data: ${response.status}`);
+          }
+          const data = await response.json();
+          setSearchResults(data);
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
         }
-        const data = await response.json();
-        setSearchResults(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
+      } else {
+        const { month, year } = searchTerm;
+
+        // Constructing the query parameters based on user input
+        const queryParams = new URLSearchParams({
+          searchTerm: `${year} ${month}`.trim(), // Concatenating month and year with '&'
+        });
+
+        setIsLoading(true);
+        setError(null);
+
+        try {
+          const response = await fetch(
+            `/api/candidate/view-candidate?${queryParams.toString()}`
+          );
+          console.log(response);
+          if (!response.ok) {
+            throw new Error(`Error fetching data: ${response.status}`);
+          }
+          const data = await response.json();
+          setSearchResults(data);
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
+        }
       }
     };
 
@@ -152,13 +179,28 @@ function ViewSearchCandidatePage() {
               </div>
               <div className={styles.flex_conatiner}>
                 <label className={styles.label}>Month:</label>
-                <input
-                  type="text"
+                <select
+                  id="month"
                   name="month"
                   value={searchData.month}
                   onChange={handleInputChange}
                   className={styles.input_field}
-                />
+                >
+                  <option value="">Select Month</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="5">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                  {/* Add more options as needed */}
+                </select>
               </div>
             </div>
           )}
@@ -208,38 +250,38 @@ function ViewSearchCandidatePage() {
           </div>
         </div>
         {searchResults.length ? (
-        <div className={styles.table_container}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>View</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Mobile Number</th>
-                <th>Email</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentResults.map((item, index) => (
-                <tr key={index}>
-                  <td>
-                    <button
-                      onClick={() => handleViewDetails(item.id)}
-                      className={styles.button_view}
-                    >
-                      View
-                    </button>
-                  </td>
-                  <td>{item.firstName}</td>
-                  <td>{item.lastName}</td>
-                  <td>{item.mobileNumber}</td>
-                  <td>{item.emailAddress}</td>
-                  <td>{item.status}</td>
+          <div className={styles.table_container}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>View</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Mobile Number</th>
+                  <th>Email</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {currentResults.map((item, index) => (
+                  <tr key={index}>
+                    <td>
+                      <button
+                        onClick={() => handleViewDetails(item.id)}
+                        className={styles.button_view}
+                      >
+                        View
+                      </button>
+                    </td>
+                    <td>{item.firstName}</td>
+                    <td>{item.lastName}</td>
+                    <td>{item.mobileNumber}</td>
+                    <td>{item.emailAddress}</td>
+                    <td>{item.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
             <div className={styles.pagination}>
               <button
                 onClick={() => paginate(currentPage - 1)}
@@ -257,7 +299,8 @@ function ViewSearchCandidatePage() {
                 Next
               </button>
             </div>
-        </div> ) : null}
+          </div>
+        ) : null}
       </div>
     </div>
   );
