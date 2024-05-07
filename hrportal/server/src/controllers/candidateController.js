@@ -11,34 +11,62 @@ Date        | Author                  | Sprint   | Description
 29/4/2024   | HS                      | 3        | Search candidate validation
 5/2/2024    | HS                      | 3        | Edit candidate and view single candidate
 03/05/2024  | Harshini C              | 4        | View Candidates applied in
+07/05/2024  | HS                      | 4        | Resume Handling 
 -------------------------------------------------------------------------------------------------------
 */ 
 
 const Candidate = require("../collections/candidates");
 const Resume = require("../collections/resumes");
+const url = require('../connection/constants');
 const multer = require('multer');
+const crypto = require('crypto');
+const path = require('path');
+const dbName = require('../connection/constants')
+const host = require('../connection/constants')
+const mongodb = require('mongodb')
+const {MongoClient} = require("mongodb")
 const {GridFsStorage} = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 const mongoose = require('mongoose');
+
+
+const mongoURI = 'mongodb:' + url.databaseURL
+
+// Create mongo connection
+const conn = mongoose.createConnection(mongoURI);
+
+// Init gfs
+let gfs;
+
+conn.once('open', () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads');
+});
 
 // STORING RESUMES USING MULTER AND GRIDFS
 const allowedMimeTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 const maxFileSize = 250 * 1024; // 250 KB in bytes
 
 const storage = new GridFsStorage({
-  url: 'mongodb://localhost:27017/FecundHiringPortal',
+  url: mongoURI,
   file: (req, file) => {
-    return new Promise((resolve,cb) => {
-      const fileName = '${Date.now()}-${file.originalname}';
-      const metadata = {
-        contentType: file.mimetype,
-        originalname: file.originalname,
-      };
-      resolve({ fileName, metadata});
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'uploads',
+        };
+        resolve(fileInfo);
+      });
     });
   }
 });
-
-const upload = multer({storage});
+const upload = multer({ storage });
 
 // ADD NEW CANDIDATEs
 const addCandidate = async (req, res) => {
@@ -70,7 +98,6 @@ const addCandidate = async (req, res) => {
       let existingCandidate;
       try {
         existingCandidate = await Candidate.findOne({ emailAddress });
-        res.send({ status :"ok" , data : existingCandidate})
       } catch (error) {
         console.log(error);
       }
@@ -106,7 +133,8 @@ const addCandidate = async (req, res) => {
         lastWorkingDay,
         certified,
         comments,
-        resume: uploadedFile ? uploadedFile.originalname : null
+        resume: uploadedFile ? uploadedFile.originalname : null,
+        fileId: uploadedFile.filename
       });
       await candidate.save();
 
@@ -122,7 +150,7 @@ const addCandidate = async (req, res) => {
       }
       return res.status(201).json({message: " Candidate added Successfully"});
     } catch (error) {
-      //console.log(error.message);
+        console.log(error.message);
     }
   };
   
@@ -164,6 +192,7 @@ const searchTerm = req.query.searchTerm; // Get the search term from query param
     res.status(500).send('Error searching users'); // Handle errors
   }
 }
+
 
 //VIEW CANDIDATE RECORD BY YEAR AND MONTH
 const viewCandidateByYearMonth = async (req,res) => {
@@ -226,6 +255,27 @@ const viewCandidate = async (req,res) => {
 
 }
 
+
+// VIEW RESUMEs
+async function viewResume(filename, response) {
+  try {
+    const client = await MongoClient.connect("mongodb:" + host.localhost);
+    const db = client.db(dbName.databaseName);
+    const bucketName = 'uploads'
+    const bucket = new mongodb.GridFSBucket(db, {bucketName})
+
+    const downloadStream = bucket.openDownloadStreamByName(filename);
+
+    downloadStream.pipe(response); // Assuming you're in an Express route
+    response.setHeader('Content-Type', 'application/pdf'); // Set appropriate content type
+    response.setHeader('Content-Disposition', `attachment; filename="${filename}"`)
+    
+    } catch (error) {
+    console.error("Error to see resume", error)
+    }
+}
+
+
 // Edit SELECTED CANDIDATE
 const editCandidate = async (req, res) => {
   const candidateId = req.params.id;
@@ -261,6 +311,6 @@ const editCandidate = async (req, res) => {
   }
 }
 
-module.exports = { addCandidate,searchCandidate, viewCandidateByYearMonth, editCandidate, viewCandidate,upload };
+module.exports = { addCandidate,searchCandidate, viewCandidateByYearMonth, editCandidate, viewCandidate, viewResume, upload };
 
 
