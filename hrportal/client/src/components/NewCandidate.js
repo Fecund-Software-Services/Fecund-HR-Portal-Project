@@ -69,13 +69,14 @@ const NewCandidate = () => {
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
-    const { name, checked , value } = e.target;
-    let newValue = value ? checked : null;
-    setFormData((prevData) => ({ ...prevData, [name]: newValue }));
+    const { name, checked, value } = e.target;
+    let newValue = checked ;
+    setFormData
+    ((prevData) => ({ ...prevData, [name]: newValue }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked, value} = e.target;
+    const { name, checked, value } = e.target;
     let newValue = checked ;
     setFormData((prevData) => ({
       ...prevData,
@@ -110,7 +111,7 @@ const NewCandidate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formData);
+    console.log(formData);
 
     const formDataToSend = new FormData(); // Create a new FormData object
 
@@ -136,6 +137,7 @@ const NewCandidate = () => {
     formDataToSend.append("resume", formData.resume);
 
     const addCandidate = async (formDataToSend) => {
+      console.log(formDataToSend)
       setIsLoading(true);
       setError(null);
       try {
@@ -342,6 +344,7 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="servingNoticePeriod"
+                  // id="servingNoticePeriod"
                   value= "Yes"
                   onChange={handleServingNoticePeriodChange}
                   checked={formData.servingNoticePeriod === true} // Check if the value is 'Yes'
@@ -352,6 +355,7 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="servingNoticePeriod"
+                  // id="servingNoticePeriod"
                   value= "No"
                   onChange={handleServingNoticePeriodChange}
                   checked={formData.servingNoticePeriod === false} // Check if the value is 'No'
@@ -369,6 +373,7 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="certified"
+                  // id="certified"
                   value= "Yes"
                   onChange={handleCheckboxChange}
                   checked={formData.certified === true} // Check if the value is 'Yes'
@@ -379,7 +384,8 @@ const NewCandidate = () => {
                 <input
                   type="checkbox"
                   name="certified"
-                  // value= "No"
+                  // id="certified"
+                  value= "No"
                   onChange={handleCheckboxChange}
                   checked={formData.certified === false}// Check if the value is 'No'
                 />

@@ -11,6 +11,7 @@ Date        |   Author                  | Sprint   | Description
 17/4/2024   |   hs                      | 2        | Add New Candidate
 22/4/2024   |   hs                      | 3        | Add New Candidate validations
 06/05/2024  |   Harshini C              | 4        | View Candidates applied in
+7/5/2024    | HS                        | 4        | Resume Handling
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -112,6 +113,10 @@ const candidateSchema = new mongoose.Schema({
         type: String, 
         default: new Date().getMonth()+1  
     }, 
+    fileId: { 
+        type: String, 
+        ref: 'fs.field'
+    },
  
 } , {timestamps: true});
 

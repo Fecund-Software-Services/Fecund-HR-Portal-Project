@@ -64,10 +64,10 @@ const SignUpForm = () => {
   return (
     <div
       className={styles.signup_container}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      // style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className={styles.title_container}>
-          <p className={styles.form_title}>Sign up to Hiring Portal</p>
+          <p className={styles.form_title}>Sign up Form</p>
         </div>
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>

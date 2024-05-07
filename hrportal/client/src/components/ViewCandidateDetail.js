@@ -14,7 +14,12 @@ console.log(id)
   const [showLastWorkingDay, setShowLastWorkingDay] = useState(false);
   const nav = useNavigate();
 
-  const skillSetOptions = ["Java", "Python", "JavaScript", "C++"];
+  const skillSetOptions = ['Guidewire BA (PC)','Guidewire BA (BC)','Guidewire BA (CC)','Guidewire QA (PC)','Guidewire QA (BC)','Guidewire QA (CC)','Guidewire DEV (PC)','Guidewire DEV (BC)','Guidewire DEV (CC)','Guidewire Lead (CC)',
+  'Guidewire Lead (PC)','Guidewire Lead (BC)','Buisness Analyst','Technical Specialist','Guidewire Integration Developer','Guidewire Architect','Guidewire QA','Guidewire Portal','Guidewire Datahub','Guidewire Infocentre',
+  'Recruitment Executive','Business Development Executive','Guidewire Backend Developer','Duckcreek Developer','Coldfusion Developer','Oneshield Designer','Digital Marketing Executive','Mulesoft Developer','Scrum Master',
+  'Project Leader','Oneshield BA','Oneshield QA'];
+
+  const statusOptions = ['Submitted', 'Cleared 1st Round','Cleared 2nd Round','Offer Issued','On-Hold','Rejected','Candidate not Interested']
 
   // Function to fetch Candidate details based on the ID (you can implement this logic)
   const fetchCandidateDetails = async (CandidateId) => {
@@ -56,13 +61,13 @@ console.log(id)
 
   const handleCheckboxChange = (e) => {
     const { name, checked, value } = e.target;
-    let newValue = checked ? value : "";
+    let newValue = checked ;
     setCandidateDetails((prevData) => ({ ...prevData, [name]: newValue }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
     const { name, checked, value } = e.target;
-    let newValue = checked ? value : "";
+    let newValue = checked ;
     setCandidateDetails((prevData) => ({
       ...prevData,
       [name]: newValue,
@@ -285,28 +290,54 @@ console.log(id)
           )}
         </div>
         <div className={styles.sub_container}>
-          <label htmlFor="noticePeriod">Serving Notice Period</label>
+          <label>Status:</label>
+          {editMode ? (
+            <select
+              name="status"
+              id="status"
+              value={candidateDetails.status}
+              onChange={(e) =>
+                setCandidateDetails({
+                  ...candidateDetails,
+                  status: e.target.value,
+                })
+              }
+              required
+            >
+              <option value="">{candidateDetails.status} </option>
+              {statusOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <p>{candidateDetails.status}</p>
+          )}
+        </div>
+        <div className={styles.sub_container}>
+          <label htmlFor="certified">Certified?</label>
           {editMode ? (
             <div
-            // className={styles.checkbox_container}
+            className={styles.checkbox_container}
             >
               <label>
                 <input
                   type="checkbox"
-                  name="servingNoticePeriod"
+                  name="certified"
                   value="Yes"
-                  onChange={handleServingNoticePeriodChange}
-                  checked={candidateDetails.servingNoticePeriod === "Yes"} // Check if the value is 'Yes'
+                  onChange={handleCheckboxChange}
+                  checked={candidateDetails.certified === true} // Check if the value is 'Yes'
                 />
                 Yes
               </label>
               <label>
                 <input
                   type="checkbox"
-                  name="servingNoticePeriod"
+                  name="certified"
                   value="No"
-                  onChange={handleServingNoticePeriodChange}
-                  checked={candidateDetails.servingNoticePeriod === "No"} // Check if the value is 'No'
+                  onChange={handleCheckboxChange}
+                  checked={candidateDetails.certified === false} // Check if the value is 'No'
                 />
                 No
               </label>
@@ -317,28 +348,28 @@ console.log(id)
           )}
         </div>
         <div className={styles.sub_container}>
-          <label htmlFor="noticePeriod">Certified?</label>
+          <label htmlFor="servingNoticedPeriod">Serving Notice Period</label>
           {editMode ? (
             <div
-            // className={styles.checkbox_container}
+            className={styles.checkbox_container}
             >
               <label>
                 <input
                   type="checkbox"
-                  name="certified"
+                  name="servingNoticePeriod"
                   value="Yes"
-                  onChange={handleCheckboxChange}
-                  checked={candidateDetails.certified === "Yes"} // Check if the value is 'Yes'
+                  onChange={handleServingNoticePeriodChange}
+                  checked={candidateDetails.servingNoticePeriod === true} // Check if the value is 'Yes'
                 />
                 Yes
               </label>
               <label>
                 <input
                   type="checkbox"
-                  name="certified"
+                  name="servingNoticePeriod"
                   value="No"
-                  onChange={handleCheckboxChange}
-                  checked={candidateDetails.certified === "No"} // Check if the value is 'No'
+                  onChange={handleServingNoticePeriodChange}
+                  checked={candidateDetails.servingNoticePeriod === false} // Check if the value is 'No'
                 />
                 No
               </label>
@@ -350,7 +381,7 @@ console.log(id)
         <div className={styles.sub_container}
           style={{ display: showLastWorkingDay === "Yes" ? "flex" : "none" }}
         >
-          <label htmlFor="noticePeriod">Last Working Day</label>
+          <label htmlFor="lastWorkingDay">Last Working Day</label>
           {editMode ? (
             <input
               type="date"
@@ -405,6 +436,7 @@ console.log(id)
             </div>
           )}
         </div>
+        <div className={styles.sub_container}></div>
         <div className={styles.button_container}>
         {editMode ? (
           <>
