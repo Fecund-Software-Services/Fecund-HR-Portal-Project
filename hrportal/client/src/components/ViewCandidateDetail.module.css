@@ -62,6 +62,10 @@
     /* margin-left: 20px; */
     width: 38%;
   }
+
+  .text {
+    padding: 5px;
+  }
   
   .checkbox_container {
     /* margin-left: 10px; */
