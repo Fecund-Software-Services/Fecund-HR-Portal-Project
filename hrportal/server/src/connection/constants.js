@@ -8,16 +8,18 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+7/5/2024            HS                          3           Resume Handling
 -------------------------------------------------------------------------------------------------------
 */
 
-const localhost = '//localhost:27017';
-const databaseName = '/FecundHiringPortal';
+const localhost = '//localhost:27017/';
+const databaseName = 'FecundHiringPortal';
 const databaseURL = localhost.concat("",databaseName)
 server_PORT = 4000
 client_PORT = "http://localhost:3000"
 
 module.exports.databaseURL = databaseURL;
+module.exports.localhost = localhost;
+module.exports.databaseName = databaseName;
 module.exports.server_PORT = server_PORT;
 module.exports.client_PORT = client_PORT
