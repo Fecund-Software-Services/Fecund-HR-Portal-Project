@@ -23,11 +23,10 @@ function HomePage() {
   return (
     <div
       className={styles.home_page_container}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      // style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className={styles.container}>
-        <h1 className={styles.title}>Welcome to Fecund Hiring Portal </h1>
-
+        {/* <h1 className={styles.title}>Welcome to Fecund Hiring Portal </h1> */}
         <div className={styles.link_container}>
           <Link to="/home/search-candidate" className={styles.link}>
             <p>View/Search Candidate</p>

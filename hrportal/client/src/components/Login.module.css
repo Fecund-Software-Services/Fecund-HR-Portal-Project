@@ -17,19 +17,16 @@ Date        |   Author                  |   Sprint   |    Description
 
 
 .login_container {
+  background-image: url('../assets/login-background-static-image.png');
     display: flex;
-    /* justify-content: center; */
-    /* flex-direction: column; */
-    align-items: center;
+    justify-content: center; 
+    flex-direction: column;
+    align-items:flex-start;
     /* padding-left: 25%; */
     height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #122030;
-    background-attachment: fixed;
     width: 100%;
-    /* background-size: cover; */
-    /* padding: 60px; */
+    background-size: cover;
+    /* padding-left: 60px; */
 
   }
   
@@ -46,6 +43,20 @@ Date        |   Author                  |   Sprint   |    Description
     /* border-color: #0179ac; */
     width: 25%;
     /* box-shadow: 2px 2px 2px 8px #61dafb; */
+  }
+
+  .title_container {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 50%;
+    margin-bottom: 60px;
+  }
+  
+  .form_title {
+    align-items: center;
+    color: #ada14c;
+    font-size: 20px;
+    margin-top: 1px;
   }
 
   .sub_container {
