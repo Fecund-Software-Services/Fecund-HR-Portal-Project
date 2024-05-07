@@ -17,8 +17,7 @@ console.log(id)
   const skillSetOptions = ["Java", "Python", "JavaScript", "C++"];
 
   // Function to fetch Candidate details based on the ID (you can implement this logic)
-  const fetchCandidateDetails = (CandidateId) => {
-    setTimeout(async () => {
+  const fetchCandidateDetails = async (CandidateId) => {
       try {
         const response = await fetch(`/api/candidate/view-candidate/${CandidateId}`);
         const candidateData = await response.json();
@@ -26,8 +25,7 @@ console.log(id)
         console.log(candidateData)
       } catch (error) {
         console.error("Error fetching Candidate details:", error);
-      }
-    },2000) 
+      } 
   };
 
   const handleResumeChange = (e) => {

@@ -64,7 +64,8 @@
   }
 
   .text {
-    padding: 5px;
+    /* padding: 5px; */
+    margin: 0;
   }
   
   .checkbox_container {
