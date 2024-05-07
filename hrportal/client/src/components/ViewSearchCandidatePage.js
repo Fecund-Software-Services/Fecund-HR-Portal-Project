@@ -62,7 +62,6 @@ function ViewSearchCandidatePage() {
           const response = await fetch(
             `/api/candidate/search-candidate?${queryParams.toString()}`
           );
-          console.log(response);
           if (!response.ok) {
             throw new Error(`Error fetching data: ${response.status}`);
           }
@@ -239,7 +238,7 @@ function ViewSearchCandidatePage() {
               </div>
             </div>
           )}
-          {error && <p className={styles.errorMessage}>{error.message}</p>}
+          {error && <p className={styles.errorMessage}>{error}</p>}
           <div className={styles.button_container}>
             <button
               onClick={handleSearch}
