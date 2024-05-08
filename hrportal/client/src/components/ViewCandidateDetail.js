@@ -1,3 +1,19 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 4/04/2024
+Sprint: Sprint 1
+User Story: Successful Sign-up
+
+ 
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description
+-------------------------------------------------------------------------------------------------------
+ 8/05/2024    Vishal                          4         view candidate details
+-------------------------------------------------------------------------------------------------------
+*/
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
@@ -12,6 +28,7 @@ console.log(id)
   const [editMode, setEditMode] = useState(false); // Edit mode
   const [errorMessage, setErrorMessage] = useState("");
   const [showLastWorkingDay, setShowLastWorkingDay] = useState(false);
+  const [editedData, setEditedData] = useState({ });
   const nav = useNavigate();
 
   const skillSetOptions = ['Guidewire BA (PC)','Guidewire BA (BC)','Guidewire BA (CC)','Guidewire QA (PC)','Guidewire QA (BC)','Guidewire QA (CC)','Guidewire DEV (PC)','Guidewire DEV (BC)','Guidewire DEV (CC)','Guidewire Lead (CC)',
@@ -27,10 +44,32 @@ console.log(id)
         const response = await fetch(`/api/candidate/view-candidate/${CandidateId}`);
         const candidateData = await response.json();
         setCandidateDetails(candidateData);
+        
         console.log(candidateData)
       } catch (error) {
         console.error("Error fetching Candidate details:", error);
       } 
+  };
+
+  const fetchCandidateResume = async () => {
+    try {
+      const response = await fetch(`/api/candidate/view-resume/${candidateDetails.fileId}`);
+      if (!response.ok) {
+        throw new Error(`Error fetching Candidate details: ${response.statusText}`);
+      }
+      // If the response is a PDF, create a blob and download it
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      // a.download = 'candidate_details.pdf';
+      const fileName = candidateDetails.resume
+      a.download = `${fileName.slice(0, fileName.lastIndexOf('.'))}.pdf`
+      document.body.appendChild(a);
+      a.click();
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   };
 
   const handleResumeChange = (e) => {
@@ -50,7 +89,7 @@ console.log(id)
           "Invalid file type. Only PDF, DOC, DOCX files are allowed."
         );
       } else {
-        setCandidateDetails((prevData) => ({
+        editedData((prevData) => ({
           ...prevData,
           resume: e.target.files[0],
         }));
@@ -62,13 +101,13 @@ console.log(id)
   const handleCheckboxChange = (e) => {
     const { name, checked, value } = e.target;
     let newValue = checked ;
-    setCandidateDetails((prevData) => ({ ...prevData, [name]: newValue }));
+    editedData((prevData) => ({ ...prevData, [name]: newValue }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
     const { name, checked, value } = e.target;
     let newValue = checked ;
-    setCandidateDetails((prevData) => ({
+    editedData((prevData) => ({
       ...prevData,
       [name]: newValue,
     }));
@@ -77,13 +116,21 @@ console.log(id)
 
   // Function to handle edit mode toggle
   const toggleEditMode = () => {
+    setEditedData({...candidateDetails})
     setEditMode(!editMode);
   };
 
   // Function to handle cancel action
   const handleCancel = () => {
     // Navigate back to the SearchComponent
+    setEditMode(false);
+    setEditedData({ ...candidateDetails }); // Reset edited data to original data
     nav("/home/search-candidate");
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData({ ...editedData, [name]: value });
   };
 
   // Function to handle submit action (optional)
@@ -112,12 +159,8 @@ console.log(id)
           {editMode ? (
             <input
               type="text"
-              value={candidateDetails.firstName || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  firstName: e.target.value,
-                })
+              value={editedData.firstName || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -129,12 +172,8 @@ console.log(id)
           {editMode ? (
             <input
               type="text"
-              value={candidateDetails.lastName || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  lastName: e.target.value,
-                })
+              value={editedData.lastName || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -146,12 +185,8 @@ console.log(id)
           {editMode ? (
             <input
               type="email"
-              value={candidateDetails.emailAddress || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  emailAddress: e.target.value,
-                })
+              value={editedData.emailAddress || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -163,12 +198,8 @@ console.log(id)
           {editMode ? (
             <input
               type="tel"
-              value={candidateDetails.mobileNumber || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  MobileNumber: e.target.value,
-                })
+              value={editedData.mobileNumber || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -180,12 +211,8 @@ console.log(id)
           {editMode ? (
             <input
               type="number"
-              value={candidateDetails.totalRelevantExperience || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  totalRelevantExperience: e.target.value,
-                })
+              value={editedData.totalRelevantExperience || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -198,12 +225,8 @@ console.log(id)
             <select
               name="skillSet"
               id="skillSet"
-              value={candidateDetails.skillSet || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  skillSet: e.target.value,
-                })
+              value={editedData.skillSet || ' '}
+              onChange={handleInputChange
               }
               required
             >
@@ -223,12 +246,8 @@ console.log(id)
           {editMode ? (
             <input
               type="text"
-              value={candidateDetails.currentCompany || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  currentCompany: e.target.value,
-                })
+              value={editedData.currentCompany || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -241,12 +260,8 @@ console.log(id)
             <input
               type="text"
               name="currentCTC"
-              value={candidateDetails.currentCTC || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  currentCTC: e.target.value,
-                })
+              value={editedData.currentCTC || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -259,12 +274,8 @@ console.log(id)
             <input
               type="text"
               name="expectedCTC"
-              value={candidateDetails.expectedCTC || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  expectedCTC: e.target.value,
-                })
+              value={editedData.expectedCTC || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -277,12 +288,8 @@ console.log(id)
             <input
               type="text"
               name="noticePeriod"
-              value={candidateDetails.noticePeriod || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  noticePeriod: e.target.value,
-                })
+              value={editedData.noticePeriod || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -295,12 +302,8 @@ console.log(id)
             <select
               name="status"
               id="status"
-              value={candidateDetails.status}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  status: e.target.value,
-                })
+              value={editedData.status}
+              onChange={handleInputChange
               }
               required
             >
@@ -312,7 +315,7 @@ console.log(id)
               ))}
             </select>
           ) : (
-            <p>{candidateDetails.status}</p>
+            <p className={styles.text}>{candidateDetails.status}</p>
           )}
         </div>
         <div className={styles.sub_container}>
@@ -386,12 +389,8 @@ console.log(id)
             <input
               type="date"
               name="lastWorkingDay"
-              value={candidateDetails.lastWorkingDay || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  lastWorkingDay: e.target.value,
-                })
+              value={editedData.lastWorkingDay || ' '}
+              onChange={handleInputChange
               }
             />
           ) : (
@@ -403,12 +402,8 @@ console.log(id)
           {editMode ? (
             <textarea
               name="comments"
-              value={candidateDetails.comments || ' '}
-              onChange={(e) =>
-                setCandidateDetails({
-                  ...candidateDetails,
-                  comments: e.target.value,
-                })
+              value={editedData.comments || ' '}
+              onChange={handleInputChange
               }
             ></textarea>
           ) : (
@@ -422,17 +417,12 @@ console.log(id)
               type="file"
               name="resume"
               className={styles.resume}
-              value={candidateDetails.resume}
+              value={editedData.resume}
               onChange={handleResumeChange}
             />
           ) : (
             <div>
-              <a href={candidateDetails.resume} download>
-                Download Resume
-              </a>
-              {/* <button onClick={() => window.open(candidateDetails.resume, '_blank')}>
-                View Resume
-              </button> */}
+              <button onClick={fetchCandidateResume}>Download Candidate Details</button>
             </div>
           )}
         </div>
