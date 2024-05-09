@@ -10,7 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 5/9/2024        Vishal                        4           Edit Candidate Details - Resume Handling
-
+5/9/2024        Vishal                        4           Resume handling - View/Edit candidate - Resume Handling - Back End
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -536,7 +536,7 @@ const fetchCandidateDetails = async (CandidateId) => {
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
             <p className={styles.popup_message}>
-              Candidate Detaild updated successfully!
+              Candidate Details updated successfully!
               <br />
               <a href="/home" className={styles.login_here}>
                 {" "}
