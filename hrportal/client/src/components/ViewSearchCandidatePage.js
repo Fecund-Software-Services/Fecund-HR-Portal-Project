@@ -107,9 +107,8 @@ function ViewSearchCandidatePage() {
   };
 
   const handleViewDetails = (id) => {
-    nav(`/home/search-candidate/candiadte/${id}`)
-    // nav(`/home/search-candidate/candiadte`);
     // Handle view details logic, e.g., open modal or navigate to a new page
+    nav(`/home/search-candidate/candiadte/${id}`)
     console.log("View details for ID:", id);
   };
 

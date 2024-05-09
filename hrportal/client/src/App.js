@@ -26,6 +26,7 @@ import NewCandidate from "./components/NewCandidate";
 import NewPassword from "./components/NewPassword";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ViewCandidateDetail from "./components/ViewCandidateDetail";
+import EditCanidateDetails from "./components/EditCandidateDetails";
 // import { useAuth } from "./context/AuthContext";
 
 function App() {
@@ -63,14 +64,23 @@ function App() {
             <Route
               exact
               path="/home/search-candidate/candiadte/:id"
-              // path="/home/search-candidate/candiadte"
               element={<ProtectedRoute />}
             >
               <Route
                 exact
                 path="/home/search-candidate/candiadte/:id"
-                // path="/home/search-candidate/candiadte"
                 element={<ViewCandidateDetail />}
+              />
+            </Route>
+            <Route
+              exact
+              path="/home/search-candidate/candiadte/editCandidateDetails/:id"
+              element={<ProtectedRoute />}
+            >
+              <Route
+                exact
+                path="/home/search-candidate/candiadte/editCandidateDetails/:id"
+                element={<EditCanidateDetails />}
               />
             </Route>
             <Route path="/signup" element={<SignUpForm />} />
