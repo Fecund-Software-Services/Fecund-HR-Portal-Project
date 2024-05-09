@@ -11,6 +11,7 @@ Date        | Author                | Sprint   | Description
 -------------------------------------------------------------------------------------------------------
 22/04/2024  | Harshini C            | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
 28/04/2024  | Vishal                | 3        | Add New Candidate Validations - Code Integration
+09/05/2024  | Harshini C            | 4        | BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -26,7 +27,7 @@ Date        | Author                | Sprint   | Description
 } */
 
 .signup_container {
-  background-image: url('../assets/common-background-image.png');
+  background-image: url('../assets/commonBGImage.png');
   display: flex;
   justify-content: center;
   flex-direction: column;

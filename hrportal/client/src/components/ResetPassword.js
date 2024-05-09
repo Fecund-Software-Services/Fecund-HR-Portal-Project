@@ -9,13 +9,13 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import backgroundImage from "../assets/common-background-image.png"; // Import the background image
+import backgroundImage from "../assets/commonBGImage.png"; // Import the background image
 import styles from "./ResetPassword.module.css"; // Import the CSS file
 //import Login from './Login'; // Import the Login component
 

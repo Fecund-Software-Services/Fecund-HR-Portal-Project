@@ -10,15 +10,15 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-12/02/2024     Vishal                        2          Enter New Password
+12/02/2024  |   Vishal                  |   2        |    Enter New Password
+09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-// import backgroundImage from "../assets/common-background-image.png";
-import backgroundImage from "../assets/common-background-image.png"; // Import the background image
-import popupBackground from "../assets/popup-background.png";
+import backgroundImage from "../assets/commonBGImage.png";
+import popupBackground from "../assets/commonBGImage.png";
 import styles from "./NewPassword.module.css"; // Import the CSS file
 
 import { useResetPassword } from "../hooks/useResetPassword";
