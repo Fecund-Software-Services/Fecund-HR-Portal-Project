@@ -80,30 +80,30 @@ const fetchCandidateDetails = async (CandidateId) => {
     }
   };
 
-  const fetchCandidateResume = async () => {
-    try {
-      const response = await fetch(
-        `/api/candidate/view-resume/${candidateDetails.fileId}`
-      );
-      if (!response.ok) {
-        throw new Error(
-          `Error fetching Candidate details: ${response.statusText}`
-        );
-      }
-      // If the response is a PDF, create a blob and download it
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      // a.download = 'candidate_details.pdf';
-      const fileName = candidateDetails.resume;
-      a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
-  };
+//   const fetchCandidateResume = async () => {
+//     try {
+//       const response = await fetch(
+//         `/api/candidate/view-resume/${candidateDetails.fileId}`
+//       );
+//       if (!response.ok) {
+//         throw new Error(
+//           `Error fetching Candidate details: ${response.statusText}`
+//         );
+//       }
+//       // If the response is a PDF, create a blob and download it
+//       const blob = await response.blob();
+//       const url = window.URL.createObjectURL(blob);
+//       const a = document.createElement("a");
+//       a.href = url;
+//       // a.download = 'candidate_details.pdf';
+//       const fileName = candidateDetails.resume;
+//       a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
+//       document.body.appendChild(a);
+//       a.click();
+//     } catch (error) {
+//       setErrorMessage(error.message);
+//     }
+//   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -190,7 +190,7 @@ const fetchCandidateDetails = async (CandidateId) => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/candidate/add-candidate', {
+        const response = await fetch(`/api/candidate/edit-candidate/${id}`, {
           method: 'POST',
           // headers: {'Content-Type': 'application/json'},
           body: formDataToSend
@@ -496,7 +496,7 @@ const fetchCandidateDetails = async (CandidateId) => {
               name="resume"
               id="resume"
               onChange={handleResumeChange}
-              required
+            //   required
               className={styles.resume}
             />
           </div>
@@ -519,7 +519,7 @@ const fetchCandidateDetails = async (CandidateId) => {
             className={styles.submit_button}
             disabled={isLoading}
           >
-            {isLoading ? "Submitting..." : "Submit"}
+            {isLoading ? "Updating..." : "Update"}
           </button>
         </div>
       </form>
@@ -536,7 +536,7 @@ const fetchCandidateDetails = async (CandidateId) => {
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
             <p className={styles.popup_message}>
-              Form submitted successfully!
+              Candidate Detaild updated successfully!
               <br />
               <a href="/home" className={styles.login_here}>
                 {" "}
