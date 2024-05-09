@@ -9,8 +9,8 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-5/9/2024        Vishal                        4           Edit Candidate Details - Resume Handling
-
+5/9/2024    |   Vishal                  |   4        |   Edit Candidate Details - Resume Handling
+09/05/2024  |   Harshini C              |   4        |   BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -18,7 +18,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styles from './EditCandidateDetails.module.css';
-import popupBackground from "../assets/popup-background.png";
+import popupBackground from "../assets/commonBGImage.png";
 
 
 // import { useAddCandidate } from "../hooks/useAddCandidate.js";

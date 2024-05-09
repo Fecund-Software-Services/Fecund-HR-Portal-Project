@@ -9,9 +9,10 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-18/4/2024       Omkar & Vishal               2           Add New Candidate
-24/4/2024       Vishal                       3           Search Candidate
-29/4/2024       Vishal                       3           Add New Candidate Validations - Code Integration
+18/4/2024   |   Omkar & Vishal          |   2        |  Add New Candidate
+24/4/2024   |   Vishal                  |   3        |  Search Candidate
+29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
+09/05/2024  |   Harshini C              |   4        |  BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -21,7 +22,7 @@ Date        |   Author                  |   Sprint   |    Description
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url("../assets/common-background-image.png");
+  background-image: url("../assets/commonBGImage.png");
   /* background-size: cover; */
   /* background-position: center; */
   background-position: center;

@@ -9,13 +9,14 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
+17/4/2024   |   Vishal Garg             |   2        |    Authentication & Authorization - Login
+09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
 import React from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../assets/common-background-image.png";
+import backgroundImage from "../assets/commonBGImage.png";
 import styles from "./HomePage.module.css";
 import LogoutButton from "./LogoutButton";
 
@@ -23,7 +24,7 @@ function HomePage() {
   return (
     <div
       className={styles.home_page_container}
-      // style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className={styles.container}>
         {/* <h1 className={styles.title}>Welcome to Fecund Hiring Portal </h1> */}

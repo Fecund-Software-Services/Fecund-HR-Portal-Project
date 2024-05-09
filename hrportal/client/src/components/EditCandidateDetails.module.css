@@ -9,8 +9,8 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-5/9/2024        Vishal                        4           Edit Candidate Details - Resume Handling
-
+5/9/2024    |   Vishal                  |   4        |   Edit Candidate Details - Resume Handling
+09/05/2024  |   Harshini C              |   4        |   BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -20,7 +20,7 @@ Date        |   Author                  |   Sprint   |    Description
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url("../assets/common-background-image.png");
+    background-image: url("../assets/commonBGImage.png");
     /* background-size: cover; */
     /* background-position: center; */
     background-position: center;

@@ -9,17 +9,17 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-18/4/2024       Omkar & Vishal               2           Add New Candidate
-24/4/2024       Vishal                       3           Search Candidate
-29/4/2024       Vishal                       3           Add New Candidate Validations - Code Integration
-
+18/4/2024   |   Omkar & Vishal          |   2        |  Add New Candidate
+24/4/2024   |   Vishal                  |   3        |  Search Candidate
+29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
+09/05/2024  |   Harshini C              |   4        |  BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
-import popupBackground from "../assets/popup-background.png";
+import popupBackground from "../assets/commonBGImage.png";
 
 // import { useAddCandidate } from "../hooks/useAddCandidate.js";
 

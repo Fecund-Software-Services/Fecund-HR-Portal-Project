@@ -11,13 +11,14 @@ Date        | Author                  | Sprint   | Description
 -------------------------------------------------------------------------------------------------------
 22/04/2024  | Harshini C              | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
 24/4/2024   | Vishal                  | 3        | Search Candidate
+09/05/2024  | Harshini C              | 4        | BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "../assets/common-background-image.png";
-import popupBackground from "../assets/popup-background.png";
+import backgroundImage from "../assets/commonBGImage.png";
+import popupBackground from "../assets/commonBGImage.png";
 import styles from "./SignupForm.module.css";
 
 // importing "useSignup" from hooks
@@ -64,7 +65,7 @@ const SignUpForm = () => {
   return (
     <div
       className={styles.signup_container}
-      // style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className={styles.title_container}>
           <p className={styles.form_title}>Sign up Form</p>

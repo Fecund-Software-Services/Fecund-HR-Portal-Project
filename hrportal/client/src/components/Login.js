@@ -9,7 +9,8 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
+17/4/2024   |   Vishal Garg             |   2        |    Authentication & Authorization - Login
+09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -17,8 +18,7 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../context/AuthContext";
-// Replace with the path to your background image
-// import backgroundImage from "../assets/login-background-static-image.png";
+import backgroundImage from "../assets/loginScreen.png";
 import styles from "./Login.module.css";
 
 const Login = () => {

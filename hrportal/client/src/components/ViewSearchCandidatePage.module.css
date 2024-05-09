@@ -15,7 +15,7 @@ Date        |   Author                  |   Sprint   |    Description
 
 
 .search_container {
-    background-image: url('../assets/common-background-image.png');
+    background-image: url('../assets/commonBGImage.png');
   background-size: cover;
   /* background-position: center; */
   /* width: 100vw; */

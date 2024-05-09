@@ -9,12 +9,12 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
 .home_page_container {
-  background-image: url('../assets/common-background-image.png');
+  background-image: url('../assets/commonBGImage.png');
   display: flex;
   flex-direction: column;
   justify-content: center;
