@@ -9,7 +9,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -17,7 +17,7 @@ Date        |   Author                  |   Sprint   |    Description
 
 
 .login_container {
-  background-image: url('../assets/login-background-static-image.png');
+  background-image: url('../assets/loginScreen.png');
     display: flex;
     justify-content: center; 
     flex-direction: column;
@@ -39,7 +39,7 @@ Date        |   Author                  |   Sprint   |    Description
     margin-left: 18%;
     border-radius: 30px;
     border: solid;
-    border-color: #ada14c;
+    border-color: #ffffff;
     /* border-color: #0179ac; */
     width: 25%;
     /* box-shadow: 2px 2px 2px 8px #61dafb; */
@@ -48,14 +48,14 @@ Date        |   Author                  |   Sprint   |    Description
   .title_container {
     display: flex;
     justify-content: space-around;
-    margin-left: 50%;
+    margin-left: 25%;
     margin-bottom: 60px;
   }
   
   .form_title {
     align-items: center;
-    color: #ada14c;
-    font-size: 20px;
+    color: #ffffff;
+    font-size: 40px;
     margin-top: 1px;
   }
 
@@ -71,7 +71,7 @@ Date        |   Author                  |   Sprint   |    Description
     padding: 8px;
     /* padding-bottom: 10px; */
     padding-top: 4px;
-    color: #ada14c;
+    color: #ffffff;
     /* color: #ffffff; */
     align-items: start;
   }
