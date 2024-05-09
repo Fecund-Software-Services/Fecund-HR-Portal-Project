@@ -11,7 +11,8 @@ Date        | Author                  | Sprint   | Description
 29/4/2024   | HS                      | 3        | Search candidate validation
 5/2/2024    | HS                      | 3        | Edit candidate and view single candidate
 03/05/2024  | Harshini C              | 4        | View Candidates applied in
-07/05/2024  | HS                      | 4        | Resume Handling 
+07/05/2024  | HS                      | 4        | Resume Handling
+08/05/2024  | HS                      | 4        | Update Resume Handling
 -------------------------------------------------------------------------------------------------------
 */ 
 
@@ -155,7 +156,7 @@ const addCandidate = async (req, res) => {
   };
   
 // SEARCH CANDIDATE BY FIELD
-const searchCandidate = async (req,res) => {
+const viewCandidateByField = async (req,res) => {
 
 const searchTerm = req.query.searchTerm; // Get the search term from query parameter
 
@@ -192,7 +193,6 @@ const searchTerm = req.query.searchTerm; // Get the search term from query param
     res.status(500).send('Error searching users'); // Handle errors
   }
 }
-
 
 //VIEW CANDIDATE RECORD BY YEAR AND MONTH
 const viewCandidateByYearMonth = async (req,res) => {
@@ -234,7 +234,6 @@ const viewCandidateByYearMonth = async (req,res) => {
     }
   }
 
-
 // VIEW SINGLE CANDIDATE
 const viewCandidate = async (req,res) => {
   const candidateId = req.params.id;
@@ -255,7 +254,6 @@ const viewCandidate = async (req,res) => {
 
 }
 
-
 // VIEW RESUMEs
 async function viewResume(filename, response) {
   try {
@@ -275,11 +273,11 @@ async function viewResume(filename, response) {
     }
 }
 
-
 // Edit SELECTED CANDIDATE
 const editCandidate = async (req, res) => {
   const candidateId = req.params.id;
-  const filter = { _id: candidateId }; // Use ObjectId for MongoDB document ID
+  const filter = { _id: candidateId };   
+  const updatedfile = req.file
   
   const update = {
     $set: {
@@ -298,19 +296,28 @@ const editCandidate = async (req, res) => {
       lastWorkingDay: req.body.lastWorkingDay,
       status: req.body.status,
       certified: req.body.certified,
-      comments: req.body.comments
-      //resume: req.file
+      comments: req.body.comments,
+      resume: updatedfile ? updatedfile.originalname: req.body.resume, // FIRES ONLY WHEN THE RESUME IS UPDATED
+      fileId: updatedfile?.filename
     },
   };
+  // TO UPDATE RESUME COLLECTION THAT REFERS TO CANDIDATE
+  if (updatedfile){
+    const updateResume = await Resume.findOne({ candidateId: filter });
+    if (updateResume) {
+      await Resume.updateOne({ _id: updateResume._id }, 
+      { $set: { fsFileId: updatedfile?.id, fileName:updatedfile ? updatedfile.originalname: req.body.fileName } });
+    }
+  }
 
   try {
     const result = await Candidate.updateOne(filter, update);
     return res.status(201).json(result);
   } catch (err) {
-    return res.status(400).json({message: "Error: Update failed"});
+    return res.status(400).json({message: "Error: Update failed!"});
   }
 }
 
-module.exports = { addCandidate,searchCandidate, viewCandidateByYearMonth, editCandidate, viewCandidate, viewResume, upload };
+module.exports = { addCandidate, viewCandidateByField, viewCandidateByYearMonth, editCandidate, viewCandidate, viewResume, upload };
 
 
