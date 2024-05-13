@@ -12,22 +12,31 @@ Date        |   Author                  |   Sprint   |    Description
 5/9/2024    |   Vishal                  |   4        |   Edit Candidate Details - Resume Handling
 09/05/2024  |   Harshini C              |   4        |   BG update to all screens
 5/9/2024    |   Vishal                  |   4        |   Resume handling - View/Edit candidate - Resume Handling - Back End
+<<<<<<< feature_UI_final_error_and_issue
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
+=======
 10/05/2024  |   Harshini C              |   4        |   Log Out button
+>>>>>>> Dev
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+<<<<<<< feature_UI_final_error_and_issue
+import styles from "./EditCandidateDetails.module.css";
+import popupBackground from "../assets/PopupBackgroundImage.png";
+=======
 import styles from './EditCandidateDetails.module.css';
 import popupBackground from "../assets/commonBGImage.png";
 import LogoutButton from "./LogoutButton";
+>>>>>>> Dev
 
 // import { useAddCandidate } from "../hooks/useAddCandidate.js";
 
 const EditCandiadteDetails = () => {
-    const { id } = useParams(); // Get the Candidate ID from URL parameters
-const [editedData, setEditedData] = useState({
+  const { id } = useParams(); // Get the Candidate ID from URL parameters
+  const [editedData, setEditedData] = useState({
     firstName: "",
     lastName: "",
     emailAddress: "",
@@ -47,65 +56,97 @@ const [editedData, setEditedData] = useState({
     resume: null,
   });
 
-  const [showLastWorkingDay, setShowLastWorkingDay] = useState(false);
   const navigateToPopup = useNavigate();
-  const [candidateDetails, setCandidateDetails] = useState({}); // Candidate details
-//   const [editedData, setEditedData] = useState({});
-  // const [showPopup, setShowPopup] = useState(false)
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(" ");
   const [isLoading, setIsLoading] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
-  // const { addCandidate, error, isLoading, showPopup } = useAddCandidate();
-
   const nav = useNavigate();
 
-  const skillSetOptions = ['Guidewire BA (PC)','Guidewire BA (BC)','Guidewire BA (CC)','Guidewire QA (PC)','Guidewire QA (BC)','Guidewire QA (CC)','Guidewire DEV (PC)','Guidewire DEV (BC)','Guidewire DEV (CC)','Guidewire Lead (CC)',
-  'Guidewire Lead (PC)','Guidewire Lead (BC)','Buisness Analyst','Technical Specialist','Guidewire Integration Developer','Guidewire Architect','Guidewire QA','Guidewire Portal','Guidewire Datahub','Guidewire Infocentre',
-  'Recruitment Executive','Business Development Executive','Guidewire Backend Developer','Duckcreek Developer','Coldfusion Developer','Oneshield Designer','Digital Marketing Executive','Mulesoft Developer','Scrum Master',
-  'Project Leader','Oneshield BA','Oneshield QA'];
+  const skillSetOptions = [
+    "Guidewire BA (PC)",
+    "Guidewire BA (BC)",
+    "Guidewire BA (CC)",
+    "Guidewire QA (PC)",
+    "Guidewire QA (BC)",
+    "Guidewire QA (CC)",
+    "Guidewire DEV (PC)",
+    "Guidewire DEV (BC)",
+    "Guidewire DEV (CC)",
+    "Guidewire Lead (CC)",
+    "Guidewire Lead (PC)",
+    "Guidewire Lead (BC)",
+    "Buisness Analyst",
+    "Technical Specialist",
+    "Guidewire Integration Developer",
+    "Guidewire Architect",
+    "Guidewire QA",
+    "Guidewire Portal",
+    "Guidewire Datahub",
+    "Guidewire Infocentre",
+    "Recruitment Executive",
+    "Business Development Executive",
+    "Guidewire Backend Developer",
+    "Duckcreek Developer",
+    "Coldfusion Developer",
+    "Oneshield Designer",
+    "Digital Marketing Executive",
+    "Mulesoft Developer",
+    "Scrum Master",
+    "Project Leader",
+    "Oneshield BA",
+    "Oneshield QA",
+  ];
 
-  const statusOptions = ['Submitted', 'Cleared 1st Round','Cleared 2nd Round','Offer Issued','On-Hold','Rejected','Candidate not Interested']
+  const statusOptions = [
+    "Submitted",
+    "Cleared 1st Round",
+    "Cleared 2nd Round",
+    "Offer Issued",
+    "On-Hold",
+    "Rejected",
+    "Candidate not Interested",
+  ];
 
-// Function to fetch Candidate details based on the ID (you can implement this logic)
-const fetchCandidateDetails = async (CandidateId) => {
+  // Function to fetch Candidate details based on the ID (you can implement this logic)
+  const fetchCandidateDetails = async (CandidateId) => {
     try {
       const response = await fetch(
         `/api/candidate/view-candidate/${CandidateId}`
       );
       const candidateData = await response.json();
-      setCandidateDetails(candidateData);
-      setEditedData({...candidateData})
+      // setCandidateDetails(candidateData);
+      setEditedData({ ...candidateData });
     } catch (error) {
       console.error("Error fetching Candidate details:", error);
     }
   };
 
-//   const fetchCandidateResume = async () => {
-//     try {
-//       const response = await fetch(
-//         `/api/candidate/view-resume/${candidateDetails.fileId}`
-//       );
-//       if (!response.ok) {
-//         throw new Error(
-//           `Error fetching Candidate details: ${response.statusText}`
-//         );
-//       }
-//       // If the response is a PDF, create a blob and download it
-//       const blob = await response.blob();
-//       const url = window.URL.createObjectURL(blob);
-//       const a = document.createElement("a");
-//       a.href = url;
-//       // a.download = 'candidate_details.pdf';
-//       const fileName = candidateDetails.resume;
-//       a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
-//       document.body.appendChild(a);
-//       a.click();
-//     } catch (error) {
-//       setErrorMessage(error.message);
-//     }
-//   };
+  //   const fetchCandidateResume = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `/api/candidate/view-resume/${candidateDetails.fileId}`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(
+  //           `Error fetching Candidate details: ${response.statusText}`
+  //         );
+  //       }
+  //       // If the response is a PDF, create a blob and download it
+  //       const blob = await response.blob();
+  //       const url = window.URL.createObjectURL(blob);
+  //       const a = document.createElement("a");
+  //       a.href = url;
+  //       // a.download = 'candidate_details.pdf';
+  //       const fileName = candidateDetails.resume;
+  //       a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
+  //       document.body.appendChild(a);
+  //       a.click();
+  //     } catch (error) {
+  //       setErrorMessage(error.message);
+  //     }
+  //   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -115,20 +156,19 @@ const fetchCandidateDetails = async (CandidateId) => {
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
-    const { name, checked, value } = e.target;
-    let newValue = checked ;
-    setEditedData
-    ((prevData) => ({ ...prevData, [name]: newValue }));
+    const { name, checked } = e.target;
+    // let newValue = checked;
+    setEditedData((prevData) => ({ ...prevData, [name]: checked }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked, value } = e.target;
-    let newValue = checked ;
+    const { name, checked } = e.target;
+    // let newValue = checked;
     setEditedData((prevData) => ({
       ...prevData,
-      [name]: newValue,
+      [name]: checked,
     }));
-    setShowLastWorkingDay(value);
+    // setShowLastWorkingDay(value);
   };
 
   const handleResumeChange = (e) => {
@@ -148,8 +188,11 @@ const fetchCandidateDetails = async (CandidateId) => {
           "Invalid file type. Only PDF, DOC, DOCX files are allowed."
         );
       } else {
-        setEditedData((prevData) => ({ ...prevData, resume: e.target.files[0] }));
-        console.log("in resume field ")
+        setEditedData((prevData) => ({
+          ...prevData,
+          resume: e.target.files[0],
+        }));
+        console.log("in resume field ");
         setErrorMessage("");
       }
     }
@@ -159,6 +202,15 @@ const fetchCandidateDetails = async (CandidateId) => {
   useEffect(() => {
     fetchCandidateDetails(id);
   }, [id]);
+
+  const handleKeyPress = (e) => {
+    const key = e.key;
+    const regex = /^[A-Za-z]+$/; // Allows only alphabets
+  
+    if (!regex.test(key)) {
+      e.preventDefault(); // Prevent invalid character from being entered
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -173,31 +225,37 @@ const fetchCandidateDetails = async (CandidateId) => {
     formDataToSend.append("mobileNumber", editedData.mobileNumber);
     formDataToSend.append("skillSet", editedData.skillSet);
     formDataToSend.append("itExperience", editedData.itExperience);
-    formDataToSend.append("totalRelevantExperience", editedData.totalRelevantExperience);
+    formDataToSend.append(
+      "totalRelevantExperience",
+      editedData.totalRelevantExperience
+    );
     formDataToSend.append("currentCompany", editedData.currentCompany);
     formDataToSend.append("currentCTC", editedData.currentCTC);
     formDataToSend.append("expectedCTC", editedData.expectedCTC);
     formDataToSend.append("noticePeriod", editedData.noticePeriod);
-    formDataToSend.append("servingNoticePeriod", editedData.servingNoticePeriod);
+    formDataToSend.append(
+      "servingNoticePeriod",
+      editedData.servingNoticePeriod
+    );
     formDataToSend.append("lastWorkingDay", editedData.lastWorkingDay);
     formDataToSend.append("status", editedData.status);
     formDataToSend.append("certified", editedData.certified);
     formDataToSend.append("comments", editedData.comments);
-  
+
     // Append the resume file to the FormData object
     formDataToSend.append("resume", editedData.resume);
 
     const addCandidate = async (formDataToSend) => {
-      console.log(formDataToSend)
+      console.log(formDataToSend);
       setIsLoading(true);
       setError(null);
       try {
         const response = await fetch(`/api/candidate/edit-candidate/${id}`, {
-          method: 'POST',
+          method: "POST",
           // headers: {'Content-Type': 'application/json'},
-          body: formDataToSend
+          body: formDataToSend,
         });
-        console.log(response)
+        console.log(response);
 
         const json = await response.json();
         console.log(json);
@@ -215,7 +273,7 @@ const fetchCandidateDetails = async (CandidateId) => {
       }
     };
 
-    addCandidate(formDataToSend)
+    addCandidate(formDataToSend);
   };
 
   const togglePopup = () => {
@@ -225,7 +283,11 @@ const fetchCandidateDetails = async (CandidateId) => {
   return (
     <div className={styles.addcandidateform_container}>
       <div className={styles.title_container}>
+<<<<<<< feature_UI_final_error_and_issue
+        <p className={styles.form_title}>Update Candidate Details</p>
+=======
         <p className={styles.water_brush_regular}>Edit&nbsp;&nbsp;New Candidate</p>
+>>>>>>> Dev
       </div>
       <div><LogoutButton/></div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>
@@ -240,6 +302,7 @@ const fetchCandidateDetails = async (CandidateId) => {
               name="firstName"
               id="firstName"
               value={editedData.firstName}
+              onKeyPress={handleKeyPress}
               onChange={handleInputChange}
               required
             />
@@ -253,6 +316,7 @@ const fetchCandidateDetails = async (CandidateId) => {
               name="lastName"
               id="lastName"
               value={editedData.lastName}
+              onKeyPress={handleKeyPress}
               onChange={handleInputChange}
               required
             />
@@ -277,6 +341,7 @@ const fetchCandidateDetails = async (CandidateId) => {
             <input
               type="tel"
               name="mobileNumber"
+              maxLength="10"
               id="mobileNumber"
               value={editedData.mobileNumber}
               onChange={handleInputChange}
@@ -387,14 +452,13 @@ const fetchCandidateDetails = async (CandidateId) => {
             />
           </div>
           <div className={styles.sub_container}>
-          <label>Status:</label>
-          
+            <label>Status:</label>
+
             <select
               name="status"
               id="status"
               value={editedData.status}
-              onChange={handleInputChange
-              }
+              onChange={handleInputChange}
               required
             >
               <option value="">{editedData.status} </option>
@@ -404,8 +468,7 @@ const fetchCandidateDetails = async (CandidateId) => {
                 </option>
               ))}
             </select>
-          
-        </div>
+          </div>
           <div className={styles.sub_container}>
             <label htmlFor="servingNoticePeriod">
               Serving Notice Period<span className={styles.asterisk}>*</span>:
@@ -416,7 +479,7 @@ const fetchCandidateDetails = async (CandidateId) => {
                   type="checkbox"
                   name="servingNoticePeriod"
                   // id="servingNoticePeriod"
-                  value= "Yes"
+                  value="Yes"
                   onChange={handleServingNoticePeriodChange}
                   checked={editedData.servingNoticePeriod === true} // Check if the value is 'Yes'
                 />
@@ -427,7 +490,7 @@ const fetchCandidateDetails = async (CandidateId) => {
                   type="checkbox"
                   name="servingNoticePeriod"
                   // id="servingNoticePeriod"
-                  value= "No"
+                  value="No"
                   onChange={handleServingNoticePeriodChange}
                   checked={editedData.servingNoticePeriod === false} // Check if the value is 'No'
                 />
@@ -445,7 +508,7 @@ const fetchCandidateDetails = async (CandidateId) => {
                   type="checkbox"
                   name="certified"
                   // id="certified"
-                  value= "Yes"
+                  value="Yes"
                   onChange={handleCheckboxChange}
                   checked={editedData.certified === true} // Check if the value is 'Yes'
                 />
@@ -456,30 +519,28 @@ const fetchCandidateDetails = async (CandidateId) => {
                   type="checkbox"
                   name="certified"
                   // id="certified"
-                  value= "No"
+                  value="No"
                   onChange={handleCheckboxChange}
-                  checked={editedData.certified === false}// Check if the value is 'No'
+                  checked={editedData.certified === false} // Check if the value is 'No'
                 />
                 No
               </label>
             </div>
           </div>
-          <div
-            className={styles.sub_container}
-            style={{ display: showLastWorkingDay === "Yes" ? "flex" : "none" }}
-          >
-            <label htmlFor="lastWorkingDay">
-              Last Working Day<span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="date"
-              name="lastWorkingDay"
-              id="lastWorkingDay"
-              value={editedData.lastWorkingDay}
-              onChange={handleInputChange}
-              required={showLastWorkingDay}
-            />
-          </div>
+          {editedData.servingNoticePeriod === true && ( // Check if 'Yes' is selected
+            <div className={styles.sub_container}>
+              <label htmlFor="lastWorkingDay">
+                Last Working Day<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="lastWorkingDay"
+                id="lastWorkingDay"
+                value={editedData.lastWorkingDay}
+                onChange={handleInputChange}
+              />
+            </div>
+          )}
 
           <div className={styles.sub_container}>
             <label htmlFor="comments">Comments:</label>
@@ -499,7 +560,7 @@ const fetchCandidateDetails = async (CandidateId) => {
               name="resume"
               id="resume"
               onChange={handleResumeChange}
-            //   required
+              //   required
               className={styles.resume}
             />
           </div>

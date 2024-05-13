@@ -19,7 +19,7 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/commonBGImage.png";
-import popupBackground from "../assets/commonBGImage.png";
+import popupBackground from "../assets/PopupBackgroundImage.png";
 import styles from "./NewPassword.module.css"; // Import the CSS file
 import { useResetPassword } from "../hooks/useResetPassword";
 import LogoutButton from "./LogoutButton";

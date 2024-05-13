@@ -84,7 +84,7 @@ const candidateSchema = new mongoose.Schema({
     },
     lastWorkingDay: {
         type: String,
-        required: [true, "last working date is required"],
+        // required: [true, "last working date is required"],
         
     },
     status: {

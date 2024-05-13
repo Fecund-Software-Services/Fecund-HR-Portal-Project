@@ -10,26 +10,54 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
 .home_page_container {
-  background-image: url('../assets/commonBGImage.png');
+  background-image: url("../assets/commonBGImage.png");
+  background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-size: cover;
   height: 100vh;
-  }
+}
 
-  .container {
-    height: 100%;
+.container {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content:space-around;
-  }
+  justify-content: space-around;
+}
 
+<<<<<<< feature_UI_final_error_and_issue
+.title {
+  align-self: flex-start;
+  margin-top: 30px;
+  margin-bottom: 200px;
+  color: aqua;
+}
+
+.link_container {
+  text-align: center;
+}
+
+.link {
+  padding: 10px 10px;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.link:hover {
+  cursor: pointer;
+  color: rgb(126, 126, 126);
+  transition: background-color 0.25s;
+}
+=======
   .title {
     align-self: flex-start;
     margin-top: 30px;
@@ -56,3 +84,4 @@ Date        |   Author                  |   Sprint   |    Description
     transition: background-color 0.25s;
   }
 
+>>>>>>> Dev

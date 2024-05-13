@@ -13,16 +13,24 @@ Date        |   Author                  |   Sprint   |    Description
 24/4/2024   |   Vishal                  |   3        |  Search Candidate
 29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
 09/05/2024  |   Harshini C              |   4        |  BG update to all screens
+<<<<<<< feature_UI_final_error_and_issue
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
+=======
 10/05/2024  |   Harshini C              |   4        |  Log Out button
+>>>>>>> Dev
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
+<<<<<<< feature_UI_final_error_and_issue
+import popupBackground from "../assets/PopupBackgroundImage.png";
+=======
 import popupBackground from "../assets/commonBGImage.png";
 import LogoutButton from "./LogoutButton";
 // import { useAddCandidate } from "../hooks/useAddCandidate.js";
+>>>>>>> Dev
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({
@@ -45,22 +53,48 @@ const NewCandidate = () => {
     resume: null,
   });
 
-  const [showLastWorkingDay, setShowLastWorkingDay] = useState(false);
   const navigateToPopup = useNavigate();
-  // const [showPopup, setShowPopup] = useState(false)
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(" ");
   const [isLoading, setIsLoading] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
-  // const { addCandidate, error, isLoading, showPopup } = useAddCandidate();
-
   const nav = useNavigate();
 
-  const skillSetOptions = ['Guidewire BA (PC)','Guidewire BA (BC)','Guidewire BA (CC)','Guidewire QA (PC)','Guidewire QA (BC)','Guidewire QA (CC)','Guidewire DEV (PC)','Guidewire DEV (BC)','Guidewire DEV (CC)','Guidewire Lead (CC)',
-  'Guidewire Lead (PC)','Guidewire Lead (BC)','Buisness Analyst','Technical Specialist','Guidewire Integration Developer','Guidewire Architect','Guidewire QA','Guidewire Portal','Guidewire Datahub','Guidewire Infocentre',
-  'Recruitment Executive','Business Development Executive','Guidewire Backend Developer','Duckcreek Developer','Coldfusion Developer','Oneshield Designer','Digital Marketing Executive','Mulesoft Developer','Scrum Master',
-  'Project Leader','Oneshield BA','Oneshield QA'];
+  const skillSetOptions = [
+    "Guidewire BA (PC)",
+    "Guidewire BA (BC)",
+    "Guidewire BA (CC)",
+    "Guidewire QA (PC)",
+    "Guidewire QA (BC)",
+    "Guidewire QA (CC)",
+    "Guidewire DEV (PC)",
+    "Guidewire DEV (BC)",
+    "Guidewire DEV (CC)",
+    "Guidewire Lead (CC)",
+    "Guidewire Lead (PC)",
+    "Guidewire Lead (BC)",
+    "Buisness Analyst",
+    "Technical Specialist",
+    "Guidewire Integration Developer",
+    "Guidewire Architect",
+    "Guidewire QA",
+    "Guidewire Portal",
+    "Guidewire Datahub",
+    "Guidewire Infocentre",
+    "Recruitment Executive",
+    "Business Development Executive",
+    "Guidewire Backend Developer",
+    "Duckcreek Developer",
+    "Coldfusion Developer",
+    "Oneshield Designer",
+    "Digital Marketing Executive",
+    "Mulesoft Developer",
+    "Scrum Master",
+    "Project Leader",
+    "Oneshield BA",
+    "Oneshield QA",
+  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -70,20 +104,18 @@ const NewCandidate = () => {
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
-    const { name, checked, value } = e.target;
-    let newValue = checked ;
-    setFormData
-    ((prevData) => ({ ...prevData, [name]: newValue }));
+    const { name } = e.target;
+    // let newValue = checked;
+    setFormData((prevData) => ({ ...prevData, [name]: !prevData.certified }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked, value } = e.target;
-    let newValue = checked ;
+    const { name } = e.target;
+    // let newValue = checked;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: newValue,
+      [name]: !prevData.servingNoticePeriod,
     }));
-    setShowLastWorkingDay(value);
   };
 
   const handleResumeChange = (e) => {
@@ -104,9 +136,18 @@ const NewCandidate = () => {
         );
       } else {
         setFormData((prevData) => ({ ...prevData, resume: e.target.files[0] }));
-        console.log("in resume field ")
+        console.log("in resume field ");
         setErrorMessage("");
       }
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    const key = e.key;
+    const regex = /^[A-Za-z]+$/; // Allows only alphabets
+  
+    if (!regex.test(key)) {
+      e.preventDefault(); // Prevent invalid character from being entered
     }
   };
 
@@ -123,7 +164,10 @@ const NewCandidate = () => {
     formDataToSend.append("mobileNumber", formData.mobileNumber);
     formDataToSend.append("skillSet", formData.skillSet);
     formDataToSend.append("itExperience", formData.itExperience);
-    formDataToSend.append("totalRelevantExperience", formData.totalRelevantExperience);
+    formDataToSend.append(
+      "totalRelevantExperience",
+      formData.totalRelevantExperience
+    );
     formDataToSend.append("currentCompany", formData.currentCompany);
     formDataToSend.append("currentCTC", formData.currentCTC);
     formDataToSend.append("expectedCTC", formData.expectedCTC);
@@ -133,21 +177,21 @@ const NewCandidate = () => {
     formDataToSend.append("status", formData.status);
     formDataToSend.append("certified", formData.certified);
     formDataToSend.append("comments", formData.comments);
-  
+
     // Append the resume file to the FormData object
     formDataToSend.append("resume", formData.resume);
 
     const addCandidate = async (formDataToSend) => {
-      console.log(formDataToSend)
+      console.log(formDataToSend);
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/candidate/add-candidate', {
-          method: 'POST',
+        const response = await fetch("/api/candidate/add-candidate", {
+          method: "POST",
           // headers: {'Content-Type': 'application/json'},
-          body: formDataToSend
+          body: formDataToSend,
         });
-        console.log(response)
+        console.log(response);
 
         const json = await response.json();
         console.log(json);
@@ -165,7 +209,7 @@ const NewCandidate = () => {
       }
     };
 
-    addCandidate(formDataToSend)
+    addCandidate(formDataToSend);
   };
 
   const togglePopup = () => {
@@ -191,6 +235,7 @@ const NewCandidate = () => {
               name="firstName"
               id="firstName"
               value={formData.firstName}
+              onKeyPress={handleKeyPress}
               onChange={handleInputChange}
               required
             />
@@ -204,6 +249,7 @@ const NewCandidate = () => {
               name="lastName"
               id="lastName"
               value={formData.lastName}
+              onKeyPress={handleKeyPress}
               onChange={handleInputChange}
               required
             />
@@ -228,6 +274,7 @@ const NewCandidate = () => {
             <input
               type="tel"
               name="mobileNumber"
+              maxLength="10"
               id="mobileNumber"
               value={formData.mobileNumber}
               onChange={handleInputChange}
@@ -347,7 +394,7 @@ const NewCandidate = () => {
                   type="checkbox"
                   name="servingNoticePeriod"
                   // id="servingNoticePeriod"
-                  value= "Yes"
+                  value="Yes"
                   onChange={handleServingNoticePeriodChange}
                   checked={formData.servingNoticePeriod === true} // Check if the value is 'Yes'
                 />
@@ -358,7 +405,7 @@ const NewCandidate = () => {
                   type="checkbox"
                   name="servingNoticePeriod"
                   // id="servingNoticePeriod"
-                  value= "No"
+                  value="No"
                   onChange={handleServingNoticePeriodChange}
                   checked={formData.servingNoticePeriod === false} // Check if the value is 'No'
                 />
@@ -376,7 +423,7 @@ const NewCandidate = () => {
                   type="checkbox"
                   name="certified"
                   // id="certified"
-                  value= "Yes"
+                  value="Yes"
                   onChange={handleCheckboxChange}
                   checked={formData.certified === true} // Check if the value is 'Yes'
                 />
@@ -387,30 +434,28 @@ const NewCandidate = () => {
                   type="checkbox"
                   name="certified"
                   // id="certified"
-                  value= "No"
+                  value="No"
                   onChange={handleCheckboxChange}
-                  checked={formData.certified === false}// Check if the value is 'No'
+                  checked={formData.certified === false} // Check if the value is 'No'
                 />
                 No
               </label>
             </div>
           </div>
-          <div
-            className={styles.sub_container}
-            style={{ display: showLastWorkingDay === "Yes" ? "flex" : "none" }}
-          >
-            <label htmlFor="lastWorkingDay">
-              Last Working Day<span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="date"
-              name="lastWorkingDay"
-              id="lastWorkingDay"
-              value={formData.lastWorkingDay}
-              onChange={handleInputChange}
-              required={showLastWorkingDay}
-            />
-          </div>
+          {formData.servingNoticePeriod === true && ( // Check if 'Yes' is selected
+            <div className={styles.sub_container}>
+              <label htmlFor="lastWorkingDay">
+                Last Working Day<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="lastWorkingDay"
+                id="lastWorkingDay"
+                value={formData.lastWorkingDay}
+                onChange={handleInputChange}
+              />
+            </div>
+          )}
 
           <div className={styles.sub_container}>
             <label htmlFor="comments">Comments:</label>

@@ -10,13 +10,16 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
+<<<<<<< feature_UI_final_error_and_issue
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
+=======
 10/05/2024  |   Harshini C              |   4        |    Log Out button
+>>>>>>> Dev
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import backgroundImage from "../assets/commonBGImage.png"; // Import the background image
 import styles from "./ResetPassword.module.css"; // Import the CSS file
 import LogoutButton from "./LogoutButton";
 import { useForgotPassword } from "../hooks/useForgotPassword";
@@ -78,18 +81,7 @@ function ResetPassword() {
   const handleCancel = (e) => navigateToLogin("/");
 
   return (
-    <div
-      className={styles.reset_container}
-      style={{
-      
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <div className={styles.reset_container}>
       {!isSecurityQuestionCorrect && (
         <div className={styles.container}>
           <div><LogoutButton/></div>

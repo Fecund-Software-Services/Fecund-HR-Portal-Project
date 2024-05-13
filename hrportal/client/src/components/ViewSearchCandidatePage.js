@@ -49,7 +49,7 @@ function ViewSearchCandidatePage() {
 
   const handleSearch = () => {
     const fetchData = async (searchTerm) => {
-      if (searchTerm.firstName || searchTerm.lastName || searchTerm.email) {
+      if (searchType === "user") {
         const { firstName, lastName, email } = searchTerm;
 
         // Constructing the query parameters based on user input
@@ -64,10 +64,13 @@ function ViewSearchCandidatePage() {
           const response = await fetch(
             `/api/candidate/search-candidate?${queryParams.toString()}`
           );
-          if (!response.ok) {
-            throw new Error(`Error fetching data: ${response.status}`);
-          }
+          
           const data = await response.json();
+
+          if (!response.ok) {
+            setSearchResults([])
+            throw new Error(data.message); // Re-throw with more context
+          }
           setSearchResults(data);
         } catch (err) {
           setError(err.message);
@@ -76,7 +79,7 @@ function ViewSearchCandidatePage() {
         }
       } else {
         const { month, year } = searchTerm;
-
+console.log(searchTerm)
         // Constructing the query parameters based on user input
         const queryParams = new URLSearchParams({
           searchTerm: `${year} ${month}`.trim(), // Concatenating month and year with '&'
@@ -89,11 +92,12 @@ function ViewSearchCandidatePage() {
           const response = await fetch(
             `/api/candidate/view-candidate?${queryParams.toString()}`
           );
-          console.log(response);
-          if (!response.ok) {
-            throw new Error(`Error fetching data: ${response.status}`);
-          }
+          
           const data = await response.json();
+          if (!response.ok) {
+            setSearchResults([])
+            throw new Error(data.message); // Re-throw with more context
+          }
           setSearchResults(data);
         } catch (err) {
           setError(err.message);
@@ -134,7 +138,7 @@ function ViewSearchCandidatePage() {
       <div className={styles.divide}>
         <div className={styles.form_container}>
           <div className={styles.radio_group}>
-            <div className={styles.flex_conatiner}>
+            <div className={styles.flex_conatiner_a}>
               <input
                 type="radio"
                 id="dateSearch"
@@ -148,7 +152,7 @@ function ViewSearchCandidatePage() {
                 View the candidates applied in
               </label>
             </div>
-            <div className={styles.flex_conatiner}>
+            <div className={styles.flex_conatiner_b}>
               <input
                 type="radio"
                 id="userSearch"
@@ -170,6 +174,7 @@ function ViewSearchCandidatePage() {
                 <input
                   type="text"
                   name="year"
+                  placeholder="YYYY"
                   value={searchData.year}
                   onChange={handleInputChange}
                   className={styles.input_field}
@@ -252,7 +257,7 @@ function ViewSearchCandidatePage() {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th>View</th>
+                  <th></th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Mobile Number</th>

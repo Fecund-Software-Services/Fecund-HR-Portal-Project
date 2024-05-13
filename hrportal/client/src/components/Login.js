@@ -11,14 +11,17 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 17/4/2024   |   Vishal Garg             |   2        |    Authentication & Authorization - Login
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
-
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+<<<<<<< feature_UI_final_error_and_issue
+=======
 //import backgroundImage from "../assets/loginScreen.png";
+>>>>>>> Dev
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -41,7 +44,7 @@ const Login = () => {
     try {
       setError(null);
       await login(email, password);
-      navigate('/home')
+      navigate("/home");
     } catch (error) {
       // Handle login failure
       setError(error.message);
@@ -49,12 +52,19 @@ const Login = () => {
   };
 
   return (
+<<<<<<< feature_UI_final_error_and_issue
+    <div className={styles.login_container}>
+      <div className={styles.title_container}>
+        <p className={styles.form_title}>Hiring Portal</p>
+      </div>
+=======
     <div
       className={styles.login_container}
     >
     <div className={styles.title_container}>
       <p className={styles.water_brush_regular}>Hiring&nbsp;Portal</p>
     </div>
+>>>>>>> Dev
       <form onSubmit={handleLogin} className={styles.login_form}>
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>

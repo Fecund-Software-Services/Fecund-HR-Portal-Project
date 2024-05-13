@@ -12,22 +12,12 @@ Date        | Author                | Sprint   | Description
 22/04/2024  | Harshini C            | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
 28/04/2024  | Vishal                | 3        | Add New Candidate Validations - Code Integration
 09/05/2024  | Harshini C            | 4        | BG update to all screens
+10/05/2024  |   Vishal              |   4      | CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
-/* body {
-  width: 100%;
-  height: 100%;
-} */
-
 .signup_container {
-  background-image: url('../assets/commonBGImage.png');
+  background-image: url("../assets/commonBGImage.png");
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -37,22 +27,22 @@ Date        | Author                | Sprint   | Description
   /* background-position: center;
   background-repeat: no-repeat;
   background-color: #122030; */
-  background-size: cover;
+  background-size: 100% 100%;
   /* padding: 60px; */
   background-attachment: fixed;
   width: 100%;
-
 }
 
 .signup_form {
   display: flex;
   flex-direction: column;
-   /* justify-content: center; */
+  /* justify-content: center; */
   padding: 30px;
   width: 35%;
   border-radius: 30px;
   border: solid;
   border-color: #ffffff;
+  height: 70%;
 }
 
 .title_container {
@@ -71,7 +61,7 @@ Date        | Author                | Sprint   | Description
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 4px;
+  padding-top: 2px;
   /* justify-content: flex-start; */
 }
 
@@ -80,7 +70,7 @@ Date        | Author                | Sprint   | Description
   flex-direction: row;
   /* justify-content: space-between; */
   justify-content: flex-start;
-  margin:6px 0px;
+  margin: 3px 0px;
 }
 
 .label_type {
@@ -131,9 +121,15 @@ Date        | Author                | Sprint   | Description
 }
 
 .Signup_button {
+<<<<<<< feature_UI_final_error_and_issue
+  padding: 5px 30px;
+  background-color: #d4d4d4;
+  color: #000;
+=======
   padding: 10px 30px;
   background-color: #ffffff;
   color: #000000;
+>>>>>>> Dev
   height: 30px;
   /* width:50%; */
   /* margin-left: 22%;
@@ -184,7 +180,7 @@ Date        | Author                | Sprint   | Description
   padding: 10px 10px;
   background-color: #d4d4d4;
   color: #000;
-  width:25%;
+  width: 25%;
   margin: 10px 32%;
   border: none;
   border-radius: 5px;
@@ -203,7 +199,7 @@ Date        | Author                | Sprint   | Description
   margin: 0;
   margin-bottom: 8px;
   margin-top: -22px;
-} 
+}
 
 .login_here {
   color: white;
@@ -224,6 +220,8 @@ Date        | Author                | Sprint   | Description
   color: white;
   font-size: 10px;
 }
+<<<<<<< feature_UI_final_error_and_issue
+=======
 
 @import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
 
@@ -237,3 +235,4 @@ Date        | Author                | Sprint   | Description
   font-size: 40px;
   color:  #ffffff;
 }
+>>>>>>> Dev
