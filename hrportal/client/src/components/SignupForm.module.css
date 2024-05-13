@@ -121,9 +121,15 @@ Date        | Author                | Sprint   | Description
 }
 
 .Signup_button {
+<<<<<<< feature_UI_final_error_and_issue
   padding: 5px 30px;
   background-color: #d4d4d4;
   color: #000;
+=======
+  padding: 10px 30px;
+  background-color: #ffffff;
+  color: #000000;
+>>>>>>> Dev
   height: 30px;
   /* width:50%; */
   /* margin-left: 22%;
@@ -214,3 +220,19 @@ Date        | Author                | Sprint   | Description
   color: white;
   font-size: 10px;
 }
+<<<<<<< feature_UI_final_error_and_issue
+=======
+
+@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
+
+@font-face {
+  font-family: BrittanySignature;
+  src: url(../fonts/Brittany\Signature.ttf);
+}
+
+.water_brush_regular {
+  font-family: BrittanySignature;
+  font-size: 40px;
+  color:  #ffffff;
+}
+>>>>>>> Dev

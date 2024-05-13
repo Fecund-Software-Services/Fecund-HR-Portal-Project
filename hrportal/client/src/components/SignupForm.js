@@ -12,7 +12,8 @@ Date        | Author                  | Sprint   | Description
 22/04/2024  | Harshini C              | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
 24/4/2024   | Vishal                  | 3        | Search Candidate
 09/05/2024  | Harshini C              | 4        | BG update to all screens
-10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
+10/05/2024  | Vishal                  | 4        | CSS and alignment based on BG image
+10/05/2024  | Harshini C              | 4        | Log Out button
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -20,7 +21,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import popupBackground from "../assets/commonBGImage.png";
 import styles from "./SignupForm.module.css";
-
+import LogoutButton from "./LogoutButton";
 // importing "useSignup" from hooks
 import { useSignup } from "../hooks/useSignup.js";
 
@@ -67,6 +68,8 @@ const SignUpForm = () => {
       <div className={styles.title_container}>
         <p className={styles.form_title}>Sign up Form</p>
       </div>
+      <div><LogoutButton/></div>
+
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
