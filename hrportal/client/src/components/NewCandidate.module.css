@@ -13,6 +13,7 @@ Date        |   Author                  |   Sprint   |    Description
 24/4/2024   |   Vishal                  |   3        |  Search Candidate
 29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
 09/05/2024  |   Harshini C              |   4        |  BG update to all screens
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -23,11 +24,11 @@ Date        |   Author                  |   Sprint   |    Description
   align-items: center;
   height: 100vh;
   background-image: url("../assets/commonBGImage.png");
-  /* background-size: cover; */
+  background-size: 100% 100%;
   /* background-position: center; */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #122030;
+  /* background-position: center;
+  background-repeat: no-repeat; */
+  /* background-color: #122030; */
 }
 
 .addcandidateform_form {
@@ -191,7 +192,7 @@ textarea {
   padding: 10px 10px;
   background-color: #d4d4d4;
   color: #000;
-  width:25%;
+  width: 25%;
   margin: 10px 32%;
   border: none;
   border-radius: 5px;
@@ -209,7 +210,7 @@ textarea {
   color: rgb(225, 78, 78);
   margin: 0;
   margin-bottom: 10px;
-} 
+}
 
 .login_here {
   color: white;

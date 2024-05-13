@@ -10,13 +10,14 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 24/4/2024      Vishal                        3          Search Candidate
+10/05/2024  |   Vishal                  |    4       |  CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
 
 .search_container {
     background-image: url('../assets/commonBGImage.png');
-  background-size: cover;
+  background-size: 100% 100%;
   /* background-position: center; */
   /* width: 100vw; */
   height: 100vh;

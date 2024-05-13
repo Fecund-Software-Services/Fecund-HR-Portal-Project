@@ -10,6 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -78,18 +79,7 @@ function ResetPassword() {
   const handleCancel = (e) => navigateToLogin("/");
 
   return (
-    <div
-      className={styles.reset_container}
-      style={{
-      
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <div className={styles.reset_container}>
       {!isSecurityQuestionCorrect && (
         <div className={styles.container}>
           <div>

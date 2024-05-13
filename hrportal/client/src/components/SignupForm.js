@@ -12,12 +12,12 @@ Date        | Author                  | Sprint   | Description
 22/04/2024  | Harshini C              | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
 24/4/2024   | Vishal                  | 3        | Search Candidate
 09/05/2024  | Harshini C              | 4        | BG update to all screens
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "../assets/commonBGImage.png";
 import popupBackground from "../assets/commonBGImage.png";
 import styles from "./SignupForm.module.css";
 
@@ -63,13 +63,10 @@ const SignUpForm = () => {
   };
 
   return (
-    <div
-      className={styles.signup_container}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
+    <div className={styles.signup_container}>
       <div className={styles.title_container}>
-          <p className={styles.form_title}>Sign up Form</p>
-        </div>
+        <p className={styles.form_title}>Sign up Form</p>
+      </div>
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
@@ -149,13 +146,17 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>Security Question 1 <span className={styles.asterisk}>*</span></label>
+            <label className={styles.label_type_q}>
+              Security Question 1 <span className={styles.asterisk}>*</span>
+            </label>
             <p htmlFor="SecurityQuestion1" className={styles.p_type}>
               What is your first pet name ?
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label className={styles.label_type}>Answer <span className={styles.asterisk}>*</span></label>
+            <label className={styles.label_type}>
+              Answer <span className={styles.asterisk}>*</span>
+            </label>
             <input
               type="password"
               value={answer1}
@@ -170,13 +171,17 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>Security Question 2 <span className={styles.asterisk}>*</span></label>
+            <label className={styles.label_type_q}>
+              Security Question 2 <span className={styles.asterisk}>*</span>
+            </label>
             <p htmlFor="SecurityQuestion2" className={styles.p_type}>
               What was your childhood nickname ?
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label className={styles.label_type}>Answer <span className={styles.asterisk}>*</span></label>
+            <label className={styles.label_type}>
+              Answer <span className={styles.asterisk}>*</span>
+            </label>
             <input
               type="password"
               value={answer2}
@@ -191,13 +196,17 @@ const SignUpForm = () => {
 
         <div>
           <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>Security Question 3 <span className={styles.asterisk}>*</span></label>
+            <label className={styles.label_type_q}>
+              Security Question 3 <span className={styles.asterisk}>*</span>
+            </label>
             <p htmlFor="SecurityQuestion3" className={styles.p_type}>
               What was your first mobile brand name ?
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label className={styles.label_type}>Answer <span className={styles.asterisk}>*</span></label>
+            <label className={styles.label_type}>
+              Answer <span className={styles.asterisk}>*</span>
+            </label>
             <input
               type="password"
               value={answer3}
@@ -234,7 +243,10 @@ const SignUpForm = () => {
       </form>
 
       <div className={styles.disclaimer}>
-        <p>Fields marked with an asterisk (<span className={styles.asterisk}>*</span>) are required.</p>
+        <p>
+          Fields marked with an asterisk (
+          <span className={styles.asterisk}>*</span>) are required.
+        </p>
       </div>
 
       {showPopup && (
@@ -244,7 +256,12 @@ const SignUpForm = () => {
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
             <p className={styles.popup_message}>
-              Form submitted successfully!<br/><a href="/" className={styles.login_here}> Login Here</a>
+              Form submitted successfully!
+              <br />
+              <a href="/" className={styles.login_here}>
+                {" "}
+                Login Here
+              </a>
             </p>
             {/* <button className={styles.popup_close_button} onClick={togglePopup}>
               Close

@@ -11,6 +11,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 17/4/2024   |   Vishal Garg             |   2        |    Authentication & Authorization - Login
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
+10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -22,10 +23,8 @@ import LogoutButton from "./LogoutButton";
 
 function HomePage() {
   return (
-    <div
-      className={styles.home_page_container}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
+    <div className={styles.home_page_container}>
+      <div className="wrapper"></div>
       <div className={styles.container}>
         {/* <h1 className={styles.title}>Welcome to Fecund Hiring Portal </h1> */}
         <div className={styles.link_container}>
