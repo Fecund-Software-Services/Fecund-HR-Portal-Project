@@ -19,7 +19,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
 import LogoutButton from "./LogoutButton";
-
+import { FaDownload } from "react-icons/fa";
 import styles from "./ViewCandidateDetail.module.css";
 
 function ViewCandidateDetail() {
@@ -167,11 +167,7 @@ function ViewCandidateDetail() {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="resume">Resume</label>
-            <div>
-              <button onClick={fetchCandidateResume}>
-                Download Candidate Details
-              </button>
-            </div>
+            <div onClick={fetchCandidateResume}>{candidateDetails.resume}&nbsp;&nbsp;<FaDownload /></div>
           </div>
           <div className={styles.sub_container}></div>
           {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
