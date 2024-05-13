@@ -14,9 +14,8 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 */
 
-
 .search_container {
-    background-image: url('../assets/commonBGImage.png');
+  background-image: url("../assets/commonBGImage.png");
   background-size: 100% 100%;
   /* background-position: center; */
   /* width: 100vw; */
@@ -43,23 +42,43 @@ Date        |   Author                  |   Sprint   |    Description
 }
 
 .form_container {
-    width: 50%;
+  width: 50%;
 }
 
 .input_group {
-   display: flex;
-   flex-direction: column;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 30px;
 }
 
+.flex_conatiner_a {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  width: 40%;
+  /* align-items:self-start; */
+}
+
 .flex_conatiner {
-    align-self: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 10px;
-    width: 50%;
-    /* align-items:self-start; */
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  width: 40%;
+  /* align-items:self-start; */
+}
+
+.flex_conatiner_b {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  width: 30%;
+  /* align-items:self-start; */
 }
 
 .divide {
@@ -67,11 +86,11 @@ Date        |   Author                  |   Sprint   |    Description
   flex-direction: column;
   justify-content: center; /* Horizontally centers the child element(s) */
   align-items: center;
-  width: 90%
+  width: 90%;
 }
 
 .table_container {
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -82,8 +101,8 @@ Date        |   Author                  |   Sprint   |    Description
 }
 
 .radio_label {
-    color: white; 
-    /* width:60%;  */
+  color: white;
+  /* width:60%;  */
 }
 
 .checkbox {
@@ -100,8 +119,9 @@ Date        |   Author                  |   Sprint   |    Description
 }
 
 .radio_group {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 
@@ -165,8 +185,8 @@ Date        |   Author                  |   Sprint   |    Description
 }
 
 .button_container {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .button_view {
@@ -188,4 +208,5 @@ Date        |   Author                  |   Sprint   |    Description
   color: rgb(225, 78, 78);
   margin: 0;
   margin-bottom: 10px;
+  text-align: center
 }

@@ -18,7 +18,6 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import backgroundImage from "../assets/loginScreen.png";
 import styles from "./Login.module.css";
 
 const Login = () => {

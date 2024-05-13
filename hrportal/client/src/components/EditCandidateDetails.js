@@ -152,7 +152,7 @@ const EditCandiadteDetails = () => {
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked, value } = e.target;
+    const { name, checked } = e.target;
     // let newValue = checked;
     setEditedData((prevData) => ({
       ...prevData,

@@ -16,7 +16,6 @@ Date        |   Author                  |   Sprint   |    Description
 
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import backgroundImage from "../assets/commonBGImage.png"; // Import the background image
 import styles from "./ResetPassword.module.css"; // Import the CSS file
 //import Login from './Login'; // Import the Login component
 

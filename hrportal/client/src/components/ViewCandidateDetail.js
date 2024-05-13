@@ -36,10 +36,13 @@ function ViewCandidateDetail() {
         `/api/candidate/view-candidate/${CandidateId}`
       );
       const candidateData = await response.json();
+      if (!response.ok) {
+        throw new Error(candidateData.message); // Re-throw with more context
+      }
       setCandidateDetails(candidateData);
       // setEditedData({...candidateData})
     } catch (error) {
-      console.error("Error fetching Candidate details:", error);
+      setErrorMessage("Error fetching Candidate details:", error.message);
     }
   };
 
@@ -168,6 +171,7 @@ function ViewCandidateDetail() {
             </div>
           </div>
           <div className={styles.sub_container}></div>
+          {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
           <div className={styles.button_container}>
             <button className={styles.cancel_button} onClick={toggleEditMode}>
               Edit

@@ -94,13 +94,13 @@ const NewCandidate = () => {
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
-    const { name, checked, value } = e.target;
+    const { name } = e.target;
     // let newValue = checked;
     setFormData((prevData) => ({ ...prevData, [name]: !prevData.certified }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked, value } = e.target;
+    const { name } = e.target;
     // let newValue = checked;
     setFormData((prevData) => ({
       ...prevData,

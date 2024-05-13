@@ -17,7 +17,6 @@ Date        |   Author                  |   Sprint   |    Description
 
 import React from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../assets/commonBGImage.png";
 import styles from "./HomePage.module.css";
 import LogoutButton from "./LogoutButton";
 
