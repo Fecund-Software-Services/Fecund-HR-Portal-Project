@@ -161,11 +161,15 @@ const viewCandidateByField = async (req,res) => {
 const searchTerm = req.query.searchTerm; // Get the search term from query parameter
 
   // Validate if at least one search field has data
-  if (!searchTerm || searchTerm.trim() === '') {
-    return res.status(400).json({message: "Error: Enter data for at least one of the given fields!"});
-  }
+  // if (!searchTerm || searchTerm.trim() === '') {
+  //   return res.status(400).json({message: "Error: Enter data for at least one of the given fields!"});
+  // }
 
   const searchTerms = searchTerm.split('/\s+|\+|,/');
+
+  if (searchTerm.length === 0) {
+    return res.status(400).json({message: "Error: Enter data for at least one of the given fields!"});
+  }
   const regexFirstName = new RegExp('^' + searchTerms[0] + '$', 'i');
   const regexLastName = new RegExp('^' + searchTerms[1] + '$', 'i');
   const regexemailAddress = new RegExp('^' + searchTerms[2] + '$', 'i');
@@ -200,11 +204,15 @@ const viewCandidateByYearMonth = async (req,res) => {
   const searchTerm = req.query.searchTerm; // Get the search term from query parameter
   
     // Validate if at least one search field has data
-    if (!searchTerm || searchTerm.trim() === '') {
-      return res.status(400).json({message: "Error: Enter data for both the given fields!"});
-    }
+    // if (!searchTerm || searchTerm.trim() === '') {
+    //   return res.status(400).json({message: "Error: Enter data for both the given fields!"});
+    // }
 
     const searchTerms = searchTerm.split(' ')
+
+    if (searchTerm.length === 0 || searchTerm.length === 1) {
+      return res.status(400).json({message: "Error: Enter data for both the given fields!"});
+    }
 
     const regexYear = searchTerms[0];
     const regexMonth = searchTerms[1];
