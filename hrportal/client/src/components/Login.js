@@ -18,7 +18,7 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../context/AuthContext";
-import backgroundImage from "../assets/loginScreen.png";
+//import backgroundImage from "../assets/loginScreen.png";
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -53,8 +53,8 @@ const Login = () => {
       className={styles.login_container}
     >
     <div className={styles.title_container}>
-          <p className={styles.form_title}>Hiring Portal</p>
-        </div>
+      <p className={styles.water_brush_regular}>Hiring&nbsp;Portal</p>
+    </div>
       <form onSubmit={handleLogin} className={styles.login_form}>
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>

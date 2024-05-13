@@ -9,14 +9,16 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-24/4/2024      Vishal                        3          Search Candidate
-2/5/2024       Vishal                        3          Search Candidate Validations - Code Integration
+24/4/2024   |   Vishal                  |   3        |    Search Candidate
+2/5/2024    |   Vishal                  |   3        |    Search Candidate Validations - Code Integration
+10/05/2024  |   Harshini C              |   4        |    Log Out button
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
+import LogoutButton from "./LogoutButton";
 
 function ViewSearchCandidatePage() {
   const [searchType, setSearchType] = useState("date");
@@ -125,8 +127,9 @@ function ViewSearchCandidatePage() {
 
   return (
     <div className={styles.search_container}>
+      <div><LogoutButton/></div>
       <div className={styles.title_container}>
-        <p className={styles.form_title}>View/Search Candidate</p>
+        <p className={styles.water_brush_regular}>View / Search Candidate</p>
       </div>
       <div className={styles.divide}>
         <div className={styles.form_container}>

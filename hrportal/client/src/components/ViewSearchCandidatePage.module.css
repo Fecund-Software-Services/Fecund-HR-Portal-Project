@@ -9,10 +9,10 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-24/4/2024      Vishal                        3          Search Candidate
+24/4/2024   |   Vishal                  |   3        |    Search Candidate
+09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 -------------------------------------------------------------------------------------------------------
 */
-
 
 .search_container {
     background-image: url('../assets/commonBGImage.png');
@@ -188,3 +188,18 @@ Date        |   Author                  |   Sprint   |    Description
   margin: 0;
   margin-bottom: 10px;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
+
+@font-face {
+  font-family: BrittanySignature;
+  src: url(../fonts/Brittany\Signature.ttf);
+}
+
+.water_brush_regular {
+  font-family: BrittanySignature;
+  font-size: 40px;
+  color:  #ffffff;
+  
+}
+

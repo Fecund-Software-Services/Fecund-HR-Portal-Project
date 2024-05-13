@@ -10,13 +10,15 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
- 8/05/2024    Vishal                          4         view candidate details
+ 8/05/2024  |   Vishal                  |    4       |  View candidate details
+ 10/05/2024 |   Harshini C              |    4       |  Log Out button
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
+import LogoutButton from "./LogoutButton";
 
 import styles from "./ViewCandidateDetail.module.css";
 
@@ -80,8 +82,9 @@ function ViewCandidateDetail() {
 
   return (
     <div className={styles.search_container}>
+      <div><LogoutButton/></div>
       <div className={styles.title_container}>
-        <p className={styles.form_title}>View Candidate Details</p>
+        <p className={styles.water_brush_regular}>View Candidate Details</p>
       </div>
       <div className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
