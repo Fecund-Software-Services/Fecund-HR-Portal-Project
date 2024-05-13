@@ -10,12 +10,13 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
- 
+10/05/2024  |   Harshini C              |   4        |  Log Out button
 -------------------------------------------------------------------------------------------------------
 */
 import React from "react";
 import styles from "./SignupSuccessfully.module.css";
 // import backgroundImage from "../assets/common-background-image.png"
+import LogoutButton from "./LogoutButton";
 
 const SignupSuccessfully = ({
   firstName,
@@ -28,6 +29,7 @@ const SignupSuccessfully = ({
 }) => {
   return (
     <div className={styles.readonly_fields} >
+      <div><LogoutButton/></div>
       <div className={styles.field_row}>
         <div className={styles.field_label}>First Name</div>
         <div className={styles.field_value}>{firstName}</div>

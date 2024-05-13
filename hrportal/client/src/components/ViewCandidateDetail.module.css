@@ -1,3 +1,19 @@
+/*
+Project: Hiring Portal Project
+Author: Vishal
+Date: 24/04/2024
+Sprint: Sprint 3
+User Story: View Candidate Details
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+24/4/2024   |   Vishal                  |   3        |   View Candidate Details
+09/05/2024  | Harshini C                |   4        |   BG update to all screens
+-------------------------------------------------------------------------------------------------------
+*/
+
 .search_container {
     background-image: url('../assets/commonBGImage.png');
   background-size: cover;
@@ -207,3 +223,18 @@
     color: #0069d9;
     text-underline-offset: 3px;
   }
+
+  @import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
+
+  @font-face {
+    font-family: BrittanySignature;
+    src: url(../fonts/Brittany\Signature.ttf);
+  }
+
+  .water_brush_regular {
+    font-family: BrittanySignature;
+    font-size: 40px;
+    color:  #ffffff;
+   
+  }
+

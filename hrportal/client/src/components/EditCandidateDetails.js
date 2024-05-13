@@ -12,6 +12,7 @@ Date        |   Author                  |   Sprint   |    Description
 5/9/2024    |   Vishal                  |   4        |   Edit Candidate Details - Resume Handling
 09/05/2024  |   Harshini C              |   4        |   BG update to all screens
 5/9/2024    |   Vishal                  |   4        |   Resume handling - View/Edit candidate - Resume Handling - Back End
+10/05/2024  |   Harshini C              |   4        |   Log Out button
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -20,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styles from './EditCandidateDetails.module.css';
 import popupBackground from "../assets/commonBGImage.png";
-
+import LogoutButton from "./LogoutButton";
 
 // import { useAddCandidate } from "../hooks/useAddCandidate.js";
 
@@ -224,8 +225,9 @@ const fetchCandidateDetails = async (CandidateId) => {
   return (
     <div className={styles.addcandidateform_container}>
       <div className={styles.title_container}>
-        <p className={styles.form_title}>Add New Candidate</p>
+        <p className={styles.water_brush_regular}>Edit&nbsp;&nbsp;New Candidate</p>
       </div>
+      <div><LogoutButton/></div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
           {/* Left side form fields here */}

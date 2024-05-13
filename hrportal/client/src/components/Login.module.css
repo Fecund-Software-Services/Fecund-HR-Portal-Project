@@ -21,7 +21,7 @@ Date        |   Author                  |   Sprint   |    Description
     display: flex;
     justify-content: center; 
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
     /* padding-left: 25%; */
     height: 100vh;
     width: 100%;
@@ -49,7 +49,7 @@ Date        |   Author                  |   Sprint   |    Description
     display: flex;
     justify-content: space-around;
     margin-left: 25%;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
   }
   
   .form_title {
@@ -57,6 +57,7 @@ Date        |   Author                  |   Sprint   |    Description
     color: #ffffff;
     font-size: 40px;
     margin-top: 1px;
+    font-family: brittany signature;
   }
 
   .sub_container {
@@ -102,7 +103,7 @@ Date        |   Author                  |   Sprint   |    Description
   
   .login_button {
     padding: 10px 30px;
-    background-color: #d4d4d4;
+    background-color: #ffffff;
     color: #000;
     width:50%;
     margin-left: 22%;
@@ -144,3 +145,17 @@ Date        |   Author                  |   Sprint   |    Description
     align-self: center;
     color: rgb(225, 78, 78)
   } 
+
+  @import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
+
+  @font-face {
+    font-family: BrittanySignature;
+    src: url(../fonts/Brittany\Signature.ttf);
+  }
+
+  .water_brush_regular {
+    font-family: BrittanySignature;
+    font-size: 40px;
+    color:  #ffffff;
+   
+  }

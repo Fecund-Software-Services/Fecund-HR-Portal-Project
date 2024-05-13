@@ -9,7 +9,8 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
+17/4/2024   |   Vishal Garg             |   2        |   Authentication & Authorization - Login
+10/05/2024  |   Harshini C              |   4        |   Log Out button
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -17,6 +18,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import styles from './LogoutButton.module.css'
+import { FaSignOutAlt } from "react-icons/fa";
 
 const LogoutButton = () => {
     const { logout } = useAuth();
@@ -27,7 +29,8 @@ const LogoutButton = () => {
         nav('/')
     };
 
-    return <button onClick={handleLogout} className={styles.logout_button}>Logout</button>;
+    return <div class={styles.logOut} title="Click here to Logout" onClick={handleLogout}><FaSignOutAlt /> </div>
+    
 };
 
 export default LogoutButton;

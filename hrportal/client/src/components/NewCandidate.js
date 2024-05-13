@@ -13,6 +13,7 @@ Date        |   Author                  |   Sprint   |    Description
 24/4/2024   |   Vishal                  |   3        |  Search Candidate
 29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
 09/05/2024  |   Harshini C              |   4        |  BG update to all screens
+10/05/2024  |   Harshini C              |   4        |  Log Out button
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -20,7 +21,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
 import popupBackground from "../assets/commonBGImage.png";
-
+import LogoutButton from "./LogoutButton";
 // import { useAddCandidate } from "../hooks/useAddCandidate.js";
 
 const NewCandidate = () => {
@@ -174,8 +175,9 @@ const NewCandidate = () => {
 
   return (
     <div className={styles.addcandidateform_container}>
+      <div><LogoutButton/></div>
       <div className={styles.title_container}>
-        <p className={styles.form_title}>Add New Candidate</p>
+        <p className={styles.water_brush_regular}>Add New Candidate</p>
       </div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
