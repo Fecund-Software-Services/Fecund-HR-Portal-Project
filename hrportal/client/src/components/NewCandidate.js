@@ -13,24 +13,16 @@ Date        |   Author                  |   Sprint   |    Description
 24/4/2024   |   Vishal                  |   3        |  Search Candidate
 29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
 09/05/2024  |   Harshini C              |   4        |  BG update to all screens
-<<<<<<< feature_UI_final_error_and_issue
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
-=======
 10/05/2024  |   Harshini C              |   4        |  Log Out button
->>>>>>> Dev
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
-<<<<<<< feature_UI_final_error_and_issue
 import popupBackground from "../assets/PopupBackgroundImage.png";
-=======
-import popupBackground from "../assets/commonBGImage.png";
 import LogoutButton from "./LogoutButton";
-// import { useAddCandidate } from "../hooks/useAddCandidate.js";
->>>>>>> Dev
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({

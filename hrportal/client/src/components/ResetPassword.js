@@ -10,11 +10,8 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
-<<<<<<< feature_UI_final_error_and_issue
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
-=======
 10/05/2024  |   Harshini C              |   4        |    Log Out button
->>>>>>> Dev
 -------------------------------------------------------------------------------------------------------
 */
 

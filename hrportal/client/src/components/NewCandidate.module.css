@@ -24,15 +24,11 @@ Date        |   Author                  |   Sprint   |    Description
   flex-direction: column;
   align-items: center;
   background-image: url("../assets/commonBGImage.png");
-<<<<<<< feature_UI_final_error_and_issue
   background-size: 100% 100%;
   /* background-position: center; */
   /* background-position: center;
   background-repeat: no-repeat; */
   /* background-color: #122030; */
-=======
-  background-size: cover;
->>>>>>> Dev
 }
 
 .addcandidateform_form {
