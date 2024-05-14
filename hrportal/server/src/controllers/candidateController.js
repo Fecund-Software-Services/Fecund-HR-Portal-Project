@@ -164,9 +164,9 @@ const searchTerm = req.query.searchTerm; // Get the search term from query param
   // if (!searchTerm || searchTerm.trim() === '') {
   //   return res.status(400).json({message: "Error: Enter data for at least one of the given fields!"});
   // }
-
-  const searchTerms = searchTerm.split('/\s+|\+|,/');
-
+console.log(searchTerm)
+  const searchTerms = searchTerm.split(' ');
+console.log(searchTerms)
   if (searchTerm.length === 0) {
     return res.status(400).json({message: "Error: Enter data for at least one of the given fields!"});
   }
@@ -210,7 +210,7 @@ const viewCandidateByYearMonth = async (req,res) => {
 
     const searchTerms = searchTerm.split(' ')
 
-    if (searchTerm.length === 0 || searchTerm.length === 1) {
+    if (searchTerms.length === 0 || searchTerms.length === 1) {
       return res.status(400).json({message: "Error: Enter data for both the given fields!"});
     }
 
