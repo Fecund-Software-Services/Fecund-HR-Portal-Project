@@ -31,6 +31,7 @@ Date        |   Author                  |   Sprint   |    Description
   justify-content: space-around;
 }
 
+<<<<<<< feature_UI_final_error_and_issue
 .title {
   align-self: flex-start;
   margin-top: 30px;
@@ -56,3 +57,31 @@ Date        |   Author                  |   Sprint   |    Description
   color: rgb(126, 126, 126);
   transition: background-color 0.25s;
 }
+=======
+  .title {
+    align-self: flex-start;
+    margin-top: 30px;
+    margin-bottom: 200px;
+    color: aqua;
+  }
+  
+  .link_container {
+    text-align: center;
+  }
+  
+  .link {
+    padding: 10px 10px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    cursor: pointer;
+    color: rgb(126, 126, 126);
+    transition: background-color 0.25s;
+  }
+
+>>>>>>> Dev

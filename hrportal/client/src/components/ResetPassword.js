@@ -10,15 +10,18 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
+<<<<<<< feature_UI_final_error_and_issue
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
+=======
+10/05/2024  |   Harshini C              |   4        |    Log Out button
+>>>>>>> Dev
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./ResetPassword.module.css"; // Import the CSS file
-//import Login from './Login'; // Import the Login component
-
+import LogoutButton from "./LogoutButton";
 import { useForgotPassword } from "../hooks/useForgotPassword";
 
 const securityQuestions = [
@@ -81,8 +84,9 @@ function ResetPassword() {
     <div className={styles.reset_container}>
       {!isSecurityQuestionCorrect && (
         <div className={styles.container}>
+          <div><LogoutButton/></div>
           <div>
-            <h1 className={styles.reset_password_title}>Reset Password</h1>
+            <p className={styles.water_brush_regular}>Reset&nbsp;&nbsp;Password</p>
           </div>
           <form onSubmit={handleSubmit} className={styles.reset_password_form}>
             <div className={styles.form_field}>
