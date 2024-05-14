@@ -13,8 +13,9 @@ Date        |   Author                  |   Sprint   |    Description
 24/4/2024   |   Vishal                  |   3        |  Search Candidate
 29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
 09/05/2024  |   Harshini C              |   4        |  BG update to all screens
-10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
+10/05/2024  |   Vishal                  |   4        |  CSS and alignment based on BG image
 10/05/2024  |   Harshini C              |   4        |  Log Out button
+14/05/2024  |   Harshini C              |   4        |  CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -213,7 +214,7 @@ const NewCandidate = () => {
     <div className={styles.addcandidateform_container}>
       <div><LogoutButton/></div>
       <div className={styles.title_container}>
-        <p className={styles.water_brush_regular}>Add New Candidate</p>
+        <p className={styles.rastanty_Cortez}>Add New Candidate</p>
       </div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>
         <div className={styles.form_left}>

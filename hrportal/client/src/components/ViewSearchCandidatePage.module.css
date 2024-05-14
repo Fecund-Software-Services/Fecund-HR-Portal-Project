@@ -10,9 +10,10 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 24/4/2024   |   Vishal                  |   3        |     Search Candidate
-10/05/2024  |   Vishal                  |   4        |  CSS and alignment based on BG image
-24/4/2024   |   Vishal                  |   3        |    Search Candidate
-09/05/2024  |   Harshini C              |   4        |    BG update to all screens
+10/05/2024  |   Vishal                  |   4        |     CSS and alignment based on BG image
+24/4/2024   |   Vishal                  |   3        |     Search Candidate
+09/05/2024  |   Harshini C              |   4        |     BG update to all screens
+14/05/2024  |   Harshini C              |   4        |     CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -214,17 +215,14 @@ Date        |   Author                  |   Sprint   |    Description
   text-align: center
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
-
 @font-face {
-  font-family: BrittanySignature;
-  src: url(../fonts/Brittany\Signature.ttf);
-}
+  font-family: Rastanty Cortez;
+  src: url(../fonts/Rastanty\ Cortez.ttf);
+} 
 
-.water_brush_regular {
-  font-family: BrittanySignature;
-  font-size: 40px;
+.rastanty_Cortez {
+  font-family: Rastanty Cortez;
+  font-size: 70px;
   color:  #ffffff;
-  
 }
 

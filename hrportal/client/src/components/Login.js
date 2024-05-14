@@ -11,7 +11,8 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 17/4/2024   |   Vishal Garg             |   2        |    Authentication & Authorization - Login
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
-10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
+10/05/2024  |   Vishal                  |   4        |    CSS and alignment based on BG image
+14/05/2024  |   Harshini C              |   4        |    CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -51,7 +52,7 @@ const Login = () => {
     <div className={styles.login_container}>
 
     <div className={styles.title_container}>
-      <p className={styles.water_brush_regular}>Hiring&nbsp;Portal</p>
+      <p className={styles.rastanty_Cortez}>Hiring&nbsp;Portal</p>
     </div>
 
       <form onSubmit={handleLogin} className={styles.login_form}>

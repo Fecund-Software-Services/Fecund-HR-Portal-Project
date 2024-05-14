@@ -12,7 +12,8 @@ Date        | Author                | Sprint   | Description
 22/04/2024  | Harshini C            | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
 28/04/2024  | Vishal                | 3        | Add New Candidate Validations - Code Integration
 09/05/2024  | Harshini C            | 4        | BG update to all screens
-10/05/2024  |   Vishal              |   4      | CSS and alignment based on BG image
+10/05/2024  | Vishal                | 4        | CSS and alignment based on BG image
+14/05/2024  | Harshini C            | 4        | CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -215,16 +216,15 @@ Date        | Author                | Sprint   | Description
   font-size: 10px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
-
 @font-face {
-  font-family: BrittanySignature;
-  src: url(../fonts/Brittany\Signature.ttf);
-}
+  font-family: Rastanty Cortez;
+  src: url(../fonts/Rastanty\ Cortez.ttf);
+} 
 
-.water_brush_regular {
-  font-family: BrittanySignature;
-  font-size: 40px;
+.rastanty_Cortez {
+  font-family: Rastanty Cortez;
+  font-size: 70px;
   color:  #ffffff;
 }
+
 

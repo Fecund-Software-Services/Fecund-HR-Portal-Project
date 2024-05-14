@@ -13,6 +13,7 @@ Date        |   Author                  |   Sprint   |    Description
 12/02/2024  |   Vishal                  |   2        |    Enter New Password
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 10/05/2024  |   Harshini C              |   4        |    Log Out button
+14/05/2024  |   Harshini C              |   4        |    CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -54,7 +55,7 @@ function NewPassword() {
     >
       <div><LogoutButton/></div>
       <div>
-      <p className={styles.water_brush_regular}>Enter New Password</p>
+      <p className={styles.rastanty_Cortez}>Enter New Password</p>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         
