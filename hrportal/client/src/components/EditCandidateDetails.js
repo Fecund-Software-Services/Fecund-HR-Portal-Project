@@ -148,19 +148,17 @@ const EditCandiadteDetails = () => {
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
+    const { name } = e.target;
     // let newValue = checked;
-    setEditedData((prevData) => ({ ...prevData, [name]: checked }));
+    setEditedData((prevData) => ({ ...prevData, [name]: !prevData.certified }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
     const { name, checked } = e.target;
-    // let newValue = checked;
     setEditedData((prevData) => ({
       ...prevData,
-      [name]: checked,
+      [name]: !prevData.servingNoticePeriod,
     }));
-    // setShowLastWorkingDay(value);
   };
 
   const handleResumeChange = (e) => {

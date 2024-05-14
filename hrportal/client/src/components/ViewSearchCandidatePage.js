@@ -15,7 +15,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
 import LogoutButton from "./LogoutButton";
@@ -31,7 +31,7 @@ function ViewSearchCandidatePage() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(10);
+  const [resultsPerPage, setResultsPerPage] = useState(1);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -39,15 +39,30 @@ function ViewSearchCandidatePage() {
   const nav = useNavigate();
 
   const handleSearchTypeChange = (event) => {
+    setSearchResults([])
+    setSearchData({
+      year: "",
+      month: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+    })
     setSearchType(event.target.value);
   };
+
+  // Function to determine if the table should be shown based on search type
+  const shouldShowTable = searchResults.length > 0;
 
   const handleInputChange = (event) => {
     setSearchData({ ...searchData, [event.target.name]: event.target.value });
     console.log(searchData);
   };
 
+  
   const handleSearch = () => {
+    setSearchResults([]);
+    setError(null);
+
     const fetchData = async (searchTerm) => {
       if (searchType === "user") {
         const { firstName, lastName, email } = searchTerm;
@@ -79,7 +94,6 @@ function ViewSearchCandidatePage() {
         }
       } else {
         const { month, year } = searchTerm;
-console.log(searchTerm)
         // Constructing the query parameters based on user input
         const queryParams = new URLSearchParams({
           searchTerm: `${year} ${month}`.trim(), // Concatenating month and year with '&'
@@ -252,7 +266,7 @@ console.log(searchTerm)
             </button>
           </div>
         </div>
-        {searchResults.length ? (
+        {shouldShowTable && (
           <div className={styles.table_container}>
             <table className={styles.table}>
               <thead>
@@ -286,24 +300,24 @@ console.log(searchTerm)
               </tbody>
             </table>
             <div className={styles.pagination}>
-              <button
+              {currentPage >= 2 ? <button
                 onClick={() => paginate(currentPage - 1)}
                 disabled={currentPage === 1}
                 className={styles.table_button}
               >
                 Previous
-              </button>
+              </button> : null}
               <span>{currentPage}</span>
-              <button
+              {searchResults.length > resultsPerPage ? <button
                 onClick={() => paginate(currentPage + 1)}
                 disabled={indexOfLastResult >= searchResults.length}
                 className={styles.table_button}
               >
                 Next
-              </button>
+              </button> : null}
             </div>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
