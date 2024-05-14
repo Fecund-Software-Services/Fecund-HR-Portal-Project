@@ -14,6 +14,7 @@ Date        | Author                  | Sprint   | Description
 09/05/2024  | Harshini C              | 4        | BG update to all screens
 10/05/2024  | Vishal                  | 4        | CSS and alignment based on BG image
 10/05/2024  | Harshini C              | 4        | Log Out button
+14/05/2024  | Harshini C              | 4        | CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -66,7 +67,7 @@ const SignUpForm = () => {
   return (
     <div className={styles.signup_container}>
       <div className={styles.title_container}>
-        <p className={styles.form_title}>Sign up Form</p>
+        <p className={styles.rastanty_Cortez}>Sign up Form</p>
       </div>
       <div><LogoutButton/></div>
 

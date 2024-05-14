@@ -12,6 +12,7 @@ Date        |   Author                  |   Sprint   |    Description
 24/4/2024   |   Vishal                  |   3        |    Search Candidate
 2/5/2024    |   Vishal                  |   3        |    Search Candidate Validations - Code Integration
 10/05/2024  |   Harshini C              |   4        |    Log Out button
+14/05/2024  |   Harshini C              |   4        |    CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -148,7 +149,7 @@ function ViewSearchCandidatePage() {
     <div className={styles.search_container}>
       <div><LogoutButton/></div>
       <div className={styles.title_container}>
-        <p className={styles.water_brush_regular}>View / Search Candidate</p>
+        <p className={styles.rastanty_Cortez}>View / Search Candidate</p>
       </div>
       <div className={styles.divide}>
         <div className={styles.form_container}>

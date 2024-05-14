@@ -10,8 +10,9 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
-10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
+10/05/2024  |   Vishal                  |   4        |    CSS and alignment based on BG image
 10/05/2024  |   Harshini C              |   4        |    Log Out button
+14/05/2024  |   Harshini C              |   4        |    CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -83,7 +84,7 @@ function ResetPassword() {
         <div className={styles.container}>
           <div><LogoutButton/></div>
           <div>
-            <p className={styles.water_brush_regular}>Reset&nbsp;&nbsp;Password</p>
+            <p className={styles.rastanty_Cortez}>Reset&nbsp;&nbsp;Password</p>
           </div>
           <form onSubmit={handleSubmit} className={styles.reset_password_form}>
             <div className={styles.form_field}>

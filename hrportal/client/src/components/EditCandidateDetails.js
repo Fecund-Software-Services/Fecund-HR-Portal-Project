@@ -14,6 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 5/9/2024    |   Vishal                  |   4        |   Resume handling - View/Edit candidate - Resume Handling - Back End
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 10/05/2024  |   Harshini C              |   4        |   Log Out button
+10/05/2024  |   Harshini C              |   4        |   CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -273,7 +274,7 @@ const EditCandiadteDetails = () => {
   return (
     <div className={styles.addcandidateform_container}>
       <div className={styles.title_container}>
-         <p className={styles.water_brush_regular}>Edit&nbsp;&nbsp;New Candidate</p>
+         <p className={styles.rastanty_Cortez}>Edit New Candidate</p>
       </div>
       <div><LogoutButton/></div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>

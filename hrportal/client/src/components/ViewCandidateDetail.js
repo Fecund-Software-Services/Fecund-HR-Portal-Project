@@ -12,6 +12,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
  8/05/2024  |   Vishal                  |    4       |  View candidate details
  10/05/2024 |   Harshini C              |    4       |  Log Out button
+ 14/05/2024 |   Harshini C              |    4       |  CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -87,7 +88,7 @@ function ViewCandidateDetail() {
     <div className={styles.search_container}>
       <div><LogoutButton/></div>
       <div className={styles.title_container}>
-        <p className={styles.water_brush_regular}>View Candidate Details</p>
+        <p className={styles.rastanty_Cortez}>View Candidate Details</p>
       </div>
       <div className={styles.addcandidateform_form}>
         <div className={styles.form_left}>

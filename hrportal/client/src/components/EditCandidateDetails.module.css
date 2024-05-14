@@ -38,7 +38,7 @@ Date        |   Author                  |   Sprint   |    Description
   border-radius: 5px;
   border-radius: 30px;
   border: solid;
-  border-color: #ada14c;
+  border-color: #ffffff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   width: 75%; /* Adjust width as needed */
   margin: 0 auto; /* Center the form horizontally */
@@ -222,16 +222,14 @@ textarea {
   text-underline-offset: 3px;
 }
   
-@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
-
 @font-face {
-  font-family: BrittanySignature;
-  src: url(../fonts/Brittany\Signature.ttf);
-}
+  font-family: Rastanty Cortez;
+  src: url(../fonts/Rastanty\ Cortez.ttf);
+} 
 
-.water_brush_regular {
-  font-family: BrittanySignature;
-  font-size: 40px;
+.rastanty_Cortez {
+  font-family: Rastanty Cortez;
+  font-size: 70px;
   color:  #ffffff;
-
 }
+
