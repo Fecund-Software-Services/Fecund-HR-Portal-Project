@@ -163,9 +163,11 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
-  /* background: rgba(0, 0, 0, 0.5); */
+  background: rgba(0, 0, 0, .9); /* Optional: Semi-transparent background */
   z-index: 1;
+
+  /* Blur effect properties */
+  /* filter: blur(5px); */
 }
 
 .popup_content {

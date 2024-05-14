@@ -108,6 +108,12 @@ function ViewCandidateDetail() {
             <p className={styles.text}>{candidateDetails.mobileNumber}</p>
           </div>
           <div className={styles.sub_container}>
+            <label>Total IT Experience:</label>
+            <p className={styles.text}>
+              {candidateDetails.totalRelevantExperience}
+            </p>
+          </div>
+          <div className={styles.sub_container}>
             <label>Total Relevant Experience:</label>
             <p className={styles.text}>
               {candidateDetails.totalRelevantExperience}
