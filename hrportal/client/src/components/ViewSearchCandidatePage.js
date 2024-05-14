@@ -31,7 +31,7 @@ function ViewSearchCandidatePage() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(5);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -39,6 +39,7 @@ function ViewSearchCandidatePage() {
   const nav = useNavigate();
 
   const handleSearchTypeChange = (event) => {
+    setError(null)
     setSearchResults([])
     setSearchData({
       year: "",
@@ -307,7 +308,7 @@ function ViewSearchCandidatePage() {
               >
                 Previous
               </button> : null}
-              <span>{currentPage}</span>
+              {/* <span>{currentPage}</span> */}
               {searchResults.length > resultsPerPage ? <button
                 onClick={() => paginate(currentPage + 1)}
                 disabled={indexOfLastResult >= searchResults.length}
