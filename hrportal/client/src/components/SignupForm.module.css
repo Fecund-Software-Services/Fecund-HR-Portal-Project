@@ -148,8 +148,7 @@ Date        | Author                | Sprint   | Description
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
-  /* background: rgba(0, 0, 0, 0.5); */
+  background: rgba(0, 0, 0, .9); /* Optional: Semi-transparent background */
   z-index: 1;
 }
 
@@ -223,8 +222,13 @@ Date        | Author                | Sprint   | Description
 
 .rastanty_Cortez {
   font-family: Rastanty Cortez;
-  font-size: 70px;
+  font-size: 50px;
   color:  #ffffff;
+}
+
+.title_container p {
+  margin: 5px;
+  margin-top: 0px;
 }
 
 

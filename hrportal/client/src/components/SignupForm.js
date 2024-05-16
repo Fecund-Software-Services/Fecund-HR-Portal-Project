@@ -20,7 +20,7 @@ Date        | Author                  | Sprint   | Description
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import popupBackground from "../assets/commonBGImage.png";
+import popupBackground from "../assets/PopupBackgroundImage.png";
 import styles from "./SignupForm.module.css";
 import LogoutButton from "./LogoutButton";
 // importing "useSignup" from hooks
