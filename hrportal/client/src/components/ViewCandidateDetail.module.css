@@ -49,6 +49,7 @@ Date        |   Author                  |   Sprint   |    Description
 .title_container {
   display: flex;
   justify-content: space-around;
+  margin-bottom: -20px;
 }
 
 .form_title {
@@ -234,7 +235,7 @@ textarea {
 
 .rastanty_Cortez {
   font-family: Rastanty Cortez;
-  font-size: 70px;
+  font-size: 50px;
   color:  #ffffff;
 }
 
