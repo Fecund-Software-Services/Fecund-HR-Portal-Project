@@ -232,3 +232,7 @@ textarea {
   font-size: 50px;
   color:  #ffffff;
 }
+
+.dropdown {
+  width : 10px
+}

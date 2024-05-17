@@ -64,6 +64,14 @@ const SignUpForm = () => {
     navigateToPopup("/");
   };
 
+  const handleClick = (e) => {
+    // Prevent default navigation to home page
+    e.preventDefault();
+
+    // Redirect to login page (replace with your login page URL)
+    navigateToLogin('/');
+  };
+
   return (
     <div className={styles.signup_container}>
       <div className={styles.title_container}>
@@ -74,7 +82,7 @@ const SignUpForm = () => {
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
-            Employee First Name <span className={styles.asterisk}>*</span>
+            Employee First Name <span className={styles.asterisk}>*</span>:
           </label>
           <input
             type="text"
@@ -90,7 +98,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeLastName" className={styles.label_type}>
-            Employee Last Name <span className={styles.asterisk}>*</span>
+            Employee Last Name <span className={styles.asterisk}>*</span>:
           </label>
           <input
             type="text"
@@ -105,7 +113,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeID" className={styles.label_type}>
-            Employee ID <span className={styles.asterisk}>*</span>
+            Employee ID <span className={styles.asterisk}>*</span>:
           </label>
           <input
             type="number"
@@ -120,7 +128,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>
-            Email ID <span className={styles.asterisk}>*</span>
+            Email ID <span className={styles.asterisk}>*</span>:
           </label>
           <input
             type="email"
@@ -135,7 +143,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="password" className={styles.label_type}>
-            Password <span className={styles.asterisk}>*</span>
+            Password <span className={styles.asterisk}>*</span>:
           </label>
           <input
             type="password"
@@ -159,7 +167,7 @@ const SignUpForm = () => {
           </div>
           <div className={styles.sub_container}>
             <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>
+              Answer <span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="password"
@@ -184,7 +192,7 @@ const SignUpForm = () => {
           </div>
           <div className={styles.sub_container}>
             <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>
+              Answer <span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="password"
@@ -209,7 +217,7 @@ const SignUpForm = () => {
           </div>
           <div className={styles.sub_container}>
             <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>
+              Answer <span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="password"
@@ -262,8 +270,7 @@ const SignUpForm = () => {
             <p className={styles.popup_message}>
               Form submitted successfully!
               <br />
-              <a href="/" className={styles.login_here}>
-                {" "}
+              <a href="#" className={styles.login_here} onClick={handleClick}>
                 Login Here
               </a>
             </p>

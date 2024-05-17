@@ -16,7 +16,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 */
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
 import LogoutButton from "./LogoutButton";
@@ -186,7 +186,7 @@ function ViewSearchCandidatePage() {
           {searchType === "date" && (
             <div className={styles.input_group}>
               <div className={styles.flex_conatiner}>
-                <label className={styles.label}>Year:</label>
+                <label className={styles.label}>Year<span className={styles.asterisk}>*</span>:</label>
                 <input
                   type="text"
                   name="year"
@@ -197,7 +197,7 @@ function ViewSearchCandidatePage() {
                 />
               </div>
               <div className={styles.flex_conatiner}>
-                <label className={styles.label}>Month:</label>
+                <label className={styles.label}>Month<span className={styles.asterisk}>*</span>:</label>
                 <select
                   id="month"
                   name="month"

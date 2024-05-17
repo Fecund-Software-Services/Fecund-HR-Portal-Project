@@ -53,6 +53,7 @@ const NewCandidate = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   const nav = useNavigate();
+  const navigateToHome = useNavigate();
 
   const skillSetOptions = [
     "Guidewire BA (PC)",
@@ -92,6 +93,12 @@ const NewCandidate = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleMobileNumberChange = (e) => {
+    const { name } = e.target;
+    const newMobileNumber = e.target.value.replace(/[^0-9]/g, '');
+    setFormData((prevData) => ({ ...prevData, [name]: newMobileNumber }));
   };
 
   const handleCancel = (e) => nav("/home");
@@ -138,7 +145,7 @@ const NewCandidate = () => {
   const handleKeyPress = (e) => {
     const key = e.key;
     const regex = /^[A-Za-z]+$/; // Allows only alphabets
-  
+
     if (!regex.test(key)) {
       e.preventDefault(); // Prevent invalid character from being entered
     }
@@ -210,9 +217,20 @@ const NewCandidate = () => {
     navigateToPopup("/home");
   };
 
+  const handleClick = (e) => {
+    // Prevent default navigation to home page
+    e.preventDefault();
+
+    // Redirect to login page (replace with your login page URL)
+    navigateToHome('/home');
+  };
+
+
   return (
     <div className={styles.addcandidateform_container}>
-      <div><LogoutButton/></div>
+      <div>
+        <LogoutButton />
+      </div>
       <div className={styles.title_container}>
         <p className={styles.rastanty_Cortez}>Add New Candidate</p>
       </div>
@@ -270,15 +288,15 @@ const NewCandidate = () => {
               maxLength="10"
               id="mobileNumber"
               value={formData.mobileNumber}
-              onChange={handleInputChange}
+              onChange={handleMobileNumberChange}
               required
             />
           </div>
 
           <div className={styles.sub_container}>
             <label htmlFor="totalRelevantExperience">
-              Total Relevant Experience
-              <span className={styles.asterisk}>*</span> (Yrs):
+              Total Relevant Experience (Yrs)
+              <span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="number"
@@ -292,8 +310,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="itExperience">
-              Total IT Experience<span className={styles.asterisk}>*</span>{" "}
-              (Yrs):
+              Total IT Experience (Yrs)<span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="number"
@@ -314,6 +331,7 @@ const NewCandidate = () => {
               id="skillSet"
               value={formData.skillSet}
               onChange={handleInputChange}
+              className={styles.dropdown}
               required
             >
               <option value="">Select Skills </option>
@@ -366,7 +384,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
-              Notice Period<span className={styles.asterisk}>*</span> (Days):
+              Notice Period (Days)<span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="number"
@@ -408,7 +426,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="certified">
-              Certified?<span className={styles.asterisk}>*</span>
+              Certified?<span className={styles.asterisk}>*</span>:
             </label>
             <div className={styles.checkbox_container}>
               <label>
@@ -508,10 +526,10 @@ const NewCandidate = () => {
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
             <p className={styles.popup_message}>
-              Form submitted successfully!
+              Candidate details submitted successfully!
               <br />
-              <a href="/home" className={styles.login_here}>
-                {" "}
+              {/* <a href="/home" className={styles.login_here}> */}
+              <a href="#" className={styles.login_here} onClick={handleClick}>
                 Go to Home Page Here
               </a>
             </p>

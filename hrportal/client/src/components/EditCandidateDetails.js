@@ -56,6 +56,7 @@ const EditCandiadteDetails = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   const nav = useNavigate();
+  const navigateToHome = useNavigate()
 
   const skillSetOptions = [
     "Guidewire BA (PC)",
@@ -146,6 +147,12 @@ const EditCandiadteDetails = () => {
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleMobileNumberChange = (e) => {
+    const { name } = e.target;
+    const newMobileNumber = e.target.value.replace(/[^0-9]/g, '');
+    setEditedData((prevData) => ({ ...prevData, [name]: newMobileNumber }));
+  };
+
   const handleCancel = (e) => nav("/home");
 
   const handleCheckboxChange = (e) => {
@@ -155,7 +162,7 @@ const EditCandiadteDetails = () => {
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name, checked } = e.target;
+    const { name} = e.target;
     setEditedData((prevData) => ({
       ...prevData,
       [name]: !prevData.servingNoticePeriod,
@@ -271,6 +278,14 @@ const EditCandiadteDetails = () => {
     navigateToPopup("/home");
   };
 
+  const handleClick = (e) => {
+    // Prevent default navigation to home page
+    e.preventDefault();
+
+    // Redirect to login page (replace with your login page URL)
+    navigateToHome('/home');
+  };
+
   return (
     <div className={styles.addcandidateform_container}>
       <div className={styles.title_container}>
@@ -331,7 +346,7 @@ const EditCandiadteDetails = () => {
               maxLength="10"
               id="mobileNumber"
               value={editedData.mobileNumber}
-              onChange={handleInputChange}
+              onChange={handleMobileNumberChange}
               required
             />
           </div>
@@ -539,7 +554,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="resume">
-              Resume<span className={styles.asterisk}>*</span>:
+              Resume:
             </label>
             <input
               type="file"
@@ -588,8 +603,7 @@ const EditCandiadteDetails = () => {
             <p className={styles.popup_message}>
               Candidate Details updated successfully!
               <br />
-              <a href="/home" className={styles.login_here}>
-                {" "}
+              <a href="#" className={styles.login_here} onClick={handleClick}>
                 Go to Home Page Here
               </a>
             </p>
