@@ -89,7 +89,7 @@ const candidateSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum : ['Submitted','Cleared 1st Round','Cleared 2nd Round','Offer Issued','On-Hold','Rejected','Candidate Not Interested'],
+        enum : ['Cleared 1st Round','Cleared 2nd Round','Offer Issued','On-Hold','Rejected','Candidate Not Interested'],
         default: "Submitted",
         required: true
     },
