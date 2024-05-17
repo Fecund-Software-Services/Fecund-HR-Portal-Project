@@ -129,15 +129,15 @@ function ViewCandidateDetail() {
             <p className={styles.text}>{candidateDetails.currentCompany}</p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="currentCTC">Current CTC (LPA)</label>
+            <label htmlFor="currentCTC">Current CTC (LPA):</label>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="expectedCTC">Expected CTC</label>
+            <label htmlFor="expectedCTC">Expected CTC:</label>
             <p className={styles.text}>{candidateDetails.expectedCTC}</p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Notice Period</label>
+            <label htmlFor="noticePeriod">Notice Period:</label>
             <p className={styles.text}>{candidateDetails.noticePeriod}</p>
           </div>
           <div className={styles.sub_container}>
@@ -145,25 +145,25 @@ function ViewCandidateDetail() {
             <p className={styles.text}>{candidateDetails.status}</p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="certified">Certified?</label>
+            <label htmlFor="certified">Certified?:</label>
             <p className={styles.text}>
               {candidateDetails.servingNoticePeriod ? "Yes" : "No"}
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="servingNoticedPeriod">Serving Notice Period</label>
+            <label htmlFor="servingNoticedPeriod">Serving Notice Period:</label>
             <p className={styles.text}>
               {candidateDetails.certified ? "Yes" : "No"}
             </p>
           </div>
+          {candidateDetails.servingNoticePeriod === true && ( // Check if 'Yes' is selected
           <div className={styles.sub_container}>
             <label htmlFor="lastWorkingDay">Last Working Day</label>
             <p className={styles.text}>
-              {candidateDetails.lastWorkingDay
-                ? candidateDetails.lastWorkingDay
-                : " "}
+               {candidateDetails.lastWorkingDay}
             </p>
-          </div>
+          </div> 
+          )}
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">Comments:</label>
             <p className={styles.text}>
@@ -173,7 +173,7 @@ function ViewCandidateDetail() {
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="resume">Resume</label>
+            <label htmlFor="resume">Resume:</label>
             <div onClick={fetchCandidateResume}>{candidateDetails.resume}&nbsp;&nbsp;<FaDownload /></div>
           </div>
           <div className={styles.sub_container}></div>

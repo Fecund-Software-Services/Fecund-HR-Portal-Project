@@ -50,10 +50,9 @@ const Login = () => {
 
   return (
     <div className={styles.login_container}>
-
-    <div className={styles.title_container}>
-      <p className={styles.rastanty_Cortez}>Hiring&nbsp;Portal</p>
-    </div>
+      <div className={styles.title_container}>
+        <p className={styles.rastanty_Cortez}>Hiring&nbsp;Portal</p>
+      </div>
 
       <form onSubmit={handleLogin} className={styles.login_form}>
         <div className={styles.sub_container}>
