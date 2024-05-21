@@ -45,9 +45,9 @@ function ViewSearchCandidatePage() {
     setSearchData({
       year: "",
       month: "",
-      firstName: "   ",
-      lastName: "    ",
-      email: "    ",
+      firstName: "",
+      lastName: "",
+      email: "",
     })
     setSearchType(event.target.value);
   };
