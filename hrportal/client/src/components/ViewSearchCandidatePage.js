@@ -45,9 +45,9 @@ function ViewSearchCandidatePage() {
     setSearchData({
       year: "",
       month: "",
-      firstName: "",
-      lastName: "",
-      email: "",
+      firstName: "   ",
+      lastName: "    ",
+      email: "    ",
     })
     setSearchType(event.target.value);
   };
@@ -70,10 +70,23 @@ function ViewSearchCandidatePage() {
         const { firstName, lastName, email } = searchTerm;
 
         // Constructing the query parameters based on user input
-        const queryParams = new URLSearchParams({
-          searchTerm: `${firstName} ${lastName} ${email}`.trim(), // Concatenating firstName, lastName, and email
-        });
+        // const queryParams = new URLSearchParams({
+        //   searchTerm: `${firstName} ${lastName} ${email}`.trim(), // Concatenating firstName, lastName, and email
+        // });
+        
+        const queryParams = new URLSearchParams()
 
+        if (firstName) {
+          queryParams.append('firstName', firstName.trim());
+        }
+        if (lastName) {
+          queryParams.append('lastName', lastName.trim());
+        }
+        if (email) {
+          queryParams.append('email', email.trim());
+        }
+
+        console.log(queryParams)
         setIsLoading(true);
         setError(null);
 
