@@ -10,18 +10,20 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-12/02/2024     Vishal                        2          Enter New Password
+12/02/2024  |   Vishal                  |   2        |    Enter New Password
+09/05/2024  |   Harshini C              |   4        |    BG update to all screens
+10/05/2024  |   Harshini C              |   4        |    Log Out button
+14/05/2024  |   Harshini C              |   4        |    CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-// import backgroundImage from "../assets/common-background-image.png";
-import backgroundImage from "../assets/common-background-image.png"; // Import the background image
-import popupBackground from "../assets/popup-background.png";
+import backgroundImage from "../assets/commonBGImage.png";
+import popupBackground from "../assets/PopupBackgroundImage.png";
 import styles from "./NewPassword.module.css"; // Import the CSS file
-
 import { useResetPassword } from "../hooks/useResetPassword";
+import LogoutButton from "./LogoutButton";
 
 function NewPassword() {
   // Set employee ID from previous screen
@@ -51,8 +53,9 @@ function NewPassword() {
         height: "100vh",
       }}
     >
+      <div><LogoutButton/></div>
       <div>
-      <h1 className={styles.title}>Enter New Password</h1>
+      <p className={styles.rastanty_Cortez}>Enter New Password</p>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         

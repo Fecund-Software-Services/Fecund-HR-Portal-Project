@@ -11,46 +11,39 @@ Date        | Author                | Sprint   | Description
 -------------------------------------------------------------------------------------------------------
 22/04/2024  | Harshini C            | 3        | Display Asterisk for mandatory Sign-up fields and mandatory note 
 28/04/2024  | Vishal                | 3        | Add New Candidate Validations - Code Integration
+09/05/2024  | Harshini C            | 4        | BG update to all screens
+10/05/2024  | Vishal                | 4        | CSS and alignment based on BG image
+14/05/2024  | Harshini C            | 4        | CSS and alignment based on BG image
 -------------------------------------------------------------------------------------------------------
 */
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
-/* body {
-  width: 100%;
-  height: 100%;
-} */
-
 .signup_container {
+  background-image: url("../assets/commonBGImage.png");
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   /* padding-left: 25%; */
   height: 100vh;
-  background-position: center;
+  /* background-position: center;
   background-repeat: no-repeat;
-  background-color: #122030;
-  /* background-size: cover; */
+  background-color: #122030; */
+  background-size: 100% 100%;
   /* padding: 60px; */
   background-attachment: fixed;
   width: 100%;
-
 }
 
 .signup_form {
   display: flex;
   flex-direction: column;
-   /* justify-content: center; */
+  /* justify-content: center; */
   padding: 30px;
   width: 35%;
   border-radius: 30px;
   border: solid;
   border-color: #ffffff;
+  height: 70%;
 }
 
 .title_container {
@@ -69,7 +62,7 @@ Date        | Author                | Sprint   | Description
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 4px;
+  padding-top: 2px;
   /* justify-content: flex-start; */
 }
 
@@ -78,7 +71,7 @@ Date        | Author                | Sprint   | Description
   flex-direction: row;
   /* justify-content: space-between; */
   justify-content: flex-start;
-  margin:8px 0px;
+  margin: 3px 0px;
 }
 
 .label_type {
@@ -86,7 +79,7 @@ Date        | Author                | Sprint   | Description
   /* align-self: flex-end; */
   padding: 8px;
   /* padding-bottom: 10px; */
-  padding-top: 4px;
+  padding-top: 2px;
   color: #ffffff;
   align-items: flex-start;
 }
@@ -111,7 +104,7 @@ Date        | Author                | Sprint   | Description
 .login_input {
   /* padding: -10px; */
   /* margin-bottom: 10px; */
-  height: 30px;
+  height: 25px;
   border: 1px solid #ccc;
   border-radius: 5px;
   align-items: end;
@@ -129,9 +122,10 @@ Date        | Author                | Sprint   | Description
 }
 
 .Signup_button {
-  padding: 10px 30px;
+  padding: 5px 30px;
   background-color: #d4d4d4;
   color: #000;
+  height: 30px;
   /* width:50%; */
   /* margin-left: 22%;
   margin-right: 5%; */
@@ -154,8 +148,7 @@ Date        | Author                | Sprint   | Description
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
-  /* background: rgba(0, 0, 0, 0.5); */
+  background: rgba(0, 0, 0, .9); /* Optional: Semi-transparent background */
   z-index: 1;
 }
 
@@ -181,7 +174,7 @@ Date        | Author                | Sprint   | Description
   padding: 10px 10px;
   background-color: #d4d4d4;
   color: #000;
-  width:25%;
+  width: 25%;
   margin: 10px 32%;
   border: none;
   border-radius: 5px;
@@ -198,8 +191,9 @@ Date        | Author                | Sprint   | Description
   align-self: center;
   color: rgb(225, 78, 78);
   margin: 0;
-  margin-bottom: 10px;
-} 
+  margin-bottom: 8px;
+  margin-top: -22px;
+}
 
 .login_here {
   color: white;
@@ -216,7 +210,25 @@ Date        | Author                | Sprint   | Description
 }
 
 .disclaimer {
-  padding-top: 20px;
+  padding-top: 10px;
   color: white;
-  font-size: 12px;
+  font-size: 10px;
 }
+
+@font-face {
+  font-family: Rastanty Cortez;
+  src: url(../fonts/Rastanty\ Cortez.ttf);
+} 
+
+.rastanty_Cortez {
+  font-family: Rastanty Cortez;
+  font-size: 50px;
+  color:  #ffffff;
+}
+
+.title_container p {
+  margin: 5px;
+  margin-top: 0px;
+}
+
+
