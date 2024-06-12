@@ -66,7 +66,9 @@ function ViewCandidateDetail() {
       a.href = url;
       // a.download = 'candidate_details.pdf';
       const fileName = candidateDetails.resume;
-      a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
+      console.log(fileName)
+      // a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
+      a.download = `${fileName}`;
       document.body.appendChild(a);
       a.click();
     } catch (error) {

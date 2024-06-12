@@ -463,7 +463,6 @@ const EditCandiadteDetails = () => {
               onChange={handleInputChange}
               required
             >
-              <option value="">{editedData.status} </option>
               {statusOptions.map((option) => (
                 <option key={option} value={option}>
                   {option}
