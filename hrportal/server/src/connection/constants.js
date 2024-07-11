@@ -22,4 +22,4 @@ module.exports.databaseURL = databaseURL;
 module.exports.localhost = localhost;
 module.exports.databaseName = databaseName;
 module.exports.server_PORT = server_PORT;
-module.exports.client_PORT = client_PORT
+module.exports.client_PORT = client_PORT;

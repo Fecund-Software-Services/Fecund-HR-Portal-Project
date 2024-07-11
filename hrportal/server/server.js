@@ -21,7 +21,9 @@ const server_port = require('./src/connection/constants');
 const client_port = require('./src/connection/constants');
 const userRoutes = require('./src/routes/userRoutes');
 const candidateRoutes = require('./src/routes/candidateRoutes');
-//const resumeRoutes = require('./src/routes/resumeRoutes')
+const SkillSet = require("./src/collections/skillset");
+const SubSkillSet = require("./src/collections/subskillset");
+const insertData = require("./src/collections/insertSkillData")
 const cors = require('cors')
 require("dotenv").config();
 
@@ -36,13 +38,12 @@ app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
-})
+}) 
 
 
 // routes
 app.use('/api/user', userRoutes)
 app.use('/api/candidate', candidateRoutes)
-//app.use('/api/candidate-resume', resumeRoutes)
 
 // mongodb connection and port connection.
 mongoose.connect('mongodb:' + url.databaseURL)
