@@ -13,6 +13,7 @@ Date        |   Author                  |   Sprint   |    Description
             |                           |            |  
 -------------------------------------------------------------------------------------------------------
 */
+
 import React, { useState } from 'react';
 import SkillModal from './SkillModal';
 import SubSkillModal from './SubSkillModal';
@@ -23,8 +24,6 @@ const MainSkillSet = () => {
   const [currentSkill, setCurrentSkill] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubSkillModalOpen, setIsSubSkillModalOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
   const [selectedSkillIndex, setSelectedSkillIndex] = useState(null);
 
   const openModal = () => {
@@ -37,23 +36,8 @@ const MainSkillSet = () => {
   };
 
   const saveSkill = () => {
-    if (isEditing) {
-      const updatedSkills = skills.map((skill, index) =>
-        index === editIndex ? { ...skill, name: currentSkill } : skill
-      );
-      setSkills(updatedSkills);
-      setIsEditing(false);
-    } else {
-      setSkills([...skills, { name: currentSkill, subskills: [] }]);
-    }
+    setSkills([...skills, { name: currentSkill, subskills: [] }]);
     closeModal();
-  };
-
-  const editSkill = (index) => {
-    setCurrentSkill(skills[index].name);
-    setEditIndex(index);
-    setIsEditing(true);
-    openModal();
   };
 
   const openSubSkillModal = (index) => {
@@ -65,14 +49,15 @@ const MainSkillSet = () => {
     setIsSubSkillModalOpen(false);
   };
 
-  const saveSubSkills = (subskills) => {
+  
+  const saveSubSkills = (mainSkillName, subskills) => {
     const updatedSkills = skills.map((skill, index) =>
-      index === selectedSkillIndex ? { ...skill, subskills } : skill
+      index === selectedSkillIndex ? { name: mainSkillName, subskills } : skill
     );
     setSkills(updatedSkills);
     closeSubSkillModal();
   };
-
+  
   return (
     <div className="main-skillset-container">
       <h1>Main Skill Set</h1>
@@ -84,7 +69,6 @@ const MainSkillSet = () => {
           <thead>
             <tr>
               <th>Skills</th>
-              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -92,9 +76,6 @@ const MainSkillSet = () => {
               <tr key={index}>
                 <td>
                   <a href="#" onClick={() => openSubSkillModal(index)}>{skill.name}</a>
-                </td>
-                <td>
-                  <button onClick={() => editSkill(index)}>EDIT</button>
                 </td>
               </tr>
             ))}
@@ -111,7 +92,7 @@ const MainSkillSet = () => {
       )}
       {isSubSkillModalOpen && (
         <SubSkillModal
-          subskills={skills[selectedSkillIndex].subskills}
+          skill={skills[selectedSkillIndex]}
           saveSubSkills={saveSubSkills}
           closeModal={closeSubSkillModal}
         />
@@ -121,3 +102,4 @@ const MainSkillSet = () => {
 };
 
 export default MainSkillSet;
+

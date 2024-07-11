@@ -17,41 +17,40 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from 'react';
 import './SubSkillModal.css';
 
-const SubSkillModal = ({ subskills: initialSubskills, saveSubSkills, closeModal }) => {
-  const [subskills, setSubskills] = useState(initialSubskills);
-  const [currentSubSkill, setCurrentSubSkill] = useState('');
+const SubSkillModal = ({ skill, saveSubSkills, closeModal }) => {
+  const [subskills, setSubskills] = useState(skill.subskills);
   const [editIndex, setEditIndex] = useState(null);
+  const [mainSkillName, setMainSkillName] = useState(skill.name);
 
   const addSubSkill = () => {
-    if (editIndex !== null) {
-      const updatedSubskills = subskills.map((subskill, index) =>
-        index === editIndex ? currentSubSkill : subskill
-      );
-      setSubskills(updatedSubskills);
-      setEditIndex(null);
-    } else {
-      setSubskills([...subskills, currentSubSkill]);
-    }
-    setCurrentSubSkill('');
+    setSubskills([...subskills, '']);
+    setEditIndex(subskills.length);
   };
 
-  const editSubSkill = (index) => {
-    setCurrentSubSkill(subskills[index]);
-    setEditIndex(index);
+  const handleSubSkillChange = (index, value) => {
+    const updatedSubskills = subskills.map((subskill, i) =>
+      index === i ? value : subskill
+    );
+    setSubskills(updatedSubskills);
+  };
+
+  const saveChanges = () => {
+    const filteredSubskills = subskills.filter(subskill => subskill.trim() !== '');
+    saveSubSkills(mainSkillName, filteredSubskills);
+    setEditIndex(null);
   };
 
   return (
     <div className="modal">
       <div className="modal-content">
         <h2>Sub Skill Sets</h2>
-        <div className="subskill-input-container">
+        <div className="main-skill-name">
           <input
             type="text"
-            value={currentSubSkill}
-            onChange={(e) => setCurrentSubSkill(e.target.value)}
-            placeholder="Enter sub skill"
+            value={mainSkillName}
+            onChange={(e) => setMainSkillName(e.target.value)}
+            placeholder="Main Skill"
           />
-          <button onClick={addSubSkill}>{editIndex !== null ? 'Edit' : 'Add'}</button>
         </div>
         <table className="subskill-table">
           <thead>
@@ -63,17 +62,28 @@ const SubSkillModal = ({ subskills: initialSubskills, saveSubSkills, closeModal 
           <tbody>
             {subskills.map((subskill, index) => (
               <tr key={index}>
-                <td>{subskill}</td>
                 <td>
-                  <button onClick={() => editSubSkill(index)}>EDIT</button>
+                  {editIndex === index ? (
+                    <input
+                      type="text"
+                      value={subskill}
+                      onChange={(e) => handleSubSkillChange(index, e.target.value)}
+                    />
+                  ) : (
+                    subskill
+                  )}
+                </td>
+                <td>
+                  <button onClick={() => setEditIndex(index)}>EDIT</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
         <div className="modal-footer">
-          <button onClick={() => saveSubSkills(subskills)}>Save</button>
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={addSubSkill}>ADD</button>
+          <button onClick={saveChanges}>SAVE</button>
+          <button onClick={closeModal}>CANCEL</button>
         </div>
       </div>
     </div>
@@ -81,3 +91,4 @@ const SubSkillModal = ({ subskills: initialSubskills, saveSubSkills, closeModal 
 };
 
 export default SubSkillModal;
+
