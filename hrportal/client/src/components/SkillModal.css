@@ -1,0 +1,54 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 8/07/2024
+Sprint: Sprint 1 PHASE 2
+User Story: Phase2 Admin Display
+
+ 
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description
+-------------------------------------------------------------------------------------------------------
+            |                           |            |  
+-------------------------------------------------------------------------------------------------------
+*/
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 20px;
+  }
+  
+  .modal-content input {
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .modal-buttons button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  

@@ -14,7 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 */
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+/*import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Login from "./components/Login";
 import SignUpForm from "./components/SignupForm";
@@ -93,4 +93,27 @@ function App() {
   );
 }
 
+export default App;*/
+
+import React from 'react';
+import MainSkillSet from './components/MainSkillSet';
+import './App.css';
+
+const App = () => {
+  return (
+    <div className="app">
+      {/* <Router>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/home" component={Home} />
+          <Route path="/skillset" component={MainSkillSet} />
+        </Switch>
+      </Router> */}
+      <MainSkillSet />
+    </div>
+  );
+};
+
 export default App;
+
