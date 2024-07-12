@@ -19,13 +19,11 @@ Date        |   Author                  |   Sprint   |    Description
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
-import LogoutButton from "./LogoutButton";
 
 function HomePage() {
   return (
     <div className={styles.home_page_container}>
       <div className="wrapper"></div>
-      <div><LogoutButton/></div>
       
       <div className={styles.container}>
         <div className={styles.link_container}>
