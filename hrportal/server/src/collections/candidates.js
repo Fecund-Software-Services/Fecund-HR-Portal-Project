@@ -16,6 +16,7 @@ Date        |   Author                  | Sprint   | Description
 */
 
 const mongoose = require('mongoose');
+const collectionNames = require('..//utility/collectionNames')
 
 const candidateSchema = new mongoose.Schema({
     firstName: {
@@ -121,4 +122,4 @@ const candidateSchema = new mongoose.Schema({
 } , {timestamps: true});
 
 // intializing 
-module.exports = mongoose.model('Candidates', candidateSchema)   
+module.exports = mongoose.model(collectionNames.collectionNames.CandidateCollection, candidateSchema)   

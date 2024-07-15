@@ -13,19 +13,22 @@ Date        |   Author                  |   Sprint   |    Description
 */
 
 const mongoose = require('mongoose');
+const collectionNames = require('..//utility/collectionNames')
 
 const skillsetSchema = new mongoose.Schema({
     skillname: {
         type: "string",
         required: true
-      },
+      }, 
     subskillset: {
         type: "array",
         items: { type: mongoose.Schema.Types.ObjectId } ,
         ref: 'SubSkillSet'
       }
-}, {timestamps: true}); 
+}, {timestamps: true});
 
-// intializing 
-module.exports = mongoose.model('SkillSet', skillsetSchema)
-     
+// intializing
+module.exports = mongoose.model(collectionNames.collectionNames.SkillsetCollection, skillsetSchema)
+
+
+

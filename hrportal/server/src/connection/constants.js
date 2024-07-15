@@ -9,6 +9,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 7/5/2024            HS                          3           Resume Handling
+11/7/2024          HS                         ph-2.1        Added Skillset constant values
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -23,3 +24,5 @@ module.exports.localhost = localhost;
 module.exports.databaseName = databaseName;
 module.exports.server_PORT = server_PORT;
 module.exports.client_PORT = client_PORT;
+
+  

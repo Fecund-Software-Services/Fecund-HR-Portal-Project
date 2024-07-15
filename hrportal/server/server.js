@@ -21,9 +21,10 @@ const server_port = require('./src/connection/constants');
 const client_port = require('./src/connection/constants');
 const userRoutes = require('./src/routes/userRoutes');
 const candidateRoutes = require('./src/routes/candidateRoutes');
-const SkillSet = require("./src/collections/skillset");
-const SubSkillSet = require("./src/collections/subskillset");
-const insertData = require("./src/collections/insertSkillData")
+const skillsetSchema = require("./src/collections/skillset");
+const subskillsetSchema = require("./src/collections/subskillset");
+const {checkAndPopulateData} = require("./src/utility/insertSkillData")
+const {checkAndCreateCollection} = require('./src/utility/createCollection')
 const cors = require('cors')
 require("dotenv").config();
 
@@ -56,5 +57,4 @@ mongoose.connect('mongodb:' + url.databaseURL)
       console.log(error);
     });
     
-
 

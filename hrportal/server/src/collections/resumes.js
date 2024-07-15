@@ -14,6 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 */
 
 const mongoose = require('mongoose');
+const collectionNames = require('..//utility/collectionNames');
 
 const resumeSchema = new mongoose.Schema({
     candidateId: { 
@@ -33,7 +34,7 @@ const resumeSchema = new mongoose.Schema({
 }, {timestamps: true}); 
 
 // intializing 
-module.exports = mongoose.model('Resume', resumeSchema)
+module.exports = mongoose.model(collectionNames.collectionNames.ResumeCollection, resumeSchema)
      
 
 
