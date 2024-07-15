@@ -1,5 +1,4 @@
 const url = require('../connection/constants')
-const collectionNames = require('./collectionNames');
 const { MongoClient } = require('mongodb');
 
 const uri = 'mongodb:' + url.localhost;
@@ -30,6 +29,7 @@ async function collectionChecker() {
       await checkAndCreateCollection('resumes');
       await checkAndCreateCollection('skillsets');
       await checkAndCreateCollection('subskillsets');
+      await checkAndCreateCollection('status');
     } catch (error) {
       console.error('Error creating collections or models:', error);
     }

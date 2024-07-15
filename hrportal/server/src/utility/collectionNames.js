@@ -4,6 +4,7 @@ const collectionNames = {
     ResumeCollection: 'Resume',
     SkillsetCollection: 'SkillSet',
     SubskillsetCollection: 'SubSkillSet',
+    StatusCollection: 'Status'
 
 }
 

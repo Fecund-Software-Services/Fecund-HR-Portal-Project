@@ -12,6 +12,7 @@ Date        |   Author                  | Sprint   | Description
 22/4/2024   |   hs                      | 3        | Add New Candidate validations
 06/05/2024  |   Harshini C              | 4        | View Candidates applied in
 7/5/2024    | HS                        | 4        | Resume Handling
+15/7/2024   | HS                        |Phase 2 Sp 1 | Skillset and status
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -38,17 +39,15 @@ const candidateSchema = new mongoose.Schema({
         unique: true,
     },
     skillSet: {
-        type: String,
-        enum : ['Guidewire BA (PC)','Guidewire BA (BC)','Guidewire BA (CC)','Guidewire QA (PC)','Guidewire QA (BC)','Guidewire QA (CC)','Guidewire DEV (PC)','Guidewire DEV (BC)','Guidewire DEV (CC)','Guidewire Lead (CC)',
-        'Guidewire Lead (PC)','Guidewire Lead (BC)','Buisness Analyst','Technical Specialist','Guidewire Integration Developer','Guidewire Architect','Guidewire QA','Guidewire Portal','Guidewire Datahub','Guidewire Infocentre',
-        'Recruitment Executive','Business Development Executive','Guidewire Backend Developer','Duckcreek Developer','Coldfusion Developer','Oneshield Designer','Digital Marketing Executive','Mulesoft Developer','Scrum Master',
-        'Project Leader','Oneshield BA','Oneshield QA'],
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SkillSet',
         required: true,  // Dropdown list to choose from
     },
-    // otherSkillSet: {
-    //     type: String,  // input field to add candidate's skills set that are not avaiable in dropdown options
-    //     default: "" // Optional: Set an empty string as default
-    // },
+    subskillset: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SubSkillSet',
+        required: true
+    },
     itExperience: {
         type: Number,
         required: [true, "experience is required"],
@@ -89,8 +88,8 @@ const candidateSchema = new mongoose.Schema({
         
     },
     status: {
-        type: String,
-        enum : ['Submitted','Cleared 1st Round','Cleared 2nd Round','Offer Issued','On-Hold','Rejected','Candidate Not Interested'],
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Status',
         default: "Submitted",
         required: true
     },

@@ -13,7 +13,9 @@ Date        |   Author                  |   Sprint   |    Description
 // */
 const SubSkillSet = require('../collections/subskillset');
 const SkillSet = require('../collections/skillset');
+const Status = require('../collections/status')
 const skills = require('./skillsConstants')
+const statuses = require('./skillsConstants')
 
 // Adding some predefined values foe skill set and subskill set
 async function insertData() {
@@ -189,13 +191,35 @@ async function insertData() {
       console.error('Error inserting data:', err);
     }
   }
+
+  // To check whether the skillset is populated or not
 async function checkAndPopulateData() {
   const existingSkillSet = await SkillSet.findOne(); // Check for any documents
   if (!existingSkillSet) {
     await insertData();
   } else {
-    console.log('Data already populated in the database.');
+    console.log('Skillset already Populated');
   }
 }
-checkAndPopulateData()
-module.exports = { checkAndPopulateData };
+
+// Adding some predefined values for status
+async function populateStatusCollection() {
+  try {
+    const statusCount = await Status.countDocuments();
+    if (statusCount === 0) {
+      for (const status of statuses.statuses) {
+        const newStatus = new Status({ name: status });
+        await newStatus.save();
+      }
+      console.log(`Status added successfully!`);
+  } else {
+    console.log('Status collection already populated.');
+  }
+  } catch (error) {
+      console.error('Error inserting Status', error)
+}
+}
+
+checkAndPopulateData();
+populateStatusCollection();
+module.exports = { checkAndPopulateData, populateStatusCollection };
