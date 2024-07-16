@@ -13,6 +13,7 @@ Date        |   Author                  |   Sprint   |    Description
 */
 
 const mongoose = require('mongoose')
+const collectionNames = require('..//utility/collectionNames')
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -71,5 +72,5 @@ const userSchema = new mongoose.Schema({
 }, {timestamps: true})
 
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model(collectionNames.collectionNames.UserCollection, userSchema)
 

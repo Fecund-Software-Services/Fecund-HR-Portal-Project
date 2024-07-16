@@ -21,7 +21,10 @@ const server_port = require('./src/connection/constants');
 const client_port = require('./src/connection/constants');
 const userRoutes = require('./src/routes/userRoutes');
 const candidateRoutes = require('./src/routes/candidateRoutes');
-//const resumeRoutes = require('./src/routes/resumeRoutes')
+const skillsetSchema = require("./src/collections/skillset");
+const subskillsetSchema = require("./src/collections/subskillset");
+const {checkAndPopulateData} = require("./src/utility/insertSkillData")
+const {checkAndCreateCollection} = require('./src/utility/createCollection')
 const cors = require('cors')
 require("dotenv").config();
 
@@ -36,13 +39,12 @@ app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
-})
+}) 
 
 
 // routes
 app.use('/api/user', userRoutes)
 app.use('/api/candidate', candidateRoutes)
-//app.use('/api/candidate-resume', resumeRoutes)
 
 // mongodb connection and port connection.
 mongoose.connect('mongodb:' + url.databaseURL)
@@ -55,5 +57,4 @@ mongoose.connect('mongodb:' + url.databaseURL)
       console.log(error);
     });
     
-
 
