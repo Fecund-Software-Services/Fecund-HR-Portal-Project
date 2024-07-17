@@ -18,7 +18,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import styles from './LogoutButton.module.css'
-import { FaSignOutAlt } from "react-icons/fa";
+//import { FaSignOutAlt } from "react-icons/fa";
 
 const LogoutButton = () => {
     const { logout } = useAuth();
@@ -29,7 +29,7 @@ const LogoutButton = () => {
         nav('/')
     };
 
-    return <div class={styles.logOut} title="Click here to Logout" onClick={handleLogout}><FaSignOutAlt /> </div>
+    return <div class={styles.logOut} title="Click here to Logout" onClick={handleLogout}> </div>
     
 };
 

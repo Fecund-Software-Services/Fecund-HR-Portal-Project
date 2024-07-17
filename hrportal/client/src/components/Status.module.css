@@ -1,0 +1,57 @@
+.statusContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('../assets/commonBGImage.png');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .addButton,
+  .saveButton,
+  .cancelButton,
+  .editButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .inputField {
+    padding: 10px;
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+  
+  .table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #fff;
+  }
+  
+  .table th {
+    background-color: #333;
+  }
+  
+  .table td input {
+    width: 100%;
+    padding: 5px;
+  }
+  
