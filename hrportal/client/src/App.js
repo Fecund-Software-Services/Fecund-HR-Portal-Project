@@ -96,8 +96,9 @@ function App() {
 export default App;*/
 
 import React from 'react';
-import MainSkillSet from './components/MainSkillSet';
+//import MainSkillSet from './components/MainSkillSet';
 import './App.css';
+import SkillSets from './components/SkillSets';
 
 const App = () => {
   return (
@@ -110,7 +111,7 @@ const App = () => {
           <Route path="/skillset" component={MainSkillSet} />
         </Switch>
       </Router> */}
-      <MainSkillSet />
+      <SkillSets />
     </div>
   );
 };
