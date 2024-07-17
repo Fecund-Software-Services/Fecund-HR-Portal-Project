@@ -7,15 +7,17 @@ User Story: Hiring Login Portal
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   | Phase   | Description 
 -------------------------------------------------------------------------------------------------------
-16/04/2024      HS                            2         Authentication & Authorization - Login
+16/04/2024      HS                            2         1        Authentication & Authorization - Login
+12/07/2024      Harshini C                    1         2        Adding logger to all nodeJS files
 -------------------------------------------------------------------------------------------------------
 */
 
 const User = require("../collections/users");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const logger = require('../utils/logger');
 
 // create token function for authentication
 const createToken = (_id) => {
@@ -31,7 +33,7 @@ const loginUser = async (req, res) => {
   try { 
     existingUser = await User.findOne({ email });
   } catch (error) {
-    console.log(error.message);
+    logger.error(error.message);
   }
 
   if (!existingUser) {
@@ -88,7 +90,7 @@ const signupUser = async (req, res) => {
     try {
       existingUser = await User.findOne({ email });
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
     }
 
     if (existingUser) {
@@ -100,7 +102,7 @@ const signupUser = async (req, res) => {
      try {
        existingID = await User.findOne({ employeeID });
      } catch (error) {
-       console.log(error.message);
+       logger.error(error.message);
      }
   
      if (existingID) {
@@ -131,7 +133,7 @@ const signupUser = async (req, res) => {
     const token = createToken(user._id)
     return res.status(201).json({ email, token });
   } catch (error) {
-    console.log(error.message);
+    logger.error(error.message);
   }
 };
 
@@ -145,7 +147,7 @@ const forgotPassword = async (req, res) => {
     try {
       existingUser = await User.findOne({ email });
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
     }
 
     if (!existingUser) {
@@ -157,7 +159,7 @@ const forgotPassword = async (req, res) => {
     try {
       existingID = await User.findOne({ employeeID });
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
     }
   
     if (!existingID) {
@@ -170,7 +172,7 @@ const forgotPassword = async (req, res) => {
         return res.status(400).json({ message: "Error: Employee ID not found!"})
       }
     } catch (error){
-      console.log(error.message)
+      logger.error(error.message)
     }
 
     // Validate security question answer based on selected question.
@@ -202,11 +204,11 @@ const forgotPassword = async (req, res) => {
       }
 
     } catch (error) {
-      console.log(error.message)
+      logger.error(error.message)
     }
     return res.status(200).json({ message: "You can reset password now " });
   } catch (error) {
-    console.log (error.message)
+    logger.error(error.message)
   }
  
 };
@@ -221,7 +223,7 @@ const resetPassword = async (req, res) => {
     await User.updateOne({employeeID}, {password: hashednewPassword})
     return res.status(200).json({message: "Password Reset Successful"})
   } catch (error) {
-    console.log(error.message)
+    logger.error(error.message)
   }
 }
 
