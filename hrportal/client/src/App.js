@@ -11,6 +11,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
 28/4/2024     Omkar And Vishal               3         View Candidate Details
+8/07/2024   |   Vishal Garg             |    1       |    Front End Coding Navbar
 -------------------------------------------------------------------------------------------------------
 */
 
