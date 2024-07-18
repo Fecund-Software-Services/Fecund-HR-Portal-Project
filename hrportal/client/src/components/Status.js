@@ -1,3 +1,18 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 15/07/2024
+Sprint: PHASE 2 Sprint 1
+User Story: Phase 2 Admin workflow (STATUS Screen)
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author            |   Sprint        |    Description 
+-------------------------------------------------------------------------------------------------------
+19/7/2024   |        Vishal       |      2          |  CSS Styling
+
+*/
+
 import React, { useState } from 'react';
 import styles from './Status.module.css';
 
@@ -116,3 +131,4 @@ const Status = () => {
 };
 
 export default Status;
+
