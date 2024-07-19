@@ -53,17 +53,17 @@ const Status = () => {
 
   return (
     <div className={styles.statusContainer}>
-      <h1>Status</h1>
+      <h1 className={styles.rastanty_Cortez}>Status</h1>
       {!isAddingStatus && editIndex === null && (
         <button
-          className={styles.addButton}
+          className={styles.button}
           onClick={() => setIsAddingStatus(true)}
         >
           Add
         </button>
       )}
       {isAddingStatus && editIndex === null && (
-        <div>
+        <div className={styles.container}>
           <input
             className={styles.inputField}
             type="text"
@@ -71,11 +71,11 @@ const Status = () => {
             onChange={(e) => setCurrentStatus(e.target.value)}
             placeholder="Add status"
           />
-          <button className={styles.saveButton} onClick={handleAddStatus}>
+          <button className={styles.button} onClick={handleAddStatus}>
             Save
           </button>
           <button
-            className={styles.cancelButton}
+            className={styles.button}
             onClick={() => setIsAddingStatus(false)}
           >
             Cancel
@@ -96,6 +96,7 @@ const Status = () => {
                 {editIndex === index ? (
                   <input
                     type="text"
+                    className={styles.input_field}
                     value={currentStatus}
                     onChange={(e) => setCurrentStatus(e.target.value)}
                   />
@@ -106,16 +107,16 @@ const Status = () => {
               <td>
                 {editIndex === index ? (
                   <div>
-                    <button className={styles.saveButton} onClick={handleSaveStatus}>
+                    <button className={styles.button} onClick={handleSaveStatus}>
                       Save
                     </button>
-                    <button className={styles.cancelButton} onClick={handleCancelEdit}>
+                    <button className={styles.button} onClick={handleCancelEdit}>
                       Cancel
                     </button>
                   </div>
                 ) : (
                   <button
-                    className={styles.editButton}
+                    className={styles.button}
                     onClick={() => handleEditStatus(index)}
                   >
                     Edit
