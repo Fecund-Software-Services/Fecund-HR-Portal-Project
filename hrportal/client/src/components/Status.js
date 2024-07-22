@@ -65,7 +65,7 @@ const Status = () => {
       {isAddingStatus && editIndex === null && (
         <div className={styles.container}>
           <input
-            className={styles.inputField}
+            className={styles.input_field}
             type="text"
             value={currentStatus}
             onChange={(e) => setCurrentStatus(e.target.value)}
@@ -82,7 +82,7 @@ const Status = () => {
           </button>
         </div>
       )}
-      <table className={styles.table}>
+      { statuses.length > 0 ? <table className={styles.table}>
         <thead>
           <tr>
             <th>Status</th>
@@ -106,7 +106,7 @@ const Status = () => {
               </td>
               <td>
                 {editIndex === index ? (
-                  <div>
+                  <div className={styles.button_conatiner}>
                     <button className={styles.button} onClick={handleSaveStatus}>
                       Save
                     </button>
@@ -126,7 +126,8 @@ const Status = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> : " "}
+      
     </div>
   );
 };
