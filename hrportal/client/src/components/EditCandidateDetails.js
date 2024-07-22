@@ -23,7 +23,6 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styles from "./EditCandidateDetails.module.css";
 import popupBackground from "../assets/PopupBackgroundImage.png";
-import LogoutButton from "./LogoutButton";
 
 // import { useAddCandidate } from "../hooks/useAddCandidate.js";
 
@@ -291,7 +290,6 @@ const EditCandiadteDetails = () => {
       <div className={styles.title_container}>
          <p className={styles.rastanty_Cortez}>Edit New Candidate</p>
       </div>
-      <div><LogoutButton/></div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
           {/* Left side form fields here */}

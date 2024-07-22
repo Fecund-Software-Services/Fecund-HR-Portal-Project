@@ -19,7 +19,6 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
-import LogoutButton from "./LogoutButton";
 //import { FaDownload } from "react-icons/fa";
 import styles from "./ViewCandidateDetail.module.css";
 
@@ -88,7 +87,6 @@ function ViewCandidateDetail() {
 
   return (
     <div className={styles.search_container}>
-      <div><LogoutButton/></div>
       <div className={styles.title_container}>
         <p className={styles.rastanty_Cortez}>View Candidate Details</p>
       </div>

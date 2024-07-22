@@ -19,7 +19,6 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
-import LogoutButton from "./LogoutButton";
 
 function ViewSearchCandidatePage() {
   const [searchType, setSearchType] = useState("date");
@@ -160,7 +159,6 @@ function ViewSearchCandidatePage() {
 
   return (
     <div className={styles.search_container}>
-      <div><LogoutButton/></div>
       <div className={styles.title_container}>
         <p className={styles.rastanty_Cortez}>View / Search Candidate</p>
       </div>

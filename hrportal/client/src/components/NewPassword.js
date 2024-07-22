@@ -23,7 +23,6 @@ import backgroundImage from "../assets/commonBGImage.png";
 import popupBackground from "../assets/PopupBackgroundImage.png";
 import styles from "./NewPassword.module.css"; // Import the CSS file
 import { useResetPassword } from "../hooks/useResetPassword";
-import LogoutButton from "./LogoutButton";
 
 function NewPassword() {
   // Set employee ID from previous screen
@@ -53,7 +52,6 @@ function NewPassword() {
         height: "100vh",
       }}
     >
-      <div><LogoutButton/></div>
       <div>
       <p className={styles.rastanty_Cortez}>Enter New Password</p>
       </div>

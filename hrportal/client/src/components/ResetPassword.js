@@ -19,7 +19,6 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./ResetPassword.module.css"; // Import the CSS file
-import LogoutButton from "./LogoutButton";
 import { useForgotPassword } from "../hooks/useForgotPassword";
 
 const securityQuestions = [
@@ -82,7 +81,6 @@ function ResetPassword() {
     <div className={styles.reset_container}>
       {!isSecurityQuestionCorrect && (
         <div className={styles.container}>
-          <div><LogoutButton/></div>
           <div>
             <p className={styles.rastanty_Cortez}>Reset&nbsp;&nbsp;Password</p>
           </div>

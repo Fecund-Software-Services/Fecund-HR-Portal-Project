@@ -22,7 +22,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import popupBackground from "../assets/PopupBackgroundImage.png";
 import styles from "./SignupForm.module.css";
-import LogoutButton from "./LogoutButton";
 // importing "useSignup" from hooks
 import { useSignup } from "../hooks/useSignup.js";
 
@@ -77,7 +76,6 @@ const SignUpForm = () => {
       <div className={styles.title_container}>
         <p className={styles.rastanty_Cortez}>Sign up Form</p>
       </div>
-      <div><LogoutButton/></div>
 
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>

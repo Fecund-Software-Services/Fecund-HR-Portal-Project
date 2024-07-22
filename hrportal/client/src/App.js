@@ -31,16 +31,13 @@ import EditCanidateDetails from "./components/EditCandidateDetails";
 import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
 import SkillSets from "./components/SkillSets";
-// import { useAuth } from "./context/AuthContext";
+import Status from "./components/Status";
 
 function App() {
   return (
     <>
       <AuthProvider>
         <BrowserRouter>
-          {/* <Layout>
-          <Navbar />
-        </Layout> */}
           <Layout>
             <Routes>
               <Route path="/" element={<Login />} />
@@ -71,6 +68,9 @@ function App() {
               </Route>
               <Route exact path="/home/skillset" element={<ProtectedRoute />}>
                 <Route exact path="/home/skillset" element={<SkillSets />} />
+              </Route>
+              <Route exact path="/home/status" element={<ProtectedRoute />}>
+                <Route exact path="/home/status" element={<Status />} />
               </Route>
               <Route
                 exact
@@ -109,27 +109,6 @@ function App() {
 }
 
 export default App;
-// */
 
-// import React from 'react';
-// //import MainSkillSet from './components/MainSkillSet';
-// import './App.css';
-// import SkillSets from './components/SkillSets';
 
-// const App = () => {
-//   return (
-//     <div className="app">
-//       {/* <Router>
-//         <Switch>
-//           <Route path="/login" component={Login} />
-//           <Route path="/signup" component={SignUp} />
-//           <Route path="/home" component={Home} />
-//           <Route path="/skillset" component={MainSkillSet} />
-//         </Switch>
-//       </Router> */}
-//       <SkillSets />
-//     </div>
-//   );
-// };
 
-// export default App;

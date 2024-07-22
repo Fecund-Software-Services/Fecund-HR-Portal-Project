@@ -23,7 +23,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
 import popupBackground from "../assets/PopupBackgroundImage.png";
-import LogoutButton from "./LogoutButton";
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({
@@ -97,7 +96,7 @@ const NewCandidate = () => {
 
   const handleMobileNumberChange = (e) => {
     const { name } = e.target;
-    const newMobileNumber = e.target.value.replace(/[^0-9]/g, '');
+    const newMobileNumber = e.target.value.replace(/[^0-9]/g, "");
     setFormData((prevData) => ({ ...prevData, [name]: newMobileNumber }));
   };
 
@@ -222,15 +221,11 @@ const NewCandidate = () => {
     e.preventDefault();
 
     // Redirect to login page (replace with your login page URL)
-    navigateToHome('/home');
+    navigateToHome("/home");
   };
-
 
   return (
     <div className={styles.addcandidateform_container}>
-      <div>
-        <LogoutButton />
-      </div>
       <div className={styles.title_container}>
         <p className={styles.rastanty_Cortez}>Add New Candidate</p>
       </div>
@@ -310,7 +305,8 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="itExperience">
-              Total IT Experience (Yrs)<span className={styles.asterisk}>*</span>:
+              Total IT Experience (Yrs)
+              <span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="number"
