@@ -29,73 +29,71 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import ViewCandidateDetail from "./components/ViewCandidateDetail";
 import EditCanidateDetails from "./components/EditCandidateDetails";
 import Layout from "./components/Layout";
-import Navbar from './components/Navbar'
+import Navbar from "./components/Navbar";
 // import { useAuth } from "./context/AuthContext";
 
 function App() {
-  
-
   return (
     <>
       <AuthProvider>
         <BrowserRouter>
-        {/* <Layout>
-          <Navbar />
-        </Layout> */}
-<Layout>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route exact path="/home" element={<ProtectedRoute />}>
-              <Route exact path="/home" element={<HomePage />} />
-            </Route>
-            <Route
-              exact
-              path="/home/search-candidate"
-              element={<ProtectedRoute />}
-            >
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route exact path="/home" element={<ProtectedRoute />}>
+                <Route exact path="/home" element={<HomePage />} />
+              </Route>
               <Route
                 exact
                 path="/home/search-candidate"
-                element={<ViewSearchCandidatePage />}
-              />
-            </Route>
-            <Route
-              exact
-              path="/home/add-new-candidate"
-              element={<ProtectedRoute />}
-            >
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/search-candidate"
+                  element={<ViewSearchCandidatePage />}
+                />
+              </Route>
               <Route
                 exact
                 path="/home/add-new-candidate"
-                element={<NewCandidate />}
-              />
-            </Route>
-            <Route
-              exact
-              path="/home/search-candidate/candiadte/:id"
-              element={<ProtectedRoute />}
-            >
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/add-new-candidate"
+                  element={<NewCandidate />}
+                />
+              </Route>
               <Route
                 exact
                 path="/home/search-candidate/candiadte/:id"
-                element={<ViewCandidateDetail />}
-              />
-            </Route>
-            <Route
-              exact
-              path="/home/search-candidate/candiadte/editCandidateDetails/:id"
-              element={<ProtectedRoute />}
-            >
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/search-candidate/candiadte/:id"
+                  element={<ViewCandidateDetail />}
+                />
+              </Route>
               <Route
                 exact
                 path="/home/search-candidate/candiadte/editCandidateDetails/:id"
-                element={<EditCanidateDetails />}
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/search-candidate/candiadte/editCandidateDetails/:id"
+                  element={<EditCanidateDetails />}
+                />
+              </Route>
+              <Route path="/signup" element={<SignUpForm />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route
+                path="/new-password/:employeeId"
+                element={<NewPassword />}
               />
-            </Route>
-            <Route path="/signup" element={<SignUpForm />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/new-password/:employeeId" element={<NewPassword />} />
-          </Routes>
+            </Routes>
           </Layout>
         </BrowserRouter>
       </AuthProvider>

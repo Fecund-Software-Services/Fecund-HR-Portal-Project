@@ -25,7 +25,7 @@ function HomePage() {
   return (
     <div className={styles.home_page_container}>
       <div className="wrapper"></div>
-      
+
       <div className={styles.container}>
         <div className={styles.link_container}>
           <Link to="/home/search-candidate" className={styles.link}>
