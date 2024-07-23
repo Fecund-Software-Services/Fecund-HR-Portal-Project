@@ -103,7 +103,7 @@ Date        |   Author                  |   Sprint   |    Description
   
   
   .table {
-    width: 40%;
+    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     color: #ffffff;
@@ -127,6 +127,28 @@ Date        |   Author                  |   Sprint   |    Description
     border-radius: 5px;
     box-sizing: border-box;
   }
+
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+    /* align-content: flex-end; */
+    /* align-items: end; */
+  }
+  
+  .table_button {
+    padding: 5px 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .table_button:hover {
+    background-color: #b99b9b;
+  }
+  
   
 
  
