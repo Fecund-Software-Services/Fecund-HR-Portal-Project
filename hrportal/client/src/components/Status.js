@@ -52,9 +52,19 @@ const Status = () => {
   };
 
   const handleEditStatus = (index) => {
-    console.log(statuses[index])
-    setEditIndex(index);
-    setCurrentStatus(statuses[index].name);
+    // console.log(index)
+    // Get the status object from the current state
+  const statusToEdit = currentResults[index];
+  console.log(statusToEdit)
+
+
+  // Set the currentStatus state with the name of the status being edited
+  setCurrentStatus(statusToEdit.name);
+
+  // Set the editIndex to the clicked index
+  setEditIndex(statusToEdit._id);
+    // setEditIndex(index);
+    // setCurrentStatus(statuses[index].name);
   };
 
   // const handleSaveStatus = () => {

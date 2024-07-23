@@ -26,7 +26,7 @@ router.get('/get-status', getStatus)
 router.post('/add-status', addStatus)
 
 // Edit existing status
-router.post('/edit-status', editStatus)
+router.put('/edit-status/:id', editStatus)
 
 // exporting router
 module.exports = router
