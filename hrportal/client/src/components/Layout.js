@@ -1,3 +1,20 @@
+/*
+Project: Hiring Portal Project phase 2
+Author: Omkar & Vishal
+Date: 8/07/2024
+Sprint: Sprint 1
+User Story: Phase 2 Admin Display
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+8/07/2024   |   Vishal Garg             |   1       |    Front End Coding Navbar
+-------------------------------------------------------------------------------------------------------
+*/
+
+
+
 // components/Layout.jsx or Layout.js
 import React from 'react';
 import { useLocation } from 'react-router-dom';
