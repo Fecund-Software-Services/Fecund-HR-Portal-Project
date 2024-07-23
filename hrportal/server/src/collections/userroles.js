@@ -8,41 +8,19 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+17/7/2024  | HS                         | pH-2, sP-1 | Admin role permissions
 -------------------------------------------------------------------------------------------------------
 */
 
 const mongoose = require('mongoose');
-const mongoutil = require('../connection/mongoutil');
+const collectionNames = require('..//utility/collectionNames');
 
-const userRolesSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: [true, "first name is required"],
-    },
-    lastName: {
-        type: String,
-        required: [true, "last name is required"],
-    },
+const userRolesSchema = new mongoose.Schema({    
     userRoles: {
         type: String,
-        required : true
-
-    },
-    userPermissions: {
-        type: String,
-        required : true
+        required : true,
     }
 });
 
 // intializing 
-const userRoles = mongoose.model('User Roles', userRolesSchema);
-     
-data = [{
-    firstName: "Admin",
-    lastName: "Admin",
-    userRoles: "Administrator",
-    userPermissions: "Add,View,Update,Submit"
-    }]
-
-userRoles.insertMany(data)
+module.exports = mongoose.model(collectionNames.collectionNames.UserRoleCollection, userRolesSchema);
