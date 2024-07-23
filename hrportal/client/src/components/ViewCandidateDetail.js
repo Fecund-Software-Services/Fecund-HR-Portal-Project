@@ -13,13 +13,13 @@ Date        |   Author                  |   Sprint   |    Description
  8/05/2024  |   Vishal                  |    4       |  View candidate details
  10/05/2024 |   Harshini C              |    4       |  Log Out button
  14/05/2024 |   Harshini C              |    4       |  CSS and alignment based on BG image
+ 18/07/2024 |   Vishal Garg             |   2        |    Front End Coding Navbar 
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
-import LogoutButton from "./LogoutButton";
 //import { FaDownload } from "react-icons/fa";
 import styles from "./ViewCandidateDetail.module.css";
 
@@ -88,7 +88,6 @@ function ViewCandidateDetail() {
 
   return (
     <div className={styles.search_container}>
-      <div><LogoutButton/></div>
       <div className={styles.title_container}>
         <p className={styles.rastanty_Cortez}>View Candidate Details</p>
       </div>

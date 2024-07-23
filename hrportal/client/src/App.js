@@ -30,7 +30,8 @@ import ViewCandidateDetail from "./components/ViewCandidateDetail";
 import EditCanidateDetails from "./components/EditCandidateDetails";
 import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
-// import { useAuth } from "./context/AuthContext";
+import SkillSets from "./components/SkillSets";
+import Status from "./components/Status";
 
 function App() {
   return (
@@ -64,6 +65,12 @@ function App() {
                   path="/home/add-new-candidate"
                   element={<NewCandidate />}
                 />
+              </Route>
+              <Route exact path="/home/skillset" element={<ProtectedRoute />}>
+                <Route exact path="/home/skillset" element={<SkillSets />} />
+              </Route>
+              <Route exact path="/home/status" element={<ProtectedRoute />}>
+                <Route exact path="/home/status" element={<Status />} />
               </Route>
               <Route
                 exact
@@ -102,3 +109,6 @@ function App() {
 }
 
 export default App;
+
+
+
