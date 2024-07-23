@@ -8,7 +8,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+22/7/2024       HS                         ph2 sp2      User permissions
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: "Admin" // default is set for admin, in future other roles can be added.
+        default: "user" // default is set for user,
     },
     securityQuestion1:{
         type: String,

@@ -10,12 +10,15 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 16/04/2024      HS                            2         Authentication & Authorization - Login
+17/7/2024       HS                        ph-2 sp-1     User roles and permissions
 -------------------------------------------------------------------------------------------------------
 */
 
 const User = require("../collections/users");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const permission = require("../collections/userpermissions")
+const { get } = require("mongoose");
 
 // create token function for authentication
 const createToken = (_id) => {
@@ -107,6 +110,10 @@ const signupUser = async (req, res) => {
        return res.status(400).json({ message: "Error: Employee ID already exists!"})
      }
 
+     // Role management logic
+    const haspermission = await permission.findOne({userPermissions: req.body.employeeID});    
+    const role = haspermission ? 'admin' : 'user'
+
     // HASHING THE PASSWORD
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -121,6 +128,7 @@ const signupUser = async (req, res) => {
       lastName,
       employeeID,
       email,
+      role,
       password: hashedPassword,
       answer1: hashedAnswer1,
       answer2: hashedAnswer2,
@@ -225,6 +233,8 @@ const resetPassword = async (req, res) => {
   }
 }
 
+
+ 
 module.exports = { loginUser, signupUser, forgotPassword, resetPassword};
 
 

@@ -67,24 +67,4 @@ const skillsets = {
     },
   };
 
-  // Status 
-  const statuses = [
-    'Submitted',
-    'Scheduled R1',
-    'Scheduled R2',
-    'Cleared 1st Round',
-    'Cleared 2nd Round',
-    'Offer Issued',
-    'On Hold R1',
-    'On Hold R2',
-    'Rejected R1',
-    'Rejected R2',
-    'Offer Withdrawn',
-    'Candidate not Interested',
-    'Negotiation Stage',
-    'Another Offer/Backed out',
-    'Other',
-  ];
-
 module.exports.skillsets = skillsets;
-module.exports.statuses = statuses;
