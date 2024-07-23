@@ -1,3 +1,16 @@
+/*
+Project: Hiring Portal Project
+Author: Sanjay HS
+Date: 23/07/2024
+Sprint: ph 2 Sprint 2
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |    Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
 const Status = require("../collections/status");
 
 // Get all Status
@@ -29,14 +42,20 @@ const addStatus = async (req, res) => {
 
 // Edit a status
 const editStatus = async (req, res) => {
-    const { id } = req.params;
-    const {name} = req.body;
+    const statusId = req.params.id;
+    const filter = {_id: statusId};
+
+    const update = {
+        $set: {
+            name: req.body.name
+        }
+    }
     try {
-        const status = await Status.findByIdAndUpdate(id, {name});
-        if (!status) {
+        const updatedstatus = await Status.updateOne(filter, update);
+        if (!updatedstatus) {
             return res.status(404).send('Status Not Found!');
         }
-        res.status(status);
+        return res.status(201).json(updatedstatus);
 
     }catch(error){
         res.status(500).send('Error Updating status');
