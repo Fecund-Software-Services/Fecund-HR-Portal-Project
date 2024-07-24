@@ -9,14 +9,17 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   | Phase   | Description 
 -------------------------------------------------------------------------------------------------------
-16/04/2024      HS                            2         1        Authentication & Authorization - Login
-12/07/2024      Harshini C                    1         2        Adding logger to all nodeJS files
+16/04/2024      HS                            2         1         Authentication & Authorization - Login
+17/7/2024       HS                            1         2         User roles and permissions
+12/07/2024      Harshini C                    1         2         Adding logger to all nodeJS files
 -------------------------------------------------------------------------------------------------------
 */
 
 const User = require("../collections/users");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const permission = require("../collections/userpermissions")
+const { get } = require("mongoose");
 const logger = require('../utils/logger');
 
 // create token function for authentication
@@ -109,6 +112,10 @@ const signupUser = async (req, res) => {
        return res.status(400).json({ message: "Error: Employee ID already exists!"})
      }
 
+     // Role management logic
+    const haspermission = await permission.findOne({userPermissions: req.body.employeeID});    
+    const role = haspermission ? 'admin' : 'user'
+
     // HASHING THE PASSWORD
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -123,6 +130,7 @@ const signupUser = async (req, res) => {
       lastName,
       employeeID,
       email,
+      role,
       password: hashedPassword,
       answer1: hashedAnswer1,
       answer2: hashedAnswer2,
@@ -227,6 +235,8 @@ const resetPassword = async (req, res) => {
   }
 }
 
+
+ 
 module.exports = { loginUser, signupUser, forgotPassword, resetPassword};
 
 

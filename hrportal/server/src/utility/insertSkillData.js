@@ -8,14 +8,12 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+17/7/24         hs                        ph-2 sp-1    Code formating and refactoring
 -------------------------------------------------------------------------------------------------------
 // */
 const SubSkillSet = require('../collections/subskillset');
 const SkillSet = require('../collections/skillset');
-const Status = require('../collections/status')
 const skills = require('./skillsConstants')
-const statuses = require('./skillsConstants')
 
 // Adding some predefined values foe skill set and subskill set
 async function insertData() {
@@ -193,33 +191,13 @@ async function insertData() {
   }
 
   // To check whether the skillset is populated or not
-async function checkAndPopulateData() {
+async function checkAndPopulateSkillData() {
   const existingSkillSet = await SkillSet.findOne(); // Check for any documents
   if (!existingSkillSet) {
     await insertData();
   } else {
-    console.log('Skillset already Populated');
+    console.log('Skillset Collection already Populated');
   }
 }
 
-// Adding some predefined values for status
-async function populateStatusCollection() {
-  try {
-    const statusCount = await Status.countDocuments();
-    if (statusCount === 0) {
-      for (const status of statuses.statuses) {
-        const newStatus = new Status({ name: status });
-        await newStatus.save();
-      }
-      console.log(`Status added successfully!`);
-  } else {
-    console.log('Status collection already populated.');
-  }
-  } catch (error) {
-      console.error('Error inserting Status', error)
-}
-}
-
-checkAndPopulateData();
-populateStatusCollection();
-module.exports = { checkAndPopulateData, populateStatusCollection };
+module.exports = { checkAndPopulateSkillData };

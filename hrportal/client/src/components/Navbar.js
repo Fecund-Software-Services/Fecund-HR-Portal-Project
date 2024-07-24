@@ -52,10 +52,10 @@ const Navbar = () => {
             }`}
           >
             <ul className={styles.link}>
-              <Link to="/skillset">SkillSet</Link>
+              <Link to="/home/skillset">SkillSet</Link>
             </ul>
             <ul className={styles.link}>
-              <Link to="/status">Status</Link>
+              <Link to="/home/status">Status</Link>
             </ul>
           </ul>
         </li>

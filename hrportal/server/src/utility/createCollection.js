@@ -43,10 +43,11 @@ async function collectionChecker() {
       await checkAndCreateCollection('skillsets');
       await checkAndCreateCollection('subskillsets');
       await checkAndCreateCollection('status');
+      await checkAndCreateCollection('roles');
+      await checkAndCreateCollection('permissions');
     } catch (error) {
       console.error('Error creating collections or models:', error);
     }
   }
-collectionChecker();
 
-module.exports = { checkAndCreateCollection };
+module.exports = { collectionChecker };

@@ -8,10 +8,11 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase   | Description 
 -------------------------------------------------------------------------------------------------------
-16/4/2024     HS                            2                     Authentication & Authorization - Login    
-17/4/2024     HS                            2                     Add New Candidate  
-24/4/2024     HS                            3                     Add New Candidate Validation      
-12/07/2024    Harshini C                    1           2         Adding logger to all nodeJS files                   
+16/4/2024     HS                            2              Authentication & Authorization - Login    
+17/4/2024       HS                           2              Add New Candidate  
+24/4/2024       HS                            3                     Add New Candidate Validation  
+23/7/2024      HS                             2      2   Skillset and status collection     
+12/07/2024    Harshini C                    1           2         Adding logger to all nodeJS files 
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -22,10 +23,12 @@ const server_port = require('./src/connection/constants');
 const client_port = require('./src/connection/constants');
 const userRoutes = require('./src/routes/userRoutes');
 const candidateRoutes = require('./src/routes/candidateRoutes');
-const skillsetSchema = require("./src/collections/skillset");
-const subskillsetSchema = require("./src/collections/subskillset");
-const {checkAndPopulateData} = require("./src/utility/insertSkillData")
-const {checkAndCreateCollection} = require('./src/utility/createCollection')
+const statusRoutes = require('./src/routes/statusRoute')
+const {checkAndPopulateSkillData} = require("./src/utility/insertSkillData");
+const {populateStatusCollection} = require("./src/utility/insertStatusData")
+const {populateRolesCollection} = require('./src/utility/userRoleName');
+const {collectionChecker} = require('./src/utility/createCollection');
+const {populatePemissionCollection} = require('./src/utility/permissionID');
 const logger = require('./src/utils/logger');
 
 const cors = require('cors')
@@ -48,6 +51,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/user', userRoutes)
 app.use('/api/candidate', candidateRoutes)
+app.use('/api/status', statusRoutes)
 
 // mongodb connection and port connection.
 mongoose.connect('mongodb:' + url.databaseURL)
@@ -60,4 +64,10 @@ mongoose.connect('mongodb:' + url.databaseURL)
       logger.error(error);
     });
     
+
+collectionChecker();
+checkAndPopulateSkillData();
+populateStatusCollection();
+populateRolesCollection();
+populatePemissionCollection();
 

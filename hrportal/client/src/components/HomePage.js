@@ -13,7 +13,8 @@ Date        |   Author                  |   Sprint   |    Description
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 10/05/2024  |   Harshini C              |   4        |    Log Out button
-8/07/2024   |   Vishal Garg             |   1        |    Front End Coding Navbar
+18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
+
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -25,7 +26,7 @@ function HomePage() {
   return (
     <div className={styles.home_page_container}>
       <div className="wrapper"></div>
-      
+
       <div className={styles.container}>
         <div className={styles.link_container}>
           <Link to="/home/search-candidate" className={styles.link}>

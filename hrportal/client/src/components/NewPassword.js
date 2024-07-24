@@ -14,6 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 10/05/2024  |   Harshini C              |   4        |    Log Out button
 14/05/2024  |   Harshini C              |   4        |    CSS and alignment based on BG image
+18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -23,7 +24,6 @@ import backgroundImage from "../assets/commonBGImage.png";
 import popupBackground from "../assets/PopupBackgroundImage.png";
 import styles from "./NewPassword.module.css"; // Import the CSS file
 import { useResetPassword } from "../hooks/useResetPassword";
-import LogoutButton from "./LogoutButton";
 
 function NewPassword() {
   // Set employee ID from previous screen
@@ -53,7 +53,6 @@ function NewPassword() {
         height: "100vh",
       }}
     >
-      <div><LogoutButton/></div>
       <div>
       <p className={styles.rastanty_Cortez}>Enter New Password</p>
       </div>
