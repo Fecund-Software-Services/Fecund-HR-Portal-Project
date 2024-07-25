@@ -44,14 +44,16 @@ const addStatus = async (req, res) => {
 const editStatus = async (req, res) => {
     const statusId = req.params.id;
     const filter = {_id: statusId};
+    console.log(statusId, req.body.name)
 
     const update = {
         $set: {
             name: req.body.name
         }
-    }
+    }  
     try {
-        const updatedstatus = await Status.updateOne(filter, update);
+        const updatedstatus = await Status.findOneAndUpdate(filter, update, { new: true });
+        console.log(updatedstatus)
         if (!updatedstatus) {
             return res.status(404).send('Status Not Found!');
         }

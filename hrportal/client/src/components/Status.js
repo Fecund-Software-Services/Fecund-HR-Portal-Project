@@ -24,6 +24,8 @@ const Status = () => {
   const [editIndex, setEditIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(5);
+  // const [statusToEditt , setStatusToEditt] = useState("")
+  const [currentIndex , setCurrentIndex] = useState(null)
 
   const handleAddStatus = async () => {
     console.log(currentStatus)
@@ -52,36 +54,41 @@ const Status = () => {
   };
 
   const handleEditStatus = (index) => {
-    // console.log(index)
+    console.log(index)
+    console.log(currentResults)
     // Get the status object from the current state
-  const statusToEdit = currentResults[index];
-  console.log(statusToEdit)
-
-
+    let statusToEdit = currentResults[index]
+    console.log(statusToEdit)
+    
   // Set the currentStatus state with the name of the status being edited
-  setCurrentStatus(statusToEdit.name);
+  setCurrentStatus(prevStatus => statusToEdit.name);
+  setCurrentIndex(prevStatus => statusToEdit._id);
 
+  
+  // setCurrentStatus(statusToEdit.name);
+  // console.log(currentStatus)
+  
   // Set the editIndex to the clicked index
-  setEditIndex(statusToEdit._id);
-    // setEditIndex(index);
-    // setCurrentStatus(statuses[index].name);
+  // setEditIndex(statusToEdit._id);
+  setEditIndex(index);
+  
   };
 
-  // const handleSaveStatus = () => {
-  //   if (currentStatus.trim()) {
-  //     const updatedStatuses = statuses.map((status, index) =>
-  //       index === editIndex ? currentStatus : status
-  //     );
-  //     setStatuses(updatedStatuses);
-  //     setCurrentStatus("");
-  //     setEditIndex(null);
-  //   }
-  // };
+  useEffect(() => {
+    console.log(currentStatus); // Now has the updated value after rendering
+  }, [currentStatus]);
+
+  useEffect(() => {
+    console.log(currentIndex); // Now has the updated value after rendering
+  }, [currentIndex]);
 
   const handleSaveStatus = async () => {
     console.log(currentStatus)
+    console.log(editIndex)
+    console.log(statuses)
     if (currentStatus.trim()) {
-      const updatedStatus = { ...statuses[editIndex], name: currentStatus };
+      // const updatedStatus = { ...statuses[editIndex], name: currentStatus };
+      const updatedStatus = { _id: currentIndex, name: currentStatus, __v: 0 };
       console.log(updatedStatus)
       try {
         const response = await fetch(`/api/status/edit-status/${updatedStatus._id}`, {
@@ -91,15 +98,19 @@ const Status = () => {
           },
           body: JSON.stringify(updatedStatus),
         });
+       
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        
+        // Update statuses state with the updated data
         const updatedStatuses = statuses.map((status, index) =>
-          index === editIndex ? data : status
+          index === (editIndex  + (currentPage - 1)*5)  ? data : status
         );
         setStatuses(updatedStatuses);
         setCurrentStatus('');
+        // setCurrentIndex(null);
         setEditIndex(null);
       } catch (error) {
         console.error('Error updating status:', error);
@@ -108,7 +119,7 @@ const Status = () => {
   };
 
   const handleCancelEdit = () => {
-    setCurrentStatus("");
+    setCurrentStatus(" ");
     setEditIndex(null);
   };
 
