@@ -24,6 +24,7 @@ const client_port = require('./src/connection/constants');
 const userRoutes = require('./src/routes/userRoutes');
 const candidateRoutes = require('./src/routes/candidateRoutes');
 const statusRoutes = require('./src/routes/statusRoute')
+const skillsetRoutes = require('./src/routes/skillsSetRoutes')
 const {checkAndPopulateSkillData} = require("./src/utility/insertSkillData");
 const {populateStatusCollection} = require("./src/utility/insertStatusData")
 const {populateRolesCollection} = require('./src/utility/userRoleName');
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 app.use('/api/user', userRoutes)
 app.use('/api/candidate', candidateRoutes)
 app.use('/api/status', statusRoutes)
+app.use('/api/skillset', skillsetRoutes)
 
 // mongodb connection and port connection.
 mongoose.connect('mongodb:' + url.databaseURL)

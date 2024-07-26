@@ -17,7 +17,7 @@ const express = require('express')
 const skillSet = require('../collections/skillset')
 const subSkillSet = require('../collections/subskillset')
 
-const {onLoadSkillSet,searchSkillSet,addSkillSet, addSubSkillSet, editSkillSet, editSubSkillSet} = require('../controllers/skillsSetsController')
+const {onLoadSkillSet,addSkillSet, addSubSkillSet, editSkillSet, editSubSkillSet} = require('../controllers/skillsSetsController')
 
 // for creating the instance of the route
 const router = express.Router()
@@ -26,7 +26,7 @@ const router = express.Router()
 router.get('/onLoadSkillSet', onLoadSkillSet)
 
 //search bar for skills
-router.get('/searchSkillSet', searchSkillSet)
+// router.get('/searchSkillSet', searchSkillSet)
 
 // add a new skill set
 router.post('/addSkillSet', addSkillSet)
@@ -35,7 +35,7 @@ router.post('/addSkillSet', addSkillSet)
 router.post('/addSubSkillSet', addSubSkillSet)
 
 // edit skill set
-router.post('/editSkillSet', editSkillSet)
+router.put('/editSkillSet/:id', editSkillSet)
 
 // edit sub skill set 
 router.post('/editSubSkillSet', editSubSkillSet)
