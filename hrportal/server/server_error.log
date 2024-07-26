@@ -1,1 +1,32 @@
 {"level":"error","message":"There was an error on connecting to database server","timestamp":"2024-07-17T08:57:26.113Z"}
+{"level":"error","timestamp":"2024-07-25T10:37:49.448Z"}
+{"level":"error","message":"Cannot access 'skillsSet' before initialization","timestamp":"2024-07-25T10:37:49.450Z"}
+{"level":"error","timestamp":"2024-07-25T10:40:37.157Z"}
+{"level":"error","message":"Cannot access 'skillsSet' before initialization","timestamp":"2024-07-25T10:40:37.159Z"}
+{"level":"error","timestamp":"2024-07-25T10:40:39.816Z"}
+{"level":"error","message":"Cannot access 'skillsSet' before initialization","timestamp":"2024-07-25T10:40:39.819Z"}
+{"level":"error","timestamp":"2024-07-25T10:42:36.783Z"}
+{"level":"error","message":"Cannot access 'skillsSet' before initialization","timestamp":"2024-07-25T10:42:36.786Z"}
+{"level":"error","timestamp":"2024-07-25T10:43:26.894Z"}
+{"level":"error","message":"Cannot access 'skillsSet' before initialization","timestamp":"2024-07-25T10:43:26.896Z"}
+{"level":"error","timestamp":"2024-07-25T10:44:07.993Z"}
+{"level":"error","message":"Cannot access 'skillsSet' before initialization","timestamp":"2024-07-25T10:44:07.994Z"}
+{"level":"error","timestamp":"2024-07-25T10:56:17.260Z"}
+{"_message":"SkillSet validation failed","errors":{"skillname":{"kind":"required","message":"Path `skillname` is required.","name":"ValidatorError","path":"skillname","properties":{"message":"Path `skillname` is required.","path":"skillname","type":"required"}}},"level":"error","timestamp":"2024-07-25T10:58:36.970Z"}
+{"_message":"SkillSet validation failed","errors":{"skillname":{"kind":"required","message":"Path `skillname` is required.","name":"ValidatorError","path":"skillname","properties":{"message":"Path `skillname` is required.","path":"skillname","type":"required"}}},"level":"error","timestamp":"2024-07-25T10:58:38.776Z"}
+{"level":"error","timestamp":"2024-07-25T11:01:48.393Z"}
+{"level":"error","message":"Cannot access 'skillsSet' before initialization","timestamp":"2024-07-25T11:01:48.394Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Path `skillname` is required.","timestamp":"2024-07-25T11:10:13.039Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Path `skillname` is required.","timestamp":"2024-07-25T11:10:50.326Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Path `skillname` is required.","timestamp":"2024-07-25T11:10:51.731Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Path `skillname` is required.","timestamp":"2024-07-25T11:10:51.971Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Path `skillname` is required.","timestamp":"2024-07-25T11:11:53.725Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Path `skillname` is required.","timestamp":"2024-07-25T11:14:09.617Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Cast to string failed for value \"{ name: 'Mern' }\" (type Object) at path \"skillname\"","timestamp":"2024-07-25T11:16:49.512Z"}
+{"level":"error","message":"skillname is not defined","timestamp":"2024-07-25T11:19:07.113Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Path `skillname` is required.","timestamp":"2024-07-25T11:20:08.094Z"}
+{"level":"error","message":"SkillSet validation failed: skillname: Path `skillname` is required.","timestamp":"2024-07-25T11:21:50.691Z"}
+{"level":"error","message":"Error adding the skill set","timestamp":"2024-07-25T11:24:19.403Z"}
+{"level":"error","message":"Error adding the skill set","timestamp":"2024-07-25T11:26:37.673Z"}
+{"level":"error","message":"Error adding the skill set","timestamp":"2024-07-25T11:28:20.581Z"}
+{"level":"error","message":"Error adding the skill set","timestamp":"2024-07-25T11:32:09.093Z"}
