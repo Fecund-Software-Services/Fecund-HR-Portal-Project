@@ -8,7 +8,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+24/7/2024       HS                        ph2 sp2         search functionality
 -------------------------------------------------------------------------------------------------------
 */
 const Status = require("../collections/status");
@@ -51,19 +51,32 @@ const editStatus = async (req, res) => {
         }
     }
     try {
-        const updatedstatus = await Status.updateOne(filter, update);
+        const updatedstatus = await Status.findOneAndUpdate(filter, update, { new: true });
         if (!updatedstatus) {
             return res.status(404).send('Status Not Found!');
         }
         return res.status(201).json(updatedstatus);
 
     }catch(error){
-        res.status(500).send('Error Updating status');
+        res.status(500).send( 'Error Updating status');
+    }
+}
+
+// search for a status
+const searchStatus = async (req, res) => {
+    const {query} = req.query;
+    try {
+        const searchRegex = new RegExp(`^${query}`,'i');
+        const filteredStatuses = await Status.find({name: searchRegex})
+        return res.status(201).json(filteredStatuses)
+    } catch (error){
+        res.status(500).json({message: 'Status not Found!'})
     }
 }
 
 module.exports = {
     getStatus,
     addStatus,
-    editStatus
+    editStatus,
+    searchStatus
 }
