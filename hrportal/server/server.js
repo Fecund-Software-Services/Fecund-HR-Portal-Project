@@ -6,12 +6,13 @@ Sprint: Sprint 1
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   |  Phase   | Description 
 -------------------------------------------------------------------------------------------------------
 16/4/2024     HS                            2              Authentication & Authorization - Login    
 17/4/2024       HS                           2              Add New Candidate  
 24/4/2024       HS                            3                     Add New Candidate Validation  
-23/7/2024      HS                          ph2 sp2         Skillset and status collection                       
+23/7/2024      HS                             2      2   Skillset and status collection     
+12/07/2024    Harshini C                    1           2         Adding logger to all nodeJS files 
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -23,11 +24,14 @@ const client_port = require('./src/connection/constants');
 const userRoutes = require('./src/routes/userRoutes');
 const candidateRoutes = require('./src/routes/candidateRoutes');
 const statusRoutes = require('./src/routes/statusRoute')
+const skillsetRoutes = require('./src/routes/skillsSetRoutes')
 const {checkAndPopulateSkillData} = require("./src/utility/insertSkillData");
 const {populateStatusCollection} = require("./src/utility/insertStatusData")
 const {populateRolesCollection} = require('./src/utility/userRoleName');
 const {collectionChecker} = require('./src/utility/createCollection');
 const {populatePemissionCollection} = require('./src/utility/permissionID');
+const logger = require('./src/utils/logger');
+
 const cors = require('cors')
 require("dotenv").config();
 
@@ -40,7 +44,7 @@ app.use(cors({ origin: client_port , credentials: true}))
 app.use(express.json())
 
 app.use((req, res, next) => {
-    console.log(req.path, req.method)
+    logger.info(req.path, req.method)
     next()
 }) 
 
@@ -49,16 +53,17 @@ app.use((req, res, next) => {
 app.use('/api/user', userRoutes)
 app.use('/api/candidate', candidateRoutes)
 app.use('/api/status', statusRoutes)
+app.use('/api/skillset', skillsetRoutes)
 
 // mongodb connection and port connection.
 mongoose.connect('mongodb:' + url.databaseURL)
     .then(() => {
       app.listen(server_port.server_PORT, () => {
-        console.log('connected to Database and listening on port',server_port.server_PORT)
+        logger.info('connected to Database and listening on port',server_port.server_PORT)
       })
     })
     .catch((error) => {
-      console.log(error);
+      logger.error(error);
     });
     
 

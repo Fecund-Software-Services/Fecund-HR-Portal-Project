@@ -14,43 +14,142 @@ Date        |   Author            |   Sprint        |    Description
 
 */
 
-import React, { useState } from 'react';
-import styles from './Status.module.css';
+import React, { useState, useEffect } from "react";
+import styles from "./Status.module.css";
 
 const Status = () => {
   const [statuses, setStatuses] = useState([]);
-  const [currentStatus, setCurrentStatus] = useState('');
+  const [currentStatus, setCurrentStatus] = useState("");
   const [isAddingStatus, setIsAddingStatus] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(5);
+  // const [statusToEditt , setStatusToEditt] = useState("")
+  const [currentIndex , setCurrentIndex] = useState(null)
 
-  const handleAddStatus = () => {
+  const handleAddStatus = async () => {
+    console.log(currentStatus)
     if (currentStatus.trim()) {
-      setStatuses([...statuses, currentStatus]);
-      setCurrentStatus('');
-      setIsAddingStatus(false);
+      try {
+        const response = await fetch('/api/status/add-status', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: currentStatus }),
+        });
+        console.log(response)
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Added status:', data); // Debugging line
+        setStatuses([...statuses, data]);
+        setCurrentStatus('');
+        setIsAddingStatus(false);
+      } catch (error) {
+        console.error('Error adding status:', error);
+      }
     }
   };
 
   const handleEditStatus = (index) => {
-    setEditIndex(index);
-    setCurrentStatus(statuses[index]);
+    console.log(index)
+    console.log(currentResults)
+    // Get the status object from the current state
+    let statusToEdit = currentResults[index]
+    console.log(statusToEdit)
+    
+  // Set the currentStatus state with the name of the status being edited
+  setCurrentStatus(prevStatus => statusToEdit.name);
+  setCurrentIndex(prevStatus => statusToEdit._id);
+
+  
+  // setCurrentStatus(statusToEdit.name);
+  // console.log(currentStatus)
+  
+  // Set the editIndex to the clicked index
+  // setEditIndex(statusToEdit._id);
+  setEditIndex(index);
+  
   };
 
-  const handleSaveStatus = () => {
+  useEffect(() => {
+    console.log(currentStatus); // Now has the updated value after rendering
+  }, [currentStatus]);
+
+  useEffect(() => {
+    console.log(currentIndex); // Now has the updated value after rendering
+  }, [currentIndex]);
+
+  const handleSaveStatus = async () => {
+    console.log(currentStatus)
+    console.log(editIndex)
+    console.log(statuses)
     if (currentStatus.trim()) {
-      const updatedStatuses = statuses.map((status, index) =>
-        index === editIndex ? currentStatus : status
-      );
-      setStatuses(updatedStatuses);
-      setCurrentStatus('');
-      setEditIndex(null);
+      // const updatedStatus = { ...statuses[editIndex], name: currentStatus };
+      const updatedStatus = { _id: currentIndex, name: currentStatus, __v: 0 };
+      console.log(updatedStatus)
+      try {
+        const response = await fetch(`/api/status/edit-status/${updatedStatus._id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedStatus),
+        });
+       
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        // Update statuses state with the updated data
+        const updatedStatuses = statuses.map((status, index) =>
+          index === (editIndex  + (currentPage - 1)*5)  ? data : status
+        );
+        setStatuses(updatedStatuses);
+        setCurrentStatus('');
+        // setCurrentIndex(null);
+        setEditIndex(null);
+      } catch (error) {
+        console.error('Error updating status:', error);
+      }
     }
   };
 
   const handleCancelEdit = () => {
-    setCurrentStatus('');
+    setCurrentStatus(" ");
     setEditIndex(null);
   };
+
+  useEffect(() => {
+    const fetchStatuses = async () => {
+      try {
+        const response = await fetch("/api/status/get-status");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Fetched statuses:", data); // Debugging line
+        setStatuses(data);
+      } catch (error) {
+        console.error("Error fetching statuses:", error);
+      }
+    };
+
+    fetchStatuses();
+  }, []);
+
+  // Logic for pagination
+  const indexOfLastResult = currentPage * resultsPerPage;
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
+  const currentResults = statuses.slice(indexOfFirstResult, indexOfLastResult);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  console.log(statuses);
 
   return (
     <div className={styles.statusContainer}>
@@ -83,55 +182,86 @@ const Status = () => {
           </button>
         </div>
       )}
-      { statuses.length > 0 ? <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {statuses.map((status, index) => (
-            <tr key={index}>
-              <td>
-                {editIndex === index ? (
-                  <input
-                    type="text"
-                    className={styles.input_field}
-                    value={currentStatus}
-                    onChange={(e) => setCurrentStatus(e.target.value)}
-                  />
-                ) : (
-                  status
-                )}
-              </td>
-              <td>
-                {editIndex === index ? (
-                  <div className={styles.button_conatiner}>
-                    <button className={styles.button} onClick={handleSaveStatus}>
-                      Save
-                    </button>
-                    <button className={styles.button} onClick={handleCancelEdit}>
-                      Cancel
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    className={styles.button}
-                    onClick={() => handleEditStatus(index)}
-                  >
-                    Edit
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> : " "}
-      
+      {statuses.length > 0 ? (
+        <div>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentResults.map((status, index) => (
+                <tr key={index}>
+                  <td>
+                    {editIndex === index ? (
+                      <input
+                        type="text"
+                        className={styles.input_field}
+                        value={currentStatus}
+                        onChange={(e) => setCurrentStatus(e.target.value)}
+                      />
+                    ) : (
+                      <span>{status.name}</span>
+                    )}
+                  </td>
+                  <td>
+                    {editIndex === index ? (
+                      <div className={styles.button_conatiner}>
+                        <button
+                          className={styles.button}
+                          onClick={handleSaveStatus}
+                        >
+                          Save
+                        </button>
+                        <button
+                          className={styles.button}
+                          onClick={handleCancelEdit}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        className={styles.button}
+                        onClick={() => handleEditStatus(index)}
+                      >
+                        Edit
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className={styles.pagination}>
+            {currentPage >= 2 ? (
+              <button
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={styles.table_button}
+              >
+                Previous
+              </button>
+            ) : null}
+            {/* <span>{currentPage}</span> */}
+            {statuses.length > resultsPerPage ? (
+              <button
+                onClick={() => paginate(currentPage + 1)}
+                disabled={indexOfLastResult >= statuses.length}
+                className={styles.table_button}
+              >
+                Next
+              </button>
+            ) : null}
+          </div>
+        </div>
+      ) : (
+        " "
+      )}
     </div>
   );
 };
 
 export default Status;
-

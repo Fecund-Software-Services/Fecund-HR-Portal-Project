@@ -6,14 +6,15 @@ Sprint: Sprint 2
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   |  Phase   |  Description 
 -------------------------------------------------------------------------------------------------------
-                                         
+12/07/2024  |   Harshini C              |   1        |   2      |  Adding logger to all nodeJS files                                   
 -------------------------------------------------------------------------------------------------------
 */
 
 const jwt = require('jsonwebtoken')
 const User = require('../collections/users')
+const logger = require('../utils/logger');
 
 const requireAuth = async (req, res, next) => {
 
@@ -31,7 +32,7 @@ const requireAuth = async (req, res, next) => {
         req.user = await User.findOne({_id}).select('_id')
         next()
     }catch(error) {
-        console.log(error)
+        logger.error(error)
         res.status(401).json({error: 'Request is not authorized'})
 
     }
