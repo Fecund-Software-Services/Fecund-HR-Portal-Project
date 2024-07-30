@@ -38,7 +38,7 @@ router.post('/addSubSkillSet', addSubSkillSet)
 router.put('/editSkillSet/:id', editSkillSet)
 
 // edit sub skill set 
-router.post('/editSubSkillSet', editSubSkillSet)
+router.put('/editSubSkillSet/:id', editSubSkillSet)
 
 // exporting router
 module.exports = router

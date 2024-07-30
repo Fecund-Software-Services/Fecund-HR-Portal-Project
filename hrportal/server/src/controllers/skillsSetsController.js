@@ -113,54 +113,64 @@ console.log(filter , req.body)
 // ADD NEW SUB SKILL SET
 const addSubSkillSet = async (req, res) => {
   try {
-    const subsetname = req.body;
+    const { subsetname, mainSkillID } = req.body;
+    
+    // Create new subskillset
+    const newSubSkillset = new subSkillSet({ subsetname, mainSkillID });
+    const savedSubSkillset = await newSubSkillset.save();
+    
+    // Update the corresponding skillset
+    await skillsSet.findByIdAndUpdate(
+      mainSkillID,
+      { $push: { subskillset: savedSubSkillset._id } },
+      { new: true, useFindAndModify: false }
+    );
 
-    // CHECKING IF THE SKILL SET ALREADY EXISTS
-    let existingSubSkillSet;
-    try {
-      existingSubSkillSet = await subSkillSet.findOne({ subsetname });
-    } catch (error) {
-      logger.error(error);
-    }
-
-    if (existingSubSkillSet) {
-      return res
-        .status(400)
-        .json({
-          message: "Error: Sub Skill Set you are adding is already present",
-        });
-    }
-
-    // ADDING IN A NEW CANDIDATE
-    const subSkillSet = new subSkillSet({
-      subsetname,
-    });
-    await subSkillSet.save();
-
-    return res
-      .status(201)
-      .json({ message: "Sub Skill Set added Successfully" });
+    res.status(201).json(savedSubSkillset);
   } catch (error) {
-    logger.error(error.message);
+    res.status(400).json({ message: error.message });
   }
-};
+}
 
 // EDIT SELECTED SUB SKILL SET
 const editSubSkillSet = async (req, res) => {
-  //const skillnameId = req.params.id;
-  const filter = { _id: subsetname };
-
-  const update = {
-    $set: {
-      subsetname: req.body.subsetname,
-    },
-  };
-
   try {
-    const result = await subSkillSet.updateOne(filter, update);
-    return res.status(201).json(result);
-  } catch (err) {
-    return res.status(400).json({ message: "Error: Update failed!" });
+    const { id } = req.params;
+    const { subsetname, mainSkillID } = req.body;
+    
+    const subskillset = await subSkillSet.findById(id);
+    
+    if (!subskillset) {
+      return res.status(404).json({ message: 'SubSkillset not found' });
+    }
+    
+    // If mainSkillID is changed, update the old and new Skillset documents
+    if (mainSkillID && subskillset.mainSkillID.toString() !== mainSkillID) {
+      // Remove subskillset from old skillset
+      await skillsSet.findByIdAndUpdate(
+        subskillset.mainSkillID,
+        { $pull: { subskillset: id } },
+        { new: true, useFindAndModify: false }
+      );
+      
+      // Add subskillset to new skillset
+      await skillsSet.findByIdAndUpdate(
+        mainSkillID,
+        { $push: { subskillset: id } },
+        { new: true, useFindAndModify: false }
+      );
+    }
+    
+    // Update the subskillset
+    const updatedSubSkillset = await subSkillSet.findByIdAndUpdate(
+      id,
+      { subsetname, mainSkillID },
+      { new: true, runValidators: true }
+    );
+    
+    res.json(updatedSubSkillset);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 };
 

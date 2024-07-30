@@ -193,3 +193,12 @@
 {"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-07-26T09:46:52.168Z"}
 {"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-07-26T09:46:54.205Z"}
 {"level":"info","message":"/api/skillset/editSkillSet/6697bdf891f9c9370fa7685e","timestamp":"2024-07-26T09:47:52.629Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-07-30T05:46:04.701Z"}
+{"level":"info","message":"/api/skillset/addSubSkillSet","timestamp":"2024-07-30T05:46:18.716Z"}
+{"level":"info","message":"/api/skillset/addSubSkillSet","timestamp":"2024-07-30T05:47:14.028Z"}
+{"level":"info","message":"/api/skillset/editSubSkillSet/:66a87e6279459dbf412aaf3a","timestamp":"2024-07-30T05:53:06.608Z"}
+{"level":"info","message":"/api/skillset/editSubSkillSet/:66a87e6279459dbf412aaf3a","timestamp":"2024-07-30T05:53:12.741Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-07-30T05:54:26.150Z"}
+{"level":"info","message":"/api/skillset/editSubSkillSet/:66a87e6279459dbf412aaf3a","timestamp":"2024-07-30T05:54:33.546Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-07-30T05:57:22.659Z"}
+{"level":"info","message":"/api/skillset/editSubSkillSet/66a87e6279459dbf412aaf3a","timestamp":"2024-07-30T05:57:27.793Z"}
