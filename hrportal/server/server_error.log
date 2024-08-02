@@ -30,3 +30,4 @@
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-07-25T11:26:37.673Z"}
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-07-25T11:28:20.581Z"}
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-07-25T11:32:09.093Z"}
+{"level":"error","message":"Candidates validation failed: status: Cast to ObjectId failed for value \"Submitted\" (type string) at path \"status\" because of \"BSONError\", skillSet: Cast to ObjectId failed for value \"Oneshield BA\" (type string) at path \"skillSet\" because of \"BSONError\", subskillset: Path `subskillset` is required.","timestamp":"2024-08-01T10:22:22.282Z"}
