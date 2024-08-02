@@ -13,6 +13,7 @@ Date        | Author                  | Sprint   | Phase | Description
 03/05/2024  | Harshini C              | 4        | 1    | View Candidates applied in
 07/05/2024  | HS                      | 4        | 1    | Resume Handling
 08/05/2024  | HS                      | 4        | 2    | Update Resume Handling
+02/08/2024  | Harshini C              | 2        | 2    | Added logger library
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -29,7 +30,7 @@ const { MongoClient } = require("mongodb");
 const { GridFsStorage } = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const mongoose = require("mongoose");
-const logger = require('../utils/logger');
+const logger = require('../utility/logger');
 const mongoURI = "mongodb:" + url.databaseURL;
 
 // Create mongo connection
@@ -215,11 +216,6 @@ const viewCandidateByField = async (req, res) => {
 const viewCandidateByYearMonth = async (req, res) => {
   const searchTerm = req.query.searchTerm; // Get the search term from query parameter
 
-  // Validate if at least one search field has data
-  // if (!searchTerm || searchTerm.trim() === '') {
-  //   return res.status(400).json({message: "Error: Enter data for both the given fields!"});
-  // }
-
   const searchTerms = searchTerm.split(" ");
 
   if (searchTerms.length === 0 || searchTerms.length === 1) {
@@ -270,7 +266,7 @@ const viewCandidate = async (req, res) => {
     }
     res.json(candidate);
   } catch (err) {
-    console.error(err);
+    logger.error(err);
     res.status(500).send("Error fetching candidate");
   }
 };
@@ -292,7 +288,7 @@ async function viewResume(filename, response) {
       `attachment; filename="${filename}"`
     );
   } catch (error) {
-    console.error("Error to see resume", error);
+    logger.error("Error to see resume", error);
   }
 }
 

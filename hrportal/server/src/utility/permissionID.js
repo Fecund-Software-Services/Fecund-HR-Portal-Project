@@ -1,4 +1,20 @@
+/*
+Project: Hiring Portal Project
+Author: Harshini C
+Date: 10/07/2024
+Sprint: Phase 2 Sprint 1
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |  Sprint   |  Phase  |  Description 
+-------------------------------------------------------------------------------------------------------
+17/7/24     |  hs                       |  1        |   2     | Code formating and refactoring
+02/08/2024  |  Harshini C               |  2        |   2     | Added logger library
+-------------------------------------------------------------------------------------------------------
+// */
+
 const permission = require('../collections/userpermissions');
+const logger = require('../utility/logger');
 
 const employeeID = [
     "10023",
@@ -17,12 +33,12 @@ async function populatePemissionCollection() {
                 const newPermission = new permission({userPermissions: id});
                 await newPermission.save();
             }
-            console.log('Permission IDs added successfully');
+            logger.info('Permission IDs added successfully');
         } else {
-            console.log('Permission collection already populated')
+            logger.info('Permission collection already populated')
         }
     }catch(error) {
-        console.log('Error Inserting permission ID',  error)
+        logger.error('Error Inserting permission ID',  error)
     }
 
 }

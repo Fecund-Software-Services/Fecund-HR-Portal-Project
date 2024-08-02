@@ -6,12 +6,13 @@ Sprint: Phase 2 Sprint 1
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   |   Phase  | Description 
 -------------------------------------------------------------------------------------------------------
-
+02/08/2024  |  Harshini C               |  2         |   2      | Added logger library
 -------------------------------------------------------------------------------------------------------
 // */
 const Roles = require('../collections/userroles')
+const logger = require('../utility/logger');
 
 const roles = [
     "admin",
@@ -26,12 +27,12 @@ async function populateRolesCollection() {
           const newRole = new Roles({ userRoles: role});
           await newRole.save();
         }
-        console.log(`Roles added successfully!`);
+        logger.info(`Roles added successfully!`);
     } else {
-      console.log('Roles collection already populated.');
+      logger.info('Roles collection already populated.');
     }
     } catch (error) {
-        console.error('Error inserting User roles', error)
+        logger.error('Error inserting User roles', error)
   }
   }
 

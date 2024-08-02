@@ -6,13 +6,14 @@ Sprint: Phase 2 Sprint 1
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
-
+02/08/2024  |  Harshini C               |  2         |   2     |  Added logger library
 -------------------------------------------------------------------------------------------------------
 // */
 
 const Status = require('../collections/status')
+const logger = require('../utility/logger');
 
 // Status 
 const statuses = [
@@ -42,12 +43,12 @@ async function populateStatusCollection() {
           const newStatus = new Status({ name: status });
           await newStatus.save();
         }
-        console.log(`Status added successfully!`);
+        logger.info(`Status added successfully!`);
     } else {
-      console.log('Status collection already populated.');
+      logger.info('Status collection already populated.');
     }
     } catch (error) {
-        console.error('Error inserting Status', error)
+        logger.error('Error inserting Status', error)
   }
   }
 

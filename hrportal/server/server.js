@@ -8,11 +8,11 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase   | Description 
 -------------------------------------------------------------------------------------------------------
-16/4/2024     HS                            2              Authentication & Authorization - Login    
-17/4/2024       HS                           2              Add New Candidate  
-24/4/2024       HS                            3                     Add New Candidate Validation  
-23/7/2024      HS                             2      2   Skillset and status collection     
-12/07/2024    Harshini C                    1           2         Adding logger to all nodeJS files 
+16/4/2024   |   HS                      |    2       |  1       | Authentication & Authorization - Login    
+17/4/2024   |   HS                      |    2       |  1       | Add New Candidate  
+24/4/2024   |   HS                      |    3       |  1       | Add New Candidate Validation  
+23/7/2024   |   HS                      |    2       |  2       | Skillset and status collection     
+12/07/2024  |   Harshini C              |    1       |  2       | Adding logger to all nodeJS files 
 -------------------------------------------------------------------------------------------------------
 */
 

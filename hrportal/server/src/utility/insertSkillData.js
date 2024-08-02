@@ -6,14 +6,16 @@ Sprint: Phase 2 Sprint 1
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |  Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
-17/7/24         hs                        ph-2 sp-1    Code formating and refactoring
+17/7/24     |  hs                       |  1        |   2     | Code formating and refactoring
+02/08/2024  |  Harshini C               |  2        |   2     | Added logger library
 -------------------------------------------------------------------------------------------------------
 // */
 const SubSkillSet = require('../collections/subskillset');
 const SkillSet = require('../collections/skillset');
 const skills = require('./skillsConstants')
+const logger = require('../utility/logger');
 
 // Adding some predefined values foe skill set and subskill set
 async function insertData() {
@@ -184,9 +186,9 @@ async function insertData() {
       await othersubSkillPowerBI.save();
       await othersubSkillDevops.save();
 
-      console.log('SkillSet successfully inserted!');
+      logger.info('SkillSet successfully inserted!');
     }catch (err) {
-      console.error('Error inserting data:', err);
+      logger.error('Error inserting data:', err);
     }
   }
 
@@ -196,7 +198,7 @@ async function checkAndPopulateSkillData() {
   if (!existingSkillSet) {
     await insertData();
   } else {
-    console.log('Skillset Collection already Populated');
+    logger.info('Skillset Collection already Populated');
   }
 }
 
