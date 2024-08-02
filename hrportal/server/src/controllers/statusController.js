@@ -6,12 +6,14 @@ Sprint: ph 2 Sprint 2
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |  Sprint    | Phase       |   Description 
 -------------------------------------------------------------------------------------------------------
-24/7/2024       HS                        ph2 sp2         search functionality
+24/7/2024   |   HS                      |  2         |  1          |  search functionality
+02/08/2024  |   Harshini C              |  2         |  2          |  Added logger library
 -------------------------------------------------------------------------------------------------------
 */
 const Status = require("../collections/status");
+const logger = require("../utility/logger");
 
 // Get all Status
 const getStatus = async (req, res) => {
@@ -29,7 +31,7 @@ const addStatus = async (req, res) => {
     try {
         const existingStatus = await Status.findOne({name});
         if (existingStatus) {
-            return res.status(400).send("Status witht the name already exists")
+            return res.status(400).send("Status with the name already exists")
         }
         const newStatus = new Status({name});
         await newStatus.save();
@@ -44,7 +46,7 @@ const addStatus = async (req, res) => {
 const editStatus = async (req, res) => {
     const statusId = req.params.id;
     const filter = {_id: statusId};
-    console.log(statusId, req.body.name)
+    logger.info(statusId, req.body.name)
 
     const update = {
         $set: {

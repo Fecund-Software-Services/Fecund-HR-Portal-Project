@@ -9,17 +9,17 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        | Author                  | Sprint   | Phase | Description 
 -------------------------------------------------------------------------------------------------------
-1/8/2024    |  Omkar                    |   2        | Added On LoadSubskill route for Integration
+1/8/2024    |  Omkar                  | 2        | 2     | Added On LoadSubskill route for Integration
+02/08/2024  |  Harshini C             | 2        | 2     | Added logger library
 -------------------------------------------------------------------------------------------------------
 */
 
-const logger = require("../utils/logger");
+const logger = require("../utility/logger");
 const skillsSet = require("../collections/skillset");
 const subSkillSet = require("../collections/subskillset");
 
 //ONLOAD DISPLAY SKILL SETS
 const onLoadSkillSet = async (req, res) => {
-  
   try {
     const skillSetsOptions = await skillsSet.find(); // returns all skill sets
 
@@ -32,6 +32,8 @@ const onLoadSkillSet = async (req, res) => {
     res.status(500).send("Error searching skill sets");
   }
 };
+
+//ONLOAD DISPLAY SUB SKILL SETS
 const onLoadSubskill = async (req, res) => {
  
   try {
@@ -50,10 +52,11 @@ const onLoadSubskill = async (req, res) => {
  
     res.json(subskills);
   } catch (error) {
-    console.error('Error fetching subskills:', error);
+    logger.error('Error fetching subskills:', error);
     res.status(500).json({ message: 'Server error while fetching subskills' });
   }
 }
+
 //SEARCH BAR DISPLAY SKILL SETS AS TYPED
 /*const searchSkillSet = async (req, res) => {
   try {
@@ -79,12 +82,8 @@ const onLoadSubskill = async (req, res) => {
 };*/
 
 // ADD NEW SKILLSET
-// ADD NEW SKILLSET
 const addSkillSet = async (req, res) => {
   try {
-    const {skillname}  = req.body;
-    // console.log(skillname)
- 
     // CHECKING IF THE SKILL SET ALREADY EXISTS
     let existingSkillSet;
     try {
@@ -113,7 +112,7 @@ const addSkillSet = async (req, res) => {
 const editSkillSet = async (req, res) => {
   const skillnameId = req.params.id;
   const filter = { _id: skillnameId };
-console.log(filter , req.body)
+
   const update = {
     $set: {
       skillname: req.body.skillname,
@@ -122,7 +121,7 @@ console.log(filter , req.body)
 
   try {
     const updatedSkill = await skillsSet.findOneAndUpdate(filter, update, { new: true });
-    console.log(updatedSkill)
+    
     if (!updatedSkill) {
         return res.status(404).send('Status Not Found!');
     }

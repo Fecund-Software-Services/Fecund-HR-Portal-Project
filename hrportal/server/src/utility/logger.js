@@ -13,7 +13,6 @@ Date        | Author                  | Sprint    | Phase    | Description
 */
 
 const { createLogger, transports, format } = require('winston');
-//const loggerLevel = require('../connection/constants');
 
 const logger = createLogger({
     transports:[

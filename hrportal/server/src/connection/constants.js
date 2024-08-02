@@ -18,8 +18,6 @@ const databaseName = 'FecundHiringPortal';
 const databaseURL = localhost.concat("",databaseName)
 server_PORT = 4000
 client_PORT = "http://localhost:3000"
-//const loggerLevel = "info";
-//const loggerFilename = "server_info.log";
 
 module.exports.databaseURL = databaseURL;
 module.exports.localhost = localhost;

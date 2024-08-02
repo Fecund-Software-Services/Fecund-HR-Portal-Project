@@ -6,14 +6,15 @@ Sprint: Phase 2 Sprint 1
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  | Sprint     |  Phase   | Description 
 -------------------------------------------------------------------------------------------------------
-
+02/08/2024  | Harshini C                | 2          |  2       | Added logger library
 -------------------------------------------------------------------------------------------------------
 // */
+
 const url = require('../connection/constants')
 const { MongoClient } = require('mongodb');
-
+const logger = require('../utility/logger');
 const uri = 'mongodb:' + url.localhost;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -26,12 +27,12 @@ async function checkAndCreateCollection(collectionName) {
         const existingCollection = collections.find(collection => collection.name === collectionName);
 
         if (!existingCollection) {
-            console.log(`Created collection: ${collectionName}`);
+            logger.info(`Created collection: ${collectionName}`);
         } else {
-            console.log(`Collection already exists: ${collectionName}`);
+            logger.info(`Collection already exists: ${collectionName}`);
         }
     } catch (error) {
-        console.error(`Error checking or creating collection: ${error}`);
+        logger.error(`Error checking or creating collection: ${error}`);
     }
 }
 
@@ -46,7 +47,7 @@ async function collectionChecker() {
       await checkAndCreateCollection('roles');
       await checkAndCreateCollection('permissions');
     } catch (error) {
-      console.error('Error creating collections or models:', error);
+      logger.error('Error creating collections or models:', error);
     }
   }
 
