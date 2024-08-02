@@ -6,13 +6,14 @@ Sprint: Sprint 3
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        | Author                  | Sprint   | Description 
+Date        | Author                  | Sprint   | Phase | Description 
 -------------------------------------------------------------------------------------------------------
-29/4/2024   | HS                      | 3        | Search candidate validation
-5/2/2024    | HS                      | 3        | Edit candidate and view single candidate
-03/05/2024  | Harshini C              | 4        | View Candidates applied in
-07/05/2024  | HS                      | 4        | Resume Handling
-08/05/2024  | HS                      | 4        | Update Resume Handling
+29/4/2024   | HS                      | 3        | 1    | Search candidate validation
+5/2/2024    | HS                      | 3        | 1    | Edit candidate and view single candidate
+03/05/2024  | Harshini C              | 4        | 1    | View Candidates applied in
+07/05/2024  | HS                      | 4        | 1    | Resume Handling
+08/05/2024  | HS                      | 4        | 2    | Update Resume Handling
+02/08/2024  | Harshini C              | 2        | 2    | Added logger library
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -29,7 +30,7 @@ const { MongoClient } = require("mongodb");
 const { GridFsStorage } = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const mongoose = require("mongoose");
-
+const logger = require('../utility/logger');
 const mongoURI = "mongodb:" + url.databaseURL;
 
 // Create mongo connection
@@ -103,7 +104,7 @@ const addCandidate = async (req, res) => {
     try {
       existingCandidate = await Candidate.findOne({ emailAddress });
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
 
     if (existingCandidate) {
@@ -162,7 +163,7 @@ const addCandidate = async (req, res) => {
     }
     return res.status(201).json({ message: " Candidate added Successfully" });
   } catch (error) {
-    console.log(error.message);
+    logger.error(error.message);
   }
 };
 
@@ -215,11 +216,6 @@ const viewCandidateByField = async (req, res) => {
 const viewCandidateByYearMonth = async (req, res) => {
   const searchTerm = req.query.searchTerm; // Get the search term from query parameter
 
-  // Validate if at least one search field has data
-  // if (!searchTerm || searchTerm.trim() === '') {
-  //   return res.status(400).json({message: "Error: Enter data for both the given fields!"});
-  // }
-
   const searchTerms = searchTerm.split(" ");
 
   if (searchTerms.length === 0 || searchTerms.length === 1) {
@@ -251,7 +247,7 @@ const viewCandidateByYearMonth = async (req, res) => {
     }
     res.json(candidateDetails); // Send the matching users back to the client
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     res.status(500).send("Error searching users"); // Handle errors
   }
 };
@@ -270,7 +266,7 @@ const viewCandidate = async (req, res) => {
     }
     res.json(candidate);
   } catch (err) {
-    console.error(err);
+    logger.error(err);
     res.status(500).send("Error fetching candidate");
   }
 };
@@ -292,7 +288,7 @@ async function viewResume(filename, response) {
       `attachment; filename="${filename}"`
     );
   } catch (error) {
-    console.error("Error to see resume", error);
+    logger.error("Error to see resume", error);
   }
 }
 

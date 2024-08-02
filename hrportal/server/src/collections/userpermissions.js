@@ -8,12 +8,12 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+22/7/2024     HS                           ph2 sp2      userPermissions
 -------------------------------------------------------------------------------------------------------
 */
 
 const mongoose = require('mongoose');
-const mongoutil = require('../connection/mongoutil');
+const collectionNames = require('..//utility/collectionNames');
 
 const userPermissionsSchema = new mongoose.Schema({
     userPermissions: {
@@ -23,9 +23,6 @@ const userPermissionsSchema = new mongoose.Schema({
 });
 
 // intializing 
-const userPermissions = mongoose.model('User Permissions', userPermissionsSchema);
+module.exports = mongoose.model(collectionNames.collectionNames.UserPermissions, userPermissionsSchema);
      
-data = [{
-    userPermissions: "Add,View,Update,Submit"
-    }]
-    userPermissions.insertMany(data)
+

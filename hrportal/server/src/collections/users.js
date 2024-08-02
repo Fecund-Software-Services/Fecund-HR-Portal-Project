@@ -8,11 +8,12 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+22/7/2024       HS                         ph2 sp2      User permissions
 -------------------------------------------------------------------------------------------------------
 */
 
 const mongoose = require('mongoose')
+const collectionNames = require('..//utility/collectionNames')
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -39,7 +40,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: "Admin" // default is set for admin, in future other roles can be added.
+        default: "user" // default is set for user,
     },
     securityQuestion1:{
         type: String,
@@ -71,5 +72,5 @@ const userSchema = new mongoose.Schema({
 }, {timestamps: true})
 
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model(collectionNames.collectionNames.UserCollection, userSchema)
 

@@ -13,13 +13,13 @@ Date        |   Author                  |   Sprint   |    Description
 2/5/2024    |   Vishal                  |   3        |    Search Candidate Validations - Code Integration
 10/05/2024  |   Harshini C              |   4        |    Log Out button
 14/05/2024  |   Harshini C              |   4        |    CSS and alignment based on BG image
+18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
-import LogoutButton from "./LogoutButton";
 
 function ViewSearchCandidatePage() {
   const [searchType, setSearchType] = useState("date");
@@ -160,7 +160,6 @@ function ViewSearchCandidatePage() {
 
   return (
     <div className={styles.search_container}>
-      <div><LogoutButton/></div>
       <div className={styles.title_container}>
         <p className={styles.rastanty_Cortez}>View / Search Candidate</p>
       </div>

@@ -15,6 +15,7 @@ Date        | Author                  | Sprint   | Description
 10/05/2024  | Vishal                  | 4        | CSS and alignment based on BG image
 10/05/2024  | Harshini C              | 4        | Log Out button
 14/05/2024  | Harshini C              | 4        | CSS and alignment based on BG image
+18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -22,7 +23,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import popupBackground from "../assets/PopupBackgroundImage.png";
 import styles from "./SignupForm.module.css";
-import LogoutButton from "./LogoutButton";
 // importing "useSignup" from hooks
 import { useSignup } from "../hooks/useSignup.js";
 
@@ -77,7 +77,6 @@ const SignUpForm = () => {
       <div className={styles.title_container}>
         <p className={styles.rastanty_Cortez}>Sign up Form</p>
       </div>
-      <div><LogoutButton/></div>
 
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>

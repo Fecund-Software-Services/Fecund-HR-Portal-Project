@@ -15,6 +15,7 @@ Date        |   Author                  |   Sprint   |    Description
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 10/05/2024  |   Harshini C              |   4        |   Log Out button
 10/05/2024  |   Harshini C              |   4        |   CSS and alignment based on BG image
+18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -23,7 +24,6 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styles from "./EditCandidateDetails.module.css";
 import popupBackground from "../assets/PopupBackgroundImage.png";
-import LogoutButton from "./LogoutButton";
 
 // import { useAddCandidate } from "../hooks/useAddCandidate.js";
 
@@ -291,7 +291,6 @@ const EditCandiadteDetails = () => {
       <div className={styles.title_container}>
          <p className={styles.rastanty_Cortez}>Edit New Candidate</p>
       </div>
-      <div><LogoutButton/></div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
           {/* Left side form fields here */}

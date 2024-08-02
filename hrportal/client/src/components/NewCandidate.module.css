@@ -126,7 +126,7 @@ input {
   transition: background-color 0.3s ease;
 }
 
-.submit_button {
+/* .submit_button {
   background-color: #cccf;
   color: #000;
 }
@@ -134,7 +134,7 @@ input {
 .cancel_button {
   background-color: #ccc;
   color: #000;
-}
+} */
 
 h2 {
   text-align: center; /* Center the title */

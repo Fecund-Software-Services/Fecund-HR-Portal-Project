@@ -13,20 +13,20 @@ Date        |   Author                  |   Sprint   |    Description
 09/05/2024  |   Harshini C              |   4        |    BG update to all screens
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 10/05/2024  |   Harshini C              |   4        |    Log Out button
+18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
+
 -------------------------------------------------------------------------------------------------------
 */
 
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
-import LogoutButton from "./LogoutButton";
 
 function HomePage() {
   return (
     <div className={styles.home_page_container}>
       <div className="wrapper"></div>
-      <div><LogoutButton/></div>
-      
+
       <div className={styles.container}>
         <div className={styles.link_container}>
           <Link to="/home/search-candidate" className={styles.link}>
