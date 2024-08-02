@@ -10,9 +10,11 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
-            |                           |            |  
+ 1/8/2024   |    Omkar                  |    2       |  Adding Pagination to Subskill Table
 -------------------------------------------------------------------------------------------------------
 */
+
+
 .skillSetsContainer {
   background-image: url("../assets/commonBGImage.png");
   background-size: 100% 100%;
@@ -53,7 +55,9 @@ h1 {
   padding: 10px;
   font-size: 1rem;
   margin-right: 10px;
+ 
 }
+
 
 .mainSkillControls button {
   padding: 10px 20px;
@@ -80,6 +84,8 @@ h1 {
   margin-right: 10px;
   cursor: pointer;
 }
+
+
 
 .subSkillSection {
   display: flex;
@@ -175,18 +181,21 @@ h1 {
   background-color: transparent;
 }
 
-/* .table tbody tr:hover {
-  background-color: #53657e;
-} */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
 
-
-@font-face {
-  font-family: Rastanty Cortez;
-  src: url(../fonts/Rastanty\ Cortez.ttf);
-} 
+.pagination button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
 
 .rastanty_Cortez {
   font-family: Rastanty Cortez;
   font-size: 40px;
-  color:  #ffffff;
+  color: #ffffff;
 }
+

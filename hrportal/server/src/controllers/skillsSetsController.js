@@ -9,7 +9,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        | Author                  | Sprint   | Phase | Description 
 -------------------------------------------------------------------------------------------------------
-
+1/8/2024    |  Omkar                    |   2        | Added On LoadSubskill route for Integration
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -19,6 +19,7 @@ const subSkillSet = require("../collections/subskillset");
 
 //ONLOAD DISPLAY SKILL SETS
 const onLoadSkillSet = async (req, res) => {
+  
   try {
     const skillSetsOptions = await skillsSet.find(); // returns all skill sets
 
@@ -31,7 +32,28 @@ const onLoadSkillSet = async (req, res) => {
     res.status(500).send("Error searching skill sets");
   }
 };
-
+const onLoadSubskill = async (req, res) => {
+ 
+  try {
+    const skillId  = req.params.id;
+    const filter = {_id: skillId};
+ 
+   
+    // Check if the skillset exists
+    const skillset = await skillsSet.findById(filter);
+    if (!skillset) {
+      return res.status(404).json({ message: 'Skillset not found' });
+    }
+ 
+    // Fetch subskills associated with the skillset
+    const subskills = await subSkillSet.find({ mainSkillID: skillId });
+ 
+    res.json(subskills);
+  } catch (error) {
+    console.error('Error fetching subskills:', error);
+    res.status(500).json({ message: 'Server error while fetching subskills' });
+  }
+}
 //SEARCH BAR DISPLAY SKILL SETS AS TYPED
 /*const searchSkillSet = async (req, res) => {
   try {
@@ -181,4 +203,5 @@ module.exports = {
   editSkillSet,
   addSubSkillSet,
   editSubSkillSet,
+  onLoadSubskill
 };

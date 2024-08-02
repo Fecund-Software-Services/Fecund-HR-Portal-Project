@@ -9,7 +9,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+1/8/2024    |  Omkar                    |   2        | Added On LoadSubskill route for Integration
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -17,13 +17,16 @@ const express = require('express')
 const skillSet = require('../collections/skillset')
 const subSkillSet = require('../collections/subskillset')
 
-const {onLoadSkillSet,addSkillSet, addSubSkillSet, editSkillSet, editSubSkillSet} = require('../controllers/skillsSetsController')
+const {onLoadSkillSet,addSkillSet, addSubSkillSet, editSkillSet, editSubSkillSet,onLoadSubskill} = require('../controllers/skillsSetsController')
 
 // for creating the instance of the route
 const router = express.Router()
 
 //onload skill set  
 router.get('/onLoadSkillSet', onLoadSkillSet)
+
+//load subskills based on sslected main skill
+router.get('/onLoadSubskill/:id', onLoadSubskill)
 
 //search bar for skills
 // router.get('/searchSkillSet', searchSkillSet)
