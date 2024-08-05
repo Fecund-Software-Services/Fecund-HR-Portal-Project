@@ -8,7 +8,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
-
+5/8/24            HS                      ph2 sp3        minor changes in skillsets
 -------------------------------------------------------------------------------------------------------
 // */
 // skillset
@@ -23,6 +23,11 @@ const skillsets = {
         PC: "GW PC BA",
         CC: "GW CC BA",
         BC: "GW BC BA",
+      },
+      QualityAssurance: {
+        PC: "GW PC QA",
+        CC: "GW CC QA",
+        BC: "GW BC QA"
       },
       Lead: {
         PC: "GuidewirePCLead",
