@@ -8,8 +8,9 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |  Sprint    | Phase       |   Description 
 -------------------------------------------------------------------------------------------------------
-24/7/2024   |   HS                      |  2         |  1          |  search functionality
+24/7/2024   |   HS                      |  2         |  2         |  search functionality
 02/08/2024  |   Harshini C              |  2         |  2          |  Added logger library
+05/08/2024  | HS                        | 3          | 2           | Added Backend Validation messages 
 -------------------------------------------------------------------------------------------------------
 */
 const Status = require("../collections/status");
@@ -31,7 +32,7 @@ const addStatus = async (req, res) => {
     try {
         const existingStatus = await Status.findOne({name});
         if (existingStatus) {
-            return res.status(400).send("Status with the name already exists")
+            return res.status(404).json({ message: "Error: Status already exists!" });
         }
         const newStatus = new Status({name});
         await newStatus.save();
@@ -45,23 +46,33 @@ const addStatus = async (req, res) => {
 // Edit a status
 const editStatus = async (req, res) => {
     const statusId = req.params.id;
-    const filter = {_id: statusId};
-    logger.info(statusId, req.body.name)
+    const newStatusName = req.body.name;
+    logger.info(statusId, newStatusName);
 
-    const update = {
-        $set: {
-            name: req.body.name
-        }
-    }  
     try {
-        const updatedstatus = await Status.updateOne(filter, update);
-        if (!updatedstatus) {
-            return res.status(404).send('Status Not Found!');
-        }
-        return res.status(201).json(updatedstatus);
+        // Check if the new status name already exists (excluding the current status)
+        const existingStatus = await Status.findOne({
+            name: newStatusName,
+            _id: { $ne: statusId }
+        });
 
-    }catch(error){
-        res.status(500).send( 'Error Updating status');
+        if (existingStatus) {
+            return res.status(400).json({ message: "Error: Updated status name matches an existing status!" });
+        }
+        // If no matching status found, proceed with the update
+        const filter = { _id: statusId };
+        const update = { $set: { name: newStatusName } };
+
+        const updatedStatus = await Status.findOneAndUpdate(filter, update, { new: true });
+
+        if (!updatedStatus) {
+            return res.status(404).json({ message: "Error: Status Not Found!" });
+        }
+
+        return res.status(200).json({ message: "Status Updated Successfully!!", status: updatedStatus });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error Updating Status', error: error.message });
     }
 }
 
@@ -73,7 +84,7 @@ const searchStatus = async (req, res) => {
         const filteredStatuses = await Status.find({name: searchRegex})
         return res.status(201).json(filteredStatuses)
     } catch (error){
-        res.status(500).json({message: 'Status not Found!'})
+        res.status(500).json({message: 'Status not Found!', error: error.message});
     }
 }
 
