@@ -246,6 +246,7 @@ const Status = () => {
               </button>
             ) : null}
             {/* <span>{currentPage}</span> */}
+            
             {statuses.length > resultsPerPage ? (
               <button
                 onClick={() => paginate(currentPage + 1)}
@@ -265,3 +266,4 @@ const Status = () => {
 };
 
 export default Status;
+
