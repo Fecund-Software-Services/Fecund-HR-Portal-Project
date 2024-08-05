@@ -30,7 +30,7 @@ const {populateStatusCollection} = require("./src/utility/insertStatusData")
 const {populateRolesCollection} = require('./src/utility/userRoleName');
 const {collectionChecker} = require('./src/utility/createCollection');
 const {populatePemissionCollection} = require('./src/utility/permissionID');
-const logger = require('./src/utils/logger');
+const logger = require('./src/utility/logger');
 
 const cors = require('cors')
 require("dotenv").config();

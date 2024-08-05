@@ -20,7 +20,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const permission = require("../collections/userpermissions")
 const { get } = require("mongoose");
-const logger = require('../utils/logger');
+const logger = require('../utility/logger');
 
 // create token function for authentication
 const createToken = (_id) => {
