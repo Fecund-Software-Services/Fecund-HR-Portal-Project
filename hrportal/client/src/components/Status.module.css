@@ -79,6 +79,7 @@ Date        |   Author                  |   Sprint   |    Description
     font-family: Rastanty Cortez;
     font-size: 70px;
     color:  #ffffff;
+    margin-bottom: 45px;
   }
 
   .button {
@@ -150,4 +151,10 @@ Date        |   Author                  |   Sprint   |    Description
   
   .table_button:hover {
     background-color: #b99b9b;
+  }
+
+  .error {
+    color: red;
+    font-size: 1rem;
+    margin-top: 10px;
   }
