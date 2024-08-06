@@ -9,156 +9,86 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author            |   Sprint        |    Description 
 -------------------------------------------------------------------------------------------------------
-18/07/2024  |   omkar and vishal  |      2        |    Front End Coding SkillSet 
+18/07/2024  |   omkar and vishal  |      2          |    Front End Coding SkillSet 
 19/7/2024   |        Vishal       |      2          |  CSS Styling
+6/08/2024   |      Omkar          |      3          | Status Screen Validation
 
 */
 
+
+
 import React, { useState, useEffect } from "react";
 import styles from "./Status.module.css";
+import useStatus from "../hooks/useStatus";
 
 const Status = () => {
+  const { errorMessage, fetchStatuses, addStatus, editStatus } = useStatus();
   const [statuses, setStatuses] = useState([]);
   const [currentStatus, setCurrentStatus] = useState("");
   const [isAddingStatus, setIsAddingStatus] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(5);
-  // const [statusToEditt , setStatusToEditt] = useState("")
-  const [currentIndex , setCurrentIndex] = useState(null)
+  const [currentIndex, setCurrentIndex] = useState(null);
 
   const handleAddStatus = async () => {
-    console.log(currentStatus)
     if (currentStatus.trim()) {
-      try {
-        const response = await fetch('/api/status/add-status', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name: currentStatus }),
-        });
-        console.log(response)
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log('Added status:', data); // Debugging line
-        setStatuses([...statuses, data]);
+      const newStatus = await addStatus(currentStatus);
+      if (newStatus) {
+        setStatuses([...statuses, newStatus]);
         setCurrentStatus('');
         setIsAddingStatus(false);
-      } catch (error) {
-        console.error('Error adding status:', error);
       }
     }
   };
 
   const handleEditStatus = (index) => {
-    console.log(index)
-    console.log(currentResults)
-    // Get the status object from the current state
-    let statusToEdit = currentResults[index]
-    console.log(statusToEdit)
-    
-  // Set the currentStatus state with the name of the status being edited
-  setCurrentStatus(prevStatus => statusToEdit.name);
-  setCurrentIndex(prevStatus => statusToEdit._id);
-
-  
-  // setCurrentStatus(statusToEdit.name);
-  // console.log(currentStatus)
-  
-  // Set the editIndex to the clicked index
-  // setEditIndex(statusToEdit._id);
-  setEditIndex(index);
-  
+    const statusToEdit = currentResults[index];
+    setCurrentStatus(statusToEdit.name);
+    setCurrentIndex(statusToEdit._id);
+    setEditIndex(index);
   };
 
-  useEffect(() => {
-    console.log(currentStatus); // Now has the updated value after rendering
-  }, [currentStatus]);
-
-  useEffect(() => {
-    console.log(currentIndex); // Now has the updated value after rendering
-  }, [currentIndex]);
-
   const handleSaveStatus = async () => {
-    console.log(currentStatus)
-    console.log(editIndex)
-    console.log(statuses)
     if (currentStatus.trim()) {
-      // const updatedStatus = { ...statuses[editIndex], name: currentStatus };
-      const updatedStatus = { _id: currentIndex, name: currentStatus, __v: 0 };
-      console.log(updatedStatus)
-      try {
-        const response = await fetch(`/api/status/edit-status/${updatedStatus._id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(updatedStatus),
-        });
-       
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        
-        // Update statuses state with the updated data
-        const updatedStatuses = statuses.map((status, index) =>
-          index === (editIndex  + (currentPage - 1)*5)  ? data : status
+      const updatedStatus = await editStatus(currentIndex, currentStatus);
+      if (updatedStatus) {
+        setStatuses((prevStatuses) =>
+          prevStatuses.map((status) => (status._id === currentIndex ? { ...status, name: currentStatus } : status))
         );
-        setStatuses(updatedStatuses);
         setCurrentStatus('');
-        // setCurrentIndex(null);
         setEditIndex(null);
-      } catch (error) {
-        console.error('Error updating status:', error);
       }
     }
   };
 
   const handleCancelEdit = () => {
-    setCurrentStatus(" ");
+    setCurrentStatus("");
     setEditIndex(null);
   };
 
   useEffect(() => {
-    const fetchStatuses = async () => {
-      try {
-        const response = await fetch("/api/status/get-status");
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("Fetched statuses:", data); // Debugging line
+    const fetchData = async () => {
+      const data = await fetchStatuses();
+      if (data) {
         setStatuses(data);
-      } catch (error) {
-        console.error("Error fetching statuses:", error);
       }
     };
-
-    fetchStatuses();
+    fetchData();
   }, []);
 
-  // Logic for pagination
   const indexOfLastResult = currentPage * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;
   const currentResults = statuses.slice(indexOfFirstResult, indexOfLastResult);
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  console.log(statuses);
 
   return (
     <div className={styles.statusContainer}>
-      <h1 className={styles.rastanty_Cortez}>Status</h1>
+      <p className={styles.rastanty_Cortez}>Status</p>
+      
       {!isAddingStatus && editIndex === null && (
-        <button
-          className={styles.button}
-          onClick={() => setIsAddingStatus(true)}
-        >
+        <button className={styles.button} onClick={() => setIsAddingStatus(true)}>
           Add
         </button>
       )}
@@ -174,10 +104,7 @@ const Status = () => {
           <button className={styles.button} onClick={handleAddStatus}>
             Save
           </button>
-          <button
-            className={styles.button}
-            onClick={() => setIsAddingStatus(false)}
-          >
+          <button className={styles.button} onClick={() => setIsAddingStatus(false)}>
             Cancel
           </button>
         </div>
@@ -209,24 +136,15 @@ const Status = () => {
                   <td>
                     {editIndex === index ? (
                       <div className={styles.button_conatiner}>
-                        <button
-                          className={styles.button}
-                          onClick={handleSaveStatus}
-                        >
+                        <button className={styles.button} onClick={handleSaveStatus}>
                           Save
                         </button>
-                        <button
-                          className={styles.button}
-                          onClick={handleCancelEdit}
-                        >
+                        <button className={styles.button} onClick={handleCancelEdit}>
                           Cancel
                         </button>
                       </div>
                     ) : (
-                      <button
-                        className={styles.button}
-                        onClick={() => handleEditStatus(index)}
-                      >
+                      <button className={styles.button} onClick={() => handleEditStatus(index)}>
                         Edit
                       </button>
                     )}
@@ -245,7 +163,6 @@ const Status = () => {
                 Previous
               </button>
             ) : null}
-            {/* <span>{currentPage}</span> */}
             {statuses.length > resultsPerPage ? (
               <button
                 onClick={() => paginate(currentPage + 1)}
@@ -260,8 +177,11 @@ const Status = () => {
       ) : (
         " "
       )}
+      {errorMessage && <p className={styles.error}>{errorMessage}</p>}
     </div>
+    
   );
 };
 
 export default Status;
+
