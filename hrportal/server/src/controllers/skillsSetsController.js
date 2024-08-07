@@ -18,7 +18,6 @@ Date        | Author                  | Sprint   | Phase | Description
 const logger = require("../utility/logger");
 const skillsSet = require("../collections/skillset");
 const subSkillSet = require("../collections/subskillset");
-const subskillset = require("../collections/subskillset");
 
 //ONLOAD DISPLAY SKILL SETS
 const onLoadSkillSet = async (req, res) => {
@@ -165,7 +164,7 @@ const addSubSkillSet = async (req, res) => {
     const { subsetname, mainSkillID } = req.body;
     
     // to check if a subskillset with the same name already exists
-    const existingsubSkillset = await subskillset.findOne({
+    const existingsubSkillset = await subSkillSet.findOne({
       subsetname: {$regex: new RegExp(`^${subsetname}$`, 'i')},
       mainSkillID
     });
