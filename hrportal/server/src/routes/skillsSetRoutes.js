@@ -13,6 +13,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 */
 
+
 const express = require('express')
 const skillSet = require('../collections/skillset')
 const subSkillSet = require('../collections/subskillset')
@@ -25,8 +26,8 @@ const router = express.Router()
 //onload skill set  
 router.get('/onLoadSkillSet', onLoadSkillSet)
 
-//load subskills based on sslected main skill
-router.get('/onLoadSubskill/:id', onLoadSubskill)
+//load subskills based on selected main skill or all subskills if no main skill is selected
+router.get('/onLoadSubskill/:id?', onLoadSubskill) // Made the id parameter optional by adding ?
 
 //search bar for skills
 // router.get('/searchSkillSet', searchSkillSet)

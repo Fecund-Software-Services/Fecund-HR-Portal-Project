@@ -18,7 +18,7 @@ const logger = require("../utility/logger");
 const skillsSet = require("../collections/skillset");
 const subSkillSet = require("../collections/subskillset");
 
-//ONLOAD DISPLAY SKILL SETS
+// ONLOAD DISPLAY SKILL SETS
 const onLoadSkillSet = async (req, res) => {
   try {
     const skillSetsOptions = await skillsSet.find(); // returns all skill sets
@@ -33,23 +33,28 @@ const onLoadSkillSet = async (req, res) => {
   }
 };
 
-//ONLOAD DISPLAY SUB SKILL SETS
+// ONLOAD DISPLAY SUB SKILL SETS
 const onLoadSubskill = async (req, res) => {
- 
   try {
-    const skillId  = req.params.id;
-    const filter = {_id: skillId};
- 
-   
+    const skillId = req.params.id;
+
+    if (!skillId) {
+      // If no skillId is provided, fetch all subskills
+      const subskills = await subSkillSet.find();
+      return res.json(subskills);
+    }
+
+    const filter = { _id: skillId };
+
     // Check if the skillset exists
     const skillset = await skillsSet.findById(filter);
     if (!skillset) {
       return res.status(404).json({ message: 'Skillset not found' });
     }
- 
+
     // Fetch subskills associated with the skillset
     const subskills = await subSkillSet.find({ mainSkillID: skillId });
- 
+
     res.json(subskills);
   } catch (error) {
     logger.error('Error fetching subskills:', error);
@@ -57,29 +62,29 @@ const onLoadSubskill = async (req, res) => {
   }
 }
 
-//SEARCH BAR DISPLAY SKILL SETS AS TYPED
-/*const searchSkillSet = async (req, res) => {
-  try {
-    let query = {};
-    const searchTerms = [];
+// SEARCH BAR DISPLAY SKILL SETS AS TYPED
+// const searchSkillSet = async (req, res) => {
+//   try {
+//     let query = {};
+//     const searchTerms = [];
 
-  if (firstName) {
-    searchTerms.push({ firstName: new RegExp("^" + firstName + "$", "i") });
-  }
- 
-  query = { $or: searchTerms };
+//     if (firstName) {
+//       searchTerms.push({ firstName: new RegExp("^" + firstName + "$", "i") });
+//     }
 
-    const skillSetsOptions = await skillsSet.find(query,"skillname"); // returns all skill sets
+//     query = { $or: searchTerms };
 
-    if (!skillSetsOptions.length) {
-      return res.status(404).json({ message: "Error: None!" });
-    }
-    res.json(skillSetsOptions); 
-    } catch (error) {
-      logger.error(error);
-      res.status(500).send("Error searching skill sets"); 
-    }
-};*/
+//     const skillSetsOptions = await skillsSet.find(query,"skillname"); // returns all skill sets
+
+//     if (!skillSetsOptions.length) {
+//       return res.status(404).json({ message: "Error: None!" });
+//     }
+//     res.json(skillSetsOptions);
+//   } catch (error) {
+//     logger.error(error);
+//     res.status(500).send("Error searching skill sets");
+//   }
+// };
 
 // ADD NEW SKILLSET
 const addSkillSet = async (req, res) => {
@@ -87,21 +92,21 @@ const addSkillSet = async (req, res) => {
     // CHECKING IF THE SKILL SET ALREADY EXISTS
     let existingSkillSet;
     try {
-        existingSkillSet = await skillsSet.findOne(req.body);
+      existingSkillSet = await skillsSet.findOne(req.body);
     } catch (error) {
       logger.error(error);
     }
- 
+
     if (existingSkillSet) {
       return res.status(400).json({ message: "Error: Main Skill Set you are adding is already present!" });
     }
- 
+
     // ADDING IN A NEW CANDIDATE
     const newSkillsSet = new skillsSet(
-        req.body
+      req.body
     );
     await newSkillsSet.save();
- 
+
     return res.status(201).json({ message: " Skill Set added Successfully" });
   } catch (error) {
     logger.error('Error adding the skill set');
@@ -121,9 +126,9 @@ const editSkillSet = async (req, res) => {
 
   try {
     const updatedSkill = await skillsSet.findOneAndUpdate(filter, update, { new: true });
-    
+
     if (!updatedSkill) {
-        return res.status(404).send('Status Not Found!');
+      return res.status(404).send('Status Not Found!');
     }
     return res.status(201).json(updatedSkill);
   } catch (err) {
@@ -135,11 +140,11 @@ const editSkillSet = async (req, res) => {
 const addSubSkillSet = async (req, res) => {
   try {
     const { subsetname, mainSkillID } = req.body;
-    
+
     // Create new subskillset
     const newSubSkillset = new subSkillSet({ subsetname, mainSkillID });
     const savedSubSkillset = await newSubSkillset.save();
-    
+
     // Update the corresponding skillset
     await skillsSet.findByIdAndUpdate(
       mainSkillID,
@@ -158,13 +163,13 @@ const editSubSkillSet = async (req, res) => {
   try {
     const { id } = req.params;
     const { subsetname, mainSkillID } = req.body;
-    
+
     const subskillset = await subSkillSet.findById(id);
-    
+
     if (!subskillset) {
       return res.status(404).json({ message: 'SubSkillset not found' });
     }
-    
+
     // If mainSkillID is changed, update the old and new Skillset documents
     if (mainSkillID && subskillset.mainSkillID.toString() !== mainSkillID) {
       // Remove subskillset from old skillset
@@ -173,7 +178,7 @@ const editSubSkillSet = async (req, res) => {
         { $pull: { subskillset: id } },
         { new: true, useFindAndModify: false }
       );
-      
+
       // Add subskillset to new skillset
       await skillsSet.findByIdAndUpdate(
         mainSkillID,
@@ -181,14 +186,14 @@ const editSubSkillSet = async (req, res) => {
         { new: true, useFindAndModify: false }
       );
     }
-    
+
     // Update the subskillset
     const updatedSubSkillset = await subSkillSet.findByIdAndUpdate(
       id,
       { subsetname, mainSkillID },
       { new: true, runValidators: true }
     );
-    
+
     res.json(updatedSubSkillset);
   } catch (error) {
     res.status(400).json({ message: error.message });
