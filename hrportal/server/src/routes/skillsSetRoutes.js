@@ -10,6 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 1/8/2024    |  Omkar                    |   2        | Added On LoadSubskill route for Integration
+7/8/24      | HS                      |3         |2    | Added search functionality
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -18,7 +19,7 @@ const express = require('express')
 const skillSet = require('../collections/skillset')
 const subSkillSet = require('../collections/subskillset')
 
-const {onLoadSkillSet,addSkillSet, addSubSkillSet, editSkillSet, editSubSkillSet,onLoadSubskill} = require('../controllers/skillsSetsController')
+const {onLoadSkillSet,addSkillSet, addSubSkillSet, editSkillSet, editSubSkillSet,onLoadSubskill, searchSkillSet} = require('../controllers/skillsSetsController')
 
 // for creating the instance of the route
 const router = express.Router()
@@ -30,7 +31,7 @@ router.get('/onLoadSkillSet', onLoadSkillSet)
 router.get('/onLoadSubskill/:id?', onLoadSubskill) // Made the id parameter optional by adding ?
 
 //search bar for skills
-// router.get('/searchSkillSet', searchSkillSet)
+router.get('/search-skills', searchSkillSet)
 
 // add a new skill set
 router.post('/addSkillSet', addSkillSet)
