@@ -11,6 +11,7 @@ Date        |   Author                  |  Sprint    | Phase       |   Descripti
 24/7/2024   |   HS                      |  2         |  2         |  search functionality
 02/08/2024  |   Harshini C              |  2         |  2          |  Added logger library
 05/08/2024  | HS                        | 3          | 2           | Added Backend Validation messages 
+7/8/24      | HS                        |3           |2            | Added search functionality
 -------------------------------------------------------------------------------------------------------
 */
 const Status = require("../collections/status");
@@ -30,14 +31,14 @@ const getStatus = async (req, res) => {
 const addStatus = async (req, res) => {
     const {name} = req.body;
     try {
-        const existingStatus = await Status.findOne({name});
+        const existingStatus = await Status.findOne({name: { $regex: new RegExp(`^${name}$`, 'i') }});
         if (existingStatus) {
-            return res.status(404).json({ message: "Error: Status already exists!" });
+            return res.status(404).json({ message: "Status already exists!" });
+            
         }
         const newStatus = new Status({name});
         await newStatus.save();
         res.json(newStatus);
-
     }catch(error){
         res.status(500).send("Error creating status", error);
     }
@@ -52,7 +53,7 @@ const editStatus = async (req, res) => {
     try {
         // Check if the new status name already exists (excluding the current status)
         const existingStatus = await Status.findOne({
-            name: newStatusName,
+            name:{ $regex: new RegExp(`^${newStatusName}$`, 'i') },
             _id: { $ne: statusId }
         });
 
@@ -81,7 +82,12 @@ const searchStatus = async (req, res) => {
     const {query} = req.query;
     try {
         const searchRegex = new RegExp(`^${query}`,'i');
-        const filteredStatuses = await Status.find({name: searchRegex})
+        const filteredStatuses = await Status.find({name: searchRegex});
+
+        if (filteredStatuses.length === 0) {
+            return res.status(404).json({ message: 'No statuses found for the given query' });
+          }
+          
         return res.status(201).json(filteredStatuses)
     } catch (error){
         res.status(500).json({message: 'Status not Found!', error: error.message});

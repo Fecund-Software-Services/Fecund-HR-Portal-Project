@@ -13,6 +13,7 @@ Date        |   Author                  | Sprint   | Description
 06/05/2024  |   Harshini C              | 4        | View Candidates applied in
 7/5/2024    | HS                        | 4        | Resume Handling
 15/7/2024   | HS                        |Phase 2 Sp 1 | Skillset and status
+9/8/2024   | HS                        |Phase 2 Sp 3 | Add Candidate ticket--> added new fields
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -39,14 +40,11 @@ const candidateSchema = new mongoose.Schema({
         unique: true,
     },
     skillSet: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'SkillSet',
-        required: true,  // Dropdown list to choose from
+        type: String,
+        required: [true, "skillset required" ] // Dropdown list to choose from
     },
     subskillset: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'SubSkillSet',
-        required: true
+        type: String,
     },
     itExperience: {
         type: Number,
@@ -88,8 +86,7 @@ const candidateSchema = new mongoose.Schema({
         
     },
     status: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Status',
+        type: String,
         default: "Submitted",
         required: true
     },
@@ -117,8 +114,25 @@ const candidateSchema = new mongoose.Schema({
         type: String, 
         ref: 'fs.field'
     },
+    interviewDate: {
+        type: Date,
+    },
+    joiningDate: {
+        type: Date
+    },
+    statusUpdateDate: {
+        type: Date,
+        default: Date.now
+    }
  
 } , {timestamps: true});
+
+candidateSchema.pre('save', function(next) {
+    if (this.isModified('status')) {
+        this.statusUpdateDate = Date.now();
+    }
+    next();
+});
 
 // intializing 
 module.exports = mongoose.model(collectionNames.collectionNames.CandidateCollection, candidateSchema)   
