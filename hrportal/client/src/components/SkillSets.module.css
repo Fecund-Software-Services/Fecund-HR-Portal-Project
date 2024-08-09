@@ -12,6 +12,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
  1/8/2024   |    Omkar                  |    2       |  Adding Pagination to Subskill Table
  5/8/2024   |    Omkar                  |    3       |   Status Validation Error message styling
+ 8/08/2024  |    Omkar                   |   3       |    Search style classes implementation
 */
 
 
@@ -109,6 +110,7 @@ h1 {
   padding: 10px;
   font-size: 1rem;
   margin-right: 10px;
+  width: 300px; /* Increase the width to accommodate search queries */
 }
 
 .subSkillControls button {
@@ -199,3 +201,26 @@ h1 {
   color: #ffffff;
 }
 
+.searchResults {
+  margin-top: 20px; /* Add some spacing above the search results */
+  width: 100%; /* Ensure the table takes up the full width */
+  color: #fff; /* Match text color with other sections */
+}
+
+.searchResults table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.searchResults th,
+.searchResults td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.searchResults th {
+  background-color:#333; /* Dark background for headers */
+  color: #fff;
+}

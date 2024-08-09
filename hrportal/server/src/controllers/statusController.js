@@ -33,7 +33,8 @@ const addStatus = async (req, res) => {
     try {
         const existingStatus = await Status.findOne({name: { $regex: new RegExp(`^${name}$`, 'i') }});
         if (existingStatus) {
-            return res.status(404).json({ message: "Error: Status already exists!" });
+            return res.status(404).json({ message: "Status already exists!" });
+            
         }
         const newStatus = new Status({name});
         await newStatus.save();
