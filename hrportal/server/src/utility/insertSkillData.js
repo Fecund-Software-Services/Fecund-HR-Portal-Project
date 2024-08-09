@@ -164,6 +164,9 @@ async function insertData() {
       await subSkillSetGWBAPC.save();
       await subSkillSetGWBACC.save();
       await subSkillSetGWBABC.save();
+      await subSkillSetGWQAPC.save();
+      await subSkillSetGWQACC.save();
+      await subSkillSetGWQABC.save();
       await subSkillSetGWLeadPC.save();
       await subSkillSetGWLeadCC.save();
       await subSkillSetGWLeadBC.save();

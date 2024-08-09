@@ -54,7 +54,7 @@ const onLoadSkillSet = async (req, res) => {
 const onLoadSubskill = async (req, res) => {
   try {
     const skillId  = req.params.id;
-    const filter = {_id: skillId};  j44
+    const filter = {_id: skillId};  
  
    
     // Check if the skillset exists
