@@ -154,7 +154,10 @@ Date        |   Author                  |   Sprint   |    Description
   }
 
   .error {
-    color: red;
+      /* margin-left:20px; */
+  align-self: center;
+  color: rgb(225, 78, 78);
+    /* color: red;
     font-size: 1rem;
-    margin-top: 10px;
+    margin-top: 10px; */
   }
