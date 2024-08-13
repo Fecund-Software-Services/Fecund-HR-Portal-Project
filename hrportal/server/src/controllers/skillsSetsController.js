@@ -102,7 +102,7 @@ const onLoadSubskill = async (req, res) => {
 }
 
 //SEARCH BAR DISPLAY SKILL SETS AS TYPED
-/*
+
 const searchSkillSet = async (req, res) => {
     try {
         const searchQuery = req.query.skills; // Get the search query from the request
@@ -144,65 +144,9 @@ const searchSkillSet = async (req, res) => {
         res.status(500).json({ message: 'An error occurred while searching', error: error.message });
     }
 }
-*/
-const searchSkillSet = async (req, res) => {
-  try {
-    const searchQuery = req.query.skills;
 
-    if (!searchQuery) {
-      return res.status(400).json({ message: 'Search query is required' });
-    }
 
-    // Create a case-insensitive regex that matches only strings starting with the searchQuery
-    const regex = new RegExp(`^${searchQuery}`, 'i');
 
-    // Search in Skillset collection
-    const skillsetResults = await skillsSet.find({ skillname: regex });
-
-    // Search in Subskillset collection
-    const subskillsetResults = await subSkillSet.find({ subsetname: regex });
-
-    let combinedResults = [];
-
-    // Add main skills with their respective subskills to the results
-    for (const skill of skillsetResults) {
-      const relatedSubskills = await subSkillSet.find({ mainSkillID: skill._id });
-      if (relatedSubskills.length > 0) {
-        relatedSubskills.forEach(subskill => {
-          combinedResults.push({
-            mainSkillName: skill.skillname,
-            subSkillName: subskill.subsetname,
-          });
-        });
-      } else {
-        combinedResults.push({
-          mainSkillName: skill.skillname,
-          subSkillName: 'N/A',
-        });
-      }
-    }
-
-    // Add subskills with their respective main skills to the results
-    for (const subskill of subskillsetResults) {
-      const relatedMainSkill = await skillsSet.findById(subskill.mainSkillID);
-      if (relatedMainSkill) {
-        combinedResults.push({
-          mainSkillName: relatedMainSkill.skillname,
-          subSkillName: subskill.subsetname,
-        });
-      }
-    }
-
-    if (combinedResults.length === 0) {
-      return res.json({ message: 'No results found!' });
-    }
-
-    return res.status(200).json(combinedResults);
-  } catch (error) {
-    console.error('Search error:', error);
-    res.status(500).json({ message: 'An error occurred while searching', error: error.message });
-  }
-};
 
 // ADD NEW SKILLSET
 const addSkillSet = async (req, res) => {
