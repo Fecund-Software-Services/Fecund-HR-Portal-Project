@@ -135,6 +135,7 @@ h1 {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+ 
 }
 
 .subSkillTable th,
@@ -241,3 +242,5 @@ h1 {
   align-self: center;
   color: rgb(225, 78, 78);
 }
+
+
