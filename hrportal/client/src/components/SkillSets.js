@@ -78,7 +78,7 @@ const SkillSets = () => {
         if (error.message.includes("400")) {
           // Specific error handling if it's a 400 (Bad Request) error
           errorMessage =
-            "SubSkill already exists. Please try a different name.";
+            "Main Skill already exists. Please try a different name.";
         } else {
           // Generic error handling for other errors
           console.warn("Unhandled error type:", error.message);
@@ -192,7 +192,7 @@ const SkillSets = () => {
         let errorMessage = "An error occurred while adding the skill.";
         if (error.message.includes("400")) {
           // Specific error handling if it's a 400 (Bad Request) error
-          errorMessage = "Error: Subskillset with the name already exists";
+          errorMessage = "Error: Subskill with the name already exists";
         } else {
           // Generic error handling for other errors
           console.warn("Unhandled error type:", error.message);
@@ -240,7 +240,7 @@ const SkillSets = () => {
         if (error.message.includes("400")) {
           // Specific error handling if it's a 400 (Bad Request) error
           errorMessage =
-            "Error: Another Subskillset with this name already exists";
+            "Error: Another Subskill with this name already exists";
         } else {
           // Generic error handling for other errors
           console.warn("Unhandled error type:", error.message);
@@ -260,6 +260,7 @@ const SkillSets = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
+      console.log(data)
       setSearchResults(data); // Set the search results
       setCurrentSearchPage(1);
       setShowSearchPagination(data.length > subskillsPerPage); // Determine if pagination is needed
@@ -269,7 +270,7 @@ const SkillSets = () => {
       let errorMessage = "An error occurred while adding the skill.";
       if (error.message.includes("400")) {
         // Specific error handling if it's a 400 (Bad Request) error
-        errorMessage = "Error: An error occurred while searching";
+        errorMessage = "Error: Search query is required";
       } else {
         // Generic error handling for other errors
         console.warn("Unhandled error type:", error.message);
