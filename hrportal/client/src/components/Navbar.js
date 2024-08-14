@@ -22,7 +22,7 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
   const [adminDropdownOpen, setAdminDropdownOpen] = useState(false);
 
-  const { logout, user } = useAuth();
+  const { logout, userData } = useAuth();
   const nav = useNavigate();
 
   const handleLogout = () => {
@@ -39,7 +39,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <ul className={styles.navLinks}>
         {
-          (user.userRole === "admin" ? (
+          (userData.role === "admin" ? (
             <li
               className={styles.adminLink}
               onMouseEnter={() => handleAdminDropdownToggle(true)}

@@ -25,7 +25,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(null);
-  const [user, setUser] = useState({})
+  const [userData, setUserData] = useState({})
 
   const login = async (email, password) => {
     setIsLoading(true);
@@ -42,9 +42,10 @@ export const AuthProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error(data.message);
       } else {
-        const { token } = data;
+        const { user ,token } = data;
         console.log(data)
-        setUser(data)
+        
+        setUserData(user)
         
         localStorage.setItem("token", token);
         setIsAuthenticated(true);
@@ -56,6 +57,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  useEffect(() =>console.log(userData), [userData] )
+
   
 
   const logout = () => {
@@ -66,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   const authContextValue = {
     isAuthenticated,
     isLoading,
-    user,
+    userData,
     login,
     logout,
   };

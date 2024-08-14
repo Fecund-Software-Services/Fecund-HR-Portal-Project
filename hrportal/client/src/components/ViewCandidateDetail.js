@@ -32,7 +32,7 @@ function ViewCandidateDetail() {
   // State variables
   const [candidateDetails, setCandidateDetails] = useState({}); // Candidate details
   const [errorMessage, setErrorMessage] = useState("");
-  const { user } = useAuth();
+  const { userData } = useAuth();
   const nav = useNavigate();
 
   // Function to fetch Candidate details based on the ID (you can implement this logic)
@@ -136,7 +136,7 @@ function ViewCandidateDetail() {
             <label htmlFor="currentCTC">Current CTC (LPA):</label>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
           </div>
-          {user.userRole === "admin" ? (
+          {userData.role === "admin" ? (
             <div className={styles.sub_container}>
               <label htmlFor="expectedCTC">Expected CTC:</label>
               <p className={styles.text}>{candidateDetails.expectedCTC}</p>

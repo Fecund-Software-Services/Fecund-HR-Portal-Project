@@ -45,8 +45,10 @@ const loginUser = async (req, res) => {
     return res.status(404).json({ message: "Error: Email ID not found!" });
   }
   
-  const userName = existingUser.firstName;
-  const userRole = existingUser.role
+  // const userName = existingUser.firstName;
+  // const userRole = existingUser.role
+
+  const { firstName, role } = existingUser;
 
   // Domain Check
   const emailRegex = /^[a-zA-Z0-9._%+-]+@fecundservices+\.com/;
@@ -67,7 +69,7 @@ const loginUser = async (req, res) => {
   // authentication token
   const token = createToken(existingUser._id)
 
-  return res.status(201).json({ email, token, userName, userRole });
+  return res.status(201).json({ user: {firstName, email, role}, token });
 
  // return res.status(200).json({ message: "Sucessfully logged in " });
 };

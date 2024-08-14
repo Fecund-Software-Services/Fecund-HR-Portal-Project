@@ -54,7 +54,7 @@ const EditCandiadteDetails = () => {
   const [error, setError] = useState(" ");
   const [isLoading, setIsLoading] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const { user } = useAuth();
+  const { userData } = useAuth();
 
   const nav = useNavigate();
   const navigateToHome = useNavigate();
@@ -402,7 +402,7 @@ const EditCandiadteDetails = () => {
               required
             />
           </div>
-          {user.userRole === "admin" ? (
+          {userData.role === "admin" ? (
             <div className={styles.sub_container}>
               <label htmlFor="expectedCTC">
                 Expected CTC<span className={styles.asterisk}>*</span>:
