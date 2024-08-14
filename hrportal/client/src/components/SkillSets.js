@@ -184,9 +184,22 @@ const SkillSets = () => {
       setCurrentPage(1);
       setShowPagination(data.length > subskillsPerPage); // Determine if pagination is needed
       setSearchResults([]); // Clear search results when fetching subskills
-    } catch (error) {
+    } 
+    else {
+      try {
+        console.log('Fetching skills from API...');
+        const response = await fetch("/api/skillset/onLoadSkillSet");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setSkills(data);
+        setCachedData('mainSkills', data)
+      }
+    catch (error) {
       console.error("Error fetching subskills:", error);
     }
+  }
   };
 
   const handleAddSubSkill = async () => {
