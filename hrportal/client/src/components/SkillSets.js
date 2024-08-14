@@ -12,8 +12,9 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 18/07/2024  |   omkar and vishal        |   2        |    Front End Coding SkillSet 
 -------------------------------------------------------------------------------------------------------
-1/08/2024   |   Omkar & Vishal          |   2        |   Main Skill & Subskill Integration
+1/08/2024   |   Omkar & Vishal          |   2        |    Main Skill & Subskill Integration
 8/08/2024   |   Omkar                   |   3        |    Search Functionality, None Scenario implementation
+14/08/2024  |   Omkar                   |   2        |    Updated handle Search Function
 */
 
 import React, { useState, useEffect } from "react";
@@ -33,11 +34,11 @@ const SkillSets = () => {
   const [editSubSkillIndex, setEditSubSkillIndex] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchResults, setSearchResults] = useState([]); // State for search results
-  const [showPagination, setShowPagination] = useState(false); // State to control pagination visibility
-  const [currentSearchPage, setCurrentSearchPage] = useState(1); // Current page for search results
-  const [showSearchPagination, setShowSearchPagination] = useState(false); // Pagination control for search results
-  const [error, setError] = useState(" ");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showPagination, setShowPagination] = useState(false);
+  const [currentSearchPage, setCurrentSearchPage] = useState(1);
+  const [showSearchPagination, setShowSearchPagination] = useState(false);
+  const [error, setError] = useState("");
 
   const subskillsPerPage = 4;
 
@@ -110,17 +111,11 @@ const SkillSets = () => {
         fetchSkillsets(); // Fetch skills again after adding a new skill
       } catch (error) {
         console.error("Error adding main skill:", error);
-        // Handle the error from the backend
         let errorMessage = "An error occurred while adding the skill.";
         if (error.message.includes("400")) {
-          // Specific error handling if it's a 400 (Bad Request) error
           errorMessage =
             "Main Skill already exists. Please try a different name.";
-        } else {
-          // Generic error handling for other errors
-          console.warn("Unhandled error type:", error.message);
         }
-        // Update UI state with the error message
         setError(errorMessage);
       }
     }
@@ -154,17 +149,11 @@ const SkillSets = () => {
         fetchSkillsets();
       } catch (error) {
         console.error("Error updating skill:", error);
-        // Handle the error from the backend
-        let errorMessage = "An error occurred while adding the skill.";
+        let errorMessage = "An error occurred while updating the skill.";
         if (error.message.includes("400")) {
-          // Specific error handling if it's a 400 (Bad Request) error
           errorMessage =
             "Error: Updated skill name matches an existing skillset!";
-        } else {
-          // Generic error handling for other errors
-          console.warn("Unhandled error type:", error.message);
         }
-        // Update UI state with the error message
         setError(errorMessage);
       }
     }
@@ -178,6 +167,8 @@ const SkillSets = () => {
 
   const handleSelectSkill = (skillId) => {
     setSelectedSkill(skillId);
+    setCurrentSubSkill(""); // Reset sub skill input when selecting a new main skill
+    setError("");
     fetchSubSkills(skillId); // Fetch subskills for the selected main skill
   };
 
@@ -191,26 +182,10 @@ const SkillSets = () => {
     if (cachedSubSkills) {
       setSubskills(cachedSubSkills);
       setCurrentPage(1);
-      setShowPagination(cachedSubSkills.length > subskillsPerPage);
-      setSearchResults([]);
-    } else {
-      try {
-        console.log('Fetching skills from API...');
-        const response = await fetch(
-          `/api/skillset/onLoadSubskill/${mainSkillId}`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setSubskills(data);
-        setCurrentPage(1);
-        setShowPagination(data.length > subskillsPerPage); // Determine if pagination is needed
-        setSearchResults([]); // Clear search results when fetching subskills
-        setCachedData(cacheKey, data);
-      } catch (error) {
-        console.error("Error fetching sub skills:", error);
-      }
+      setShowPagination(data.length > subskillsPerPage); // Determine if pagination is needed
+      setSearchResults([]); // Clear search results when fetching subskills
+    } catch (error) {
+      console.error("Error fetching subskills:", error);
     }
   };
 
@@ -231,23 +206,16 @@ const SkillSets = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Added sub skill:", data);
+        console.log("Added subskill:", data);
         setSubskills([...subskills, data]);
-        setCurrentSubSkill("");
-        clearCache(`subSkills_${selectedSkill}`);
+        setCurrentSubSkill(""); // Reset input after adding a subskill
         fetchSubSkills(selectedSkill); // Refresh subskills after adding
       } catch (error) {
-        console.error("Error adding sub skill:", error);
-        // Handle the error from the backend
+        console.error("Error adding subskill:", error);
         let errorMessage = "An error occurred while adding the skill.";
         if (error.message.includes("400")) {
-          // Specific error handling if it's a 400 (Bad Request) error
           errorMessage = "Error: Subskill with the name already exists";
-        } else {
-          // Generic error handling for other errors
-          console.warn("Unhandled error type:", error.message);
         }
-        // Update UI state with the error message
         setError(errorMessage);
       }
     }
@@ -276,32 +244,24 @@ const SkillSets = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Updated sub skill:", data);
+        console.log("Updated subskill:", data);
         const updatedSubSkills = subskills.map((skill, index) =>
           index === editSubSkillIndex ? data : skill
         );
         setSubskills(updatedSubSkills);
         setEditSubSkillIndex(null);
-        setCurrentSubSkill("");
-        clearCache(`subSkills_${selectedSkill}`);
+        setCurrentSubSkill(""); // Reset input after saving a subskill
       } catch (error) {
-        console.error("Error saving sub skill:", error);
-        // Handle the error from the backend
-        let errorMessage = "An error occurred while adding the skill.";
+        console.error("Error saving subskill:", error);
+        let errorMessage = "An error occurred while saving the skill.";
         if (error.message.includes("400")) {
-          // Specific error handling if it's a 400 (Bad Request) error
-          errorMessage =
-            "Error: Another Subskill with this name already exists";
-        } else {
-          // Generic error handling for other errors
-          console.warn("Unhandled error type:", error.message);
+          errorMessage = "Error: Another Subskill with this name already exists";
         }
-        // Update UI state with the error message
         setError(errorMessage);
       }
     }
   };
-
+/*
   const handleSearch = async () => {
     try {
       const response = await fetch(
@@ -311,31 +271,59 @@ const SkillSets = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      console.log(data)
+      if (data.length === 0) {
+        setError("No results found!");
+      } else {
+        setError("");
+      }
       setSearchResults(data); // Set the search results
       setCurrentSearchPage(1);
       setShowSearchPagination(data.length > subskillsPerPage); // Determine if pagination is needed
     } catch (error) {
       console.error("Error searching skills:", error);
-      // Handle the error from the backend
-      let errorMessage = "An error occurred while adding the skill.";
+      let errorMessage = "An error occurred while searching.";
       if (error.message.includes("400")) {
-        // Specific error handling if it's a 400 (Bad Request) error
         errorMessage = "Error: Search query is required";
-      } else {
-        // Generic error handling for other errors
-        console.warn("Unhandled error type:", error.message);
       }
-      // Update UI state with the error message
+      setError(errorMessage);
+    }
+  };*/
+  //Search result based on main skill selected 
+  const handleSearch = async () => {
+    try {
+      // Include selectedSkill in the query if it is selected
+      const mainSkillIdParam = selectedSkill !== "None" ? `&mainSkillId=${selectedSkill}` : "";
+      const response = await fetch(
+        `/api/skillset/search-skills?skills=${currentSubSkill}${mainSkillIdParam}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      if (data.length === 0) {
+        setError("No results found!");
+      } else {
+        setError("");
+      }
+      setSearchResults(data); // Set the search results
+      setCurrentSearchPage(1);
+      setShowSearchPagination(data.length > subskillsPerPage); // Determine if pagination is needed
+    } catch (error) {
+      console.error("Error searching skills:", error);
+      let errorMessage = "An error occurred while searching.";
+      if (error.message.includes("400")) {
+        errorMessage = "Error: Search query is required";
+      }
       setError(errorMessage);
     }
   };
+  
 
   // Sub Skills Integration Ends Here
 
   useEffect(() => {
     fetchSkillsets();
-    fetchSubSkills(); // Fetch all sub skills on initial load
+    fetchSubSkills(); // Fetch all subskills on initial load
   }, []);
 
   const indexOfLastSubskill = currentPage * subskillsPerPage;
@@ -347,7 +335,7 @@ const SkillSets = () => {
 
   const indexOfLastSearchResult = currentSearchPage * subskillsPerPage;
   const indexOfFirstSearchResult =
-    indexOfLastSearchResult - indexOfLastSubskill;
+    indexOfLastSearchResult - subskillsPerPage;
   const currentSearchResults = searchResults.slice(
     indexOfFirstSearchResult,
     indexOfLastSearchResult

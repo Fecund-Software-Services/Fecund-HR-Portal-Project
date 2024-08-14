@@ -104,11 +104,20 @@ h1 {
   flex-direction: column;
   align-items: center;
   margin: 20px;
+  position: relative; /* Ensure the section is positioned relative to its container */
+  padding-bottom: 10px; /* Add some padding to keep the spacing consistent */
 }
 
 .subSkillSection h2 {
   font-size: 1.5rem;
   color: #fff;
+  position: sticky; /* Keep the title fixed within the subSkillSection */
+  top: 0; /* Stick to the top of the container */
+  background-color: #333; /* Background color to match the section */
+  z-index: 10; /* Keep it above other elements */
+  padding: 10px 0; /* Ensure proper padding around the title */
+  width: 100%; /* Make sure the title spans the full width */
+  text-align: center; /* Center the text */
 }
 
 .subSkillControls {
@@ -135,6 +144,7 @@ h1 {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+ 
 }
 
 .subSkillTable th,
@@ -241,3 +251,5 @@ h1 {
   align-self: center;
   color: rgb(225, 78, 78);
 }
+
+
