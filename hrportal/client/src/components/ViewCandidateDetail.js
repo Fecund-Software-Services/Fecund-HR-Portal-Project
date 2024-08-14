@@ -14,12 +14,14 @@ Date        |   Author                  |   Sprint   |    Description
  10/05/2024 |   Harshini C              |    4       |  Log Out button
  14/05/2024 |   Harshini C              |    4       |  CSS and alignment based on BG image
  18/07/2024 |   Vishal Garg             |   2        |    Front End Coding Navbar 
+ 14/8/2024  |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
+import { useAuth } from "../context/AuthContext.js";
 //import { FaDownload } from "react-icons/fa";
 import styles from "./ViewCandidateDetail.module.css";
 
@@ -30,6 +32,7 @@ function ViewCandidateDetail() {
   // State variables
   const [candidateDetails, setCandidateDetails] = useState({}); // Candidate details
   const [errorMessage, setErrorMessage] = useState("");
+  const { user } = useAuth();
   const nav = useNavigate();
 
   // Function to fetch Candidate details based on the ID (you can implement this logic)
@@ -66,7 +69,7 @@ function ViewCandidateDetail() {
       a.href = url;
       // a.download = 'candidate_details.pdf';
       const fileName = candidateDetails.resume;
-      console.log(fileName)
+      console.log(fileName);
       // a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
       a.download = `${fileName}`;
       document.body.appendChild(a);
@@ -133,10 +136,14 @@ function ViewCandidateDetail() {
             <label htmlFor="currentCTC">Current CTC (LPA):</label>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
           </div>
-          <div className={styles.sub_container}>
-            <label htmlFor="expectedCTC">Expected CTC:</label>
-            <p className={styles.text}>{candidateDetails.expectedCTC}</p>
-          </div>
+          {user.userRole === "admin" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="expectedCTC">Expected CTC:</label>
+              <p className={styles.text}>{candidateDetails.expectedCTC}</p>
+            </div>
+          ) : (
+            ""
+          )}
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">Notice Period:</label>
             <p className={styles.text}>{candidateDetails.noticePeriod}</p>
@@ -158,12 +165,10 @@ function ViewCandidateDetail() {
             </p>
           </div>
           {candidateDetails.servingNoticePeriod === true && ( // Check if 'Yes' is selected
-          <div className={styles.sub_container}>
-            <label htmlFor="lastWorkingDay">Last Working Day</label>
-            <p className={styles.text}>
-               {candidateDetails.lastWorkingDay}
-            </p>
-          </div> 
+            <div className={styles.sub_container}>
+              <label htmlFor="lastWorkingDay">Last Working Day</label>
+              <p className={styles.text}>{candidateDetails.lastWorkingDay}</p>
+            </div>
           )}
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">Comments:</label>
@@ -175,10 +180,14 @@ function ViewCandidateDetail() {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="resume">Resume:</label>
-            <div onClick={fetchCandidateResume}>{candidateDetails.resume}&nbsp;&nbsp;</div>
+            <div onClick={fetchCandidateResume}>
+              {candidateDetails.resume}&nbsp;&nbsp;
+            </div>
           </div>
           <div className={styles.sub_container}></div>
-          {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
           <div className={styles.button_container}>
             <button className={styles.cancel_button} onClick={toggleEditMode}>
               Edit

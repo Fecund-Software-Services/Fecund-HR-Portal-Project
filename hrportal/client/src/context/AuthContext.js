@@ -14,7 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 */
 
 // AuthContext.js
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -25,6 +25,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(null);
+  const [user, setUser] = useState({})
 
   const login = async (email, password) => {
     setIsLoading(true);
@@ -36,12 +37,15 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ email, password }),
       });
 
-      const json = await response.json();
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(json.message);
+        throw new Error(data.message);
       } else {
-        const { token } = json;
+        const { token } = data;
+        console.log(data)
+        setUser(data)
+        
         localStorage.setItem("token", token);
         setIsAuthenticated(true);
       }
@@ -52,6 +56,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  
+
   const logout = () => {
     localStorage.removeItem("token");
     setIsAuthenticated(false);
@@ -60,6 +66,7 @@ export const AuthProvider = ({ children }) => {
   const authContextValue = {
     isAuthenticated,
     isLoading,
+    user,
     login,
     logout,
   };

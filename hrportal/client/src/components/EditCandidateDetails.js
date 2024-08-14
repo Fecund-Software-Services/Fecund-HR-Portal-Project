@@ -16,16 +16,16 @@ Date        |   Author                  |   Sprint   |    Description
 10/05/2024  |   Harshini C              |   4        |   Log Out button
 10/05/2024  |   Harshini C              |   4        |   CSS and alignment based on BG image
 18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
+14/8/2024   |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.js";
 import styles from "./EditCandidateDetails.module.css";
 import popupBackground from "../assets/PopupBackgroundImage.png";
-
-// import { useAddCandidate } from "../hooks/useAddCandidate.js";
 
 const EditCandiadteDetails = () => {
   const { id } = useParams(); // Get the Candidate ID from URL parameters
@@ -54,9 +54,10 @@ const EditCandiadteDetails = () => {
   const [error, setError] = useState(" ");
   const [isLoading, setIsLoading] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const { user } = useAuth();
 
   const nav = useNavigate();
-  const navigateToHome = useNavigate()
+  const navigateToHome = useNavigate();
 
   const skillSetOptions = [
     "Guidewire BA (PC)",
@@ -117,31 +118,6 @@ const EditCandiadteDetails = () => {
     }
   };
 
-  //   const fetchCandidateResume = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `/api/candidate/view-resume/${candidateDetails.fileId}`
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error(
-  //           `Error fetching Candidate details: ${response.statusText}`
-  //         );
-  //       }
-  //       // If the response is a PDF, create a blob and download it
-  //       const blob = await response.blob();
-  //       const url = window.URL.createObjectURL(blob);
-  //       const a = document.createElement("a");
-  //       a.href = url;
-  //       // a.download = 'candidate_details.pdf';
-  //       const fileName = candidateDetails.resume;
-  //       a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
-  //       document.body.appendChild(a);
-  //       a.click();
-  //     } catch (error) {
-  //       setErrorMessage(error.message);
-  //     }
-  //   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
@@ -149,7 +125,7 @@ const EditCandiadteDetails = () => {
 
   const handleMobileNumberChange = (e) => {
     const { name } = e.target;
-    const newMobileNumber = e.target.value.replace(/[^0-9]/g, '');
+    const newMobileNumber = e.target.value.replace(/[^0-9]/g, "");
     setEditedData((prevData) => ({ ...prevData, [name]: newMobileNumber }));
   };
 
@@ -162,7 +138,7 @@ const EditCandiadteDetails = () => {
   };
 
   const handleServingNoticePeriodChange = (e) => {
-    const { name} = e.target;
+    const { name } = e.target;
     setEditedData((prevData) => ({
       ...prevData,
       [name]: !prevData.servingNoticePeriod,
@@ -204,7 +180,7 @@ const EditCandiadteDetails = () => {
   const handleKeyPress = (e) => {
     const key = e.key;
     const regex = /^[A-Za-z]+$/; // Allows only alphabets
-  
+
     if (!regex.test(key)) {
       e.preventDefault(); // Prevent invalid character from being entered
     }
@@ -283,13 +259,13 @@ const EditCandiadteDetails = () => {
     e.preventDefault();
 
     // Redirect to login page (replace with your login page URL)
-    navigateToHome('/home');
+    navigateToHome("/home");
   };
 
   return (
     <div className={styles.addcandidateform_container}>
       <div className={styles.title_container}>
-         <p className={styles.rastanty_Cortez}>Edit New Candidate</p>
+        <p className={styles.rastanty_Cortez}>Edit New Candidate</p>
       </div>
       <form onSubmit={handleSubmit} className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
@@ -426,19 +402,24 @@ const EditCandiadteDetails = () => {
               required
             />
           </div>
-          <div className={styles.sub_container}>
-            <label htmlFor="expectedCTC">
-              Expected CTC<span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="number"
-              name="expectedCTC"
-              id="expectedCTC"
-              value={editedData.expectedCTC}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+          {user.userRole === "admin" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="expectedCTC">
+                Expected CTC<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="number"
+                name="expectedCTC"
+                id="expectedCTC"
+                value={editedData.expectedCTC}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
               Notice Period<span className={styles.asterisk}>*</span> (Days):
@@ -552,9 +533,7 @@ const EditCandiadteDetails = () => {
             ></textarea>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="resume">
-              Resume:
-            </label>
+            <label htmlFor="resume">Resume:</label>
             <input
               type="file"
               name="resume"
