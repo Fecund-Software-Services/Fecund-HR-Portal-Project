@@ -19,6 +19,9 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState, useEffect } from "react";
 import styles from "./SkillSets.module.css";
 
+// setting cache expiration
+const CACHE_EXPIRATION = 60*60*1000;
+
 const SkillSets = () => {
   const [skills, setSkills] = useState([]);
   const [subskills, setSubskills] = useState([]);
@@ -38,18 +41,51 @@ const SkillSets = () => {
 
   const subskillsPerPage = 4;
 
+  // caching
+  const getCachedData = (key) => {
+    const cachedItem = localStorage.getItem(key);
+    if(cachedItem) {
+      const {data, timestamp} = JSON.parse(cachedItem);
+      if(Date.now() - timestamp < CACHE_EXPIRATION ) {
+        console.log(`Data for ${key} loaded from cache`);
+        return data;
+      }
+    }
+    return null;
+  }
+
+  const setCachedData = (key, data) => {
+    const cachedItem = {
+      data,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(key, JSON.stringify(cachedItem));
+    console.log(`Data for ${key} cached`);
+  };
+
+  const clearCache = (key) => {
+    localStorage.removeItem(key)
+  }
+
   // Main Skills Integration Starts Here
 
   const fetchSkillsets = async () => {
-    try {
-      const response = await fetch("/api/skillset/onLoadSkillSet");
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+    const cachedSkills = getCachedData('mainSkills');
+    if (cachedSkills) {
+      setSkills(cachedSkills);
+    } else {
+      try {
+        console.log('Fetching skills from API...');
+        const response = await fetch("/api/skillset/onLoadSkillSet");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setSkills(data);
+        setCachedData('mainSkills', data)
+      } catch (error) {
+        console.error("Error fetching main skills:", error);
       }
-      const data = await response.json();
-      setSkills(data);
-    } catch (error) {
-      console.error("Error fetching main skills:", error);
     }
   };
 
@@ -70,6 +106,7 @@ const SkillSets = () => {
         console.log("Added main skill:", data);
         setCurrentSkill("");
         setIsAddingMainSkill(false);
+        clearCache('mainSkills');
         fetchSkillsets(); // Fetch skills again after adding a new skill
       } catch (error) {
         console.error("Error adding main skill:", error);
@@ -113,6 +150,7 @@ const SkillSets = () => {
         setSkills(updatedSkills);
         setCurrentSkill("");
         setIsEditingMainSkill(false);
+        clearCache('mainSkills')
         fetchSkillsets();
       } catch (error) {
         console.error("Error updating skill:", error);
@@ -148,20 +186,31 @@ const SkillSets = () => {
   // Sub Skills Integration Starts Here
 
   const fetchSubSkills = async (mainSkillId = "") => {
-    try {
-      const response = await fetch(
-        `/api/skillset/onLoadSubskill/${mainSkillId}`
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      setSubskills(data);
+    const cacheKey = `subSkills_${mainSkillId}`;
+    const cachedSubSkills = getCachedData(cacheKey);
+    if (cachedSubSkills) {
+      setSubskills(cachedSubSkills);
       setCurrentPage(1);
-      setShowPagination(data.length > subskillsPerPage); // Determine if pagination is needed
-      setSearchResults([]); // Clear search results when fetching subskills
-    } catch (error) {
-      console.error("Error fetching sub skills:", error);
+      setShowPagination(cachedSubSkills.length > subskillsPerPage);
+      setSearchResults([]);
+    } else {
+      try {
+        console.log('Fetching skills from API...');
+        const response = await fetch(
+          `/api/skillset/onLoadSubskill/${mainSkillId}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setSubskills(data);
+        setCurrentPage(1);
+        setShowPagination(data.length > subskillsPerPage); // Determine if pagination is needed
+        setSearchResults([]); // Clear search results when fetching subskills
+        setCachedData(cacheKey, data);
+      } catch (error) {
+        console.error("Error fetching sub skills:", error);
+      }
     }
   };
 
@@ -185,6 +234,7 @@ const SkillSets = () => {
         console.log("Added sub skill:", data);
         setSubskills([...subskills, data]);
         setCurrentSubSkill("");
+        clearCache(`subSkills_${selectedSkill}`);
         fetchSubSkills(selectedSkill); // Refresh subskills after adding
       } catch (error) {
         console.error("Error adding sub skill:", error);
@@ -233,6 +283,7 @@ const SkillSets = () => {
         setSubskills(updatedSubSkills);
         setEditSubSkillIndex(null);
         setCurrentSubSkill("");
+        clearCache(`subSkills_${selectedSkill}`);
       } catch (error) {
         console.error("Error saving sub skill:", error);
         // Handle the error from the backend
