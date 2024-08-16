@@ -15,6 +15,7 @@ Date        |   Author                  |   Sprint   |    Description
 1/08/2024   |   Omkar & Vishal          |   2        |    Main Skill & Subskill Integration
 8/08/2024   |   Omkar                   |   3        |    Search Functionality, None Scenario implementation
 14/08/2024  |   Omkar                   |   2        |    Updated handle Search Function
+14/8/24     |  HS                       |  3         |   Caching
 */
 
 import React, { useState, useEffect } from "react";
@@ -48,7 +49,6 @@ const SkillSets = () => {
     if(cachedItem) {
       const {data, timestamp} = JSON.parse(cachedItem);
       if(Date.now() - timestamp < CACHE_EXPIRATION ) {
-        console.log(`Data for ${key} loaded from cache`);
         return data;
       }
     }
@@ -61,7 +61,6 @@ const SkillSets = () => {
       timestamp: Date.now()
     };
     localStorage.setItem(key, JSON.stringify(cachedItem));
-    console.log(`Data for ${key} cached`);
   };
 
   const clearCache = (key) => {
@@ -76,7 +75,6 @@ const SkillSets = () => {
       setSkills(cachedSkills);
     } else {
       try {
-        console.log('Fetching skills from API...');
         const response = await fetch("/api/skillset/onLoadSkillSet");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -184,8 +182,23 @@ const SkillSets = () => {
       setCurrentPage(1);
       setShowPagination(data.length > subskillsPerPage); // Determine if pagination is needed
       setSearchResults([]); // Clear search results when fetching subskills
-    } catch (error) {
-      console.error("Error fetching subskills:", error);
+    } else {
+      try {
+        const response = await fetch(
+          `/api/skillset/onLoadSubskill/${mainSkillId}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setSubskills(data);
+        setCurrentPage(1);
+        setShowPagination(data.length > subskillsPerPage); // Determine if pagination is needed
+        setSearchResults([]); // Clear search results when fetching subskills
+        setCachedData(cacheKey, data);
+      } catch (error) {
+        console.error("Error fetching subskills:", error);
+      }
     }
   };
 
@@ -209,6 +222,7 @@ const SkillSets = () => {
         console.log("Added subskill:", data);
         setSubskills([...subskills, data]);
         setCurrentSubSkill(""); // Reset input after adding a subskill
+        clearCache(`subSkills_${selectedSkill}`)
         fetchSubSkills(selectedSkill); // Refresh subskills after adding
       } catch (error) {
         console.error("Error adding subskill:", error);
@@ -251,6 +265,7 @@ const SkillSets = () => {
         setSubskills(updatedSubSkills);
         setEditSubSkillIndex(null);
         setCurrentSubSkill(""); // Reset input after saving a subskill
+        clearCache(`subSkills_${selectedSkill}`);
       } catch (error) {
         console.error("Error saving subskill:", error);
         let errorMessage = "An error occurred while saving the skill.";
@@ -293,6 +308,17 @@ const SkillSets = () => {
     try {
       // Include selectedSkill in the query if it is selected
       const mainSkillIdParam = selectedSkill !== "None" ? `&mainSkillId=${selectedSkill}` : "";
+      /**const cacheKey = `search_${currentSubSkill}_${mainSkillIdParam}`;
+
+      // Check cache first
+      const cachedResults = getCachedData(cacheKey);
+      if (cachedResults) {
+        setSearchResults(cachedResults);
+        setCurrentSearchPage(1);
+        setShowSearchPagination(cachedResults.length > subskillsPerPage);
+        setError(cachedResults.length === 0 ? "No results found!" : "");
+        return;
+      } */
       const response = await fetch(
         `/api/skillset/search-skills?skills=${currentSubSkill}${mainSkillIdParam}`
       );
@@ -300,6 +326,9 @@ const SkillSets = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
+      /** Cache the results
+      setCachedData(cacheKey, data);**/
+
       if (data.length === 0) {
         setError("No results found!");
       } else {
@@ -317,7 +346,7 @@ const SkillSets = () => {
       setError(errorMessage);
     }
   };
-  
+
 
   // Sub Skills Integration Ends Here
 
