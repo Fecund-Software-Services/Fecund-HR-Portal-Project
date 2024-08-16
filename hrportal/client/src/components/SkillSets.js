@@ -180,7 +180,7 @@ const SkillSets = () => {
     if (cachedSubSkills) {
       setSubskills(cachedSubSkills);
       setCurrentPage(1);
-      setShowPagination(data.length > subskillsPerPage); // Determine if pagination is needed
+      setShowPagination(cachedSubSkills.length > subskillsPerPage); // Determine if pagination is needed
       setSearchResults([]); // Clear search results when fetching subskills
     } else {
       try {
