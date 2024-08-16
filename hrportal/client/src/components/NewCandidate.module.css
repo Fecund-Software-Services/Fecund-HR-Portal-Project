@@ -66,7 +66,7 @@ Date        |   Author                  |   Sprint   |    Description
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 10px;
+  margin: 5px;
   color: #ffffff;
 }
 
@@ -75,7 +75,7 @@ Date        |   Author                  |   Sprint   |    Description
   flex-direction: row;
   justify-content: space-between;
   width: 40%;
-  padding: 10px;
+  padding: 6px;
 }
 
 input {
@@ -138,11 +138,11 @@ input {
 
 h2 {
   text-align: center; /* Center the title */
-  margin-bottom: 30px;
+  /* margin-bottom: 10px; */
 }
 
 .disclaimer {
-  padding-top: 20px;
+  padding-top: 10px;
   color: white;
   font-size: 12px;
 }

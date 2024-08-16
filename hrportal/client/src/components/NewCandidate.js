@@ -101,8 +101,8 @@ const NewCandidate = () => {
   };
 
   useEffect(() => {
-    console.log(subSkillSetOptions)
-  }, [subSkillSetOptions])
+    console.log(subSkillSetOptions);
+  }, [subSkillSetOptions]);
 
   useEffect(() => {
     if (formData.skillSet) {
@@ -114,7 +114,7 @@ const NewCandidate = () => {
       if (object) {
         fetchSubSkills(object._id);
       } else {
-        console.error('Skill not found:', desiredSkillName);
+        console.error("Skill not found:", desiredSkillName);
         // Handle the case where the skill is not found, e.g., set subskills to an empty array
         setSubSkillSetOptions([]);
       }
@@ -150,10 +150,10 @@ const NewCandidate = () => {
   };
 
   const handleSubSkillSetChange = (e) => {
-  console.log("hello")
+    console.log("hello");
     console.log("Selected sub skill:", e.target.value);
     setFormData({ ...formData, subskillset: e.target.value });
-};
+  };
 
   const handleResumeChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -458,6 +458,51 @@ const NewCandidate = () => {
               onChange={handleInputChange}
               required
             />
+          </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="interviewDate">
+              Interview Date<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="interviewDate"
+              id="interviewDate"
+              // value={formData.lastWorkingDay}
+              // onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="joiningDate">
+              joiningDate<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="joiningDate"
+              id="joiningDate"
+              // value={formData.lastWorkingDay}
+              // onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="StatusUpadteDate">
+              Status Update Day<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="lStatusUpadteDate"
+              id="StatusUpadteDate"
+              // value={formData.lastWorkingDay}
+              // onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="statusComments">Status Comments:</label>
+            <textarea
+              name="statusComments"
+              id="statusComments"
+              // value={formData.comments}
+              // onChange={handleInputChange}
+            ></textarea>
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
