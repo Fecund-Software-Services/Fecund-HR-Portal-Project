@@ -22,7 +22,7 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
   const [adminDropdownOpen, setAdminDropdownOpen] = useState(false);
 
-  const { logout } = useAuth();
+  const { logout, userData } = useAuth();
   const nav = useNavigate();
 
   const handleLogout = () => {
@@ -32,33 +32,40 @@ const Navbar = () => {
 
   const handleAdminDropdownToggle = (isOpen) => {
     setAdminDropdownOpen(isOpen);
-    console.log(adminDropdownOpen)
+    console.log(adminDropdownOpen);
   };
 
   return (
     <nav className={styles.navbar}>
       <ul className={styles.navLinks}>
-        <li
-          className={styles.adminLink}
-          onMouseEnter={() => handleAdminDropdownToggle(true)}
-          onMouseLeave={() => handleAdminDropdownToggle(false)}
-        >
-          <a className={styles.adminDropdownToggle} href="#">
-            Admin
-          </a>
-          <ul
-            className={`${styles.adminDropdown} ${
-              adminDropdownOpen ? styles.show : ""
-            }`}
-          >
-            <ul className={styles.link}>
-              <Link to="/home/skillset">SkillSet</Link>
-            </ul>
-            <ul className={styles.link}>
-              <Link to="/home/status">Status</Link>
-            </ul>
-          </ul>
-        </li>
+        {
+          (userData.role === "admin" ? (
+            <li
+              className={styles.adminLink}
+              onMouseEnter={() => handleAdminDropdownToggle(true)}
+              onMouseLeave={() => handleAdminDropdownToggle(false)}
+            >
+              <a className={styles.adminDropdownToggle} href="#">
+                Admin
+              </a>
+              <ul
+                className={`${styles.adminDropdown} ${
+                  adminDropdownOpen ? styles.show : ""
+                }`}
+              >
+                <ul className={styles.link}>
+                  <Link to="/home/skillset">SkillSet</Link>
+                </ul>
+                <ul className={styles.link}>
+                  <Link to="/home/status">Status</Link>
+                </ul>
+              </ul>
+            </li>
+          ) : (
+            " "
+          ))
+        }
+
         <li className={styles.logoutLink}>
           <div
             className={styles.logout}

@@ -10,6 +10,7 @@ Date        |   Author                  |  Sprint   |  Phase  |  Description
 -------------------------------------------------------------------------------------------------------
 17/7/24     |  hs                       |  1        |   2     | Code formating and refactoring
 02/08/2024  |  Harshini C               |  2        |   2     | Added logger library
+05/08/2024  | HS                        | 3         | 2       | Minor changes in skillsets
 -------------------------------------------------------------------------------------------------------
 // */
 const SubSkillSet = require('../collections/subskillset');
@@ -28,7 +29,11 @@ async function insertData() {
       const subSkillSetGWBAPC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.BusinessAnalyst.PC, mainSkillID: null});
       const subSkillSetGWBACC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.BusinessAnalyst.CC, mainSkillID: null});
       const subSkillSetGWBABC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.BusinessAnalyst.BC, mainSkillID: null});
-     
+      
+      const subSkillSetGWQAPC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.QualityAssurance.PC, mainSkillID: null});
+      const subSkillSetGWQACC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.QualityAssurance.CC, mainSkillID: null});
+      const subSkillSetGWQABC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.QualityAssurance.BC, mainSkillID: null});
+
       const subSkillSetGWLeadPC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.Lead.PC, mainSkillID: null});
       const subSkillSetGWLeadCC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.Lead.CC, mainSkillID: null});
       const subSkillSetGWLeadBC = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.Lead.BC, mainSkillID: null});
@@ -40,16 +45,39 @@ async function insertData() {
       const subSkillSetGWInfocenter = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.Other.Infocentre, mainSkillID: null});
       const subSkillSetGWBackend = await SubSkillSet.create({ subsetname: skills.skillsets.Guidewire.Other.BackendDeveloper, mainSkillID: null});
       // defining main Guidewire skillset
-      const skillSetGWData = {
-        skillname: 'Guidewire',
-        subskillset: [subSkillSetGWDEVPC._id, subSkillSetGWDEVCC._id, subSkillSetGWDEVBC._id,
-          subSkillSetGWBAPC._id, subSkillSetGWBACC._id, subSkillSetGWBABC._id,
-          subSkillSetGWLeadPC._id, subSkillSetGWLeadCC._id, subSkillSetGWLeadBC._id,
+      const skillSetGWDevData = {
+        skillname: 'Guidewire Dev',
+        subskillset: [subSkillSetGWDEVPC._id, subSkillSetGWDEVCC._id, subSkillSetGWDEVBC._id
+          ]
+      };
+
+      const skillSetGWBAData = {
+        skillname: 'Guidewire BA',
+        subskillset: [
+          subSkillSetGWBAPC._id, subSkillSetGWBACC._id, subSkillSetGWBABC._id
+        ]
+      };
+
+      const skillSetGWQAData = {
+        skillname: 'Guidewire QA',
+        subskillset: [
+          subSkillSetGWQAPC._id, subSkillSetGWQACC._id, subSkillSetGWQABC._id
+          ]
+      };
+
+      const skillSetGWLeadData = {
+        skillname: 'Guidewire Lead',
+        subskillset: [
+          subSkillSetGWLeadPC._id, subSkillSetGWLeadCC._id, subSkillSetGWLeadBC._id
+          ]
+      };
+
+      const skillSetGWOtherData = {
+        skillname: 'Guidewire Other',
+        subskillset: [
           subSkillSetGWIntegration._id, subSkillSetGWArchitect._id, subSkillSetGWPortal._id,
           subSkillSetGWDatahub._id, subSkillSetGWInfocenter._id, subSkillSetGWBackend._id]
       };
-
-
        // defining Salesforce subskillsets
        const subSkillSetSFQA = await SubSkillSet.create({ subsetname: skills.skillsets.Salesforce.QualityAssurance, mainSkillID: null});
        const subSkillSetSFBA = await SubSkillSet.create({ subsetname: skills.skillsets.Salesforce.BusinessAnalyst, mainSkillID: null});
@@ -97,27 +125,38 @@ async function insertData() {
       };
 
       //Inserting SkillSet with populated subskillset
-      const insertedSkillSetGW = await SkillSet.create(skillSetGWData);
+      const insertedSkillSetGWDev = await SkillSet.create(skillSetGWDevData);
+      const insertedSkillSetGWBA = await SkillSet.create(skillSetGWBAData);
+      const insertedSkillSetGWQA = await SkillSet.create(skillSetGWQAData);
+      const insertedSkillSetGWLead = await SkillSet.create(skillSetGWLeadData);
+      const insertedSkillSetGWOther = await SkillSet.create(skillSetGWOtherData);
       const insertedSkillSetSalesforce = await SkillSet.create(skillSetSalesforceData);
       const insertedSkillSetOneshield = await SkillSet.create(skillSetOneshieldData);
       const insertedSkillSetOthers = await SkillSet.create(otherskillSetData);
 
       // adding the reference id to GW subskillset
-      subSkillSetGWDEVPC.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWDEVCC.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWDEVBC.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWBAPC.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWBACC.mainSkillID = insertedSkillSetGW._id; 
-      subSkillSetGWBABC.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWLeadPC.mainSkillID =  insertedSkillSetGW._id;
-      subSkillSetGWLeadCC.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWLeadBC.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWIntegration.mainSkillID =  insertedSkillSetGW._id;
-      subSkillSetGWArchitect.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWPortal.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWDatahub.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWInfocenter.mainSkillID = insertedSkillSetGW._id;
-      subSkillSetGWBackend.mainSkillID = insertedSkillSetGW._id;
+      subSkillSetGWDEVPC.mainSkillID = insertedSkillSetGWDev._id;
+      subSkillSetGWDEVCC.mainSkillID = insertedSkillSetGWDev._id;
+      subSkillSetGWDEVBC.mainSkillID = insertedSkillSetGWDev._id;
+
+      subSkillSetGWBAPC.mainSkillID = insertedSkillSetGWBA._id;
+      subSkillSetGWBACC.mainSkillID = insertedSkillSetGWBA._id; 
+      subSkillSetGWBABC.mainSkillID = insertedSkillSetGWBA._id;
+
+      subSkillSetGWQAPC.mainSkillID = insertedSkillSetGWQA._id;
+      subSkillSetGWQACC.mainSkillID = insertedSkillSetGWQA._id; 
+      subSkillSetGWQABC.mainSkillID = insertedSkillSetGWQA._id;
+
+      subSkillSetGWLeadPC.mainSkillID =  insertedSkillSetGWLead._id;
+      subSkillSetGWLeadCC.mainSkillID = insertedSkillSetGWLead._id;
+      subSkillSetGWLeadBC.mainSkillID = insertedSkillSetGWLead._id;
+
+      subSkillSetGWIntegration.mainSkillID =  insertedSkillSetGWOther._id;
+      subSkillSetGWArchitect.mainSkillID = insertedSkillSetGWOther._id;
+      subSkillSetGWPortal.mainSkillID = insertedSkillSetGWOther._id;
+      subSkillSetGWDatahub.mainSkillID = insertedSkillSetGWOther._id;
+      subSkillSetGWInfocenter.mainSkillID = insertedSkillSetGWOther._id;
+      subSkillSetGWBackend.mainSkillID = insertedSkillSetGWOther._id;
 
       await subSkillSetGWDEVPC.save();
       await subSkillSetGWDEVCC.save();
@@ -125,6 +164,9 @@ async function insertData() {
       await subSkillSetGWBAPC.save();
       await subSkillSetGWBACC.save();
       await subSkillSetGWBABC.save();
+      await subSkillSetGWQAPC.save();
+      await subSkillSetGWQACC.save();
+      await subSkillSetGWQABC.save();
       await subSkillSetGWLeadPC.save();
       await subSkillSetGWLeadCC.save();
       await subSkillSetGWLeadBC.save();

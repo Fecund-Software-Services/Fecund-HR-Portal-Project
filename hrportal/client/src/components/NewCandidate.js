@@ -20,7 +20,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
 import popupBackground from "../assets/PopupBackgroundImage.png";
@@ -32,6 +32,7 @@ const NewCandidate = () => {
     emailAddress: "",
     mobileNumber: "",
     skillSet: "",
+    subskillset: "",
     itExperience: "",
     totalRelevantExperience: "",
     currentCompany: "",
@@ -51,44 +52,74 @@ const NewCandidate = () => {
   const [error, setError] = useState(" ");
   const [isLoading, setIsLoading] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [skillSetOptions, setSkillSetOptions] = useState([]);
+  const [subSkillSetOptions, setSubSkillSetOptions] = useState([]);
+  const [mainSkillId, setMainSkillId] = useState("");
 
   const nav = useNavigate();
   const navigateToHome = useNavigate();
 
-  const skillSetOptions = [
-    "Guidewire BA (PC)",
-    "Guidewire BA (BC)",
-    "Guidewire BA (CC)",
-    "Guidewire QA (PC)",
-    "Guidewire QA (BC)",
-    "Guidewire QA (CC)",
-    "Guidewire DEV (PC)",
-    "Guidewire DEV (BC)",
-    "Guidewire DEV (CC)",
-    "Guidewire Lead (CC)",
-    "Guidewire Lead (PC)",
-    "Guidewire Lead (BC)",
-    "Buisness Analyst",
-    "Technical Specialist",
-    "Guidewire Integration Developer",
-    "Guidewire Architect",
-    "Guidewire QA",
-    "Guidewire Portal",
-    "Guidewire Datahub",
-    "Guidewire Infocentre",
-    "Recruitment Executive",
-    "Business Development Executive",
-    "Guidewire Backend Developer",
-    "Duckcreek Developer",
-    "Coldfusion Developer",
-    "Oneshield Designer",
-    "Digital Marketing Executive",
-    "Mulesoft Developer",
-    "Scrum Master",
-    "Project Leader",
-    "Oneshield BA",
-    "Oneshield QA",
-  ];
+  const fetchSkillsets = async () => {
+    try {
+      const response = await fetch("/api/skillset/onLoadSkillSet");
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Fetched main skills:", data);
+      setSkillSetOptions(data);
+      console.log(skillSetOptions);
+    } catch (error) {
+      console.error("Error fetching main skills:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSkillsets();
+  }, []);
+
+  const fetchSubSkills = async (mainSkillId) => {
+    if (!mainSkillId) {
+      setSubSkillSetOptions([]);
+      return;
+    }
+
+    console.log("Fetching sub skills for main skill ID:", mainSkillId);
+    try {
+      const response = await fetch(
+        `/api/skillset/onLoadSubskill/${mainSkillId}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Received sub skills data:", data);
+      setSubSkillSetOptions(data);
+    } catch (error) {
+      console.error("Error fetching sub skills:", error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(subSkillSetOptions);
+  }, [subSkillSetOptions]);
+
+  useEffect(() => {
+    if (formData.skillSet) {
+      const desiredSkillName = formData.skillSet;
+      const object = skillSetOptions.find(
+        (skill) => skill.skillname === desiredSkillName
+      );
+      console.log(object);
+      if (object) {
+        fetchSubSkills(object._id);
+      } else {
+        console.error("Skill not found:", desiredSkillName);
+        // Handle the case where the skill is not found, e.g., set subskills to an empty array
+        setSubSkillSetOptions([]);
+      }
+    }
+  }, [formData.skillSet]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -116,6 +147,12 @@ const NewCandidate = () => {
       ...prevData,
       [name]: !prevData.servingNoticePeriod,
     }));
+  };
+
+  const handleSubSkillSetChange = (e) => {
+    console.log("hello");
+    console.log("Selected sub skill:", e.target.value);
+    setFormData({ ...formData, subskillset: e.target.value });
   };
 
   const handleResumeChange = (e) => {
@@ -163,6 +200,7 @@ const NewCandidate = () => {
     formDataToSend.append("emailAddress", formData.emailAddress);
     formDataToSend.append("mobileNumber", formData.mobileNumber);
     formDataToSend.append("skillSet", formData.skillSet);
+    formDataToSend.append("subskillset", formData.subskillset);
     formDataToSend.append("itExperience", formData.itExperience);
     formDataToSend.append(
       "totalRelevantExperience",
@@ -331,14 +369,56 @@ const NewCandidate = () => {
               className={styles.dropdown}
               required
             >
-              <option value="">Select Skills </option>
-              {skillSetOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+              <option value="">Select Main Skill </option>
+              {skillSetOptions.map((skillSetOptions, index) => (
+                <option key={index} value={skillSetOptions.skillname}>
+                  {skillSetOptions.skillname}
                 </option>
               ))}
             </select>
           </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="subskillSet">
+              sub Skill Set<span className={styles.asterisk}>*</span>:
+            </label>
+            <select
+              name="subskillSet"
+              id="subskillSet"
+              value={formData.subskillset}
+              onChange={handleSubSkillSetChange}
+              className={styles.dropdown}
+              required
+            >
+              <option value="">Select Sub Skill </option>
+              {subSkillSetOptions.map((subskillSetOptions, index) => (
+                <option key={index} value={subskillSetOptions.subsetname}>
+                  {subskillSetOptions.subsetname}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* <div className={styles.sub_container}>
+            <label htmlFor="subSkillSet">
+              Sub Skill Set<span className={styles.asterisk}>*</span>:
+            </label>
+            <select
+              name="subSkillSet"
+              id="subSkillSet"
+              value={formData.subskillset}
+              onChange={handleInputChange}
+              className={styles.dropdown}
+              required
+            >
+              <option value="">Select Sub Skill </option>
+              {skillSetOptions.map((subSkill, index) => (
+                <option key={index} value={subSkill.subsetname} >
+                  {subSkill.skillname}
+                </option>
+              ))}
+            </select>
+          </div> */}
 
           <div className={styles.sub_container}>
             <label htmlFor="currentCompany">
@@ -378,6 +458,51 @@ const NewCandidate = () => {
               onChange={handleInputChange}
               required
             />
+          </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="interviewDate">
+              Interview Date<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="interviewDate"
+              id="interviewDate"
+              // value={formData.lastWorkingDay}
+              // onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="joiningDate">
+              joiningDate<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="joiningDate"
+              id="joiningDate"
+              // value={formData.lastWorkingDay}
+              // onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="StatusUpadteDate">
+              Status Update Day<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="lStatusUpadteDate"
+              id="StatusUpadteDate"
+              // value={formData.lastWorkingDay}
+              // onChange={handleInputChange}
+            />
+          </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="statusComments">Status Comments:</label>
+            <textarea
+              name="statusComments"
+              id="statusComments"
+              // value={formData.comments}
+              // onChange={handleInputChange}
+            ></textarea>
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">

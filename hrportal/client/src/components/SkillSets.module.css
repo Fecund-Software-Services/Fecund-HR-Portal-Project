@@ -11,19 +11,31 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
  1/8/2024   |    Omkar                  |    2       |  Adding Pagination to Subskill Table
--------------------------------------------------------------------------------------------------------
+ 5/8/2024   |    Omkar                  |    3       |   Status Validation Error message styling
+ 8/08/2024  |    Omkar                   |   3       |    Search style classes implementation
 */
 
 
-.skillSetsContainer {
+.mainConatiner {
+  display: flex;
+  flex-direction: column;
   background-image: url("../assets/commonBGImage.png");
   background-size: 100% 100%;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.skillSetsContainer {
+  /* background-image: url("../assets/commonBGImage.png");
+  background-size: 100% 100%; */
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
-  height: 100vh;
-  width: 100%;
+   /* height: 100vh; */
+  width: 100%; 
 }
 
 h1 {
@@ -92,11 +104,20 @@ h1 {
   flex-direction: column;
   align-items: center;
   margin: 20px;
+  position: relative; /* Ensure the section is positioned relative to its container */
+  padding-bottom: 10px; /* Add some padding to keep the spacing consistent */
 }
 
 .subSkillSection h2 {
   font-size: 1.5rem;
   color: #fff;
+  position: sticky; /* Keep the title fixed within the subSkillSection */
+  top: 0; /* Stick to the top of the container */
+  background-color: #333; /* Background color to match the section */
+  z-index: 10; /* Keep it above other elements */
+  padding: 10px 0; /* Ensure proper padding around the title */
+  width: 100%; /* Make sure the title spans the full width */
+  text-align: center; /* Center the text */
 }
 
 .subSkillControls {
@@ -109,6 +130,7 @@ h1 {
   padding: 10px;
   font-size: 1rem;
   margin-right: 10px;
+  width: 300px; /* Increase the width to accommodate search queries */
 }
 
 .subSkillControls button {
@@ -122,6 +144,7 @@ h1 {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+ 
 }
 
 .subSkillTable th,
@@ -198,4 +221,35 @@ h1 {
   font-size: 40px;
   color: #ffffff;
 }
+
+.searchResults {
+  margin-top: 20px; /* Add some spacing above the search results */
+  width: 100%; /* Ensure the table takes up the full width */
+  color: #fff; /* Match text color with other sections */
+}
+
+.searchResults table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.searchResults th,
+.searchResults td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.searchResults th {
+  background-color:#333; /* Dark background for headers */
+  color: #fff;
+}
+
+.errorMessage {
+  /* margin-left:20px; */
+  align-self: center;
+  color: rgb(225, 78, 78);
+}
+
 

@@ -20,7 +20,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const permission = require("../collections/userpermissions")
 const { get } = require("mongoose");
-const logger = require('../utils/logger');
+const logger = require('../utility/logger');
 
 // create token function for authentication
 const createToken = (_id) => {
@@ -35,6 +35,8 @@ const loginUser = async (req, res) => {
   let existingUser;
   try { 
     existingUser = await User.findOne({ email });
+  
+    console.log(existingUser)
   } catch (error) {
     logger.error(error.message);
   }
@@ -42,6 +44,11 @@ const loginUser = async (req, res) => {
   if (!existingUser) {
     return res.status(404).json({ message: "Error: Email ID not found!" });
   }
+  
+  // const userName = existingUser.firstName;
+  // const userRole = existingUser.role
+
+  const { firstName, role } = existingUser;
 
   // Domain Check
   const emailRegex = /^[a-zA-Z0-9._%+-]+@fecundservices+\.com/;
@@ -62,7 +69,7 @@ const loginUser = async (req, res) => {
   // authentication token
   const token = createToken(existingUser._id)
 
-  return res.status(201).json({ email, token });
+  return res.status(201).json({ user: {firstName, email, role}, token });
 
  // return res.status(200).json({ message: "Sucessfully logged in " });
 };
@@ -139,7 +146,7 @@ const signupUser = async (req, res) => {
     await user.save();
     // authentication token
     const token = createToken(user._id)
-    return res.status(201).json({ email, token });
+    return res.status(201).json({ firstName, email, token, role });
   } catch (error) {
     logger.error(error.message);
   }
