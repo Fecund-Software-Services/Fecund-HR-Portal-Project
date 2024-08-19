@@ -505,16 +505,12 @@ const SkillSets = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {subskills.length === 0 ? ( // Check if there are subskills
-                  <tr>
-                    <td colSpan="3">{error2 && <p className={styles.errorMessage}>{error2}</p>}</td>
-                  </tr>
-                ) : (currentSearchResults.map((result, index) => (
+                  {currentSearchResults.map((result, index) => (
                     <tr key={index}>
                       <td>{result.mainSkillName}</td>
                       <td>{result.subSkillName}</td>
                     </tr>
-                  )))}
+                  ))}
                 </tbody>
               </table>
               {showSearchPagination && (
