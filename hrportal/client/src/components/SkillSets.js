@@ -8,14 +8,15 @@ User Story: Phase2 Admin Display (SkillSet Screen)
  
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description
+Date        |   Author                  |   Sprint   |  Phase     |    Description
 -------------------------------------------------------------------------------------------------------
-18/07/2024  |   omkar and vishal        |   2        |    Front End Coding SkillSet 
+18/07/2024  |   omkar and vishal        |   2        |    2       |    Front End Coding SkillSet 
+1/08/2024   |   Omkar & Vishal          |   2        |    2       |    Main Skill & Subskill Integration
+8/08/2024   |   Omkar                   |   3        |    2       |    Search Functionality, None Scenario implementation
+14/08/2024  |   Omkar                   |   2        |    2       |    Updated handle Search Function
+14/8/24     |   HS                      |   3        |    2       |    Caching
+19/08/2024  |   Harshini C              |   3        |    2       |    Worked on CSS 
 -------------------------------------------------------------------------------------------------------
-1/08/2024   |   Omkar & Vishal          |   2        |    Main Skill & Subskill Integration
-8/08/2024   |   Omkar                   |   3        |    Search Functionality, None Scenario implementation
-14/08/2024  |   Omkar                   |   2        |    Updated handle Search Function
-14/8/24     |  HS                       |  3         |   Caching
 */
 
 import React, { useState, useEffect } from "react";
