@@ -23,7 +23,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./SkillSets.module.css";
 
 // setting cache expiration
-const CACHE_EXPIRATION = 60*60*1000;
+const CACHE_EXPIRATION = 60 * 60 * 1000;
 
 const SkillSets = () => {
   const [skills, setSkills] = useState([]);
@@ -41,37 +41,38 @@ const SkillSets = () => {
   const [currentSearchPage, setCurrentSearchPage] = useState(1);
   const [showSearchPagination, setShowSearchPagination] = useState(false);
   const [error, setError] = useState("");
+  const [error2, setError2] = useState("");
 
   const subskillsPerPage = 4;
 
   // caching
   const getCachedData = (key) => {
     const cachedItem = localStorage.getItem(key);
-    if(cachedItem) {
-      const {data, timestamp} = JSON.parse(cachedItem);
-      if(Date.now() - timestamp < CACHE_EXPIRATION ) {
+    if (cachedItem) {
+      const { data, timestamp } = JSON.parse(cachedItem);
+      if (Date.now() - timestamp < CACHE_EXPIRATION) {
         return data;
       }
     }
     return null;
-  }
+  };
 
   const setCachedData = (key, data) => {
     const cachedItem = {
       data,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
     localStorage.setItem(key, JSON.stringify(cachedItem));
   };
 
   const clearCache = (key) => {
-    localStorage.removeItem(key)
-  }
+    localStorage.removeItem(key);
+  };
 
   // Main Skills Integration Starts Here
 
   const fetchSkillsets = async () => {
-    const cachedSkills = getCachedData('mainSkills');
+    const cachedSkills = getCachedData("mainSkills");
     if (cachedSkills) {
       setSkills(cachedSkills);
     } else {
@@ -82,7 +83,7 @@ const SkillSets = () => {
         }
         const data = await response.json();
         setSkills(data);
-        setCachedData('mainSkills', data)
+        setCachedData("mainSkills", data);
       } catch (error) {
         console.error("Error fetching main skills:", error);
       }
@@ -106,7 +107,7 @@ const SkillSets = () => {
         console.log("Added main skill:", data);
         setCurrentSkill("");
         setIsAddingMainSkill(false);
-        clearCache('mainSkills');
+        clearCache("mainSkills");
         fetchSkillsets(); // Fetch skills again after adding a new skill
       } catch (error) {
         console.error("Error adding main skill:", error);
@@ -144,7 +145,7 @@ const SkillSets = () => {
         setSkills(updatedSkills);
         setCurrentSkill("");
         setIsEditingMainSkill(false);
-        clearCache('mainSkills')
+        clearCache("mainSkills");
         fetchSkillsets();
       } catch (error) {
         console.error("Error updating skill:", error);
@@ -223,7 +224,7 @@ const SkillSets = () => {
         console.log("Added subskill:", data);
         setSubskills([...subskills, data]);
         setCurrentSubSkill(""); // Reset input after adding a subskill
-        clearCache(`subSkills_${selectedSkill}`)
+        clearCache(`subSkills_${selectedSkill}`);
         fetchSubSkills(selectedSkill); // Refresh subskills after adding
       } catch (error) {
         console.error("Error adding subskill:", error);
@@ -271,13 +272,14 @@ const SkillSets = () => {
         console.error("Error saving subskill:", error);
         let errorMessage = "An error occurred while saving the skill.";
         if (error.message.includes("400")) {
-          errorMessage = "Error: Another Subskill with this name already exists";
+          errorMessage =
+            "Error: Another Subskill with this name already exists";
         }
         setError(errorMessage);
       }
     }
   };
-/*
+  /*
   const handleSearch = async () => {
     try {
       const response = await fetch(
@@ -304,11 +306,12 @@ const SkillSets = () => {
       setError(errorMessage);
     }
   };*/
-  //Search result based on main skill selected 
+  //Search result based on main skill selected
   const handleSearch = async () => {
     try {
       // Include selectedSkill in the query if it is selected
-      const mainSkillIdParam = selectedSkill !== "None" ? `&mainSkillId=${selectedSkill}` : "";
+      const mainSkillIdParam =
+        selectedSkill !== "None" ? `&mainSkillId=${selectedSkill}` : "";
       /**const cacheKey = `search_${currentSubSkill}_${mainSkillIdParam}`;
 
       // Check cache first
@@ -344,10 +347,9 @@ const SkillSets = () => {
       if (error.message.includes("400")) {
         errorMessage = "Error: Search query is required";
       }
-      setError(errorMessage);
+      setError2(errorMessage);
     }
   };
-
 
   // Sub Skills Integration Ends Here
 
@@ -364,8 +366,7 @@ const SkillSets = () => {
   );
 
   const indexOfLastSearchResult = currentSearchPage * subskillsPerPage;
-  const indexOfFirstSearchResult =
-    indexOfLastSearchResult - subskillsPerPage;
+  const indexOfFirstSearchResult = indexOfLastSearchResult - subskillsPerPage;
   const currentSearchResults = searchResults.slice(
     indexOfFirstSearchResult,
     indexOfLastSearchResult
@@ -548,38 +549,44 @@ const SkillSets = () => {
                 </tr>
               </thead>
               <tbody>
-                {currentSubskills.map((subskill, index) => (
-                  <tr key={subskill._id}>
-                    <td>
-                      {skills.find(
-                        (skill) => skill._id === subskill.mainSkillID
-                      )?.skillname || "N/A"}
-                    </td>
-                    <td>
-                      {editSubSkillIndex === index ? (
-                        <input
-                          type="text"
-                          className={styles.input_field}
-                          value={currentSubSkill}
-                          onChange={(e) => {
-                            setCurrentSubSkill(e.target.value);
-                            setError("");
-                          }}
-                        />
-                      ) : (
-                        subskill.subsetname
-                      )}
-                    </td>
-                    <td>
-                      <button
-                        className={styles.button}
-                        onClick={() => handleEditSubSkill(index)}
-                      >
-                        Edit
-                      </button>
-                    </td>
+                {subskills.length === 0 ? ( // Check if there are subskills
+                  <tr>
+                    <td colSpan="3">No subskill found</td>
                   </tr>
-                ))}
+                ) : (
+                  currentSubskills.map((subskill, index) => (
+                    <tr key={subskill._id}>
+                      <td>
+                        {skills.find(
+                          (skill) => skill._id === subskill.mainSkillID
+                        )?.skillname || "N/A"}
+                      </td>
+                      <td>
+                        {editSubSkillIndex === index ? (
+                          <input
+                            type="text"
+                            className={styles.input_field}
+                            value={currentSubSkill}
+                            onChange={(e) => {
+                              setCurrentSubSkill(e.target.value);
+                              setError("");
+                            }}
+                          />
+                        ) : (
+                          subskill.subsetname
+                        )}
+                      </td>
+                      <td>
+                        <button
+                          className={styles.button}
+                          onClick={() => handleEditSubSkill(index)}
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           )}
