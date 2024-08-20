@@ -82,6 +82,7 @@ const addCandidate = async (req, res) => {
       emailAddress,
       mobileNumber,
       skillSet,
+      subskillset,
       itExperience,
       totalRelevantExperience,
       currentCompany,
@@ -137,6 +138,7 @@ const addCandidate = async (req, res) => {
       emailAddress,
       mobileNumber,
       skillSet,
+      subskillset,
       itExperience,
       totalRelevantExperience,
       currentCompany,
@@ -305,6 +307,7 @@ const editCandidate = async (req, res) => {
       emailAddress: req.body.emailAddress,
       mobileNumber: req.body.mobileNumber,
       skillSet: req.body.skillSet,
+      subskillset: req.body.subskillset,
       itExperience: req.body.itExperience,
       totalRelevantExperience: req.body.totalRelevantExperience,
       currentCompany: req.body.currentCompany,
@@ -314,10 +317,13 @@ const editCandidate = async (req, res) => {
       servingNoticePeriod: req.body.servingNoticePeriod,
       lastWorkingDay: req.body.lastWorkingDay,
       status: req.body.status,
+      statusComments: req.body.statusComments,
       certified: req.body.certified,
       comments: req.body.comments,
       resume: updatedfile ? updatedfile.originalname : req.body.resume, // FIRES ONLY WHEN THE RESUME IS UPDATED
       fileId: updatedfile?.filename,
+      interviewDate: req.body.interviewDate,
+      joiningDate: req.body.joiningDate
     },
   };
   // TO UPDATE RESUME COLLECTION THAT REFERS TO CANDIDATE
