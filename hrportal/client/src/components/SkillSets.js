@@ -18,12 +18,11 @@ Date        |   Author                  |   Sprint   |  Phase     |    Descripti
 19/08/2024  |   Harshini C              |   3        |    2       |    Worked on CSS 
 -------------------------------------------------------------------------------------------------------
 */
-
 import React, { useState, useEffect } from "react";
 import styles from "./SkillSets.module.css";
 
 // setting cache expiration
-const CACHE_EXPIRATION = 60*60*1000;
+const CACHE_EXPIRATION = 60 * 60 * 1000;
 
 const SkillSets = () => {
   const [skills, setSkills] = useState([]);
@@ -34,44 +33,44 @@ const SkillSets = () => {
   const [isAddingMainSkill, setIsAddingMainSkill] = useState(false);
   const [currentSubSkill, setCurrentSubSkill] = useState("");
   const [editSubSkillIndex, setEditSubSkillIndex] = useState(null);
-  const [editIndex, setEditIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchResults, setSearchResults] = useState([]);
   const [showPagination, setShowPagination] = useState(false);
   const [currentSearchPage, setCurrentSearchPage] = useState(1);
   const [showSearchPagination, setShowSearchPagination] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState("");  // General error message state
+  const [searchError, setSearchError] = useState("");  // Specific for search errors
+  const [showSearchResults, setShowSearchResults] = useState(false);  // Track if search was performed
 
   const subskillsPerPage = 4;
 
   // caching
   const getCachedData = (key) => {
     const cachedItem = localStorage.getItem(key);
-    if(cachedItem) {
-      const {data, timestamp} = JSON.parse(cachedItem);
-      if(Date.now() - timestamp < CACHE_EXPIRATION ) {
+    if (cachedItem) {
+      const { data, timestamp } = JSON.parse(cachedItem);
+      if (Date.now() - timestamp < CACHE_EXPIRATION) {
         return data;
       }
     }
     return null;
-  }
+  };
 
   const setCachedData = (key, data) => {
     const cachedItem = {
       data,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
     localStorage.setItem(key, JSON.stringify(cachedItem));
   };
 
   const clearCache = (key) => {
-    localStorage.removeItem(key)
-  }
+    localStorage.removeItem(key);
+  };
 
   // Main Skills Integration Starts Here
-
   const fetchSkillsets = async () => {
-    const cachedSkills = getCachedData('mainSkills');
+    const cachedSkills = getCachedData("mainSkills");
     if (cachedSkills) {
       setSkills(cachedSkills);
     } else {
@@ -82,7 +81,7 @@ const SkillSets = () => {
         }
         const data = await response.json();
         setSkills(data);
-        setCachedData('mainSkills', data)
+        setCachedData("mainSkills", data);
       } catch (error) {
         console.error("Error fetching main skills:", error);
       }
@@ -106,7 +105,7 @@ const SkillSets = () => {
         console.log("Added main skill:", data);
         setCurrentSkill("");
         setIsAddingMainSkill(false);
-        clearCache('mainSkills');
+        clearCache("mainSkills");
         fetchSkillsets(); // Fetch skills again after adding a new skill
       } catch (error) {
         console.error("Error adding main skill:", error);
@@ -144,7 +143,7 @@ const SkillSets = () => {
         setSkills(updatedSkills);
         setCurrentSkill("");
         setIsEditingMainSkill(false);
-        clearCache('mainSkills')
+        clearCache("mainSkills");
         fetchSkillsets();
       } catch (error) {
         console.error("Error updating skill:", error);
@@ -168,10 +167,12 @@ const SkillSets = () => {
     setSelectedSkill(skillId);
     setCurrentSubSkill(""); // Reset sub skill input when selecting a new main skill
     setError("");
+    setSearchResults([]);  // Clear search results
+    setShowSearchResults(false);  // Hide search results heading
+    setSearchError("");  // Reset search error
     fetchSubSkills(skillId); // Fetch subskills for the selected main skill
   };
-
-  // Main Skills Integration Ends Here
+ // Main Skills Integration Ends Here
 
   // Sub Skills Integration Starts Here
 
@@ -223,7 +224,7 @@ const SkillSets = () => {
         console.log("Added subskill:", data);
         setSubskills([...subskills, data]);
         setCurrentSubSkill(""); // Reset input after adding a subskill
-        clearCache(`subSkills_${selectedSkill}`)
+        clearCache(`subSkills_${selectedSkill}`);
         fetchSubSkills(selectedSkill); // Refresh subskills after adding
       } catch (error) {
         console.error("Error adding subskill:", error);
@@ -277,49 +278,14 @@ const SkillSets = () => {
       }
     }
   };
-/*
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(
-        `/api/skillset/search-skills?skills=${currentSubSkill}`
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      if (data.length === 0) {
-        setError("No results found!");
-      } else {
-        setError("");
-      }
-      setSearchResults(data); // Set the search results
-      setCurrentSearchPage(1);
-      setShowSearchPagination(data.length > subskillsPerPage); // Determine if pagination is needed
-    } catch (error) {
-      console.error("Error searching skills:", error);
-      let errorMessage = "An error occurred while searching.";
-      if (error.message.includes("400")) {
-        errorMessage = "Error: Search query is required";
-      }
-      setError(errorMessage);
-    }
-  };*/
-  //Search result based on main skill selected 
-  const handleSearch = async () => {
-    try {
-      // Include selectedSkill in the query if it is selected
-      const mainSkillIdParam = selectedSkill !== "None" ? `&mainSkillId=${selectedSkill}` : "";
-      /**const cacheKey = `search_${currentSubSkill}_${mainSkillIdParam}`;
 
-      // Check cache first
-      const cachedResults = getCachedData(cacheKey);
-      if (cachedResults) {
-        setSearchResults(cachedResults);
-        setCurrentSearchPage(1);
-        setShowSearchPagination(cachedResults.length > subskillsPerPage);
-        setError(cachedResults.length === 0 ? "No results found!" : "");
-        return;
-      } */
+  // Handle search with separate searchError state
+  const handleSearch = async () => {
+    try {
+      setSearchError(""); // Reset search error
+      setShowSearchResults(true);  // Show search results heading after search
+      const mainSkillIdParam =
+        selectedSkill !== "None" ? `&mainSkillId=${selectedSkill}` : "";
       const response = await fetch(
         `/api/skillset/search-skills?skills=${currentSubSkill}${mainSkillIdParam}`
       );
@@ -327,30 +293,23 @@ const SkillSets = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      /** Cache the results
-      setCachedData(cacheKey, data);**/
 
       if (data.length === 0) {
-        setError("No results found!");
+        setSearchError("No results found!"); // Set search-specific error
       } else {
-        setError("");
+        setSearchResults(data);
+        setSearchError("");
       }
-      setSearchResults(data); // Set the search results
       setCurrentSearchPage(1);
-      setShowSearchPagination(data.length > subskillsPerPage); // Determine if pagination is needed
+      setShowSearchPagination(data.length > subskillsPerPage);
     } catch (error) {
       console.error("Error searching skills:", error);
-      let errorMessage = "An error occurred while searching.";
-      if (error.message.includes("400")) {
-        errorMessage = "Error: Search query is required";
-      }
-      setError(errorMessage);
+      setSearchError("An error occurred while searching.");
     }
   };
 
-
-  // Sub Skills Integration Ends Here
-
+   //Sub Skills Integration Ends Here
+   
   useEffect(() => {
     fetchSkillsets();
     fetchSubSkills(); // Fetch all subskills on initial load
@@ -364,8 +323,7 @@ const SkillSets = () => {
   );
 
   const indexOfLastSearchResult = currentSearchPage * subskillsPerPage;
-  const indexOfFirstSearchResult =
-    indexOfLastSearchResult - subskillsPerPage;
+  const indexOfFirstSearchResult = indexOfLastSearchResult - subskillsPerPage;
   const currentSearchResults = searchResults.slice(
     indexOfFirstSearchResult,
     indexOfLastSearchResult
@@ -475,7 +433,7 @@ const SkillSets = () => {
               value={currentSubSkill}
               onChange={(e) => {
                 setCurrentSubSkill(e.target.value);
-                setError("");
+                setSearchError("");  // Clear search error when typing
               }}
               placeholder="Add/Edit/Search sub skill"
             />
@@ -493,120 +451,108 @@ const SkillSets = () => {
               </button>
             )}
           </div>
-          {searchResults.length > 0 && (
+
+          {/* Conditionally Render Search Results Heading and Content */}
+          {showSearchResults && (
             <div className={styles.subSkillTable}>
               <p className={styles.searchResults}>Search Results:</p>
+              {searchResults.length > 0 ? (
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Main Skills</th>
+                      <th>Sub Skills</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentSearchResults.map((result, index) => (
+                      <tr key={index}>
+                        <td>{result.mainSkillName}</td>
+                        <td>{result.subSkillName}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p className={styles.searchErrorMessage}>{searchError}</p>
+              )}
+            </div>
+          )}
+
+          {/* Render Subskills Table Only If No Search Is Active */}
+          {!showSearchResults && (
+            <>
               <table className={styles.table}>
                 <thead>
                   <tr>
                     <th>Main Skills</th>
                     <th>Sub Skills</th>
+                    <th>Edit</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {currentSearchResults.map((result, index) => (
-                    <tr key={index}>
-                      <td>{result.mainSkillName}</td>
-                      <td>{result.subSkillName}</td>
+                  {currentSubskills.map((subskill, index) => (
+                    <tr key={subskill._id}>
+                      <td>
+                        {skills.find(
+                          (skill) => skill._id === subskill.mainSkillID
+                        )?.skillname || "N/A"}
+                      </td>
+                      <td>
+                        {editSubSkillIndex === index ? (
+                          <input
+                            type="text"
+                            className={styles.input_field}
+                            value={currentSubSkill}
+                            onChange={(e) => {
+                              setCurrentSubSkill(e.target.value);
+                              setError("");
+                            }}
+                          />
+                        ) : (
+                          subskill.subsetname
+                        )}
+                      </td>
+                      <td>
+                        <button
+                          className={styles.button}
+                          onClick={() => handleEditSubSkill(index)}
+                        >
+                          Edit
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              {showSearchPagination && (
+              {showPagination && (
                 <div className={styles.pagination}>
-                  {currentSearchPage > 1 && (
+                  {currentPage > 1 && (
                     <button
                       className={styles.button}
-                      onClick={() =>
-                        paginateSearchResults(currentSearchPage - 1)
-                      }
+                      onClick={() => paginate(currentPage - 1)}
                     >
                       Previous
                     </button>
                   )}
                   <button
                     className={styles.button}
-                    onClick={() => paginateSearchResults(currentSearchPage + 1)}
+                    onClick={() => paginate(currentPage + 1)}
                     disabled={
-                      currentSearchPage >=
-                      Math.ceil(searchResults.length / subskillsPerPage)
+                      currentPage >=
+                      Math.ceil(subskills.length / subskillsPerPage)
                     }
                   >
                     Next
                   </button>
                 </div>
               )}
-            </div>
-          )}
-          {searchResults.length === 0 && (
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Main Skills</th>
-                  <th>Sub Skills</th>
-                  <th>Edit</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentSubskills.map((subskill, index) => (
-                  <tr key={subskill._id}>
-                    <td>
-                      {skills.find(
-                        (skill) => skill._id === subskill.mainSkillID
-                      )?.skillname || "N/A"}
-                    </td>
-                    <td>
-                      {editSubSkillIndex === index ? (
-                        <input
-                          type="text"
-                          className={styles.input_field}
-                          value={currentSubSkill}
-                          onChange={(e) => {
-                            setCurrentSubSkill(e.target.value);
-                            setError("");
-                          }}
-                        />
-                      ) : (
-                        subskill.subsetname
-                      )}
-                    </td>
-                    <td>
-                      <button
-                        className={styles.button}
-                        onClick={() => handleEditSubSkill(index)}
-                      >
-                        Edit
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-          {/* Show Subskill pagination only if there are no search results */}
-          {showPagination && searchResults.length === 0 && (
-            <div className={styles.pagination}>
-              {currentPage > 1 && (
-                <button
-                  className={styles.button}
-                  onClick={() => paginate(currentPage - 1)}
-                >
-                  Previous
-                </button>
-              )}
-              <button
-                className={styles.button}
-                onClick={() => paginate(currentPage + 1)}
-                disabled={
-                  currentPage >= Math.ceil(subskills.length / subskillsPerPage)
-                }
-              >
-                Next
-              </button>
-            </div>
+            </>
           )}
         </div>
       </div>
+
+      {/* General Error Display at the Bottom */}
       <div>{error && <p className={styles.errorMessage}>{error}</p>}</div>
     </div>
   );
