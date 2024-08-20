@@ -39,7 +39,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <ul className={styles.navLinks}>
         {
-          (userData.role === "admin" ? (
+          (userData.role === "user" ? (
             <li
               className={styles.adminLink}
               onMouseEnter={() => handleAdminDropdownToggle(true)}
