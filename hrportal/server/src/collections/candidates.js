@@ -90,6 +90,10 @@ const candidateSchema = new mongoose.Schema({
         default: "Submitted",
         required: true
     },
+    statusComments: {
+        type: String,
+        default: ""
+    },
     certified: {
         type: Boolean,
         required: true
