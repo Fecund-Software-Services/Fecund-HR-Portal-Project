@@ -104,3 +104,4 @@
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-08-14T07:25:47.492Z"}
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-08-14T07:27:26.473Z"}
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-08-14T07:31:18.073Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'mimetype')","timestamp":"2024-08-21T12:58:00.789Z"}
