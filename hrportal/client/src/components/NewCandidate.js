@@ -38,6 +38,10 @@ const NewCandidate = () => {
     currentCompany: "",
     currentCTC: "",
     expectedCTC: "",
+    interviewDate:"",
+    joiningDate:"",
+    statusUpdatedDate:"",
+    statusComments:"",
     noticePeriod: "",
     servingNoticePeriod: false,
     lastWorkingDay: "",
@@ -54,7 +58,7 @@ const NewCandidate = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [skillSetOptions, setSkillSetOptions] = useState([]);
   const [subSkillSetOptions, setSubSkillSetOptions] = useState([]);
-  const [mainSkillId, setMainSkillId] = useState("");
+  // const [mainSkillId, setMainSkillId] = useState("");
 
   const nav = useNavigate();
   const navigateToHome = useNavigate();
@@ -209,6 +213,10 @@ const NewCandidate = () => {
     formDataToSend.append("currentCompany", formData.currentCompany);
     formDataToSend.append("currentCTC", formData.currentCTC);
     formDataToSend.append("expectedCTC", formData.expectedCTC);
+    formDataToSend.append("interviewDate", formData.interviewDate);
+    formDataToSend.append("joiningDate", formData.joiningDate);
+    formDataToSend.append("statusUpdatedDate", formData.statusUpdatedDate);
+    formDataToSend.append("statusComments", formData.statusComments);
     formDataToSend.append("noticePeriod", formData.noticePeriod);
     formDataToSend.append("servingNoticePeriod", formData.servingNoticePeriod);
     formDataToSend.append("lastWorkingDay", formData.lastWorkingDay);
@@ -380,7 +388,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="subskillSet">
-              sub Skill Set<span className={styles.asterisk}>*</span>:
+              Sub Skill Set<span className={styles.asterisk}>*</span>:
             </label>
             <select
               name="subskillSet"
@@ -467,20 +475,20 @@ const NewCandidate = () => {
               type="date"
               name="interviewDate"
               id="interviewDate"
-              // value={formData.lastWorkingDay}
-              // onChange={handleInputChange}
+              value={formData.interviewDate}
+              onChange={handleInputChange}
             />
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="joiningDate">
-              joiningDate<span className={styles.asterisk}>*</span>:
+              Joining Date<span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="date"
               name="joiningDate"
               id="joiningDate"
-              // value={formData.lastWorkingDay}
-              // onChange={handleInputChange}
+              value={formData.joiningDate}
+              onChange={handleInputChange}
             />
           </div>
           <div className={styles.sub_container}>
@@ -489,10 +497,10 @@ const NewCandidate = () => {
             </label>
             <input
               type="date"
-              name="lStatusUpadteDate"
+              name="statusUpadteDate"
               id="StatusUpadteDate"
-              // value={formData.lastWorkingDay}
-              // onChange={handleInputChange}
+              value={formData.StatusUpadteDate}
+              onChange={handleInputChange}
             />
           </div>
           <div className={styles.sub_container}>
@@ -500,8 +508,8 @@ const NewCandidate = () => {
             <textarea
               name="statusComments"
               id="statusComments"
-              // value={formData.comments}
-              // onChange={handleInputChange}
+              value={formData.statusComments}
+              onChange={handleInputChange}
             ></textarea>
           </div>
           <div className={styles.sub_container}>
