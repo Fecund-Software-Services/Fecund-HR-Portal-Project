@@ -299,6 +299,7 @@ const editCandidate = async (req, res) => {
   const candidateId = req.params.id;
   const filter = { _id: candidateId };
   const updatedfile = req.file;
+  const updatedStatus = req.body.status;
 
   const update = {
     $set: {
@@ -316,7 +317,6 @@ const editCandidate = async (req, res) => {
       noticePeriod: req.body.noticePeriod,
       servingNoticePeriod: req.body.servingNoticePeriod,
       lastWorkingDay: req.body.lastWorkingDay,
-      status: req.body.status,
       statusComments: req.body.statusComments,
       certified: req.body.certified,
       comments: req.body.comments,
@@ -342,6 +342,14 @@ const editCandidate = async (req, res) => {
         }
       );
     }
+  }
+
+  // TO UPDATE THE TIME WHEN STATUS WAS CHANGED
+  if (updatedStatus) {
+    const updatedCandidate = await Candidate.updateOne(filter,
+      { $set: { status: updatedStatus, statusUpdateDate: new Date() } },
+      { new: true }
+    );
   }
 
   try {
