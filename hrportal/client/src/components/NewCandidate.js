@@ -38,10 +38,10 @@ const NewCandidate = () => {
     currentCompany: "",
     currentCTC: "",
     expectedCTC: "",
-    interviewDate:"",
-    joiningDate:"",
-    statusUpdatedDate:"",
-    statusComments:"",
+    // interviewDate:"",
+    // joiningDate:"",
+    // statusUpdatedDate:"",
+    // statusComments:"",
     noticePeriod: "",
     servingNoticePeriod: false,
     lastWorkingDay: "",
@@ -58,7 +58,7 @@ const NewCandidate = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [skillSetOptions, setSkillSetOptions] = useState([]);
   const [subSkillSetOptions, setSubSkillSetOptions] = useState([]);
-  // const [mainSkillId, setMainSkillId] = useState("");
+  const [mainSkillId, setMainSkillId] = useState("");
 
   const nav = useNavigate();
   const navigateToHome = useNavigate();
@@ -213,10 +213,10 @@ const NewCandidate = () => {
     formDataToSend.append("currentCompany", formData.currentCompany);
     formDataToSend.append("currentCTC", formData.currentCTC);
     formDataToSend.append("expectedCTC", formData.expectedCTC);
-    formDataToSend.append("interviewDate", formData.interviewDate);
-    formDataToSend.append("joiningDate", formData.joiningDate);
-    formDataToSend.append("statusUpdatedDate", formData.statusUpdatedDate);
-    formDataToSend.append("statusComments", formData.statusComments);
+    // formDataToSend.append("interviewDate", formData.interviewDate);
+    // formDataToSend.append("joiningDate", formData.joiningDate);
+    // formDataToSend.append("statusUpdatedDate", formData.statusUpdatedDate);
+    // formDataToSend.append("statusComments", formData.statusComments);
     formDataToSend.append("noticePeriod", formData.noticePeriod);
     formDataToSend.append("servingNoticePeriod", formData.servingNoticePeriod);
     formDataToSend.append("lastWorkingDay", formData.lastWorkingDay);
@@ -467,7 +467,7 @@ const NewCandidate = () => {
               required
             />
           </div>
-          <div className={styles.sub_container}>
+          {/* <div className={styles.sub_container}>
             <label htmlFor="interviewDate">
               Interview Date<span className={styles.asterisk}>*</span>:
             </label>
@@ -492,14 +492,14 @@ const NewCandidate = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="StatusUpadteDate">
+            <label htmlFor="statusUpadteDate">
               Status Update Day<span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="date"
-              name="statusUpadteDate"
-              id="StatusUpadteDate"
-              value={formData.StatusUpadteDate}
+              name="statusUpadteDate"s
+              id="statusUpadteDate"
+              value={formData.statusUpdatedDate}
               onChange={handleInputChange}
             />
           </div>
@@ -511,7 +511,7 @@ const NewCandidate = () => {
               value={formData.statusComments}
               onChange={handleInputChange}
             ></textarea>
-          </div>
+          </div> */}
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
               Notice Period (Days)<span className={styles.asterisk}>*</span>:

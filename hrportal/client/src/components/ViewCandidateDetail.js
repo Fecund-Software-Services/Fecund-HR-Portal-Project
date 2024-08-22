@@ -129,6 +129,10 @@ function ViewCandidateDetail() {
             <p className={styles.text}>{candidateDetails.skillSet}</p>
           </div>
           <div className={styles.sub_container}>
+            <label>Sub Skill:</label>
+            <p className={styles.text}>{candidateDetails.subskillset}</p>
+          </div>
+          <div className={styles.sub_container}>
             <label>Current Company:</label>
             <p className={styles.text}>{candidateDetails.currentCompany}</p>
           </div>
@@ -152,6 +156,42 @@ function ViewCandidateDetail() {
             <label>Status:</label>
             <p className={styles.text}>{candidateDetails.status}</p>
           </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="noticePeriod">Status Comments:</label>
+            <p className={styles.text}>
+              {candidateDetails.statusComments
+                ? candidateDetails.statusComments
+                : "No comments entered"}
+            </p>
+          </div>
+          {candidateDetails.status === "Offer Issued" ? (
+            <div className={styles.sub_container}>
+              <label>Joining Date:</label>
+              <p className={styles.text}>{candidateDetails.joiningDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+           {
+          candidateDetails.status === "Scheduled R1" ? (
+            <div className={styles.sub_container}>
+              <label>Interview Date:</label>
+              <p className={styles.text}>{candidateDetails.interviewDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+          {
+          candidateDetails.status === "Scheduled R2" ? (
+            <div className={styles.sub_container}>
+              <label>Interview Date:</label>
+              <p className={styles.text}>{candidateDetails.interviewDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+
+          
           <div className={styles.sub_container}>
             <label htmlFor="certified">Certified?:</label>
             <p className={styles.text}>

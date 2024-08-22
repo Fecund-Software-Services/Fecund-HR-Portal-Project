@@ -35,16 +35,16 @@ const EditCandiadteDetails = () => {
     emailAddress: "",
     mobileNumber: "",
     skillSet: "",
-    subSkillSet:"",
+    subSkillSet: "",
     itExperience: "",
     totalRelevantExperience: "",
     currentCompany: "",
     currentCTC: "",
     expectedCTC: "",
-    interviewDate:"",
-    joiningDate:"",
-    statusUpdatedDate:"",
-    statusComments:"",
+    interviewDate: "",
+    joiningDate: "",
+    // statusUpdatedDate:"",F
+    statusComments: "",
     noticePeriod: "",
     servingNoticePeriod: false,
     lastWorkingDay: "",
@@ -59,7 +59,7 @@ const EditCandiadteDetails = () => {
   const [error, setError] = useState(" ");
   const [isLoading, setIsLoading] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [statusOptions, setStatusOptions] = useState([])
+  const [statusOptions, setStatusOptions] = useState([]);
   const [skillSetOptions, setSkillSetOptions] = useState([]);
   const [subSkillSetOptions, setSubSkillSetOptions] = useState([]);
   const { userData } = useAuth();
@@ -80,6 +80,10 @@ const EditCandiadteDetails = () => {
       console.error("Error fetching Candidate details:", error);
     }
   };
+
+  useEffect(() => {
+    console.log(editedData);
+  }, [editedData]);
 
   const fetchStatus = async () => {
     try {
@@ -120,6 +124,7 @@ const EditCandiadteDetails = () => {
   }, []);
 
   const fetchSubSkills = async (mainSkillId) => {
+    console.log(mainSkillId);
     if (!mainSkillId) {
       setSubSkillSetOptions([]);
       return;
@@ -253,7 +258,7 @@ const EditCandiadteDetails = () => {
     formDataToSend.append("expectedCTC", editedData.expectedCTC);
     formDataToSend.append("interviewDate", editedData.interviewDate);
     formDataToSend.append("joiningDate", editedData.joiningDate);
-    formDataToSend.append("statusUpdatedDate", editedData.statusUpdatedDate);
+    // formDataToSend.append("statusUpdatedDate", editedData.statusUpdatedDate);
     formDataToSend.append("statusComments", editedData.statusComments);
     formDataToSend.append("noticePeriod", editedData.noticePeriod);
     formDataToSend.append(
@@ -426,12 +431,12 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="subskillSet">
+            <label htmlFor="subSkillSet">
               Sub Skill Set<span className={styles.asterisk}>*</span>:
             </label>
             <select
-              name="subskillSet"
-              id="subskillSet"
+              name="subSkillSet"
+              id="subSkillSet"
               value={editedData.subSkillSet}
               onChange={handleInputChange}
               className={styles.dropdown}
@@ -490,52 +495,6 @@ const EditCandiadteDetails = () => {
             ""
           )}
 
-<div className={styles.sub_container}>
-            <label htmlFor="interviewDate">
-              Interview Date<span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="date"
-              name="interviewDate"
-              id="interviewDate"
-              value={editedData.interviewDate}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className={styles.sub_container}>
-            <label htmlFor="joiningDate">
-              Joining Date<span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="date"
-              name="joiningDate"
-              id="joiningDate"
-              value={editedData.joiningDate}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className={styles.sub_container}>
-            <label htmlFor="StatusUpadteDate">
-              Status Update Day<span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="date"
-              name="StatusUpadteDate"
-              id="StatusUpdateDate"
-              value={editedData.statusUpdatedDate}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className={styles.sub_container}>
-            <label htmlFor="statusComments">Status Comments:</label>
-            <textarea
-              name="statusComments"
-              id="statusComments"
-              value={editedData.statusComments}
-              onChange={handleInputChange}
-            ></textarea>
-          </div>
-
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
               Notice Period<span className={styles.asterisk}>*</span> (Days):
@@ -566,6 +525,81 @@ const EditCandiadteDetails = () => {
               ))}
             </select>
           </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="statusComments">Status Comments:</label>
+            <textarea
+              name="statusComments"
+              id="statusComments"
+              value={editedData.statusComments}
+              onChange={handleInputChange}
+            ></textarea>
+          </div>
+
+          {editedData.status === "Offer Issued" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="joiningDate">
+                Joining Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="joiningDate"
+                id="joiningDate"
+                value={editedData.joiningDate}
+                onChange={handleInputChange}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {editedData.status === "Scheduled R1" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="interviewDate">
+                Interview Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="interviewDate"
+                id="interviewDate"
+                value={editedData.interviewDate}
+                onChange={handleInputChange}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {editedData.status === "Scheduled R2" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="interviewDate">
+                Interview Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="interviewDate"
+                id="interviewDate"
+                value={editedData.interviewDate}
+                onChange={handleInputChange}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {/* <div className={styles.sub_container}>
+            <label htmlFor="StatusUpadteDate">
+              Status Update Day<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="StatusUpadteDate"
+              id="StatusUpdateDate"
+              value={editedData.statusUpdatedDate}
+              onChange={handleInputChange}
+            />
+          </div> */}
+          
           <div className={styles.sub_container}>
             <label htmlFor="servingNoticePeriod">
               Serving Notice Period<span className={styles.asterisk}>*</span>:
