@@ -35,11 +35,16 @@ const EditCandiadteDetails = () => {
     emailAddress: "",
     mobileNumber: "",
     skillSet: "",
+    subSkillSet: "",
     itExperience: "",
     totalRelevantExperience: "",
     currentCompany: "",
     currentCTC: "",
     expectedCTC: "",
+    interviewDate: "",
+    joiningDate: "",
+    // statusUpdatedDate:"",F
+    statusComments: "",
     noticePeriod: "",
     servingNoticePeriod: false,
     lastWorkingDay: "",
@@ -54,55 +59,13 @@ const EditCandiadteDetails = () => {
   const [error, setError] = useState(" ");
   const [isLoading, setIsLoading] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [statusOptions, setStatusOptions] = useState([]);
+  const [skillSetOptions, setSkillSetOptions] = useState([]);
+  const [subSkillSetOptions, setSubSkillSetOptions] = useState([]);
   const { userData } = useAuth();
 
   const nav = useNavigate();
   const navigateToHome = useNavigate();
-
-  const skillSetOptions = [
-    "Guidewire BA (PC)",
-    "Guidewire BA (BC)",
-    "Guidewire BA (CC)",
-    "Guidewire QA (PC)",
-    "Guidewire QA (BC)",
-    "Guidewire QA (CC)",
-    "Guidewire DEV (PC)",
-    "Guidewire DEV (BC)",
-    "Guidewire DEV (CC)",
-    "Guidewire Lead (CC)",
-    "Guidewire Lead (PC)",
-    "Guidewire Lead (BC)",
-    "Buisness Analyst",
-    "Technical Specialist",
-    "Guidewire Integration Developer",
-    "Guidewire Architect",
-    "Guidewire QA",
-    "Guidewire Portal",
-    "Guidewire Datahub",
-    "Guidewire Infocentre",
-    "Recruitment Executive",
-    "Business Development Executive",
-    "Guidewire Backend Developer",
-    "Duckcreek Developer",
-    "Coldfusion Developer",
-    "Oneshield Designer",
-    "Digital Marketing Executive",
-    "Mulesoft Developer",
-    "Scrum Master",
-    "Project Leader",
-    "Oneshield BA",
-    "Oneshield QA",
-  ];
-
-  const statusOptions = [
-    "Submitted",
-    "Cleared 1st Round",
-    "Cleared 2nd Round",
-    "Offer Issued",
-    "On-Hold",
-    "Rejected",
-    "Candidate not Interested",
-  ];
 
   // Function to fetch Candidate details based on the ID (you can implement this logic)
   const fetchCandidateDetails = async (CandidateId) => {
@@ -117,6 +80,92 @@ const EditCandiadteDetails = () => {
       console.error("Error fetching Candidate details:", error);
     }
   };
+
+  useEffect(() => {
+    console.log(editedData);
+  }, [editedData]);
+
+  const fetchStatus = async () => {
+    try {
+      const response = await fetch("/api/status/get-status");
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Fetched main skills:", data);
+      setStatusOptions(data);
+      console.log(statusOptions);
+    } catch (error) {
+      console.error("Error fetching main skills:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchStatus();
+  }, []);
+
+  const fetchSkillsets = async () => {
+    try {
+      const response = await fetch("/api/skillset/onLoadSkillSet");
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Fetched main skills:", data);
+      setSkillSetOptions(data);
+      console.log(skillSetOptions);
+    } catch (error) {
+      console.error("Error fetching main skills:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSkillsets();
+  }, []);
+
+  const fetchSubSkills = async (mainSkillId) => {
+    console.log(mainSkillId);
+    if (!mainSkillId) {
+      setSubSkillSetOptions([]);
+      return;
+    }
+
+    console.log("Fetching sub skills for main skill ID:", mainSkillId);
+    try {
+      const response = await fetch(
+        `/api/skillset/onLoadSubskill/${mainSkillId}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Received sub skills data:", data);
+      setSubSkillSetOptions(data);
+    } catch (error) {
+      console.error("Error fetching sub skills:", error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(subSkillSetOptions);
+  }, [subSkillSetOptions]);
+
+  useEffect(() => {
+    if (editedData.skillSet) {
+      const desiredSkillName = editedData.skillSet;
+      const object = skillSetOptions.find(
+        (skill) => skill.skillname === desiredSkillName
+      );
+      console.log(object);
+      if (object) {
+        fetchSubSkills(object._id);
+      } else {
+        console.error("Skill not found:", desiredSkillName);
+        // Handle the case where the skill is not found, e.g., set subskills to an empty array
+        setSubSkillSetOptions([]);
+      }
+    }
+  }, [editedData.skillSet]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -198,6 +247,7 @@ const EditCandiadteDetails = () => {
     formDataToSend.append("emailAddress", editedData.emailAddress);
     formDataToSend.append("mobileNumber", editedData.mobileNumber);
     formDataToSend.append("skillSet", editedData.skillSet);
+    formDataToSend.append("subSkillSet", editedData.subSkillSet);
     formDataToSend.append("itExperience", editedData.itExperience);
     formDataToSend.append(
       "totalRelevantExperience",
@@ -206,6 +256,10 @@ const EditCandiadteDetails = () => {
     formDataToSend.append("currentCompany", editedData.currentCompany);
     formDataToSend.append("currentCTC", editedData.currentCTC);
     formDataToSend.append("expectedCTC", editedData.expectedCTC);
+    formDataToSend.append("interviewDate", editedData.interviewDate);
+    formDataToSend.append("joiningDate", editedData.joiningDate);
+    // formDataToSend.append("statusUpdatedDate", editedData.statusUpdatedDate);
+    formDataToSend.append("statusComments", editedData.statusComments);
     formDataToSend.append("noticePeriod", editedData.noticePeriod);
     formDataToSend.append(
       "servingNoticePeriod",
@@ -368,9 +422,30 @@ const EditCandiadteDetails = () => {
               required
             >
               <option value="">Select Skills </option>
-              {skillSetOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+              {skillSetOptions.map((skillSetOptions, index) => (
+                <option key={index} value={skillSetOptions.skillname}>
+                  {skillSetOptions.skillname}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="subSkillSet">
+              Sub Skill Set<span className={styles.asterisk}>*</span>:
+            </label>
+            <select
+              name="subSkillSet"
+              id="subSkillSet"
+              value={editedData.subSkillSet}
+              onChange={handleInputChange}
+              className={styles.dropdown}
+              required
+            >
+              <option value="">Select Sub Skill </option>
+              {subSkillSetOptions.map((subskillSetOptions, index) => (
+                <option key={index} value={subskillSetOptions.subsetname}>
+                  {subskillSetOptions.subsetname}
                 </option>
               ))}
             </select>
@@ -443,13 +518,88 @@ const EditCandiadteDetails = () => {
               onChange={handleInputChange}
               required
             >
-              {statusOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+              {statusOptions.map((status, index) => (
+                <option key={index} value={status.name}>
+                  {status.name}
                 </option>
               ))}
             </select>
           </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="statusComments">Status Comments:</label>
+            <textarea
+              name="statusComments"
+              id="statusComments"
+              value={editedData.statusComments}
+              onChange={handleInputChange}
+            ></textarea>
+          </div>
+
+          {editedData.status === "Offer Issued" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="joiningDate">
+                Joining Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="joiningDate"
+                id="joiningDate"
+                value={editedData.joiningDate}
+                onChange={handleInputChange}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {editedData.status === "Scheduled R1" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="interviewDate">
+                Interview Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="interviewDate"
+                id="interviewDate"
+                value={editedData.interviewDate}
+                onChange={handleInputChange}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {editedData.status === "Scheduled R2" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="interviewDate">
+                Interview Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="interviewDate"
+                id="interviewDate"
+                value={editedData.interviewDate}
+                onChange={handleInputChange}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {/* <div className={styles.sub_container}>
+            <label htmlFor="StatusUpadteDate">
+              Status Update Day<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="StatusUpadteDate"
+              id="StatusUpdateDate"
+              value={editedData.statusUpdatedDate}
+              onChange={handleInputChange}
+            />
+          </div> */}
+          
           <div className={styles.sub_container}>
             <label htmlFor="servingNoticePeriod">
               Serving Notice Period<span className={styles.asterisk}>*</span>:

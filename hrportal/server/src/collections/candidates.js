@@ -92,7 +92,6 @@ const candidateSchema = new mongoose.Schema({
     },
     statusComments: {
         type: String,
-        default: ""
     },
     certified: {
         type: Boolean,
@@ -119,12 +118,12 @@ const candidateSchema = new mongoose.Schema({
         ref: 'fs.field'
     },
     interviewDate: {
-        type: Date,
+        type: String,
     },
     joiningDate: {
-        type: Date
+        type: String,
     },
-    statusUpdateDate: {
+    statusUpdatedDate: {
         type: Date,
         default: Date.now
     }
