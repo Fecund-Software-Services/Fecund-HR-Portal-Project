@@ -442,7 +442,6 @@ const EditCandiadteDetails = () => {
               className={styles.dropdown}
               required
             >
-              <option value="">Select Sub Skill </option>
               {subSkillSetOptions.map((subskillSetOptions, index) => (
                 <option key={index} value={subskillSetOptions.subsetname}>
                   {subskillSetOptions.subsetname}
