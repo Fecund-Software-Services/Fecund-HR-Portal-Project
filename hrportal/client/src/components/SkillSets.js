@@ -38,9 +38,9 @@ const SkillSets = () => {
   const [showPagination, setShowPagination] = useState(false);
   const [currentSearchPage, setCurrentSearchPage] = useState(1);
   const [showSearchPagination, setShowSearchPagination] = useState(false);
-  const [error, setError] = useState("");  // General error message state
-  const [searchError, setSearchError] = useState("");  // Specific for search errors
-  const [showSearchResults, setShowSearchResults] = useState(false);  // Track if search was performed
+  const [error, setError] = useState(""); // General error message state
+  const [searchError, setSearchError] = useState(""); // Specific for search errors
+  const [showSearchResults, setShowSearchResults] = useState(false); // Track if search was performed
 
   const subskillsPerPage = 4;
 
@@ -167,12 +167,12 @@ const SkillSets = () => {
     setSelectedSkill(skillId);
     setCurrentSubSkill(""); // Reset sub skill input when selecting a new main skill
     setError("");
-    setSearchResults([]);  // Clear search results
-    setShowSearchResults(false);  // Hide search results heading
-    setSearchError("");  // Reset search error
+    setSearchResults([]); // Clear search results
+    setShowSearchResults(false); // Hide search results heading
+    setSearchError(""); // Reset search error
     fetchSubSkills(skillId); // Fetch subskills for the selected main skill
   };
- // Main Skills Integration Ends Here
+  // Main Skills Integration Ends Here
 
   // Sub Skills Integration Starts Here
 
@@ -272,7 +272,8 @@ const SkillSets = () => {
         console.error("Error saving subskill:", error);
         let errorMessage = "An error occurred while saving the skill.";
         if (error.message.includes("400")) {
-          errorMessage = "Error: Another Subskill with this name already exists";
+          errorMessage =
+            "Error: Another Subskill with this name already exists";
         }
         setError(errorMessage);
       }
@@ -283,7 +284,7 @@ const SkillSets = () => {
   const handleSearch = async () => {
     try {
       setSearchError(""); // Reset search error
-      setShowSearchResults(true);  // Show search results heading after search
+      setShowSearchResults(true); // Show search results heading after search
       const mainSkillIdParam =
         selectedSkill !== "None" ? `&mainSkillId=${selectedSkill}` : "";
       const response = await fetch(
@@ -308,8 +309,8 @@ const SkillSets = () => {
     }
   };
 
-   //Sub Skills Integration Ends Here
-   
+  //Sub Skills Integration Ends Here
+
   useEffect(() => {
     fetchSkillsets();
     fetchSubSkills(); // Fetch all subskills on initial load
@@ -433,7 +434,10 @@ const SkillSets = () => {
               value={currentSubSkill}
               onChange={(e) => {
                 setCurrentSubSkill(e.target.value);
-                setSearchError("");  // Clear search error when typing
+                setSearchError(""); // Clear search error when typing
+
+                // If the search input is cleared, show the initial subskills table
+                setShowSearchResults(false); // Reset to show initial subskills table
               }}
               placeholder="Add/Edit/Search sub skill"
             />
