@@ -132,7 +132,7 @@ const candidateSchema = new mongoose.Schema({
 
 candidateSchema.pre('save', function(next) {
     if (this.isModified('status')) {
-        this.statusUpdateDate = Date.now();
+        this.statusUpdateDate = new Date();
     }
     next();
 });
