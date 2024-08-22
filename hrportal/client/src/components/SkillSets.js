@@ -434,7 +434,7 @@ const SkillSets = () => {
               value={currentSubSkill}
               onChange={(e) => {
                 setCurrentSubSkill(e.target.value);
-                setSearchError(""); // Clear search error when typing
+                setSearchError(""); // Clear search error when typing...
 
                 // If the search input is cleared, show the initial subskills table
                 setShowSearchResults(false); // Reset to show initial subskills table
