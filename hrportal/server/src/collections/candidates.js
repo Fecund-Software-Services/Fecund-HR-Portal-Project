@@ -90,6 +90,9 @@ const candidateSchema = new mongoose.Schema({
         default: "Submitted",
         required: true
     },
+    statusComments: {
+        type: String,
+    },
     certified: {
         type: Boolean,
         required: true
@@ -115,12 +118,12 @@ const candidateSchema = new mongoose.Schema({
         ref: 'fs.field'
     },
     interviewDate: {
-        type: Date,
+        type: String,
     },
     joiningDate: {
-        type: Date
+        type: String,
     },
-    statusUpdateDate: {
+    statusUpdatedDate: {
         type: Date,
         default: Date.now
     }
@@ -129,7 +132,7 @@ const candidateSchema = new mongoose.Schema({
 
 candidateSchema.pre('save', function(next) {
     if (this.isModified('status')) {
-        this.statusUpdateDate = Date.now();
+        this.statusUpdateDate = new Date();
     }
     next();
 });
