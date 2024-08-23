@@ -283,6 +283,7 @@ const SkillSets = () => {
   // Handle search with separate searchError state
   const handleSearch = async () => {
     try {
+      setError("")
       setSearchError(""); // Reset search error
       setShowSearchResults(true); // Show search results heading after search
       const mainSkillIdParam =
