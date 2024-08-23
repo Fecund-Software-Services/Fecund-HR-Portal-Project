@@ -434,6 +434,7 @@ const SkillSets = () => {
               onChange={(e) => {
                 setCurrentSubSkill(e.target.value);
                 setSearchError("");  // Clear search error when typing
+                setShowSearchResults(false);
               }}
               placeholder="Add/Edit/Search sub skill"
             />
