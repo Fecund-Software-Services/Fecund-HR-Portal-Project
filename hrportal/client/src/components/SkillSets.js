@@ -18,7 +18,6 @@ Date        |   Author                  |   Sprint   |  Phase     |    Descripti
 19/08/2024  |   Harshini C              |   3        |    2       |    Worked on CSS 
 -------------------------------------------------------------------------------------------------------
 */
-
 import React, { useState, useEffect } from "react";
 import styles from "./SkillSets.module.css";
 
@@ -34,14 +33,14 @@ const SkillSets = () => {
   const [isAddingMainSkill, setIsAddingMainSkill] = useState(false);
   const [currentSubSkill, setCurrentSubSkill] = useState("");
   const [editSubSkillIndex, setEditSubSkillIndex] = useState(null);
-  const [editIndex, setEditIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchResults, setSearchResults] = useState([]);
   const [showPagination, setShowPagination] = useState(false);
   const [currentSearchPage, setCurrentSearchPage] = useState(1);
   const [showSearchPagination, setShowSearchPagination] = useState(false);
-  const [error, setError] = useState("");
-  const [error2, setError2] = useState("");
+  const [error, setError] = useState(""); // General error message state
+  const [searchError, setSearchError] = useState(""); // Specific for search errors
+  const [showSearchResults, setShowSearchResults] = useState(false); // Track if search was performed
 
   const subskillsPerPage = 4;
 
@@ -70,7 +69,6 @@ const SkillSets = () => {
   };
 
   // Main Skills Integration Starts Here
-
   const fetchSkillsets = async () => {
     const cachedSkills = getCachedData("mainSkills");
     if (cachedSkills) {
@@ -169,9 +167,11 @@ const SkillSets = () => {
     setSelectedSkill(skillId);
     setCurrentSubSkill(""); // Reset sub skill input when selecting a new main skill
     setError("");
+    setSearchResults([]); // Clear search results
+    setShowSearchResults(false); // Hide search results heading
+    setSearchError(""); // Reset search error
     fetchSubSkills(skillId); // Fetch subskills for the selected main skill
   };
-
   // Main Skills Integration Ends Here
 
   // Sub Skills Integration Starts Here
@@ -279,50 +279,15 @@ const SkillSets = () => {
       }
     }
   };
-  /*
+
+  // Handle search with separate searchError state
   const handleSearch = async () => {
     try {
-      const response = await fetch(
-        `/api/skillset/search-skills?skills=${currentSubSkill}`
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      if (data.length === 0) {
-        setError("No results found!");
-      } else {
-        setError("");
-      }
-      setSearchResults(data); // Set the search results
-      setCurrentSearchPage(1);
-      setShowSearchPagination(data.length > subskillsPerPage); // Determine if pagination is needed
-    } catch (error) {
-      console.error("Error searching skills:", error);
-      let errorMessage = "An error occurred while searching.";
-      if (error.message.includes("400")) {
-        errorMessage = "Error: Search query is required";
-      }
-      setError(errorMessage);
-    }
-  };*/
-  //Search result based on main skill selected
-  const handleSearch = async () => {
-    try {
-      // Include selectedSkill in the query if it is selected
+      setError("")
+      setSearchError(""); // Reset search error
+      setShowSearchResults(true); // Show search results heading after search
       const mainSkillIdParam =
         selectedSkill !== "None" ? `&mainSkillId=${selectedSkill}` : "";
-      /**const cacheKey = `search_${currentSubSkill}_${mainSkillIdParam}`;
-
-      // Check cache first
-      const cachedResults = getCachedData(cacheKey);
-      if (cachedResults) {
-        setSearchResults(cachedResults);
-        setCurrentSearchPage(1);
-        setShowSearchPagination(cachedResults.length > subskillsPerPage);
-        setError(cachedResults.length === 0 ? "No results found!" : "");
-        return;
-      } */
       const response = await fetch(
         `/api/skillset/search-skills?skills=${currentSubSkill}${mainSkillIdParam}`
       );
@@ -330,28 +295,22 @@ const SkillSets = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      /** Cache the results
-      setCachedData(cacheKey, data);**/
 
       if (data.length === 0) {
-        setError("No results found!");
+        setSearchError("No results found!"); // Set search-specific error
       } else {
-        setError("");
+        setSearchResults(data);
+        setSearchError("");
       }
-      setSearchResults(data); // Set the search results
       setCurrentSearchPage(1);
-      setShowSearchPagination(data.length > subskillsPerPage); // Determine if pagination is needed
+      setShowSearchPagination(data.length > subskillsPerPage);
     } catch (error) {
       console.error("Error searching skills:", error);
-      let errorMessage = "An error occurred while searching.";
-      if (error.message.includes("400")) {
-        errorMessage = "Error: Search query is required";
-      }
-      setError2(errorMessage);
+      setSearchError("An error occurred while searching.");
     }
   };
 
-  // Sub Skills Integration Ends Here
+  //Sub Skills Integration Ends Here
 
   useEffect(() => {
     fetchSkillsets();
@@ -476,7 +435,8 @@ const SkillSets = () => {
               value={currentSubSkill}
               onChange={(e) => {
                 setCurrentSubSkill(e.target.value);
-                setError("");
+                setSearchError("");  // Clear search error when typing
+                setShowSearchResults(false);
               }}
               placeholder="Add/Edit/Search sub skill"
             />
@@ -494,67 +454,47 @@ const SkillSets = () => {
               </button>
             )}
           </div>
-          {searchResults.length > 0 && (
+
+          {/* Conditionally Render Search Results Heading and Content */}
+          {showSearchResults && (
             <div className={styles.subSkillTable}>
               <p className={styles.searchResults}>Search Results:</p>
+              {searchResults.length > 0 ? (
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Main Skills</th>
+                      <th>Sub Skills</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentSearchResults.map((result, index) => (
+                      <tr key={index}>
+                        <td>{result.mainSkillName}</td>
+                        <td>{result.subSkillName}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p className={styles.searchErrorMessage}>{searchError}</p>
+              )}
+            </div>
+          )}
+
+          {/* Render Subskills Table Only If No Search Is Active */}
+          {!showSearchResults && (
+            <>
               <table className={styles.table}>
                 <thead>
                   <tr>
                     <th>Main Skills</th>
                     <th>Sub Skills</th>
+                    <th>Edit</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {currentSearchResults.map((result, index) => (
-                    <tr key={index}>
-                      <td>{result.mainSkillName}</td>
-                      <td>{result.subSkillName}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {showSearchPagination && (
-                <div className={styles.pagination}>
-                  {currentSearchPage > 1 && (
-                    <button
-                      className={styles.button}
-                      onClick={() =>
-                        paginateSearchResults(currentSearchPage - 1)
-                      }
-                    >
-                      Previous
-                    </button>
-                  )}
-                  <button
-                    className={styles.button}
-                    onClick={() => paginateSearchResults(currentSearchPage + 1)}
-                    disabled={
-                      currentSearchPage >=
-                      Math.ceil(searchResults.length / subskillsPerPage)
-                    }
-                  >
-                    Next
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-          {searchResults.length === 0 && (
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Main Skills</th>
-                  <th>Sub Skills</th>
-                  <th>Edit</th>
-                </tr>
-              </thead>
-              <tbody>
-                {subskills.length === 0 ? ( // Check if there are subskills
-                  <tr>
-                    <td colSpan="3">No subskill found</td>
-                  </tr>
-                ) : (
-                  currentSubskills.map((subskill, index) => (
+                  {currentSubskills.map((subskill, index) => (
                     <tr key={subskill._id}>
                       <td>
                         {skills.find(
@@ -585,35 +525,37 @@ const SkillSets = () => {
                         </button>
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          )}
-          {/* Show Subskill pagination only if there are no search results */}
-          {showPagination && searchResults.length === 0 && (
-            <div className={styles.pagination}>
-              {currentPage > 1 && (
-                <button
-                  className={styles.button}
-                  onClick={() => paginate(currentPage - 1)}
-                >
-                  Previous
-                </button>
+                  ))}
+                </tbody>
+              </table>
+              {showPagination && (
+                <div className={styles.pagination}>
+                  {currentPage > 1 && (
+                    <button
+                      className={styles.button}
+                      onClick={() => paginate(currentPage - 1)}
+                    >
+                      Previous
+                    </button>
+                  )}
+                  <button
+                    className={styles.button}
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={
+                      currentPage >=
+                      Math.ceil(subskills.length / subskillsPerPage)
+                    }
+                  >
+                    Next
+                  </button>
+                </div>
               )}
-              <button
-                className={styles.button}
-                onClick={() => paginate(currentPage + 1)}
-                disabled={
-                  currentPage >= Math.ceil(subskills.length / subskillsPerPage)
-                }
-              >
-                Next
-              </button>
-            </div>
+            </>
           )}
         </div>
       </div>
+
+      {/* General Error Display at the Bottom */}
       <div>{error && <p className={styles.errorMessage}>{error}</p>}</div>
     </div>
   );

@@ -21,6 +21,7 @@ Date        |   Author                  |   Sprint   |  Phase   | Description
   flex-direction: column;
   background-image: url("../assets/commonBGImage.png");
   background-size: 100% 100%;
+  /* justify-content: center; */
   align-items: center;
   height: 100vh;
   width: 100%;
@@ -243,11 +244,39 @@ h1 {
   background-color:#333; /* Dark background for headers */
   color: #fff;
 }
-
+/*
 .errorMessage {
   /* margin-left:20px; */
+ /* align-self: center;
+  color: rgb(225, 78, 78);
+    
+  
+}
+
+.searchErrorMessage {
+  color: rgb(225, 78, 78); /* Keep consistent with existing error color */
+ /* margin-top: 10px; /* Space between "Search Results" and the error message */
+ /* text-align: center; /* Center the error message */
+  /*font-size: 16px; /* Slightly noticeable size */
+/*}
+*/
+
+/* General Error Message - Bottom Center */
+.errorMessage {
+  /*position: fixed;*/
+  bottom: 20px;
+  
   align-self: center;
   color: rgb(225, 78, 78);
+ 
+}
+
+/* Search-specific Error Message - Under Search Results */
+.searchErrorMessage {
+  color: rgb(225, 78, 78); /* Keep consistent with existing error color */
+  margin-top: 10px; /* Space between "Search Results" and the error message */
+  text-align: center; /* Center the error message */
+  font-size: 16px; /* Slightly noticeable size */
 }
 
 
