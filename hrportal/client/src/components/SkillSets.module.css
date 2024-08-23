@@ -263,7 +263,7 @@ h1 {
 
 /* General Error Message - Bottom Center */
 .errorMessage {
-  /* position: fixed; */
+  /*position: fixed;*/
   bottom: 20px;
   
   align-self: center;
