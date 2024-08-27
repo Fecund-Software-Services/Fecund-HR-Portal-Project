@@ -300,6 +300,7 @@ const editCandidate = async (req, res) => {
   const filter = { _id: candidateId };
   const updatedfile = req.file;
   const updatedStatus = req.body.status;
+  console.log(req.body)
 
   const update = {
     $set: {

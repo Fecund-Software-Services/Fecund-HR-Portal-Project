@@ -47,12 +47,12 @@ const candidateSchema = new mongoose.Schema({
         type: String,
     },
     itExperience: {
-        type: Number,
+        type: String,
         required: [true, "experience is required"],
         
     },
     totalRelevantExperience: {
-        type: Number,
+        type: String,
         required: [true, "total relevant experience is required"],
         
     },
@@ -92,6 +92,7 @@ const candidateSchema = new mongoose.Schema({
     },
     statusComments: {
         type: String,
+        default: ""
     },
     certified: {
         type: Boolean,
@@ -119,9 +120,11 @@ const candidateSchema = new mongoose.Schema({
     },
     interviewDate: {
         type: String,
+        default: ""
     },
     joiningDate: {
         type: String,
+        default:""
     },
     statusUpdatedDate: {
         type: Date,

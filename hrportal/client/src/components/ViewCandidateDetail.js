@@ -52,6 +52,8 @@ function ViewCandidateDetail() {
     }
   };
 
+  console.log(candidateDetails)
+
   const fetchCandidateResume = async () => {
     try {
       const response = await fetch(
@@ -115,7 +117,7 @@ function ViewCandidateDetail() {
           <div className={styles.sub_container}>
             <label>Total IT Experience:</label>
             <p className={styles.text}>
-              {candidateDetails.totalRelevantExperience}
+              {candidateDetails.itExperience}
             </p>
           </div>
           <div className={styles.sub_container}>
@@ -128,17 +130,23 @@ function ViewCandidateDetail() {
             <label>Skill Set:</label>
             <p className={styles.text}>{candidateDetails.skillSet}</p>
           </div>
-          <div className={styles.sub_container}>
-            <label>Sub Skill:</label>
-            <p className={styles.text}>{candidateDetails.subskillset}</p>
-          </div>
+          
           <div className={styles.sub_container}>
             <label>Current Company:</label>
             <p className={styles.text}>{candidateDetails.currentCompany}</p>
           </div>
           <div className={styles.sub_container}>
+            <label>Sub Skill:</label>
+            <p className={styles.text}>{candidateDetails.subskillset}</p>
+          </div>
+          <div className={styles.sub_container}>
             <label htmlFor="currentCTC">Current CTC (LPA):</label>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
+          </div>
+          
+          <div className={styles.sub_container}>
+            <label htmlFor="noticePeriod">Notice Period:</label>
+            <p className={styles.text}>{candidateDetails.noticePeriod}</p>
           </div>
           {userData.role === "admin" ? (
             <div className={styles.sub_container}>
@@ -148,10 +156,6 @@ function ViewCandidateDetail() {
           ) : (
             ""
           )}
-          <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Notice Period:</label>
-            <p className={styles.text}>{candidateDetails.noticePeriod}</p>
-          </div>
           <div className={styles.sub_container}>
             <label>Status:</label>
             <p className={styles.text}>{candidateDetails.status}</p>

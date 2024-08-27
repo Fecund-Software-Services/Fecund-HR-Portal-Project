@@ -34,10 +34,14 @@ const NewCandidate = () => {
     skillSet: "",
     subskillset: "",
     itExperience: "",
+    itExperienceDisplay: "",
     totalRelevantExperience: "",
+    totalRelevantExperienceDisplay:"",
     currentCompany: "",
     currentCTC: "",
     expectedCTC: "",
+    currentCTCDisplay:"",
+    expectedCTCDisplay:"",
     // interviewDate:"",
     // joiningDate:"",
     // statusUpdatedDate:"",
@@ -344,8 +348,23 @@ const NewCandidate = () => {
               type="number"
               name="totalRelevantExperience"
               id="totalRelevantExperience"
-              value={formData.totalRelevantExperience}
-              onChange={handleInputChange}
+              value={formData.totalRelevantExperienceDisplay}
+              onChange={(e) => {
+                const experience = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperienceDisplay: experience,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, check if value is more than 25
+                const experienceValue = parseFloat(formData.totalRelevantExperienceDisplay);
+                setFormData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperience: experienceValue <= 25 ? experienceValue : "25+",
+                }));
+              }}
               required
             />
           </div>
@@ -359,8 +378,23 @@ const NewCandidate = () => {
               type="number"
               name="itExperience"
               id="totalITExperience"
-              value={formData.itExperience}
-              onChange={handleInputChange}
+              value={formData.itExperienceDisplay}
+              onChange={(e) => {
+                const experience = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  itExperienceDisplay: experience,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, check if value is more than 25
+                const experienceValue = parseFloat(formData.itExperienceDisplay);
+                setFormData((prevData) => ({
+                  ...prevData,
+                  itExperience: experienceValue <= 25 ? experienceValue : "25+",
+                }));
+              }}
               required
             />
           </div>
@@ -449,8 +483,26 @@ const NewCandidate = () => {
               type="number"
               name="currentCTC"
               id="currentCTC"
-              value={formData.currentCTC}
-              onChange={handleInputChange}
+              value={formData.currentCTCDisplay}
+              onChange={(e) => {
+                const ctc = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  currentCTCDisplay: ctc,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, round the value and store it
+                const ctcRounded = Math.round(
+                  parseFloat(formData.currentCTCDisplay)
+                );
+                setFormData((prevData) => ({
+                  ...prevData,
+                  currentCTC: formData.currentCTCDisplay * 100000, // Convert to lacs as well
+                  currentCTCDisplay: ctcRounded, // Update the display value to the rounded value
+                }));
+              }}
               required
             />
           </div>
@@ -462,8 +514,26 @@ const NewCandidate = () => {
               type="number"
               name="expectedCTC"
               id="expectedCTC"
-              value={formData.expectedCTC}
-              onChange={handleInputChange}
+              value={formData.expectedCTCDisplay}
+              onChange={(e) => {
+                const expected = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  expectedCTCDisplay: expected,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, round the value and store it
+                const expectedRounded = Math.round(
+                  parseFloat(formData.expectedCTCDisplay)
+                );
+                setFormData((prevData) => ({
+                  ...prevData,
+                  expectedCTC: formData.expectedCTCDisplay * 100000, // Convert to lacs as well
+                  expectedCTCDisplay: expectedRounded, // Update the display value to the rounded value
+                }));
+              }}
               required
             />
           </div>
