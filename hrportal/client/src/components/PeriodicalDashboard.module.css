@@ -1,3 +1,17 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 21/08/2024
+Sprint: Phase 2 Sprint 4
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |  Phase  |  Description 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+// */
+
 .dashboardContainer {
     display: flex;
     flex-direction: column;
@@ -7,6 +21,18 @@
     background-size: cover;
     background-position: center;
     height: 100vh;
+  }
+  
+  @font-face {
+    font-family: Rastanty Cortez;
+    src: url(../fonts/Rastanty\ Cortez.ttf);
+  } 
+  
+  .rastanty_Cortez {
+    font-family: Rastanty Cortez;
+    font-size: 70px;
+    color:  #ffffff;
+    margin-bottom: 45px;
   }
 
   .title {
@@ -29,7 +55,16 @@
   .skillDropdown {
     padding: 10px;
     font-size: 16px;
-  }
+    background-color: #333; /* Dark background for contrast */
+    color: white; /* Ensure text is visible */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+  
+  .skillDropdown option {
+    background-color: #333; /* Match dropdown background */
+    color: white; /* Ensure option text is visible */
+}
   
   .dateFields {
     display: flex;
@@ -66,4 +101,7 @@
     background-color: #555; /* Darkened header background for contrast */
   }
   
- 
+  .error {
+    color: red;
+    margin-top: 10px;
+}
