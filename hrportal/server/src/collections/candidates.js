@@ -14,6 +14,7 @@ Date        |   Author                  | Sprint   | Description
 7/5/2024    | HS                        | 4        | Resume Handling
 15/7/2024   | HS                        |Phase 2 Sp 1 | Skillset and status
 9/8/2024   | HS                        |Phase 2 Sp 3 | Add Candidate ticket--> added new fields
+27/8/24     | HS                      |Phase 2 Sprint 4     | Status Histroy Tracker
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -123,19 +124,21 @@ const candidateSchema = new mongoose.Schema({
     joiningDate: {
         type: String,
     },
-    statusUpdatedDate: {
-        type: Date,
-        default: Date.now
-    }
+    statusHistory: [{
+        status: {
+            type: String,
+            required: true
+        },
+        comment: {
+            type: String
+        },
+        updatedAt: {
+            type: Date,
+            default: Date.now
+        }
+    }]
  
 } , {timestamps: true});
-
-candidateSchema.pre('save', function(next) {
-    if (this.isModified('status')) {
-        this.statusUpdateDate = new Date();
-    }
-    next();
-});
 
 // intializing 
 module.exports = mongoose.model(collectionNames.collectionNames.CandidateCollection, candidateSchema)   
