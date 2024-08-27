@@ -15,6 +15,7 @@ Date        |   Author                  |   Sprint   |    Description
  14/05/2024 |   Harshini C              |    4       |  CSS and alignment based on BG image
  18/07/2024 |   Vishal Garg             |   2        |    Front End Coding Navbar 
  14/8/2024  |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
+ 26/8/2024  |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -51,6 +52,8 @@ function ViewCandidateDetail() {
       setErrorMessage("Error fetching Candidate details:", error.message);
     }
   };
+
+  console.log(candidateDetails)
 
   const fetchCandidateResume = async () => {
     try {
@@ -115,7 +118,7 @@ function ViewCandidateDetail() {
           <div className={styles.sub_container}>
             <label>Total IT Experience:</label>
             <p className={styles.text}>
-              {candidateDetails.totalRelevantExperience}
+              {candidateDetails.itExperience}
             </p>
           </div>
           <div className={styles.sub_container}>
@@ -128,17 +131,23 @@ function ViewCandidateDetail() {
             <label>Skill Set:</label>
             <p className={styles.text}>{candidateDetails.skillSet}</p>
           </div>
-          <div className={styles.sub_container}>
-            <label>Sub Skill:</label>
-            <p className={styles.text}>{candidateDetails.subskillset}</p>
-          </div>
+          
           <div className={styles.sub_container}>
             <label>Current Company:</label>
             <p className={styles.text}>{candidateDetails.currentCompany}</p>
           </div>
           <div className={styles.sub_container}>
+            <label>Sub Skill:</label>
+            <p className={styles.text}>{candidateDetails.subskillset}</p>
+          </div>
+          <div className={styles.sub_container}>
             <label htmlFor="currentCTC">Current CTC (LPA):</label>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
+          </div>
+          
+          <div className={styles.sub_container}>
+            <label htmlFor="noticePeriod">Notice Period:</label>
+            <p className={styles.text}>{candidateDetails.noticePeriod}</p>
           </div>
           {userData.role === "admin" ? (
             <div className={styles.sub_container}>
@@ -148,10 +157,6 @@ function ViewCandidateDetail() {
           ) : (
             ""
           )}
-          <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Notice Period:</label>
-            <p className={styles.text}>{candidateDetails.noticePeriod}</p>
-          </div>
           <div className={styles.sub_container}>
             <label>Status:</label>
             <p className={styles.text}>{candidateDetails.status}</p>

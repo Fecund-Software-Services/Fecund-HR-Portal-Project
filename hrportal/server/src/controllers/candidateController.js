@@ -14,6 +14,7 @@ Date        | Author                  | Sprint   | Phase | Description
 07/05/2024  | HS                      | 4        | 1    | Resume Handling
 08/05/2024  | HS                      | 4        | 2    | Update Resume Handling
 02/08/2024  | Harshini C              | 2        | 2    | Added logger library
+26/8/2024   |   Vishal Garg           | 4        | 2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
 27/8/24     | HS                      |4         |2     | Status Histroy Tracker
 -------------------------------------------------------------------------------------------------------
 */
@@ -301,6 +302,7 @@ const editCandidate = async (req, res) => {
   const filter = { _id: candidateId };
   const updatedfile = req.file;
   const updatedStatus = req.body.status;
+  console.log(req.body)
 
   const update = {
     $set: {
