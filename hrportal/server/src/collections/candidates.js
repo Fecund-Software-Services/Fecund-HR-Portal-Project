@@ -13,7 +13,8 @@ Date        |   Author                  | Sprint   | Description
 06/05/2024  |   Harshini C              | 4        | View Candidates applied in
 7/5/2024    | HS                        | 4        | Resume Handling
 15/7/2024   | HS                        |Phase 2 Sp 1 | Skillset and status
-9/8/2024   | HS                        |Phase 2 Sp 3 | Add Candidate ticket--> added new fields
+9/8/2024   | HS                         |Phase 2 Sp 3 | Add Candidate ticket--> added new fields
+26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
 -------------------------------------------------------------------------------------------------------
 */
 

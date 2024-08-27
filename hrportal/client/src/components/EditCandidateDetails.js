@@ -17,6 +17,7 @@ Date        |   Author                  |   Sprint   |    Description
 10/05/2024  |   Harshini C              |   4        |   CSS and alignment based on BG image
 18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
 14/8/2024   |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
+26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
 -------------------------------------------------------------------------------------------------------
 */
 

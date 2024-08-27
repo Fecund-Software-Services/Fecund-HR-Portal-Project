@@ -10,6 +10,7 @@ Modification Log:
 Date        |   Author                  |   Sprint   |    Description 
 -------------------------------------------------------------------------------------------------------
 8/07/2024   |   Vishal Garg             |   1       |    Front End Coding Navbar
+26/07/2024  |   Vishal Garg             | ph2 sp4   |    Navbar Dashboard Link Implementation
 -------------------------------------------------------------------------------------------------------
 */
 
