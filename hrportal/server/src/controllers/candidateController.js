@@ -15,6 +15,7 @@ Date        | Author                  | Sprint   | Phase | Description
 08/05/2024  | HS                      | 4        | 2    | Update Resume Handling
 02/08/2024  | Harshini C              | 2        | 2    | Added logger library
 26/8/2024   |   Vishal Garg           | 4        | 2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+27/8/24     | HS                      |4         |2     | Status Histroy Tracker
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -346,12 +347,20 @@ const editCandidate = async (req, res) => {
     }
   }
 
-  // TO UPDATE THE TIME WHEN STATUS WAS CHANGED
+ // TO UPDATE THE TIME WHEN STATUS WAS CHANGED
+
   if (updatedStatus) {
-    const updatedCandidate = await Candidate.updateOne(filter,
-      { $set: { status: updatedStatus, statusUpdateDate: new Date() } },
-      { new: true }
-    );
+    update.$push = {
+      statusHistory: {
+        $each: [{
+          status: updatedStatus,
+          comment: req.body.statusComments || '',
+          updatedAt: new Date()
+        }],
+        $position: 0
+      }
+    };
+    update.$set.status = updatedStatus;
   }
 
   try {

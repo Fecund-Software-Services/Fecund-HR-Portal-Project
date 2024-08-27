@@ -17,6 +17,10 @@ const {periodicDashboard} = require('../controllers/dashboardController')
 
 const router = express.Router()
 
+// PERIODIC DASHBOARD
 router.get('/periodic', periodicDashboard)
+
+// INTERVIEW DASHBOARD
+//router.get('/interview', interviewDashboard)
 
 module.exports = router
