@@ -16,6 +16,7 @@ Date        |   Author                  |   Sprint   |    Description
  18/07/2024 |   Vishal Garg             |   2        |    Front End Coding Navbar 
  14/8/2024  |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
  26/8/2024  |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+ 28/8/2024  |  HS                       | phase 2 sprint 4 | Status History Tracker
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -161,14 +162,14 @@ function ViewCandidateDetail() {
             <label>Status:</label>
             <p className={styles.text}>{candidateDetails.status}</p>
           </div>
-          <div className={styles.sub_container}>
+          {/* <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">Status Comments:</label>
             <p className={styles.text}>
               {candidateDetails.statusComments
                 ? candidateDetails.statusComments
                 : "No comments entered"}
             </p>
-          </div>
+          </div> */}
           {candidateDetails.status === "Offer Issued" ? (
             <div className={styles.sub_container}>
               <label>Joining Date:</label>
@@ -229,6 +230,24 @@ function ViewCandidateDetail() {
               {candidateDetails.resume}&nbsp;&nbsp;
             </div>
           </div>
+
+          <div className={styles.sub_container}>
+            <label>Status History:</label>
+            <div className={styles.status_history_box}>
+              {candidateDetails.statusHistory && candidateDetails.statusHistory.length > 0 ? (
+                candidateDetails.statusHistory.map((entry, index) => (
+                  <div key={index} className={styles.status_history_entry}>
+                    <p><strong>Status:</strong> {entry.status}</p>
+                    <p><strong>Comment:</strong> {entry.comment || 'No comment'}</p>
+                    <p>Updated: {new Date(entry.updatedAt).toLocaleString()}</p>
+                  </div>
+                ))
+              ) : (
+                <p className={styles.no_history}>No History</p>
+              )}
+            </div>
+          </div>
+
           <div className={styles.sub_container}></div>
           {errorMessage && (
             <p className={styles.errorMessage}>{errorMessage}</p>

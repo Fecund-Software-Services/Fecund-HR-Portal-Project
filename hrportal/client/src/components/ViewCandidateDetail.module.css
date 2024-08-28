@@ -14,6 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 09/05/2024  |   Harshini C              |   4        |   BG update to all screens
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 14/05/2024  |   Harshini C              |   4        |   CSS and alignment based on BG image
+28/8/2024   |  HS                       | phase 2 sprint 4 | Status History Tracker
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -238,5 +239,37 @@ textarea {
   font-size: 50px;
   color:  #ffffff;
 }
+
+.status_history_box {
+  width: 50%; /* Increased width to 50% */
+  max-height: 50px;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.status_history_entry {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status_history_entry:last-child {
+  border-bottom: none;
+}
+
+.status_history_entry p {
+  margin: 5px 0;
+  font-size: 0.8em; /* Decreased font size */
+}
+
+.no_history {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  font-size: 0.8em; /* Decreased font size */
+}
+
 
 
