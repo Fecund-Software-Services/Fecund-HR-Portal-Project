@@ -17,10 +17,12 @@ import styles from "./PeriodicalDashboard.module.css";
 import usePeriodicDashboard from "../hooks/usePeriodicDashboard";
 
 const PeriodicalDashboard = () => {
-  const [selectedSkill, setSelectedSkill] = useState("None");
-  const [selectedSkillId, setSelectedSkillId] = useState();
+  const [selectedSkill, setSelectedSkill] = useState("None"); // This holds the skill name for display purposes
+  const [selectedSkillId, setSelectedSkillId] = useState(""); // This holds the skill ID
+
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+
   const {
     skills,
     subSkills,
@@ -30,6 +32,7 @@ const PeriodicalDashboard = () => {
     fetchReport,
     fetchSubSkills,
     fetchSkillsets,
+    setData,  // Exported setData from the hook
   } = usePeriodicDashboard();
 
   useEffect(() => {
@@ -38,34 +41,40 @@ const PeriodicalDashboard = () => {
 
   const handleSkillChange = (e) => {
     const selectedValue = e.target.value;
-    const foundSkill = skills.find((skill) => skill._id === selectedValue);
 
-    setSelectedSkill(selectedValue);
-    if (foundSkill) {
-      const id = foundSkill._id;
-      console.log(id);
-      setSelectedSkillId(id);
-      setSelectedSkill(foundSkill.skillname);
-      fetchSubSkills(id); // Fetch subskills for the selected main skill
-    } else {
+    if (selectedValue === "None") {
+      setSelectedSkill("None");
+      setSelectedSkillId("");
       fetchSubSkills(); // Fetch all subskills if "None" is selected
+    } else {
+      const foundSkill = skills.find((skill) => skill._id === selectedValue);
+      if (foundSkill) {
+        setSelectedSkill(foundSkill.skillname); // Update dropdown display to selected skill name
+        setSelectedSkillId(foundSkill._id); // Store the ID of the selected skill
+        fetchSubSkills(foundSkill._id); // Fetch subskills for the selected main skill
+      }
     }
+
+    // Reset date fields when switching skills
+    setFromDate("");
+    setToDate("");
+
+    // Clear previous report data so the table is hidden
+    setData(null);
   };
 
   const handleGenerateReport = () => {
-    console.log(selectedSkillId);
     fetchReport(fromDate, toDate, selectedSkillId);
-    console.log(data);
   };
 
   return (
     <div className={styles.dashboardContainer}>
       <h1 className={styles.rastanty_Cortez}>Periodical Dashboard</h1>
       <div className={styles.filterSection}>
-        <div className={styles.dropdown}> 
+        <div className={styles.dropdown}>
           <label className={styles.mainskill}>Main Skill:</label>
           <select
-            value={selectedSkill}
+            value={selectedSkillId || "None"}  // Use ID as the value for the select
             onChange={handleSkillChange}
             className={styles.skillDropdown}
           >
