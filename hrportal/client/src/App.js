@@ -14,7 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 8/07/2024   |   Vishal Garg             |    1       |    Front End Coding Navbar
 -------------------------------------------------------------------------------------------------------
 */
-/*
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Login from "./components/Login";
@@ -109,27 +109,8 @@ function App() {
 }
 
 export default App;
-*/
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import PeriodicalDashboard from "./components/PeriodicalDashboard";
-import "./App.css";
 
-function App() {
-  return (
-    <>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<PeriodicalDashboard />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </>
-  );
-}
 
-export default App;
 
 

@@ -16,10 +16,16 @@ const Candidate = require("../collections/candidates");
 const Skillset = require("../collections/skillset");
 const subSkillSet = require("../collections/subskillset");
 const Status = require("../collections/status");
+// const ObjectId = require('mongodb').ObjectId;
 
 const periodicDashboard = async (req, res) => {
   try {
-    const { startDate, endDate, skillset } = req.body;
+    // const { startDate, endDate, skillset } = req.body;
+    const { startDate, endDate, skillset } = req.query;
+    console.log(startDate,endDate,skillset)
+    // const validObjectId = new ObjectId(skillset);
+    // console.log(validObjectId)
+    console.log("hello1")
 
     // TO CHECK WHETHER FROM AND TO DATE ARE SPECIFIED
     if (!startDate || !endDate) {
