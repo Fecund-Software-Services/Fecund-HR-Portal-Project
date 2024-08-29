@@ -146,9 +146,13 @@ const PeriodicalDashboard = () => {
 
     const handleSkillChange = (e) => {
         const selectedValue = e.target.value;
+        const foundSkill = skills.find((skill)=> skill._id === selectedValue);
+       
         setSelectedSkill(selectedValue);
-        if (selectedValue !== 'None') {
-            fetchSubSkills(selectedValue); // Fetch subskills for the selected main skill
+        if (foundSkill) {
+          const id= foundSkill._id
+          setSelectedSkill(selectedValue);
+            fetchSubSkills(id); // Fetch subskills for the selected main skill
         } else {
             fetchSubSkills(); // Fetch all subskills if "None" is selected
         }
@@ -167,10 +171,10 @@ const PeriodicalDashboard = () => {
                     onChange={handleSkillChange}
                     className={styles.skillDropdown}
                 >
-                    <option value="None">None</option>
+                    <option value="Select Skills">None</option>
                     {skills.map((skill) => (
                         <option key={skill._id} value={skill._id}>
-                            {skill.name}
+                            {skill.skillname}
                         </option>
                     ))}
                 </select>

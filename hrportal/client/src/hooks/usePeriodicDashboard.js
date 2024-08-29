@@ -71,48 +71,53 @@ const usePeriodicDashboard = () => {
 
 
     // Fetch subskills based on selected main skill
-    const fetchSubSkills = async (skillId) => {
-        setLoading(true);
-        setError(null);
-
-        try {
-            const response = await fetch(`/api/skills/onLoadSubskill/${skillId || ''}`); // Fetch subskills based on skillId
-            if (!response.ok) {
-                throw new Error('Failed to fetch subskills');
+    const fetchSubSkills = async (mainSkillId = "") => {
+        const cacheKey = `subSkills_${mainSkillId}`;
+        const cachedSubSkills = getCachedData(cacheKey);
+        if (cachedSubSkills) {
+            setSubSkills(cachedSubSkills);
+        } else {
+            try {
+                const response = await fetch(`/api/skillset/onLoadSubskill/${mainSkillId}`);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch subskills. Status: ${response.status}`);
+                }
+                const data = await response.json();
+                setSubSkills(data);
+                setCachedData(cacheKey, data);
+            } catch (error) {
+                console.error("Error fetching subskills:", error);
+                setError("Failed to fetch subskills");
             }
-
-            const subSkillsData = await response.json();
-            setSubSkills(subSkillsData);
-        } catch (err) {
-            setError('Failed to fetch subskills');
-            console.error('Error fetching subskills:', err);
-        } finally {
-            setLoading(false);
         }
     };
 
+
     // Fetch report data
+    
     const fetchReport = async (startDate, endDate, skillset) => {
         setLoading(true);
         setError(null);
-
+    
         try {
-            const response = await fetch('/api/periodic', {
-                method: 'POST',
+            // Construct the query parameters
+            const queryParams = new URLSearchParams({
+                startDate,
+                endDate,
+                skillset: skillset !== 'None' ? skillset : ''
+            }).toString();
+    
+            const response = await fetch(`/api/periodic?${queryParams}`, {
+                method: 'GET', // Keep as GET
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    startDate,
-                    endDate,
-                    skillset: skillset !== 'None' ? skillset : null
-                })
+                }
             });
-
+    
             if (!response.ok) {
                 throw new Error('Failed to fetch report data');
             }
-
+    
             const result = await response.json();
             setData(result);
         } catch (err) {
@@ -122,6 +127,9 @@ const usePeriodicDashboard = () => {
             setLoading(false);
         }
     };
+    
+    
+    
 
     useEffect(() => {
         fetchSkillsets(); // Fetch skills when the component mounts
