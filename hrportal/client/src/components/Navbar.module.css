@@ -45,12 +45,14 @@ Date        |   Author                  |   Sprint   |    Description
   align-items: center;
   list-style: none;
   margin-right: 120px;
+  
   padding: 0;
   /* padding-bottom: 20px; */
 }
 
 .adminLink {
   position: relative;
+  margin-left: 25px;
 }
 
 .adminDropdownToggle {

@@ -17,6 +17,7 @@ Date        |   Author                  |   Sprint   |    Description
 10/05/2024  |   Harshini C              |   4        |   CSS and alignment based on BG image
 18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
 14/8/2024   |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
+26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -35,12 +36,14 @@ const EditCandiadteDetails = () => {
     emailAddress: "",
     mobileNumber: "",
     skillSet: "",
-    subSkillSet: "",
+    subskillset: "",
     itExperience: "",
     totalRelevantExperience: "",
     currentCompany: "",
     currentCTC: "",
     expectedCTC: "",
+    currentCTCDisplay:"",
+    expectedCTCDisplay:"",
     interviewDate: "",
     joiningDate: "",
     // statusUpdatedDate:"",F
@@ -76,6 +79,8 @@ const EditCandiadteDetails = () => {
       const candidateData = await response.json();
       // setCandidateDetails(candidateData);
       setEditedData({ ...candidateData });
+      setEditedData((prevData) => ({ ...prevData, currentCTCDisplay:candidateData.currentCTC }))
+      setEditedData((prevData) => ({ ...prevData, expectedCTCDisplay:candidateData.expectedCTC }))
     } catch (error) {
       console.error("Error fetching Candidate details:", error);
     }
@@ -247,7 +252,7 @@ const EditCandiadteDetails = () => {
     formDataToSend.append("emailAddress", editedData.emailAddress);
     formDataToSend.append("mobileNumber", editedData.mobileNumber);
     formDataToSend.append("skillSet", editedData.skillSet);
-    formDataToSend.append("subSkillSet", editedData.subSkillSet);
+    formDataToSend.append("subskillSet", editedData.subskillset);
     formDataToSend.append("itExperience", editedData.itExperience);
     formDataToSend.append(
       "totalRelevantExperience",
@@ -279,7 +284,7 @@ const EditCandiadteDetails = () => {
       setError(null);
       try {
         const response = await fetch(`/api/candidate/edit-candidate/${id}`, {
-          method: "POST",
+          method: "PUT",
           // headers: {'Content-Type': 'application/json'},
           body: formDataToSend,
         });
@@ -386,11 +391,17 @@ const EditCandiadteDetails = () => {
               <span className={styles.asterisk}>*</span> (Yrs):
             </label>
             <input
-              type="number"
+              type="text"
               name="totalRelevantExperience"
               id="totalRelevantExperience"
               value={editedData.totalRelevantExperience}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                const experience = e.target.value;
+                setEditedData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperience: experience > 25 ? '25+' : experience,
+                }));
+              }}
               required
             />
           </div>
@@ -401,7 +412,7 @@ const EditCandiadteDetails = () => {
               (Yrs):
             </label>
             <input
-              type="number"
+              type="text"
               name="itExperience"
               id="totalITExperience"
               value={editedData.itExperience}
@@ -431,17 +442,18 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="subSkillSet">
+            <label htmlFor="subskillset">
               Sub Skill Set<span className={styles.asterisk}>*</span>:
             </label>
             <select
-              name="subSkillSet"
-              id="subSkillSet"
-              value={editedData.subSkillSet}
+              name="subskillset"
+              id="subskillset"
+              value={editedData.subskillset}
               onChange={handleInputChange}
               className={styles.dropdown}
               required
             >
+              <option value="">Select Skills </option>
               {subSkillSetOptions.map((subskillSetOptions, index) => (
                 <option key={index} value={subskillSetOptions.subsetname}>
                   {subskillSetOptions.subsetname}
@@ -471,8 +483,26 @@ const EditCandiadteDetails = () => {
               type="number"
               name="currentCTC"
               id="currentCTC"
-              value={editedData.currentCTC}
-              onChange={handleInputChange}
+              value={editedData.currentCTCDisplay}
+              onChange={(e) => {
+                const ctc = e.target.value;
+                // Update the display value with the user's input
+                setEditedData((prevData) => ({
+                  ...prevData,
+                  currentCTCDisplay: ctc,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, round the value and store it
+                const ctcRounded = Math.round(
+                  parseFloat(editedData.currentCTCDisplay)
+                );
+                setEditedData((prevData) => ({
+                  ...prevData,
+                  currentCTC: editedData.currentCTCDisplay * 100000, // Convert to lacs as well
+                  currentCTCDisplay: ctcRounded, // Update the display value to the rounded value
+                }));
+              }}
               required
             />
           </div>
@@ -485,8 +515,26 @@ const EditCandiadteDetails = () => {
                 type="number"
                 name="expectedCTC"
                 id="expectedCTC"
-                value={editedData.expectedCTC}
-                onChange={handleInputChange}
+                value={editedData.expectedCTCDisplay}
+                onChange={(e) => {
+                  const expected = e.target.value;
+                  // Update the display value with the user's input
+                  setEditedData((prevData) => ({
+                    ...prevData,
+                    expectedCTCDisplay: expected,
+                  }));
+                }}
+                onBlur={() => {
+                  // When the user leaves the input field, round the value and store it
+                  const expectedRounded = Math.round(
+                    parseFloat(editedData.expectedCTCDisplay)
+                  );
+                  setEditedData((prevData) => ({
+                    ...prevData,
+                    expectedCTC: editedData.expectedCTCDisplay * 100000, // Convert to lacs as well
+                    expectedCTCDisplay: expectedRounded, // Update the display value to the rounded value
+                  }));
+                }}
                 required
               />
             </div>
@@ -526,12 +574,13 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="statusComments">Status Comments:</label>
+            <label htmlFor="statusComments">Status Comments:<span className={styles.asterisk}>*</span></label>
             <textarea
               name="statusComments"
               id="statusComments"
               value={editedData.statusComments}
               onChange={handleInputChange}
+              required
             ></textarea>
           </div>
 
