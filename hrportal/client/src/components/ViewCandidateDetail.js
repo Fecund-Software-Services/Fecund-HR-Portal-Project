@@ -162,14 +162,14 @@ function ViewCandidateDetail() {
             <label>Status:</label>
             <p className={styles.text}>{candidateDetails.status}</p>
           </div>
-          {/* <div className={styles.sub_container}>
+          <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">Status Comments:</label>
             <p className={styles.text}>
               {candidateDetails.statusComments
                 ? candidateDetails.statusComments
                 : "No comments entered"}
             </p>
-          </div> */}
+          </div>
           {candidateDetails.status === "Offer Issued" ? (
             <div className={styles.sub_container}>
               <label>Joining Date:</label>
@@ -228,23 +228,6 @@ function ViewCandidateDetail() {
             <label htmlFor="resume">Resume:</label>
             <div onClick={fetchCandidateResume}>
               {candidateDetails.resume}&nbsp;&nbsp;
-            </div>
-          </div>
-
-          <div className={styles.sub_container}>
-            <label>Status History:</label>
-            <div className={styles.status_history_box}>
-              {candidateDetails.statusHistory && candidateDetails.statusHistory.length > 0 ? (
-                candidateDetails.statusHistory.map((entry, index) => (
-                  <div key={index} className={styles.status_history_entry}>
-                    <p><strong>Status:</strong> {entry.status}</p>
-                    <p><strong>Comment:</strong> {entry.comment || 'No comment'}</p>
-                    <p>Updated: {new Date(entry.updatedAt).toLocaleString()}</p>
-                  </div>
-                ))
-              ) : (
-                <p className={styles.no_history}>No History</p>
-              )}
             </div>
           </div>
 
