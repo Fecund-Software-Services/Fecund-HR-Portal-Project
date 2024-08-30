@@ -69,15 +69,15 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
   .skillDropdown {
     padding: 10px;
     font-size: 16px;
-    background-color: #333; /* Dark background for contrast */
-    color: white; /* Ensure text is visible */
+    background-color: #ffffff; /* Dark background for contrast */
+    color: rgb(0, 0, 0); /* Ensure text is visible */
     border: 1px solid #ddd;
     border-radius: 4px;
 }
   
   .skillDropdown option {
-    background-color: #333; /* Match dropdown background */
-    color: white; /* Ensure option text is visible */
+    background-color: #ffffff; /* Match dropdown background */
+    color: rgb(0, 0, 0); /* Ensure option text is visible */
 }
 
 .date {
