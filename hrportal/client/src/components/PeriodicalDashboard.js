@@ -5,11 +5,12 @@ Date: 21/08/2024
 Sprint: Phase 2 Sprint 4
 
 Modification Log:
--------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
--------------------------------------------------------------------------------------------------------
-
--------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+29/08/2024  | Omkar                     |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset, 
+--------------------------------------------------------------------------------------------------------------------
+30/08/2024 |  Omkar                     |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
 // */
 
 import React, { useState, useEffect } from "react";
@@ -37,7 +38,8 @@ const PeriodicalDashboard = () => {
 
   useEffect(() => {
     fetchSkillsets(); // Fetch skills when the component mounts
-  }, [fetchSkillsets]);
+    fetchSubSkills(); // Fetch all subskills by default on initial load
+  }, [fetchSkillsets, fetchSubSkills]);
 
   const handleSkillChange = (e) => {
     const selectedValue = e.target.value;
@@ -133,7 +135,7 @@ const PeriodicalDashboard = () => {
                 <tr key={index}>
                   <td>{row.exp}</td>
                   {subSkills.map((subSkill, subIndex) => (
-                    <td key={subIndex}>{row.subskills[subSkill.name] || 0}</td>
+                    <td key={subIndex}>{row.subskills[subSkill.subsetname] || 0}</td>
                   ))}
                   <td>{row.offered}</td>
                   <td>{row.negotiation}</td>
