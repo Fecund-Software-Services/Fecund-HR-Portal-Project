@@ -32,6 +32,7 @@ import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
 import SkillSets from "./components/SkillSets";
 import Status from "./components/Status";
+import footer from "./components/footer";
 import PeriodicalDashboard from "./components/PeriodicalDashboard";
 
 function App() {

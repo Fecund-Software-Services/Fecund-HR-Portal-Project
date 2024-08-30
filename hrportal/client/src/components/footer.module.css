@@ -1,0 +1,33 @@
+/*
+Project: Hiring Portal Project
+Author: Harshini
+Date: 30/08/2024
+Sprint: Sprint 4
+Phase : 2
+User Story: Footer - Implementing the social media links
+ 
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |   Phase | Description
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+*/
+
+.footer {
+    align-items: center;
+    color: #ffffff;
+  }
+  
+  .footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .fecundWebsite {
+    font-size: 10px;
+    margin-top: 20px;
+    align-items: center;
+    color: #ffffff;
+  }
