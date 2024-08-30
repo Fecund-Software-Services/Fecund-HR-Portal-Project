@@ -86,7 +86,7 @@ const Navbar = () => {
               }`}
             >
               <ul className={styles.link}>
-                <Link to="/home/periodical">Periodical</Link>
+                <Link to="/home/periodicdashboard">Periodical</Link>
               </ul>
               <ul className={styles.link}>
                 <Link to="/home/interview">Interview</Link>

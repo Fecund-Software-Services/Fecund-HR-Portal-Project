@@ -33,6 +33,7 @@ import Navbar from "./components/Navbar";
 import SkillSets from "./components/SkillSets";
 import Status from "./components/Status";
 import footer from "./components/footer";
+import PeriodicalDashboard from "./components/PeriodicalDashboard";
 
 function App() {
   return (
@@ -95,6 +96,17 @@ function App() {
                   element={<EditCanidateDetails />}
                 />
               </Route>
+              <Route
+                exact
+                path="/home/periodicdashboard"
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/periodicdashboard"
+                  element={<PeriodicalDashboard />}
+                />
+              </Route>
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route
@@ -111,25 +123,7 @@ function App() {
 
 export default App;
 
-/*import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import PeriodicalDashboard from "./components/PeriodicalDashboard";
-import "./App.css";
 
-function App() {
-  return (
-    <>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<PeriodicalDashboard />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </>
-  );
-}
 
-export default App;
-*/
+
 

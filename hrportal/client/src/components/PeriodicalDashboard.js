@@ -1,116 +1,155 @@
-import React, { useState } from 'react';
-import styles from './PeriodicalDashboard.module.css';
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 21/08/2024
+Sprint: Phase 2 Sprint 4
+
+Modification Log:
+------------------------------------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |  Phase  |  Description 
+----------------------------------------------------------------------------------------------------------------------------------
+ 29/08/2024  |   Vishal                 |     4      |   2     | Integration modification of Generate Report data
+ --------------------------------------------------------------------------------------------------------------------------------
+29/08/2024  | Omkar                     |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset, 
+-----------------------------------------------------------------------------------------------------------------------------------
+30/08/2024 |  Omkar                     |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
+// */
+
+import React, { useState, useEffect } from "react";
+import styles from "./PeriodicalDashboard.module.css";
+import usePeriodicDashboard from "../hooks/usePeriodicDashboard";
 
 const PeriodicalDashboard = () => {
-    const [selectedSkill, setSelectedSkill] = useState('None');
-    const [fromDate, setFromDate] = useState('');
-    const [toDate, setToDate] = useState('');
-    const [reportGenerated, setReportGenerated] = useState(false);
-  
-    const mainSkills = ['None', 'JavaScript', 'Python', 'Java', 'React'];
-    const subSkills = {
-      JavaScript: ['ES6', 'TypeScript', 'Node.js'],
-      Python: ['Django', 'Flask', 'Pandas'],
-      Java: ['Spring', 'Hibernate'],
-      React: ['Hooks', 'Redux'],
-    };
-  
-    const allSubSkills = Object.values(subSkills).flat();
-  
-    const handleSkillChange = (e) => {
-      const selectedValue = e.target.value;
-      setSelectedSkill(selectedValue);
-      setReportGenerated(false); // Hide report if "None" is selected
-      if (selectedValue === 'None') {
-        setFromDate(''); // Reset date fields
-        setToDate('');
+  const [selectedSkill, setSelectedSkill] = useState("None"); // This holds the skill name for display purposes
+  const [selectedSkillId, setSelectedSkillId] = useState(""); // This holds the skill ID
+
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  const {
+    skills,
+    subSkills,
+    data,
+    loading,
+    error,
+    fetchReport,
+    fetchSubSkills,
+    fetchSkillsets,
+    setData,  // Exported setData from the hook
+  } = usePeriodicDashboard();
+
+  useEffect(() => {
+    fetchSkillsets(); // Fetch skills when the component mounts
+    fetchSubSkills(); // Fetch all subskills by default on initial load
+  }, [fetchSkillsets, fetchSubSkills]);
+
+  const handleSkillChange = (e) => {
+    const selectedValue = e.target.value;
+
+    if (selectedValue === "None") {
+      setSelectedSkill("None");
+      setSelectedSkillId("");
+      fetchSubSkills(); // Fetch all subskills if "None" is selected
+    } else {
+      const foundSkill = skills.find((skill) => skill._id === selectedValue);
+      if (foundSkill) {
+        setSelectedSkill(foundSkill.skillname); // Update dropdown display to selected skill name
+        setSelectedSkillId(foundSkill._id); // Store the ID of the selected skill
+        fetchSubSkills(foundSkill._id); // Fetch subskills for the selected main skill
       }
-    };
-  
-    const handleGenerateReport = () => {
-      setReportGenerated(true);
-    };
-  
-    return (
-      <div className={styles.dashboardContainer}>
-         <h1 className={styles.title}>Periodical Dashboard</h1>
-        <div className={styles.filterSection}>
+    }
+
+    // Reset date fields when switching skills
+    setFromDate("");
+    setToDate("");
+
+    // Clear previous report data so the table is hidden
+    setData(null);
+  };
+
+  const handleGenerateReport = () => {
+    fetchReport(fromDate, toDate, selectedSkillId);
+  };
+
+  return (
+    <div className={styles.dashboardContainer}>
+      <p className={styles.rastanty_Cortez}>Periodical Dashboard</p>
+      <div className={styles.filterSection}>
+        <div className={styles.dropdown}>
+          <label className={styles.mainskill}>Main Skill:</label>
           <select
-            value={selectedSkill}
+            value={selectedSkillId || "None"}  // Use ID as the value for the select
             onChange={handleSkillChange}
             className={styles.skillDropdown}
           >
-            {mainSkills.map((skill, index) => (
-              <option key={index} value={skill}>
-                {skill}
+            <option value="None">None</option>
+            {skills.map((skill) => (
+              <option key={skill._id} value={skill._id}>
+                {skill.skillname}
               </option>
             ))}
           </select>
-          
-          <div className={styles.dateFields}>
-            <label>
-              From Date:
-              <input
-                type="date"
-                value={fromDate}
-                onChange={(e) => setFromDate(e.target.value)}
-              />
-            </label>
-            <label>
-              To Date:
-              <input
-                type="date"
-                value={toDate}
-                onChange={(e) => setToDate(e.target.value)}
-              />
-            </label>
-          </div>
-  
-          <button onClick={handleGenerateReport} className={styles.generateReportBtn}>
-            Generate Report
-          </button>
         </div>
-  
-        {reportGenerated && (
-          <div className={styles.reportTableContainer}>
-            <table className={styles.reportTable}>
-              <thead>
-                <tr>
-                  <th>Experience</th>
-                  {selectedSkill === 'None'
-                    ? allSubSkills.map((subSkill, index) => (
-                        <th key={index}>{subSkill}</th>
-                      ))
-                    : subSkills[selectedSkill]?.map((subSkill, index) => (
-                        <th key={index}>{subSkill}</th>
-                      ))}
-                  <th>Offered/Accepted</th>
-                  <th>Negotiation Stage</th>
-                  <th>Candidate Backed Out</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Array.from({ length: 25 }, (_, i) => (
-                  <tr key={i}>
-                    <td>{i + 1}{i === 24 ? '+' : ''}</td>
-                    {selectedSkill === 'None'
-                      ? allSubSkills.map((_, index) => (
-                          <td key={index}>0</td>
-                        ))
-                      : subSkills[selectedSkill]?.map((_, index) => (
-                          <td key={index}>0</td>
-                        ))}
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+
+        <div className={styles.dateFields}>
+          <label className={styles.date}>Date Range:</label>
+          <input
+            type="date"
+            value={fromDate}
+            className={styles.dateInput}
+            onChange={(e) => setFromDate(e.target.value)}
+          />
+          <label>To</label>
+          <input
+            type="date"
+            value={toDate}
+            className={styles.dateInput}
+            onChange={(e) => setToDate(e.target.value)}
+          />
+        </div>
+
+        <button
+          onClick={handleGenerateReport}
+          className={styles.generateReportBtn}
+        >
+          Generate Report
+        </button>
       </div>
-    );
-  };
-  
-  export default PeriodicalDashboard;
+
+      {loading && <p>Loading...</p>}
+      {error && <p className={styles.error}>{error}</p>}
+      {data && (
+        <div className={styles.reportTableContainer}>
+          <table className={styles.reportTable}>
+            <thead>
+              <tr>
+                <th>Experience</th>
+                {subSkills.map((subSkill, index) => (
+                  <th key={index}>{subSkill.subsetname}</th>
+                ))}
+                <th>Offered/Accepted</th>
+                <th>Negotiation Stage</th>
+                <th>Candidate Backed Out</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((row, index) => (
+                <tr key={index}>
+                  <td>{row.exp}</td>
+                  {subSkills.map((subSkill, subIndex) => (
+                    <td key={subIndex}>{row.subskills[subSkill.subsetname] || 0}</td>
+                  ))}
+                  <td>{row.offered}</td>
+                  <td>{row.negotiation}</td>
+                  <td>{row.backedOut}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default PeriodicalDashboard;
