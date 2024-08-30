@@ -121,6 +121,7 @@ const usePeriodicDashboard = () => {
 
       const result = await response.json();
       setData(result);
+      console.log(data)
     } catch (err) {
       setError("Failed to fetch report data");
       console.error("Error fetching report data:", err);
