@@ -18,6 +18,7 @@ Date        |   Author                  |   Sprint   |    Description
 14/05/2024  |   Harshini C              |   4        |  CSS and alignment based on BG image
 18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
 26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+28/08/2024  |   Harshini C              |   4        | Footer - Implementing the social media links
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -25,6 +26,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
 import popupBackground from "../assets/PopupBackgroundImage.png";
+import { FaTwitterSquare } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaInstagramSquare } from "react-icons/fa";
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({
@@ -735,6 +740,13 @@ const NewCandidate = () => {
               </a>
             </p>
           </div>
+          <div className={styles.footerContainer}>
+            <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
+            <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
+            <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
+            <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
+            <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
+          </div>  
         </div>
       )}
     </div>
