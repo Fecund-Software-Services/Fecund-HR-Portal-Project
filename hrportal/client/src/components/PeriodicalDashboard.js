@@ -71,7 +71,7 @@ const PeriodicalDashboard = () => {
 
   return (
     <div className={styles.dashboardContainer}>
-      <h1 className={styles.rastanty_Cortez}>Periodical Dashboard</h1>
+      <p className={styles.rastanty_Cortez}>Periodical Dashboard</p>
       <div className={styles.filterSection}>
         <div className={styles.dropdown}>
           <label className={styles.mainskill}>Main Skill:</label>
@@ -90,7 +90,7 @@ const PeriodicalDashboard = () => {
         </div>
 
         <div className={styles.dateFields}>
-          <label>Date Range:</label>
+          <label className={styles.date}>Date Range:</label>
           <input
             type="date"
             value={fromDate}

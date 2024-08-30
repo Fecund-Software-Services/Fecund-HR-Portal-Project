@@ -80,6 +80,10 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     color: white; /* Ensure option text is visible */
 }
 
+.date {
+  margin-left: 8px;
+  margin-right: 22px;
+}
   
   .dateFields {
     display: flex;
@@ -108,8 +112,9 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     padding: 10px 10px;
     background-color: #d4d4d4;
     color: #000;
-    width: 25%;
+    width: 22%;
     /* margin: 10px 32%; */
+    margin-left: 135px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
