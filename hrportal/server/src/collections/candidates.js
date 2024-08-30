@@ -13,7 +13,9 @@ Date        |   Author                  | Sprint   | Description
 06/05/2024  |   Harshini C              | 4        | View Candidates applied in
 7/5/2024    | HS                        | 4        | Resume Handling
 15/7/2024   | HS                        |Phase 2 Sp 1 | Skillset and status
-9/8/2024   | HS                        |Phase 2 Sp 3 | Add Candidate ticket--> added new fields
+9/8/2024   | HS                         |Phase 2 Sp 3 | Add Candidate ticket--> added new fields
+26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+27/8/24     | HS                      |Phase 2 Sprint 4     | Status Histroy Tracker
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -47,12 +49,12 @@ const candidateSchema = new mongoose.Schema({
         type: String,
     },
     itExperience: {
-        type: Number,
+        type: String,
         required: [true, "experience is required"],
         
     },
     totalRelevantExperience: {
-        type: Number,
+        type: String,
         required: [true, "total relevant experience is required"],
         
     },
@@ -90,6 +92,10 @@ const candidateSchema = new mongoose.Schema({
         default: "Submitted",
         required: true
     },
+    statusComments: {
+        type: String,
+        default: ""
+    },
     certified: {
         type: Boolean,
         required: true
@@ -115,24 +121,28 @@ const candidateSchema = new mongoose.Schema({
         ref: 'fs.field'
     },
     interviewDate: {
-        type: Date,
+        type: String,
+        default: ""
     },
     joiningDate: {
-        type: Date
+        type: String,
+        default:""
     },
-    statusUpdateDate: {
-        type: Date,
-        default: Date.now
-    }
+    statusHistory: [{
+        status: {
+            type: String,
+            required: true
+        },
+        comment: {
+            type: String
+        },
+        updatedAt: {
+            type: Date,
+            default: Date.now
+        }
+    }]
  
 } , {timestamps: true});
-
-candidateSchema.pre('save', function(next) {
-    if (this.isModified('status')) {
-        this.statusUpdateDate = Date.now();
-    }
-    next();
-});
 
 // intializing 
 module.exports = mongoose.model(collectionNames.collectionNames.CandidateCollection, candidateSchema)   

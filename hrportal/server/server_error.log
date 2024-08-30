@@ -104,3 +104,8 @@
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-08-14T07:25:47.492Z"}
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-08-14T07:27:26.473Z"}
 {"level":"error","message":"Error adding the skill set","timestamp":"2024-08-14T07:31:18.073Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'mimetype')","timestamp":"2024-08-21T12:58:00.789Z"}
+{"level":"error","message":"Candidates validation failed: itExperience: Cast to Number failed for value \"25+\" (type string) at path \"itExperience\", totalRelevantExperience: Cast to Number failed for value \"25+\" (type string) at path \"totalRelevantExperience\", currentCTC: current CTC is required, expectedCTC: expected CTC is required","timestamp":"2024-08-27T09:21:06.419Z"}
+{"level":"error","message":"Candidates validation failed: currentCTC: current CTC is required, expectedCTC: expected CTC is required","timestamp":"2024-08-27T09:26:36.296Z"}
+{"level":"error","message":"Candidates validation failed: itExperience: experience is required, totalRelevantExperience: total relevant experience is required","timestamp":"2024-08-27T09:28:13.862Z"}
+{"level":"error","message":"E11000 duplicate key error collection: FecundHiringPortal.candidates index: mobileNumber_1 dup key: { mobileNumber: 1234567896 }","timestamp":"2024-08-27T09:29:37.584Z"}

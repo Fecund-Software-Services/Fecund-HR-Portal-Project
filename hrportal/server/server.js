@@ -13,6 +13,7 @@ Date        |   Author                  |   Sprint   |  Phase   | Description
 24/4/2024   |   HS                      |    3       |  1       | Add New Candidate Validation  
 23/7/2024   |   HS                      |    2       |  2       | Skillset and status collection     
 12/07/2024  |   Harshini C              |    1       |  2       | Adding logger to all nodeJS files 
+22/08/2024  | HS                        | 4          | 2        | Periodic Dashboard
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -31,6 +32,7 @@ const {populateRolesCollection} = require('./src/utility/userRoleName');
 const {collectionChecker} = require('./src/utility/createCollection');
 const {populatePemissionCollection} = require('./src/utility/permissionID');
 const logger = require('./src/utility/logger');
+const dashboardRoutes = require('./src/routes/dashboardRoutes');
 
 const cors = require('cors')
 require("dotenv").config();
@@ -54,6 +56,7 @@ app.use('/api/user', userRoutes)
 app.use('/api/candidate', candidateRoutes)
 app.use('/api/status', statusRoutes)
 app.use('/api/skillset', skillsetRoutes)
+app.use('/api/dashboard', dashboardRoutes )
 
 // mongodb connection and port connection.
 mongoose.connect('mongodb:' + url.databaseURL)

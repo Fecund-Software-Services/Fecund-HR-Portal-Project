@@ -8,19 +8,20 @@ User Story: Phase2 Admin Display (SkillSet Screen)
  
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description
+Date        |   Author                  |   Sprint   |  Phase   | Description
 -------------------------------------------------------------------------------------------------------
- 1/8/2024   |    Omkar                  |    2       |  Adding Pagination to Subskill Table
- 5/8/2024   |    Omkar                  |    3       |   Status Validation Error message styling
- 8/08/2024  |    Omkar                   |   3       |    Search style classes implementation
+ 1/8/2024   |    Omkar                  |    2       |  2       | Adding Pagination to Subskill Table
+ 5/8/2024   |    Omkar                  |    3       |  2       | Status Validation Error message styling
+ 8/08/2024  |    Omkar                  |    3       |  2       | Search style classes implementation
+ 19/08/2024 |   Harshini C              |    3       |  2       | Worked on CSS 
 */
-
 
 .mainConatiner {
   display: flex;
   flex-direction: column;
   background-image: url("../assets/commonBGImage.png");
   background-size: 100% 100%;
+  /* justify-content: center; */
   align-items: center;
   height: 100vh;
   width: 100%;
@@ -33,7 +34,6 @@ Date        |   Author                  |   Sprint   |    Description
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  align-items: center;
    /* height: 100vh; */
   width: 100%; 
 }
@@ -49,7 +49,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  padding-top: 100px;
 }
 
 .mainSkillSection h2 {
@@ -60,7 +60,6 @@ h1 {
 .mainSkillControls {
   display: flex;
   align-items: center;
-  margin-top: 10px;
 }
 
 .mainSkillControls select {
@@ -103,9 +102,9 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  
   position: relative; /* Ensure the section is positioned relative to its container */
-  padding-bottom: 10px; /* Add some padding to keep the spacing consistent */
+  padding-top: 90px; /* Add some padding to keep the spacing consistent */
 }
 
 .subSkillSection h2 {
@@ -245,11 +244,39 @@ h1 {
   background-color:#333; /* Dark background for headers */
   color: #fff;
 }
-
+/*
 .errorMessage {
   /* margin-left:20px; */
+ /* align-self: center;
+  color: rgb(225, 78, 78);
+    
+  
+}
+
+.searchErrorMessage {
+  color: rgb(225, 78, 78); /* Keep consistent with existing error color */
+ /* margin-top: 10px; /* Space between "Search Results" and the error message */
+ /* text-align: center; /* Center the error message */
+  /*font-size: 16px; /* Slightly noticeable size */
+/*}
+*/
+
+/* General Error Message - Bottom Center */
+.errorMessage {
+  /*position: fixed;*/
+  bottom: 20px;
+  
   align-self: center;
   color: rgb(225, 78, 78);
+ 
+}
+
+/* Search-specific Error Message - Under Search Results */
+.searchErrorMessage {
+  color: rgb(225, 78, 78); /* Keep consistent with existing error color */
+  margin-top: 10px; /* Space between "Search Results" and the error message */
+  text-align: center; /* Center the error message */
+  font-size: 16px; /* Slightly noticeable size */
 }
 
 

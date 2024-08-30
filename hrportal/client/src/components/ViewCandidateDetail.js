@@ -15,6 +15,8 @@ Date        |   Author                  |   Sprint   |    Description
  14/05/2024 |   Harshini C              |    4       |  CSS and alignment based on BG image
  18/07/2024 |   Vishal Garg             |   2        |    Front End Coding Navbar 
  14/8/2024  |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
+ 26/8/2024  |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+ 28/8/2024  |  HS                       | phase 2 sprint 4 | Status History Tracker
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -51,6 +53,8 @@ function ViewCandidateDetail() {
       setErrorMessage("Error fetching Candidate details:", error.message);
     }
   };
+
+  console.log(candidateDetails)
 
   const fetchCandidateResume = async () => {
     try {
@@ -115,7 +119,7 @@ function ViewCandidateDetail() {
           <div className={styles.sub_container}>
             <label>Total IT Experience:</label>
             <p className={styles.text}>
-              {candidateDetails.totalRelevantExperience}
+              {candidateDetails.itExperience}
             </p>
           </div>
           <div className={styles.sub_container}>
@@ -128,13 +132,23 @@ function ViewCandidateDetail() {
             <label>Skill Set:</label>
             <p className={styles.text}>{candidateDetails.skillSet}</p>
           </div>
+          
           <div className={styles.sub_container}>
             <label>Current Company:</label>
             <p className={styles.text}>{candidateDetails.currentCompany}</p>
           </div>
           <div className={styles.sub_container}>
+            <label>Sub Skill:</label>
+            <p className={styles.text}>{candidateDetails.subskillset}</p>
+          </div>
+          <div className={styles.sub_container}>
             <label htmlFor="currentCTC">Current CTC (LPA):</label>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
+          </div>
+          
+          <div className={styles.sub_container}>
+            <label htmlFor="noticePeriod">Notice Period:</label>
+            <p className={styles.text}>{candidateDetails.noticePeriod}</p>
           </div>
           {userData.role === "admin" ? (
             <div className={styles.sub_container}>
@@ -145,13 +159,45 @@ function ViewCandidateDetail() {
             ""
           )}
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Notice Period:</label>
-            <p className={styles.text}>{candidateDetails.noticePeriod}</p>
-          </div>
-          <div className={styles.sub_container}>
             <label>Status:</label>
             <p className={styles.text}>{candidateDetails.status}</p>
           </div>
+          <div className={styles.sub_container}>
+            <label htmlFor="noticePeriod">Status Comments:</label>
+            <p className={styles.text}>
+              {candidateDetails.statusComments
+                ? candidateDetails.statusComments
+                : "No comments entered"}
+            </p>
+          </div>
+          {candidateDetails.status === "Offer Issued" ? (
+            <div className={styles.sub_container}>
+              <label>Joining Date:</label>
+              <p className={styles.text}>{candidateDetails.joiningDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+           {
+          candidateDetails.status === "Scheduled R1" ? (
+            <div className={styles.sub_container}>
+              <label>Interview Date:</label>
+              <p className={styles.text}>{candidateDetails.interviewDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+          {
+          candidateDetails.status === "Scheduled R2" ? (
+            <div className={styles.sub_container}>
+              <label>Interview Date:</label>
+              <p className={styles.text}>{candidateDetails.interviewDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+
+          
           <div className={styles.sub_container}>
             <label htmlFor="certified">Certified?:</label>
             <p className={styles.text}>
@@ -184,6 +230,7 @@ function ViewCandidateDetail() {
               {candidateDetails.resume}&nbsp;&nbsp;
             </div>
           </div>
+
           <div className={styles.sub_container}></div>
           {errorMessage && (
             <p className={styles.errorMessage}>{errorMessage}</p>

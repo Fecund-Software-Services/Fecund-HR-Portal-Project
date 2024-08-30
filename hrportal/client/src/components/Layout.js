@@ -26,6 +26,7 @@ const Layout = ({ children }) => {
   // Determine if the current path should hide the Navbar
   const hideNavbarPaths = ['/', '/signup'];
   const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
+  console.log(shouldHideNavbar)
 
   return (
     <div>

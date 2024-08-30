@@ -14,6 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
 10/05/2024  |   Harshini C              |   4        |    Log Out button
 18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
+28/08/2024  |   Harshini C              |   4        |    Footer - Implementing the social media links
 
 -------------------------------------------------------------------------------------------------------
 */
@@ -21,6 +22,10 @@ Date        |   Author                  |   Sprint   |    Description
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
+import { FaTwitterSquare } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaInstagramSquare } from "react-icons/fa";
 
 function HomePage() {
   return (
@@ -37,6 +42,13 @@ function HomePage() {
           </Link>
         </div>
       </div>
+      <div className={styles.footerContainer}>
+        <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
+        <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
+        <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
+        <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
+        <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
+     </div>  
     </div>
   );
 }

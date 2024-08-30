@@ -17,6 +17,8 @@ Date        |   Author                  |   Sprint   |    Description
 10/05/2024  |   Harshini C              |   4        |  Log Out button
 14/05/2024  |   Harshini C              |   4        |  CSS and alignment based on BG image
 18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
+26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+28/08/2024  |   Harshini C              |   4        | Footer - Implementing the social media links
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -24,6 +26,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
 import popupBackground from "../assets/PopupBackgroundImage.png";
+import { FaTwitterSquare } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaInstagramSquare } from "react-icons/fa";
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({
@@ -34,10 +40,18 @@ const NewCandidate = () => {
     skillSet: "",
     subskillset: "",
     itExperience: "",
+    itExperienceDisplay: "",
     totalRelevantExperience: "",
+    totalRelevantExperienceDisplay:"",
     currentCompany: "",
     currentCTC: "",
     expectedCTC: "",
+    currentCTCDisplay:"",
+    expectedCTCDisplay:"",
+    // interviewDate:"",
+    // joiningDate:"",
+    // statusUpdatedDate:"",
+    // statusComments:"",
     noticePeriod: "",
     servingNoticePeriod: false,
     lastWorkingDay: "",
@@ -209,6 +223,10 @@ const NewCandidate = () => {
     formDataToSend.append("currentCompany", formData.currentCompany);
     formDataToSend.append("currentCTC", formData.currentCTC);
     formDataToSend.append("expectedCTC", formData.expectedCTC);
+    // formDataToSend.append("interviewDate", formData.interviewDate);
+    // formDataToSend.append("joiningDate", formData.joiningDate);
+    // formDataToSend.append("statusUpdatedDate", formData.statusUpdatedDate);
+    // formDataToSend.append("statusComments", formData.statusComments);
     formDataToSend.append("noticePeriod", formData.noticePeriod);
     formDataToSend.append("servingNoticePeriod", formData.servingNoticePeriod);
     formDataToSend.append("lastWorkingDay", formData.lastWorkingDay);
@@ -336,8 +354,23 @@ const NewCandidate = () => {
               type="number"
               name="totalRelevantExperience"
               id="totalRelevantExperience"
-              value={formData.totalRelevantExperience}
-              onChange={handleInputChange}
+              value={formData.totalRelevantExperienceDisplay}
+              onChange={(e) => {
+                const experience = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperienceDisplay: experience,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, check if value is more than 25
+                const experienceValue = parseFloat(formData.totalRelevantExperienceDisplay);
+                setFormData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperience: experienceValue <= 25 ? experienceValue : "25+",
+                }));
+              }}
               required
             />
           </div>
@@ -351,8 +384,23 @@ const NewCandidate = () => {
               type="number"
               name="itExperience"
               id="totalITExperience"
-              value={formData.itExperience}
-              onChange={handleInputChange}
+              value={formData.itExperienceDisplay}
+              onChange={(e) => {
+                const experience = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  itExperienceDisplay: experience,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, check if value is more than 25
+                const experienceValue = parseFloat(formData.itExperienceDisplay);
+                setFormData((prevData) => ({
+                  ...prevData,
+                  itExperience: experienceValue <= 25 ? experienceValue : "25+",
+                }));
+              }}
               required
             />
           </div>
@@ -380,7 +428,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="subskillSet">
-              sub Skill Set<span className={styles.asterisk}>*</span>:
+              Sub Skill Set<span className={styles.asterisk}>*</span>:
             </label>
             <select
               name="subskillSet"
@@ -441,8 +489,26 @@ const NewCandidate = () => {
               type="number"
               name="currentCTC"
               id="currentCTC"
-              value={formData.currentCTC}
-              onChange={handleInputChange}
+              value={formData.currentCTCDisplay}
+              onChange={(e) => {
+                const ctc = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  currentCTCDisplay: ctc,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, round the value and store it
+                const ctcRounded = Math.round(
+                  parseFloat(formData.currentCTCDisplay)
+                );
+                setFormData((prevData) => ({
+                  ...prevData,
+                  currentCTC: formData.currentCTCDisplay * 100000, // Convert to lacs as well
+                  currentCTCDisplay: ctcRounded, // Update the display value to the rounded value
+                }));
+              }}
               required
             />
           </div>
@@ -454,12 +520,30 @@ const NewCandidate = () => {
               type="number"
               name="expectedCTC"
               id="expectedCTC"
-              value={formData.expectedCTC}
-              onChange={handleInputChange}
+              value={formData.expectedCTCDisplay}
+              onChange={(e) => {
+                const expected = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  expectedCTCDisplay: expected,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, round the value and store it
+                const expectedRounded = Math.round(
+                  parseFloat(formData.expectedCTCDisplay)
+                );
+                setFormData((prevData) => ({
+                  ...prevData,
+                  expectedCTC: formData.expectedCTCDisplay * 100000, // Convert to lacs as well
+                  expectedCTCDisplay: expectedRounded, // Update the display value to the rounded value
+                }));
+              }}
               required
             />
           </div>
-          <div className={styles.sub_container}>
+          {/* <div className={styles.sub_container}>
             <label htmlFor="interviewDate">
               Interview Date<span className={styles.asterisk}>*</span>:
             </label>
@@ -467,32 +551,32 @@ const NewCandidate = () => {
               type="date"
               name="interviewDate"
               id="interviewDate"
-              // value={formData.lastWorkingDay}
-              // onChange={handleInputChange}
+              value={formData.interviewDate}
+              onChange={handleInputChange}
             />
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="joiningDate">
-              joiningDate<span className={styles.asterisk}>*</span>:
+              Joining Date<span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="date"
               name="joiningDate"
               id="joiningDate"
-              // value={formData.lastWorkingDay}
-              // onChange={handleInputChange}
+              value={formData.joiningDate}
+              onChange={handleInputChange}
             />
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="StatusUpadteDate">
+            <label htmlFor="statusUpadteDate">
               Status Update Day<span className={styles.asterisk}>*</span>:
             </label>
             <input
               type="date"
-              name="lStatusUpadteDate"
-              id="StatusUpadteDate"
-              // value={formData.lastWorkingDay}
-              // onChange={handleInputChange}
+              name="statusUpadteDate"s
+              id="statusUpadteDate"
+              value={formData.statusUpdatedDate}
+              onChange={handleInputChange}
             />
           </div>
           <div className={styles.sub_container}>
@@ -500,10 +584,10 @@ const NewCandidate = () => {
             <textarea
               name="statusComments"
               id="statusComments"
-              // value={formData.comments}
-              // onChange={handleInputChange}
+              value={formData.statusComments}
+              onChange={handleInputChange}
             ></textarea>
-          </div>
+          </div> */}
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
               Notice Period (Days)<span className={styles.asterisk}>*</span>:
@@ -656,6 +740,13 @@ const NewCandidate = () => {
               </a>
             </p>
           </div>
+          <div className={styles.footerContainer}>
+            <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
+            <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
+            <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
+            <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
+            <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
+          </div>  
         </div>
       )}
     </div>

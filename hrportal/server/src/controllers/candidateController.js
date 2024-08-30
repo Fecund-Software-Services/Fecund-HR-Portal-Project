@@ -14,6 +14,8 @@ Date        | Author                  | Sprint   | Phase | Description
 07/05/2024  | HS                      | 4        | 1    | Resume Handling
 08/05/2024  | HS                      | 4        | 2    | Update Resume Handling
 02/08/2024  | Harshini C              | 2        | 2    | Added logger library
+26/8/2024   |   Vishal Garg           | 4        | 2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+27/8/24     | HS                      |4         |2     | Status Histroy Tracker
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -82,6 +84,7 @@ const addCandidate = async (req, res) => {
       emailAddress,
       mobileNumber,
       skillSet,
+      subskillset,
       itExperience,
       totalRelevantExperience,
       currentCompany,
@@ -137,6 +140,7 @@ const addCandidate = async (req, res) => {
       emailAddress,
       mobileNumber,
       skillSet,
+      subskillset,
       itExperience,
       totalRelevantExperience,
       currentCompany,
@@ -297,6 +301,7 @@ const editCandidate = async (req, res) => {
   const candidateId = req.params.id;
   const filter = { _id: candidateId };
   const updatedfile = req.file;
+  const updatedStatus = req.body.status;
 
   const update = {
     $set: {
@@ -305,6 +310,7 @@ const editCandidate = async (req, res) => {
       emailAddress: req.body.emailAddress,
       mobileNumber: req.body.mobileNumber,
       skillSet: req.body.skillSet,
+      subskillset: req.body.subskillset,
       itExperience: req.body.itExperience,
       totalRelevantExperience: req.body.totalRelevantExperience,
       currentCompany: req.body.currentCompany,
@@ -313,11 +319,13 @@ const editCandidate = async (req, res) => {
       noticePeriod: req.body.noticePeriod,
       servingNoticePeriod: req.body.servingNoticePeriod,
       lastWorkingDay: req.body.lastWorkingDay,
-      status: req.body.status,
+      statusComments: req.body.statusComments,
       certified: req.body.certified,
       comments: req.body.comments,
       resume: updatedfile ? updatedfile.originalname : req.body.resume, // FIRES ONLY WHEN THE RESUME IS UPDATED
       fileId: updatedfile?.filename,
+      interviewDate: req.body.interviewDate,
+      joiningDate: req.body.joiningDate
     },
   };
   // TO UPDATE RESUME COLLECTION THAT REFERS TO CANDIDATE
@@ -336,6 +344,22 @@ const editCandidate = async (req, res) => {
         }
       );
     }
+  }
+
+ // TO UPDATE THE TIME WHEN STATUS WAS CHANGED
+
+  if (updatedStatus) {
+    update.$push = {
+      statusHistory: {
+        $each: [{
+          status: updatedStatus,
+          comment: req.body.statusComments || '',
+          updatedAt: new Date()
+        }],
+        $position: 0
+      }
+    };
+    update.$set.status = updatedStatus;
   }
 
   try {

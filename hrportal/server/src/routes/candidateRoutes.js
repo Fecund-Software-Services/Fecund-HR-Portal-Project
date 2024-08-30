@@ -41,7 +41,7 @@ router.get('/view-resume/:filename', async (req,res) =>{
 });
 
 // edit existing candidate
-router.post('/edit-candidate/:id', upload.single('resume'), editCandidate)
+router.put('/edit-candidate/:id', upload.single('resume'), editCandidate)
 
 // exporting router
 module.exports = router
