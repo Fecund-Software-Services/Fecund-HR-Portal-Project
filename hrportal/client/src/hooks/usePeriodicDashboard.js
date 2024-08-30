@@ -7,9 +7,11 @@ Sprint: Phase 2 Sprint 4
 Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
--------------------------------------------------------------------------------------------------------
-
--------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+ 29/08/2024  |   Omkar                |     4      |   2     | Integration modification of Fetching Main skill data
+---------------------------------------------------------------------------------------------------------------------
+ 29/08/2024  |   Vishal                 |     4      |   2     | Integration modification of Fetching Report data
+ ----------------------------------------------------------------------------------------------------------------------
 // */
 
 import { useState, useEffect, useCallback } from "react";
@@ -121,6 +123,7 @@ const usePeriodicDashboard = () => {
 
       const result = await response.json();
       setData(result);
+      console.log(data)
     } catch (err) {
       setError("Failed to fetch report data");
       console.error("Error fetching report data:", err);
@@ -142,6 +145,7 @@ const usePeriodicDashboard = () => {
     fetchReport,
     fetchSubSkills,
     fetchSkillsets,
+    setData,  // Export setData
   };
 };
 

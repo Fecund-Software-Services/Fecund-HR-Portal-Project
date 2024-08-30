@@ -32,6 +32,7 @@ import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
 import SkillSets from "./components/SkillSets";
 import Status from "./components/Status";
+import PeriodicalDashboard from "./components/PeriodicalDashboard";
 
 function App() {
   return (
@@ -92,6 +93,17 @@ function App() {
                   exact
                   path="/home/search-candidate/candiadte/editCandidateDetails/:id"
                   element={<EditCanidateDetails />}
+                />
+              </Route>
+              <Route
+                exact
+                path="/home/periodicdashboard"
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/periodicdashboard"
+                  element={<PeriodicalDashboard />}
                 />
               </Route>
               <Route path="/signup" element={<SignUpForm />} />

@@ -8,7 +8,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
-
+ 30/08/2024 |   Vishal                  |     4      |   2     | CSS Coloring and Field Alignment
 -------------------------------------------------------------------------------------------------------
 // */
 
@@ -20,6 +20,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     background-image: url('../assets/commonBGImage.png');
     background-size: cover;
     background-position: center;
+    /* width: 100%; */
     height: 100vh;
   }
   
@@ -47,36 +48,81 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+    width: 50% ;
     margin-bottom: 20px;
-    margin-top: 100px;
-    margin-right: 900px;
+    margin-top: 25px;
+    margin-right: 600px;
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #ffffff;
+    width: 40%;
+  }
+
+  .mainskill {
+    padding: 10px;
   }
   
   .skillDropdown {
     padding: 10px;
     font-size: 16px;
-    background-color: #333; /* Dark background for contrast */
-    color: white; /* Ensure text is visible */
+    background-color: #ffffff; /* Dark background for contrast */
+    color: rgb(0, 0, 0); /* Ensure text is visible */
     border: 1px solid #ddd;
     border-radius: 4px;
 }
   
   .skillDropdown option {
-    background-color: #333; /* Match dropdown background */
-    color: white; /* Ensure option text is visible */
+    background-color: #ffffff; /* Match dropdown background */
+    color: rgb(0, 0, 0); /* Ensure option text is visible */
+}
+
+.date {
+  margin-left: 8px;
+  margin-right: 22px;
 }
   
   .dateFields {
     display: flex;
+    flex-direction: row;
+    width: 100%;
     gap: 20px;
     color: white;
   }
+
+  .dateInput {
+    /* Styles specific to the date input fields */
+    width: 150px; /* Adjust the width as needed */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
   
-  .generateReportBtn {
+  /* .generateReportBtn {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 10px;
+  } */
+
+  .generateReportBtn {
+    padding: 10px 10px;
+    background-color: #d4d4d4;
+    color: #000;
+    width: 22%;
+    /* margin: 10px 32%; */
+    margin-left: 135px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .generateReportBtn:hover {
+    background-color: #0069d9;
   }
   
   .reportTableContainer {
