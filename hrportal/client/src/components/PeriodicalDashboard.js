@@ -35,13 +35,13 @@ const PeriodicalDashboard = () => {
     fetchReport,
     fetchSubSkills,
     fetchSkillsets,
-    setData,  // Exported setData from the hook
+    setData, // Exported setData from the hook
   } = usePeriodicDashboard();
 
   useEffect(() => {
     fetchSkillsets(); // Fetch skills when the component mounts
-    fetchSubSkills(); // Fetch all subskills by default on initial load
-  }, [fetchSkillsets, fetchSubSkills]);
+    // fetchSubSkills(); // Fetch all subskills by default on initial load
+  }, [fetchSkillsets]);
 
   const handleSkillChange = (e) => {
     const selectedValue = e.target.value;
@@ -50,6 +50,7 @@ const PeriodicalDashboard = () => {
       setSelectedSkill("None");
       setSelectedSkillId("");
       fetchSubSkills(); // Fetch all subskills if "None" is selected
+      console.log(fetchSubSkills);
     } else {
       const foundSkill = skills.find((skill) => skill._id === selectedValue);
       if (foundSkill) {
@@ -68,8 +69,28 @@ const PeriodicalDashboard = () => {
   };
 
   const handleGenerateReport = () => {
+    if (selectedSkill === "None") {
+      fetchSubSkills();
+    }
     fetchReport(fromDate, toDate, selectedSkillId);
   };
+
+  // Function to determine which subSkills have non-zero values in any row
+  //  const nonZeroSubSkills = subSkills.filter((subSkill) => {
+  //    data.some((row) => row.subskills[subSkill.subsetname] > 0);
+  // });
+
+  let nonZeroSubSkills;
+
+  {
+    data &&
+      (nonZeroSubSkills =
+        data.length > 0
+          ? subSkills.filter((subSkill) =>
+              data.some((row) => row.subskills[subSkill.subsetname] > 0)
+            )
+          : []);
+  }
 
   return (
     <div className={styles.dashboardContainer}>
@@ -78,7 +99,7 @@ const PeriodicalDashboard = () => {
         <div className={styles.dropdown}>
           <label className={styles.mainskill}>Main Skill:</label>
           <select
-            value={selectedSkillId || "None"}  // Use ID as the value for the select
+            value={selectedSkillId || "None"} // Use ID as the value for the select
             onChange={handleSkillChange}
             className={styles.skillDropdown}
           >
@@ -124,7 +145,7 @@ const PeriodicalDashboard = () => {
             <thead>
               <tr>
                 <th>Experience</th>
-                {subSkills.map((subSkill, index) => (
+                {nonZeroSubSkills.map((subSkill, index) => (
                   <th key={index}>{subSkill.subsetname}</th>
                 ))}
                 <th>Offered/Accepted</th>
@@ -136,8 +157,10 @@ const PeriodicalDashboard = () => {
               {data.map((row, index) => (
                 <tr key={index}>
                   <td>{row.exp}</td>
-                  {subSkills.map((subSkill, subIndex) => (
-                    <td key={subIndex}>{row.subskills[subSkill.subsetname] || 0}</td>
+                  {nonZeroSubSkills.map((subSkill, subIndex) => (
+                    <td key={subIndex}>
+                      {row.subskills[subSkill.subsetname] || 0}
+                    </td>
                   ))}
                   <td>{row.offered}</td>
                   <td>{row.negotiation}</td>
