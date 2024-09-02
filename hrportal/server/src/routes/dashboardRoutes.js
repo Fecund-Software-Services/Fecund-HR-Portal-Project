@@ -8,12 +8,12 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
-
+2/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD
 -------------------------------------------------------------------------------------------------------
 // */
 const express = require('express')
 
-const {periodicDashboard} = require('../controllers/dashboardController')
+const {periodicDashboard, interviewDashboard} = require('../controllers/dashboardController')
 
 const router = express.Router()
 
@@ -21,6 +21,6 @@ const router = express.Router()
 router.get('/periodic', periodicDashboard)
 
 // INTERVIEW DASHBOARD
-//router.get('/interview', interviewDashboard)
+router.get('/interview', interviewDashboard)
 
 module.exports = router
