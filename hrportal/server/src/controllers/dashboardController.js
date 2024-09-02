@@ -8,7 +8,7 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
-
+2/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD
 -------------------------------------------------------------------------------------------------------
 // */
 
@@ -16,29 +16,33 @@ const Candidate = require("../collections/candidates");
 const Skillset = require("../collections/skillset");
 const subSkillSet = require("../collections/subskillset");
 const Status = require("../collections/status");
-// const ObjectId = require('mongodb').ObjectId;
 
+// Helper function to get the latest status within a given date range
+const getLatestStatusInRange = (statusHistory, startDate, endDate) => {
+  const filteredStatuses = statusHistory.filter(
+    sh => sh.updatedAt >= new Date(startDate) && sh.updatedAt <= new Date(endDate)
+  );
+  return filteredStatuses.length > 0
+    ? filteredStatuses.reduce((latest, current) =>
+        current.updatedAt > latest.updatedAt ? current : latest
+      ).status
+    : null;
+};
+
+//PERIODIC DASHBOARD
 const periodicDashboard = async (req, res) => {
   try {
-    // const { startDate, endDate, skillset } = req.body;
     const { startDate, endDate, skillset } = req.query;
-    console.log(startDate,endDate,skillset)
-    // const validObjectId = new ObjectId(skillset);
-    // console.log(validObjectId)
-    console.log("hello1")
 
-    // TO CHECK WHETHER FROM AND TO DATE ARE SPECIFIED
     if (!startDate || !endDate) {
       return res.status(400).json({ error: 'Start Date and End Date are required' });
     }
 
-    // TO FILTER THOSE CANDIDATES WHO ARE INTERVIEWED 
     const allStatuses = await Status.find({});
     const interviewedStatuses = allStatuses
-      .filter(status => !['Submitted', 'Scheduled R1'].includes(status.name))
+      .filter(status => !['Submitted'].includes(status.name))
       .map(status => status.name);
 
-    // TO FETCH SUBSKILLS, IF MAINSKILLSET IS SELECTED SUBSKILLS RELATED TO THAT MAIN SKILL 
     let subskillFilter = {};
     let subskillNames = [];
     if (skillset) {
@@ -52,62 +56,39 @@ const periodicDashboard = async (req, res) => {
       }
     }
 
-    // FETCHING ALL THE CANDIDATES BETWEEN THE SPECIFIED DATE RANGE
-    const result = await Candidate.aggregate([
-      {
-        $match: {
-          createdAt: { $gte: new Date(startDate), $lte: new Date(endDate) },
-          status: { $in: interviewedStatuses },
-          ...subskillFilter
-        }
-      },
-      {
-        $group: {
-          _id: {
-            exp: "$itExperience",
-            subskillset: "$subskillset"
-          },
-          count: { $sum: 1 },
-          offered: {
-            $sum: { $cond: [{ $eq: ["$status", "Offer Issued"] }, 1, 0] }
-          },
-          negotiation: {
-            $sum: { $cond: [{ $eq: ["$status", "Negotiation Stage"] }, 1, 0] }
-          },
-          backedOut: {
-            $sum: { $cond: [
-               { $or: [{ $eq: ["$status", "Another Offer/Backed out"] }, { $eq: ["$status","Candidate not Interested"] } ]}, 1, 0] }
-          }
-        }
-      },
-      {
-        $group: {
-          _id: "$_id.exp",
-          subskills: {
-            $push: {
-              k: "$_id.subskillset",
-              v: "$count"
-            }
-          },
-          offered: { $sum: "$offered" },
-          negotiation: { $sum: "$negotiation" },
-          backedOut: { $sum: "$backedOut" }
-        }
-      },
-      {
-        $project: {
-          _id: 0,
-          exp: "$_id",
-          subskills: { $arrayToObject: "$subskills" },
-          offered: 1,
-          negotiation: 1,
-          backedOut: 1
-        }
-      },
-    ]);
+    const candidates = await Candidate.find({
+      createdAt: { $gte: new Date(startDate), $lte: new Date(endDate) },
+      ...subskillFilter
+    });
+
+    const result = candidates.reduce((acc, candidate) => {
+      const latestStatus = getLatestStatusInRange(candidate.statusHistory, startDate, endDate);
+      if (!latestStatus || !interviewedStatuses.includes(latestStatus)) return acc;
+
+      const exp = candidate.itExperience;
+      const subskill = candidate.subskillset;
+
+      if (!acc[exp]) acc[exp] = { subskills: {}, offered: 0, negotiation: 0, backedOut: 0 };
+      if (!acc[exp].subskills[subskill]) acc[exp].subskills[subskill] = 0;
+
+      acc[exp].subskills[subskill]++;
+      if (latestStatus === 'Offer Issued') acc[exp].offered++;
+      if (latestStatus === 'Negotiation Stage') acc[exp].negotiation++;
+      if (['Another Offer/Backed out', 'Candidate not Interested'].includes(latestStatus)) acc[exp].backedOut++;
+
+      return acc;
+    }, {});
+
+    const formattedResult = Object.entries(result).map(([exp, data]) => ({
+      exp,
+      subskills: data.subskills,
+      offered: data.offered,
+      negotiation: data.negotiation,
+      backedOut: data.backedOut
+    }));
 
     // Calculate totals
-    const total = result.reduce((acc, curr) => {
+    const total = formattedResult.reduce((acc, curr) => {
       Object.keys(curr.subskills).forEach(key => {
         acc.subskills[key] = (acc.subskills[key] || 0) + curr.subskills[key];
       });
@@ -117,9 +98,9 @@ const periodicDashboard = async (req, res) => {
       return acc;
     }, { exp: 'Total', subskills: {}, offered: 0, negotiation: 0, backedOut: 0 });
 
-    result.push(total);
+    formattedResult.push(total);
 
-    res.json(result);
+    res.json(formattedResult);
     
   } catch (error) {
     console.error('Error fetching periodic dashboard data:', error);
@@ -127,4 +108,179 @@ const periodicDashboard = async (req, res) => {
   }
 };
 
-module.exports = {periodicDashboard};
+// INTERVIEW DASHBOARD
+const interviewDashboard = async (req, res) => {
+  try {
+    const { startDate, endDate, skillset } = req.query;
+
+    if (!startDate || !endDate) {
+      return res.status(400).json({ error: 'Start Date and End Date are required' });
+    }
+
+    let subskillFilter = {};
+    let subskillNames = [];
+    if (skillset) {
+      const skillsetDoc = await Skillset.findById(skillset);
+      if (skillsetDoc) {
+        const subskills = await subSkillSet.find({ mainSkillID: skillset });
+        subskillNames = subskills.map(s => s.subsetname);
+        subskillFilter = { subskillset: { $in: subskillNames } };
+      } else {
+        return res.status(400).json({ error: 'Invalid skillset provided' });
+      }
+    }
+
+    const candidates = await Candidate.find({
+      createdAt: { $gte: new Date(startDate), $lte: new Date(endDate) },
+      ...subskillFilter
+    }).select({ firstName: 1, statusHistory: 1, subskillset: 1, status:1 });
+
+    const result = candidates.reduce((acc, candidate) => {
+      const latestStatus = getLatestStatusInRange(candidate.statusHistory, startDate, endDate);
+      if (!latestStatus) {
+        if (candidate.status === 'Submitted') {
+          const position = candidate.subskillset;
+          if (!acc[position]) {
+            acc[position] = {
+              noOfCandidatesApproached: 0,
+              candidatesNotInterested: 0,
+              firstRoundScheduled: 0,
+              rejectedRound1: 0,
+              onHoldRound1: 0,
+              clearedRound1: 0,
+              secondRoundScheduled: 0,
+              rejectedRound2: 0,
+              onHoldRound2: 0,
+              clearedRound2: 0,
+              negotiationStage: 0,
+              offerWithdrawn: 0,
+              offerAccepted: 0,
+              candidateBackedOut: 0,
+              candidateNames: {}
+            };
+          }
+          acc[position].noOfCandidatesApproached++;
+      
+          acc[position].candidateNames[candidate.status] = acc[position].candidateNames[candidate.status] || [];
+          acc[position].candidateNames[candidate.status].push(candidate.firstName);
+        }
+        return acc;
+      }
+
+      const position = candidate.subskillset;
+      if (!acc[position]) {
+        acc[position] = {
+          noOfCandidatesApproached: 0,
+          candidatesNotInterested: 0,
+          firstRoundScheduled: 0,
+          rejectedRound1: 0,
+          onHoldRound1: 0,
+          clearedRound1: 0,
+          secondRoundScheduled: 0,
+          rejectedRound2: 0,
+          onHoldRound2: 0,
+          clearedRound2: 0,
+          negotiationStage: 0,
+          offerWithdrawn: 0,
+          offerAccepted: 0,
+          candidateBackedOut: 0,
+          candidateNames: {}
+        };
+      }
+
+      acc[position].noOfCandidatesApproached++;
+
+      switch (latestStatus) {
+        case 'Candidate not Interested':
+          acc[position].candidatesNotInterested++;
+          break;
+        case 'Scheduled R1':
+
+          acc[position].firstRoundScheduled++;
+          break;
+        case 'Rejected R1':
+          acc[position].rejectedRound1++;
+          acc[position].firstRoundScheduled++;
+          break;
+        case 'On Hold R1':
+          acc[position].onHoldRound1++;
+          acc[position].firstRoundScheduled++;
+          break;
+        case 'Cleared 1st Round':
+          acc[position].clearedRound1++;
+          acc[position].firstRoundScheduled++;
+          break;
+        case 'Scheduled R2':
+          acc[position].secondRoundScheduled++;
+          acc[position].firstRoundScheduled++;
+          break;
+        case 'Rejected R2':
+          acc[position].rejectedRound2++;
+          acc[position].firstRoundScheduled++;
+          acc[position].secondRoundScheduled++;
+          break;
+        case 'On Hold R2':
+          acc[position].onHoldRound2++;
+          acc[position].firstRoundScheduled++;
+          acc[position].secondRoundScheduled++;
+          break;
+        case 'Cleared 2nd Round':
+          acc[position].clearedRound2++;
+          acc[position].firstRoundScheduled++;
+          acc[position].secondRoundScheduled++;
+          break;
+        case 'Negotiation Stage':
+          acc[position].negotiationStage++;
+          acc[position].firstRoundScheduled++;
+          acc[position].secondRoundScheduled++;
+          break;
+        case 'Offer Withdrawn':
+          acc[position].offerWithdrawn++;
+          acc[position].firstRoundScheduled++;
+          acc[position].secondRoundScheduled++;
+          break;
+        case 'Offer Issued':
+          acc[position].offerAccepted++;
+          acc[position].firstRoundScheduled++;
+          acc[position].secondRoundScheduled++;
+          break;
+        case 'Another Offer/Backed out':
+          acc[position].candidateBackedOut++;
+          acc[position].firstRoundScheduled++;
+          acc[position].secondRoundScheduled++;
+          break;
+      }
+      //Add candidate name to the specific status
+      acc[position].candidateNames[latestStatus] = acc[position].candidateNames[latestStatus] || [];
+      acc[position].candidateNames[latestStatus].push(candidate.firstName);
+      return acc;
+    }, {});
+
+    const formattedResult = Object.entries(result).map(([position, data]) => ({
+      position,
+      ...data
+    }));
+
+    // Calculate totals
+    const total = formattedResult.reduce((acc, curr) => {
+      Object.keys(curr).forEach(key => {
+        if (key !== 'position') {
+          acc[key] = (acc[key] || 0) + curr[key];
+        }
+      });
+      return acc;
+    }, { position: 'TOTAL' });
+
+    formattedResult.push(total);
+
+    res.json(formattedResult);
+  } catch (error) {
+    console.error('Error fetching interview dashboard data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// JOINING DASHBOARD
+
+
+module.exports = {periodicDashboard,interviewDashboard};
