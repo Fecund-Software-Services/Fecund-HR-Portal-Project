@@ -13,7 +13,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 // */
 const express = require('express')
 
-const {periodicDashboard, interviewDashboard} = require('../controllers/dashboardController')
+const {periodicDashboard, interviewDashboard, joiningDashBoard} = require('../controllers/dashboardController')
 
 const router = express.Router()
 
@@ -22,5 +22,8 @@ router.get('/periodic', periodicDashboard)
 
 // INTERVIEW DASHBOARD
 router.get('/interview', interviewDashboard)
+
+// JOINING DASHBOARD
+router.get('/joining', joiningDashBoard)
 
 module.exports = router
