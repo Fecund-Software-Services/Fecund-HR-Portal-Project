@@ -1,0 +1,129 @@
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-image: url('../assets/commonBGImage.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+@font-face {
+    font-family: Rastanty Cortez;
+    src: url(../fonts/Rastanty\ Cortez.ttf);
+}
+
+.rastanty_Cortez {
+    font-family: Rastanty Cortez;
+    font-size: 70px;
+    color:  #ffffff;
+    margin-bottom: 45px;
+}
+
+.title {
+    font-size: 2rem; /* Adjust as needed */
+    color: white;
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.filterSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-top: 25px;
+    margin-right: 600px;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #ffffff;
+    width: 40%;
+}
+
+.mainskill {
+    padding: 10px;
+}
+
+.skillDropdown {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.skillDropdown option {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+.date {
+    margin-left: 8px;
+    margin-right: 22px;
+}
+
+.dateFields {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+    color: white;
+}
+
+.dateInput {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.generateReportBtn {
+    padding: 10px 10px;
+    background-color: #d4d4d4;
+    color: #000;
+    width: 22%;
+    margin-left: 135px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.generateReportBtn:hover {
+    background-color: #0069d9;
+}
+
+.reportTableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.reportTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.reportTable th, .reportTable td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    color: white;
+}
+
+.reportTable th {
+    background-color: #555;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
