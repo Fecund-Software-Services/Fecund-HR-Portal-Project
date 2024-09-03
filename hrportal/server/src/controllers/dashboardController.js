@@ -10,6 +10,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 -------------------------------------------------------------------------------------------------------
 2/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD
 3/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD<hover feature to include full name>
+3/9/24     | HS                      |5        |2     | JOINING DASHBOARD
 -------------------------------------------------------------------------------------------------------
 // */
 
