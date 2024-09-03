@@ -9,6 +9,8 @@ Modification Log:
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
 2/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD
+3/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD<hover feature to include full name>
+3/9/24     | HS                      |5        |2     | JOINING DASHBOARD
 -------------------------------------------------------------------------------------------------------
 // */
 
@@ -36,6 +38,11 @@ const periodicDashboard = async (req, res) => {
 
     if (!startDate || !endDate) {
       return res.status(400).json({ error: 'Start Date and End Date are required' });
+    }
+
+    // TO Ensure start date is before end date
+    if (startDate > endDate) {
+      return res.status(400).json({ message: 'Start date cannot be after end date.' });
     }
 
     const allStatuses = await Status.find({});
@@ -117,6 +124,11 @@ const interviewDashboard = async (req, res) => {
       return res.status(400).json({ error: 'Start Date and End Date are required' });
     }
 
+    // TO Ensure start date is before end date
+    if (startDate > endDate) {
+      return res.status(400).json({ message: 'Start date cannot be after end date.' });
+    }
+
     let subskillFilter = {};
     let subskillNames = [];
     if (skillset) {
@@ -133,7 +145,7 @@ const interviewDashboard = async (req, res) => {
     const candidates = await Candidate.find({
       createdAt: { $gte: new Date(startDate), $lte: new Date(endDate) },
       ...subskillFilter
-    }).select({ firstName: 1, statusHistory: 1, subskillset: 1, status:1 });
+    }).select({ firstName: 1, lastName:1, statusHistory: 1, subskillset: 1, status:1 });
 
     const result = candidates.reduce((acc, candidate) => {
       const latestStatus = getLatestStatusInRange(candidate.statusHistory, startDate, endDate);
@@ -162,7 +174,7 @@ const interviewDashboard = async (req, res) => {
           acc[position].noOfCandidatesApproached++;
       
           acc[position].candidateNames[candidate.status] = acc[position].candidateNames[candidate.status] || [];
-          acc[position].candidateNames[candidate.status].push(candidate.firstName);
+          acc[position].candidateNames[candidate.status].push(`${candidate.firstName} ${candidate.lastName}`.trim());
         }
         return acc;
       }
@@ -252,7 +264,7 @@ const interviewDashboard = async (req, res) => {
       }
       //Add candidate name to the specific status
       acc[position].candidateNames[latestStatus] = acc[position].candidateNames[latestStatus] || [];
-      acc[position].candidateNames[latestStatus].push(candidate.firstName);
+      acc[position].candidateNames[latestStatus].push(`${candidate.firstName} ${candidate.lastName}`.trim());
       return acc;
     }, {});
 
@@ -281,6 +293,47 @@ const interviewDashboard = async (req, res) => {
 };
 
 // JOINING DASHBOARD
+const joiningDashBoard = async (req, res) => {
+  try {
+    const { startDate, endDate, sortOrder } = req.query;
 
+    // CHECK FOR DATE
+    if (!startDate || !endDate) {
+      return res.status(400).json({ message: 'Start and end dates are required.' });
+    }
 
-module.exports = {periodicDashboard,interviewDashboard};
+    
+    // CHECK FOR DATES
+    if (startDate > endDate) {
+      return res.status(400).json({ message: 'Start date cannot be after end date.' });
+    }
+
+    // QUERY BASED ON JOINING DATE
+    const query = {
+      joiningDate: {
+        $gte: startDate,
+        $lte: endDate,
+      },
+    };
+
+    // TO SORT
+    const sorting = { joiningDate: sortOrder === 'desc' ? -1 : 1 };
+
+    // TO FETCH CANDIDATES
+    const candidates = await Candidate.find(query)
+      .sort(sorting)
+
+    const joinedCandidates = candidates.map(candidate => ({
+      name: `${candidate.firstName} ${candidate.lastName}`.trim(),
+      Position: candidate.subskillset,
+      joiningDate: candidate.joiningDate.toString().split('T')[0],
+    }));
+
+    res.status(200).json(joinedCandidates)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error.' });
+  }
+}
+
+module.exports = {periodicDashboard,interviewDashboard,joiningDashBoard};

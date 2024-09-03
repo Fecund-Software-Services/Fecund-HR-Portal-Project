@@ -9,11 +9,12 @@ Modification Log:
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
 2/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD
+3/9/24     | HS                      |5        |2     | JOINING DASHBOARD
 -------------------------------------------------------------------------------------------------------
 // */
 const express = require('express')
 
-const {periodicDashboard, interviewDashboard} = require('../controllers/dashboardController')
+const {periodicDashboard, interviewDashboard, joiningDashBoard} = require('../controllers/dashboardController')
 
 const router = express.Router()
 
@@ -22,5 +23,8 @@ router.get('/periodic', periodicDashboard)
 
 // INTERVIEW DASHBOARD
 router.get('/interview', interviewDashboard)
+
+// JOINING DASHBOARD
+router.get('/joining', joiningDashBoard)
 
 module.exports = router
