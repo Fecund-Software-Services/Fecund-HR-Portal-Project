@@ -7,17 +7,18 @@ User Story:Edit Candidate Details - Resume Handling
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   |  Phase |  Description 
 -------------------------------------------------------------------------------------------------------
-5/9/2024    |   Vishal                  |   4        |   Edit Candidate Details - Resume Handling
-09/05/2024  |   Harshini C              |   4        |   BG update to all screens
-5/9/2024    |   Vishal                  |   4        |   Resume handling - View/Edit candidate - Resume Handling - Back End
-10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
-10/05/2024  |   Harshini C              |   4        |   Log Out button
-10/05/2024  |   Harshini C              |   4        |   CSS and alignment based on BG image
-18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
-14/8/2024   |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
-26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+5/9/2024    |   Vishal                  |   4        |   1    | Edit Candidate Details - Resume Handling
+09/05/2024  |   Harshini C              |   4        |   1    | BG update to all screens
+5/9/2024    |   Vishal                  |   4        |   1    | Resume handling - View/Edit candidate - Resume Handling - Back End
+10/05/2024  |   Vishal                  |   4        |   1    | CSS and alignment based on BG image
+10/05/2024  |   Harshini C              |   4        |   1    | Log Out button
+10/05/2024  |   Harshini C              |   4        |   1    | CSS and alignment based on BG image
+18/07/2024  |   Vishal Garg             |   2        |   1    | Front End Coding Navbar 
+14/8/2024   |   Vishal Garg             |   3        |   2    | Admin role 
+26/8/2024   |   Vishal Garg             |   3        |   2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+03/09/2024  |   Harshini C              |   5        |   2    | UI fixes
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -252,7 +253,7 @@ const EditCandiadteDetails = () => {
     formDataToSend.append("emailAddress", editedData.emailAddress);
     formDataToSend.append("mobileNumber", editedData.mobileNumber);
     formDataToSend.append("skillSet", editedData.skillSet);
-    formDataToSend.append("subskillSet", editedData.subskillset);
+    formDataToSend.append("subskillset", editedData.subskillset);
     formDataToSend.append("itExperience", editedData.itExperience);
     formDataToSend.append(
       "totalRelevantExperience",
@@ -556,7 +557,7 @@ const EditCandiadteDetails = () => {
             />
           </div>
           <div className={styles.sub_container}>
-            <label>Status:</label>
+            <label>Status<span className={styles.asterisk}>*</span>:</label>
 
             <select
               name="status"
@@ -574,7 +575,7 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="statusComments">Status Comments:<span className={styles.asterisk}>*</span></label>
+            <label htmlFor="statusComments">Status Comments <span className={styles.asterisk}>*</span>:</label>
             <textarea
               name="statusComments"
               id="statusComments"
