@@ -6,14 +6,14 @@ Sprint: Phase 2 Sprint 4
 
 Modification Log:
 ------------------------------------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |  Phase  |  Description 
+Date        |   Author                  |   Sprint   |  Phase  | Description 
 ----------------------------------------------------------------------------------------------------------------------------------
- 29/08/2024  |   Vishal                 |     4      |   2     | Integration modification of Generate Report data
- --------------------------------------------------------------------------------------------------------------------------------
-29/08/2024  | Omkar                     |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset, 
+ 29/08/2024 |   Vishal                  |     4      |   2     | Integration modification of Generate Report data
+29/08/2024  |   Omkar                   |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset
+30/08/2024  |   Omkar                   |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
+03/09/2024  |   Harshini C              |     5      |   2     | UI fixes
 -----------------------------------------------------------------------------------------------------------------------------------
-30/08/2024 |  Omkar                     |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
-// */
+ */
 
 import React, { useState, useEffect } from "react";
 import styles from "./PeriodicalDashboard.module.css";
@@ -97,11 +97,12 @@ const PeriodicalDashboard = () => {
       <p className={styles.rastanty_Cortez}>Periodical Dashboard</p>
       <div className={styles.filterSection}>
         <div className={styles.dropdown}>
-          <label className={styles.mainskill}>Main Skill:</label>
+          <label className={styles.mainskill}>Main Skill<span className={styles.asterisk}>*</span>:</label>
           <select
             value={selectedSkillId || "None"} // Use ID as the value for the select
             onChange={handleSkillChange}
             className={styles.skillDropdown}
+            required
           >
             <option value="None">None</option>
             {skills.map((skill) => (
@@ -113,12 +114,13 @@ const PeriodicalDashboard = () => {
         </div>
 
         <div className={styles.dateFields}>
-          <label className={styles.date}>Date Range:</label>
+          <label className={styles.date}>Date Range<span className={styles.asterisk}>*</span>:</label>
           <input
             type="date"
             value={fromDate}
             className={styles.dateInput}
             onChange={(e) => setFromDate(e.target.value)}
+            required
           />
           <label>To</label>
           <input
