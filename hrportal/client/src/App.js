@@ -34,6 +34,7 @@ import SkillSets from "./components/SkillSets";
 import Status from "./components/Status";
 import footer from "./components/footer";
 import PeriodicalDashboard from "./components/PeriodicalDashboard";
+import JoiningDashboard from "./components/JoiningDashboard";
 
 function App() {
   return (
@@ -107,6 +108,19 @@ function App() {
                   element={<PeriodicalDashboard />}
                 />
               </Route>
+
+              <Route
+                exact
+                path="/home/joiningdashboard"
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/joiningdashboard"
+                  element={<JoiningDashboard />}
+                />
+              </Route>
+
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route
@@ -122,8 +136,5 @@ function App() {
 }
 
 export default App;
-
-
-
 
 
