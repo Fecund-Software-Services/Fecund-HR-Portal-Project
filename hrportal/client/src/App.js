@@ -14,7 +14,7 @@ Date        |   Author                  |   Sprint   |    Description
 8/07/2024   |   Vishal Garg             |    1       |    Front End Coding Navbar
 -------------------------------------------------------------------------------------------------------
 */
-/*
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Login from "./components/Login";
@@ -34,6 +34,7 @@ import SkillSets from "./components/SkillSets";
 import Status from "./components/Status";
 import footer from "./components/footer";
 import PeriodicalDashboard from "./components/PeriodicalDashboard";
+import InterviewDashboard from "./components/InterviewDashboard";
 
 function App() {
   return (
@@ -107,6 +108,17 @@ function App() {
                   element={<PeriodicalDashboard />}
                 />
               </Route>
+              <Route
+                exact
+                path="/home/interviewdashboard"
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/interviewdashboard"
+                  element={<InterviewDashboard />}
+                />
+              </Route>
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route
@@ -122,32 +134,11 @@ function App() {
 }
 
 export default App;
-*/
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import PeriodicalDashboard from "./components/InterviewDashboard";
-import "./App.css";
-import InterviewDashboard from "./components/InterviewDashboard";
- 
-function App() {
-  return (
-    <>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<InterviewDashboard />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </>
-  );
-}
- 
-export default App;
- 
- 
 
+
+ 
+ 
 
 
 

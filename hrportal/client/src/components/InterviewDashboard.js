@@ -22,9 +22,10 @@ const InterviewDashboard = () => {
   } = useInterviewDashboard(); // Custom hook
 
   useEffect(() => {
+    console.log("Fetching skillsets...");
     fetchSkillsets(); // Fetch skills when the component mounts
-    fetchSubSkills(); // Fetch all subskills by default on initial load
-  }, [fetchSkillsets, fetchSubSkills]);
+    // fetchSubSkills(); // Fetch all subskills by default on initial load
+  }, [fetchSkillsets]);
 
   const handleSkillChange = (e) => {
     const selectedValue = e.target.value;
@@ -51,6 +52,9 @@ const InterviewDashboard = () => {
   };
 
   const handleGenerateReport = () => {
+    if (selectedSkill === "None") {
+      fetchSubSkills();
+    }
     fetchReport(fromDate, toDate, selectedSkillId);
   };
 
@@ -122,7 +126,7 @@ const InterviewDashboard = () => {
                 <th>Offer Accepted</th>
                 <th>Candidate has got another offer</th>
                 <th>Candidate Backed Out</th>
-                <th>Total</th>
+                {/* <th>Total</th> */}
               </tr>
             </thead>
             <tbody>
@@ -146,25 +150,7 @@ const InterviewDashboard = () => {
                   <td>{row.candidateNames?.total || 'N/A'}</td>
                 </tr>
               ))}
-              {/* Optional footer row for totals */}
-              <tr>
-                <td>TOTAL</td>
-                <td>{data.reduce((acc, row) => acc + row.noOfCandidatesApproached, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.candidatesNotInterested, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.firstRoundScheduled, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.rejectedRound1, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.onHoldRound1, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.clearedRound1, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.secondRoundScheduled, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.rejectedRound2, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.onHoldRound2, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.clearedRound2, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.negotiationStage, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.offerWithdrawn, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.offerAccepted, 0)}</td>
-                <td>{data.reduce((acc, row) => acc + row.candidateBackedOut, 0)}</td>
-                <td>N/A</td> {/* Adjust this if there's a proper total field */}
-              </tr>
+
             </tbody>
           </table>
         </div>
