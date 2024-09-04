@@ -14,7 +14,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 
 import { useState, useEffect } from 'react';
 
-const useHiringHook = () => {
+const useJoiningDashboard = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [skills, setSkills] = useState([]);
@@ -66,11 +66,16 @@ const useHiringHook = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`/api/dashboard/joining?startDate=${startDate}&endDate=${endDate}&skillset=${selectedskillsetid}&sortOrder=${sortOrder}`);
+            let url = `/api/dashboard/joining?startDate=${startDate}&endDate=${endDate}&sortOrder=${sortOrder}`;
+            if (selectedskillsetid) {
+                url += `&skillset=${selectedskillsetid}`;
+            }
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Failed to fetch joiningCandidates');
             }
             const data = await response.json();
+            console.log('API Response:', data);
             setJoiningCandidates(data);
         } catch (err) {
             setError(err.message);
@@ -83,11 +88,9 @@ const useHiringHook = () => {
         setSortOrder(newSortOrder);
       };
 
-    // useEffect(() => {
-    //     if (startDate && endDate) {
-    //         fetchCandidates();
-    //     }
-    // }, [startDate, endDate, selectedskillsetid, sortOrder]);
+    const generateReport = () => {
+        fetchCandidates();
+    };
 
     return {
         startDate,
@@ -96,20 +99,21 @@ const useHiringHook = () => {
         setEndDate,
         selectedskillsetid,
         setselectedSkillsetid,
+        selectedSkill,
         sortOrder,
         setSortOrder,
         joiningCandidates,
         setJoiningCandidates,
         loading,
         error,
-        fetchCandidates,
         fetchSkillsets,
         skills,
         setSkills,
         handleSkillChange,
-        handleSortChange
+        handleSortChange,
+        generateReport
     };
 };
 
-export default useHiringHook;
+export default useJoiningDashboard;
 

@@ -12,9 +12,9 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 -------------------------------------------------------------------------------------------------------
 // */
 
-import React, { useState } from "react";
-import styles from "./JoiningDashboard.module.css"; // CSS Module for styling
-import useHiringHook from "../hooks/useJoiningDashboard"; // Custom hook for fetching and managing data
+import React from "react";
+import styles from "./JoiningDashboard.module.css";
+import useJoiningDashboard from "../hooks/useJoiningDashboard";  
 
 const JoiningDashboard = () => {
   const {
@@ -27,12 +27,12 @@ const JoiningDashboard = () => {
     joiningCandidates,
     loading,
     error,
-    fetchCandidates,
+    generateReport,  
     handleSkillChange,
-  } = useHiringHook();
+  } = useJoiningDashboard();  
 
   const handleGenerateReport = () => {
-    fetchCandidates(); // Fetch candidates based on selected skillset and date range
+    generateReport();  
   };
 
   return (
@@ -96,7 +96,7 @@ const JoiningDashboard = () => {
               {joiningCandidates.map((candidate, index) => (
                 <tr key={index}>
                   <td>{candidate.name}</td>
-                  <td>{candidate.skillSet}</td>
+                  <td>{candidate.Position}</td>
                   <td>{candidate.joiningDate}</td>
                 </tr>
               ))}
