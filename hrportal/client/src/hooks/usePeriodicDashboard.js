@@ -130,6 +130,9 @@ const usePeriodicDashboard = () => {
       // Display the backend error message
     setError(err.message);
     console.error("Error fetching report data:", err);
+      // Display the backend error message
+    setError(err.message);
+    console.error("Error fetching report data:", err);
     } finally {
       setLoading(false);
     }

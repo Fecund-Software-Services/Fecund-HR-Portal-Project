@@ -185,3 +185,37 @@
 {"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-03T13:44:11.180Z"}
 {"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-03T13:44:11.183Z"}
 {"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6ce","timestamp":"2024-09-03T13:44:11.195Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-04T07:51:38.113Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-04T07:51:38.254Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-04T07:51:38.658Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-04T07:51:38.935Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-04T07:51:38.938Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-04T07:51:38.959Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-04T07:51:38.962Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-04T07:51:39.125Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-04T07:51:39.242Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-04T07:51:39.245Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-04T07:51:39.847Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-04T07:51:39.864Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-04T07:51:39.910Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-04T07:51:43.649Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-04T07:51:45.824Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-04T07:52:04.436Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-04T07:52:17.023Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-04T07:55:28.095Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66d70621a3bcdf7e81809e18","timestamp":"2024-09-04T07:56:12.281Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-04T07:56:13.918Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-04T07:57:12.566Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-04T07:57:12.629Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-04T07:57:12.665Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-04T07:57:12.670Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-04T07:57:12.679Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-04T07:57:12.684Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-04T07:57:12.686Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-04T07:57:12.688Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-04T07:57:12.691Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-04T07:57:12.694Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-04T07:57:12.696Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-04T07:57:12.699Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-04T07:57:12.701Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-04T07:57:26.099Z"}

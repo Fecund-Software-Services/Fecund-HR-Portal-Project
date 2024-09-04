@@ -44,7 +44,7 @@ const periodicDashboard = async (req, res) => {
 
     // Check for valid date range
     if (new Date(startDate) > new Date(endDate)) {
-      return res.status(400).json({ message: 'Start date cannot be after end date.' });
+      return res.status(400).json({ error: 'Start date cannot be after end date.' });
     }
 
     // TO GET THOSE CANIDATES WHO ARE INTERVIEWED
@@ -132,7 +132,7 @@ const interviewDashboard = async (req, res) => {
 
     // Check for valid date range
     if (new Date(startDate) > new Date(endDate)) {
-      return res.status(400).json({ message: 'Start date cannot be after end date.' });
+      return res.status(400).json({ error: 'Start date cannot be after end date.' });
     }
 
     // SKILLSET FILTER

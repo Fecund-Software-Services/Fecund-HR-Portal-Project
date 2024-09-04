@@ -113,15 +113,18 @@ const useInterviewDashboard = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch report data");
+       // If the response is not OK, parse the error message from the response
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Failed to fetch report data");
       }
 
       const result = await response.json();
       setData(result);
       
     } catch (err) {
-      setError("Failed to fetch report data");
-      console.error("Error fetching report data:", err);
+       // Display the backend error message
+    setError(err.message);
+    console.error("Error fetching report data:", err);
     } finally {
       setLoading(false);
     }
