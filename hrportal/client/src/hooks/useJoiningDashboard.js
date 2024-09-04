@@ -86,6 +86,7 @@ const useJoiningDashboard = () => {
 
     const handleSortChange = (newSortOrder) => {
         setSortOrder(newSortOrder);
+        fetchCandidates();  // Fetch the sorted data after changing the sort order
       };
 
     const generateReport = () => {
