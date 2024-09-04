@@ -10,11 +10,12 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 -------------------------------------------------------------------------------------------------------
 2/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD
 3/9/24     | HS                      |5        |2     | JOINING DASHBOARD
+4/9/24     | HS                      |5        |2     | DEFFERED DASHBOARD
 -------------------------------------------------------------------------------------------------------
 // */
 const express = require('express')
 
-const {periodicDashboard, interviewDashboard, joiningDashBoard} = require('../controllers/dashboardController')
+const {periodicDashboard, interviewDashboard, joiningDashBoard, deferredDashbaord} = require('../controllers/dashboardController')
 
 const router = express.Router()
 
@@ -26,5 +27,8 @@ router.get('/interview', interviewDashboard)
 
 // JOINING DASHBOARD
 router.get('/joining', joiningDashBoard)
+
+// DEFERRED DASHBOARD
+router.get('/deferred', deferredDashbaord)
 
 module.exports = router
