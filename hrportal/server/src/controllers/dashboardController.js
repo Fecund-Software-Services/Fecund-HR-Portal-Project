@@ -299,13 +299,13 @@ const joiningDashBoard = async (req, res) => {
 
     // CHECK FOR DATE
     if (!startDate || !endDate) {
-      return res.status(400).json({ message: 'Start and end dates are required.' });
+      return res.status(400).json({ error: 'Start and end dates are required.' });
     }
 
     
     // CHECK FOR DATES
     if (startDate > endDate) {
-      return res.status(400).json({ message: 'Start date cannot be after end date.' });
+      return res.status(400).json({ error: 'Start date cannot be after end date.' });
     }
 
     // QUERY BASED ON JOINING DATE
