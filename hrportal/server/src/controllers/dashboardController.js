@@ -318,13 +318,13 @@ const joiningDashBoard = async (req, res) => {
 
     // CHECK FOR DATE
     if (!startDate || !endDate) {
-      return res.status(400).json({ message: 'Start and end dates are required.' });
+      return res.status(400).json({ error: 'Start and end dates are required.' });
     }
 
 
     // Check for valid date range
     if (new Date(startDate) > new Date(endDate)) {
-      return res.status(400).json({ message: 'Start date cannot be after end date.' });
+      return res.status(400).json({ error: 'Start date cannot be after end date.' });
     }
 
     // QUERY BASED ON JOINING DATE
@@ -367,7 +367,7 @@ const joiningDashBoard = async (req, res) => {
     res.status(200).json(joinedCandidates)
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error.' });
+    res.status(500).json({ error: 'Internal server error.' });
   }
 }
 
@@ -378,12 +378,12 @@ const deferredDashbaord = async (req, res) => {
 
     // Check for required dates
     if (!startDate || !endDate) {
-      return res.status(400).json({ message: 'Start and end dates are required.' });
+      return res.status(400).json({ error: 'Start and end dates are required.' });
     }
 
     // Check for valid date range
     if (new Date(startDate) > new Date(endDate)) {
-      return res.status(400).json({ message: 'Start date cannot be after end date.' });
+      return res.status(400).json({ error: 'Start date cannot be after end date.' });
     }
 
     const validStatuses = ['Candidate not Interested', 'Offer Withdrawn', 'Another Offer/Backed out'];
@@ -429,7 +429,7 @@ const deferredDashbaord = async (req, res) => {
     res.status(200).json(deferredCandidates);
   } catch (error) {
     console.error('Error fetching candidate backout details:', error);
-    res.status(500).json({ message: 'Internal server error.' });
+    res.status(500).json({ error: 'Internal server error.' });
   }
 }
 
