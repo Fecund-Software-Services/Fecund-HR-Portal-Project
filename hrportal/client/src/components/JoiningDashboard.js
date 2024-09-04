@@ -3,72 +3,45 @@ Project: Hiring Portal Project
 Author: Omkar
 Date: 03/09/2024
 Sprint: Phase 2 Sprint 4
-
+ 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |  Phase  |  Description 
+Date        |   Author                  |   Sprint   |  Phase  |  Description
 -------------------------------------------------------------------------------------------------------
-
+ 
 -------------------------------------------------------------------------------------------------------
 // */
-
-import React, { useState, useEffect } from "react";
+ 
+import React from "react";
 import styles from "./JoiningDashboard.module.css";
 import useJoiningDashboard from "../hooks/useJoiningDashboard";  
+import { FaSortUp, FaSortDown } from 'react-icons/fa';  // Importing sort icons
 
 const JoiningDashboard = () => {
-  const [selectedSkill, setSelectedSkill] = useState("None"); // This holds the skill name for display purposes
-  const [selectedSkillId, setSelectedSkillId] = useState(""); // This holds the skill ID
-
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
-
   const {
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
     skills,
-    data,
+    selectedskillsetid,
+    joiningCandidates,
     loading,
     error,
-    fetchCandidates,
-    fetchSkillsets,
-    setData, // Exported setData from the hook  
-  } = useJoiningDashboard(); 
-  
-  
-  useEffect(() => {
-    fetchSkillsets(); // Fetch skills when the component mounts
-    // fetchSubSkills(); // Fetch all subskills by default on initial load
-  }, [fetchSkillsets]);
-
-  const handleSkillChange = (e) => {
-    const selectedValue = e.target.value;
-
-    if (selectedValue === "None") {
-      setSelectedSkill("None");
-      setSelectedSkillId("");
-      // fetchSubSkills(); // Fetch all subskills if "None" is selected
-      // console.log(fetchSubSkills);
-    } else {
-      const foundSkill = skills.find((skill) => skill._id === selectedValue);
-      if (foundSkill) {
-        setSelectedSkill(foundSkill.skillname); // Update dropdown display to selected skill name
-        setSelectedSkillId(foundSkill._id); // Store the ID of the selected skill
-        // fetchSubSkills(foundSkill._id); // Fetch subskills for the selected main skill
-      }
-    }
-
-    // Reset date fields when switching skills
-    setFromDate("");
-    setToDate("");
-
-    // Clear previous report data so the table is hidden
-    setData(null);
-  };
+    generateReport,  
+    handleSkillChange,
+    sortOrder,
+    handleSortChange,  // Added this to trigger sort
+  } = useJoiningDashboard();  
 
   const handleGenerateReport = () => {
-    // if (selectedSkill === "None") {
-    //   fetchSubSkills();
-    // }
-    fetchCandidates(fromDate, toDate, selectedSkillId);  
+    generateReport();  
+  };
+
+  // Function to toggle sort order
+  const toggleSortOrder = () => {
+    const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    handleSortChange(newSortOrder);
   };
 
   return (
@@ -78,7 +51,7 @@ const JoiningDashboard = () => {
         <div className={styles.dropdown}>
           <label className={styles.mainskill}>Main Skill:</label>
           <select
-            value={selectedSkillId || "None"}
+            value={selectedskillsetid || "None"}
             onChange={handleSkillChange}
             className={styles.skillDropdown}
           >
@@ -95,16 +68,16 @@ const JoiningDashboard = () => {
           <label className={styles.date}>Date Range:</label>
           <input
             type="date"
-            value={fromDate}
+            value={startDate}
             className={styles.dateInput}
-            onChange={(e) => setFromDate(e.target.value)}
+            onChange={(e) => setStartDate(e.target.value)}
           />
           <label>To</label>
           <input
             type="date"
-            value={toDate}
+            value={endDate}
             className={styles.dateInput}
-            onChange={(e) => setToDate(e.target.value)}
+            onChange={(e) => setEndDate(e.target.value)}
           />
         </div>
 
@@ -118,18 +91,21 @@ const JoiningDashboard = () => {
 
       {loading && <p>Loading...</p>}
       {error && <p className={styles.error}>{error}</p>}
-      {data && (
+      {joiningCandidates && (
         <div className={styles.reportTableContainer}>
           <table className={styles.reportTable}>
             <thead>
               <tr>
                 <th>Name</th>
                 <th>SkillSet</th>
-                <th>Joining Date</th>
+                <th onClick={toggleSortOrder} style={{ cursor: 'pointer' }}>
+                  Joining Date
+                  {sortOrder === 'asc' ? <FaSortUp /> : <FaSortDown />}  {/* Conditional rendering of sort icons */}
+                </th>
               </tr>
             </thead>
             <tbody>
-              {data.map((candidate, index) => (
+              {joiningCandidates.map((candidate, index) => (
                 <tr key={index}>
                   <td>{candidate.name}</td>
                   <td>{candidate.Position}</td>
@@ -145,4 +121,3 @@ const JoiningDashboard = () => {
 };
 
 export default JoiningDashboard;
-
