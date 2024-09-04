@@ -118,9 +118,8 @@ const usePeriodicDashboard = () => {
       });
 
       if (!response.ok) {
-         // If the response is not OK, parse the error message from the response
+        // If the response is not OK, parse the error message from the response
       const errorData = await response.json();
-      console.log(errorData)
       throw new Error(errorData.error || "Failed to fetch report data");
       }
 
@@ -128,6 +127,9 @@ const usePeriodicDashboard = () => {
       setData(result);
       console.log(data)
     } catch (err) {
+      // Display the backend error message
+    setError(err.message);
+    console.error("Error fetching report data:", err);
       // Display the backend error message
     setError(err.message);
     console.error("Error fetching report data:", err);

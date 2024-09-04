@@ -718,6 +718,7 @@ const EditCandiadteDetails = () => {
                 id="lastWorkingDay"
                 value={editedData.lastWorkingDay}
                 onChange={handleInputChange}
+                required
               />
             </div>
           )}
