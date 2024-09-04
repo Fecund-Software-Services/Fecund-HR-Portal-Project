@@ -670,6 +670,7 @@ const NewCandidate = () => {
                 id="lastWorkingDay"
                 value={formData.lastWorkingDay}
                 onChange={handleInputChange}
+                required
               />
             </div>
           )}

@@ -34,7 +34,11 @@ import SkillSets from "./components/SkillSets";
 import Status from "./components/Status";
 import footer from "./components/footer";
 import PeriodicalDashboard from "./components/PeriodicalDashboard";
+<<<<<<< HEAD
 import JoiningDashboard from "./components/JoiningDashboard";
+=======
+import InterviewDashboard from "./components/InterviewDashboard";
+>>>>>>> 46f7c979671350f63326bbd8aee25a2a6926d0c4
 
 function App() {
   return (
@@ -108,19 +112,32 @@ function App() {
                   element={<PeriodicalDashboard />}
                 />
               </Route>
+<<<<<<< HEAD
 
               <Route
                 exact
                 path="/home/joiningdashboard"
+=======
+              <Route
+                exact
+                path="/home/interviewdashboard"
+>>>>>>> 46f7c979671350f63326bbd8aee25a2a6926d0c4
                 element={<ProtectedRoute />}
               >
                 <Route
                   exact
+<<<<<<< HEAD
                   path="/home/joiningdashboard"
                   element={<JoiningDashboard />}
                 />
               </Route>
 
+=======
+                  path="/home/interviewdashboard"
+                  element={<InterviewDashboard />}
+                />
+              </Route>
+>>>>>>> 46f7c979671350f63326bbd8aee25a2a6926d0c4
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route
@@ -138,3 +155,12 @@ function App() {
 export default App;
 
 
+<<<<<<< HEAD
+=======
+
+ 
+ 
+
+
+
+>>>>>>> 46f7c979671350f63326bbd8aee25a2a6926d0c4
