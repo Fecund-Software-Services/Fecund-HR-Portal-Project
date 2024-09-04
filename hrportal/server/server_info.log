@@ -13,3 +13,270 @@
 {"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-04T10:28:53.227Z"}
 {"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:29:06.346Z"}
 {"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:30:39.824Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-04T10:51:13.190Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-04T10:51:13.218Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-04T10:51:13.222Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-04T10:51:13.225Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-04T10:51:13.230Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-04T10:51:13.236Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-04T10:51:13.238Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-04T10:51:13.242Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-04T10:51:13.244Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-04T10:51:13.248Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-04T10:51:13.256Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-04T10:51:13.260Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-04T10:51:13.262Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-04T10:52:27.484Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:34.990Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:35.250Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:35.314Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:35.569Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:35.632Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:35.900Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:35.960Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:36.226Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:36.287Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:36.550Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:36.611Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:36.873Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:36.932Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:37.197Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:37.245Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:37.524Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:37.570Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:37.847Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:37.896Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:38.173Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:38.221Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:38.498Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:38.542Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:38.822Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:38.869Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:39.134Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:39.194Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:39.460Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:39.509Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:39.785Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:39.833Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:40.111Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:40.159Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:40.435Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:40.485Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:40.751Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:40.810Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:41.074Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:41.136Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:41.401Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:41.455Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:41.720Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:41.783Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:42.041Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:42.106Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:42.369Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:42.430Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:42.693Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:42.757Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:43.022Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:43.080Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:43.340Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:43.403Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:43.653Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:43.728Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:43.979Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:44.042Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:44.318Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:44.365Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:44.643Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:44.694Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:44.957Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:45.019Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:45.282Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:45.345Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:45.593Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:45.674Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:45.918Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:45.996Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:46.232Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:46.309Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:46.555Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:46.630Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:46.879Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:46.954Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:47.201Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:47.268Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:47.517Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:47.591Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:47.836Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:47.915Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:48.147Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:48.240Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:48.474Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:48.567Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:48.794Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:48.905Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:49.106Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:49.230Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:49.443Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:49.541Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:49.771Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:49.869Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:50.085Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:50.198Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:50.414Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:50.519Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:50.740Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:50.833Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:51.063Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:51.157Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:51.374Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:51.468Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T10:52:51.686Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-04T11:03:09.974Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-04T11:03:09.994Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-04T11:03:09.995Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-04T11:03:10.003Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-04T11:03:10.010Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-04T11:03:10.015Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-04T11:03:10.022Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-04T11:03:10.030Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-04T11:03:10.031Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-04T11:03:10.033Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-04T11:03:10.035Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-04T11:03:10.039Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-04T11:03:10.044Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-04T11:03:14.653Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:17.783Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:17.797Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:18.135Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:18.372Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:18.448Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:18.698Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:18.762Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:19.010Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:19.090Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:19.334Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:19.411Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:19.656Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:19.733Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:19.983Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:20.057Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:20.304Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:20.381Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:20.624Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:20.701Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:20.948Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:21.025Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:21.275Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:21.347Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:21.596Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:21.659Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:21.908Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:21.983Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:22.235Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:22.304Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:22.557Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:22.622Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:22.883Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:22.946Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:23.208Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:23.268Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:23.534Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:23.580Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:23.861Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:23.905Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:24.184Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:24.234Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:24.509Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:24.555Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:24.830Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:24.877Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:25.156Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:25.200Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:25.477Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:25.526Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:25.802Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:25.851Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:26.116Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:26.177Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:26.441Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:26.488Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:26.754Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:26.808Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:27.079Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:27.129Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:27.391Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:27.455Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:27.719Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:27.779Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:28.041Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:28.088Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:28.352Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:28.412Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:28.675Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:28.736Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:28.999Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:29.060Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:29.326Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:29.382Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:29.646Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:29.692Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:29.971Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:30.015Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:30.298Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:30.341Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:30.622Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:30.667Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:30.944Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:30.989Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:31.268Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:31.313Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:31.593Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:31.638Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:31.916Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:31.960Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:32.240Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:32.283Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:32.561Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:32.592Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:32.872Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:32.915Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:33.199Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:33.226Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:33.524Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:33.539Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:33.847Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:33.862Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:34.172Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:34.437Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:03:34.494Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-04T11:52:44.684Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-04T11:52:44.710Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-04T11:52:44.711Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-04T11:52:44.728Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-04T11:52:44.745Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-04T11:52:44.761Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-04T11:52:44.793Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-04T11:52:44.794Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-04T11:52:44.796Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-04T11:52:44.798Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-04T11:52:44.803Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-04T11:52:44.805Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-04T11:52:44.806Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-04T11:53:13.172Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-04T11:53:15.877Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-04T11:53:16.208Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:53:28.148Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:53:34.937Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:54:55.367Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T11:55:08.353Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-04T12:04:03.027Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-04T12:04:06.377Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-04T12:04:06.719Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-04T12:08:29.022Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-04T12:08:31.280Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-04T12:08:31.541Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T12:08:42.632Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T12:08:45.353Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T12:08:46.317Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T12:08:47.588Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-04T12:08:49.388Z"}
