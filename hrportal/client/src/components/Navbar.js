@@ -11,6 +11,7 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 8/07/2024   |   Vishal Garg             |   1       |    Front End Coding Navbar
 26/07/2024  |   Vishal Garg             | ph2 sp4   |    Navbar Dashboard Link Implementation
+ 4/09/2024  |    Omkar Tajane           |     5      |   Joining Dashboard Implmentation
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -92,7 +93,7 @@ const Navbar = () => {
                 <Link to="/home/interviewdashboard">Interview</Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/joining">Joining</Link>
+                <Link to="/home/joiningdashboard">Joining</Link>
               </ul>
               <ul className={styles.link}>
                 <Link to="/home/defferred">Defferred</Link>

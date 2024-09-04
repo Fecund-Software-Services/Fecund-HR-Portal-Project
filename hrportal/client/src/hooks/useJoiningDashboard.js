@@ -72,7 +72,9 @@ const useHiringHook = () => {
             }
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error('Failed to fetch joiningCandidates');
+               // If the response is not OK, parse the error message from the response
+               const errorData = await response.json();       
+               throw new Error(errorData.error || "Failed to fetch report data");
             }
             const data = await response.json();
             setJoiningCandidates(data);
@@ -85,6 +87,7 @@ const useHiringHook = () => {
 
     const handleSortChange = (newSortOrder) => {
         setSortOrder(newSortOrder);
+        fetchCandidates();  // Fetch sorted data after changing sort order
       };
 
     const generateReport = () => {
