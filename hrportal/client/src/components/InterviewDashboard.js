@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./InterviewDashboard.module.css"; // Reuse or create a similar CSS file
 import useInterviewDashboard from "../hooks/useInterviewDashboard"; // Custom hook
+import CellWithTooltip from "./CellWithTooltip";
 
 const InterviewDashboard = () => {
   const [selectedSkill, setSelectedSkill] = useState("None");
@@ -50,6 +51,8 @@ const InterviewDashboard = () => {
     // Clear previous report data so the table is hidden
     setData(null);
   };
+
+  // console.log(data[1].candidateNames)
 
   const handleGenerateReport = () => {
     if (selectedSkill === "None") {
@@ -133,24 +136,79 @@ const InterviewDashboard = () => {
               {data.map((row, index) => (
                 <tr key={index}>
                   <td>{row.position}</td>
-                  <td>{row.noOfCandidatesApproached}</td>
-                  <td>{row.candidatesNotInterested}</td>
-                  <td>{row.firstRoundScheduled}</td>
-                  <td>{row.rejectedRound1}</td>
-                  <td>{row.onHoldRound1}</td>
-                  <td>{row.clearedRound1}</td>
-                  <td>{row.secondRoundScheduled}</td>
-                  <td>{row.rejectedRound2}</td>
-                  <td>{row.onHoldRound2}</td>
-                  <td>{row.clearedRound2}</td>
-                  <td>{row.negotiationStage}</td>
-                  <td>{row.offerWithdrawn}</td>
-                  <td>{row.offerAccepted}</td>
-                  <td>{row.candidateBackedOut}</td>
-                  <td>{row.candidateNames?.total || 'N/A'}</td>
+                  <CellWithTooltip
+                    column="noOfCandidatesApproached"
+                    value={row.noOfCandidatesApproached}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="candidatesNotInterested"
+                    value={row.candidatesNotInterested}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="firstRoundScheduled"
+                    value={row.firstRoundScheduled}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="rejectedRound1"
+                    value={row.rejectedRound1}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="onHoldRound1"
+                    value={row.onHoldRound1}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="clearedRound1"
+                    value={row.clearedRound1}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="secondRoundScheduled"
+                    value={row.secondRoundScheduled}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="rejectedRound2"
+                    value={row.rejectedRound2}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="onHoldRound2"
+                    value={row.onHoldRound2}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="clearedRound2"
+                    value={row.clearedRound2}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="negotiationStage"
+                    value={row.negotiationStage}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="offerWithdrawn"
+                    value={row.offerWithdrawn}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="offerAccepted"
+                    value={row.offerAccepted}
+                    names={row.candidateNames}
+                  />
+                  <CellWithTooltip
+                    column="candidateBackedOut"
+                    value={row.candidateBackedOut}
+                    names={row.candidateNames}
+                  />
+                  <td>{row.candidateNames?.total || "N/A"}</td>
                 </tr>
               ))}
-
             </tbody>
           </table>
         </div>
