@@ -23,13 +23,6 @@ const getTooltipContent = (column, value, names) => {
   };
 
     return contentMap[column] || `Value: ${value}`;
-//   let content = contentMap[column] || `Value: ${value}`;
-
-//   if (names && names[column] && names[column].length > 0) {
-//     content += `\nCandidates: ${names[column].join(", ")}`;
-//   }
-
-//   return content;
 
 };
 
@@ -37,11 +30,12 @@ const CellWithTooltip = ({ column, value, names }) => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const tooltipContent = getTooltipContent(column, names);
-  console.log('Column:', column, 'Value:', value, 'Names:', {names});
+  console.log('Column:', column, 'Value:', value, 'Names:', names);
 
   if (!tooltipContent) {
     return <td>{value}</td>;
   }
+
 
   return (
     <td
