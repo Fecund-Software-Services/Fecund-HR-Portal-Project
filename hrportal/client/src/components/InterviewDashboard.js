@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styles from "./InterviewDashboard.module.css"; // Reuse or create a similar CSS file
 import useInterviewDashboard from "../hooks/useInterviewDashboard"; // Custom hook
+// import CellWithTooltip from "./CellWithTooltip";
 
 const InterviewDashboard = () => {
   const [selectedSkill, setSelectedSkill] = useState("None");
   const [selectedSkillId, setSelectedSkillId] = useState("");
-
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [hoveredCell, setHoveredCell] = useState(null);
 
   const {
     skills,
@@ -51,11 +52,51 @@ const InterviewDashboard = () => {
     setData(null);
   };
 
+  // console.log(data[1].candidateNames)
+
   const handleGenerateReport = () => {
     if (selectedSkill === "None") {
       fetchSubSkills();
     }
     fetchReport(fromDate, toDate, selectedSkillId);
+  };
+
+  const renderCellWithHover = (value, candidateNames, rowIndex, columnName) => {
+    const handleMouseEnter = () => {
+      if (candidateNames && candidateNames[columnName]) {
+        setHoveredCell({
+          rowIndex,
+          columnName,
+          names: candidateNames[columnName],
+        });
+      }
+    };
+
+    const handleMouseLeave = () => {
+      setHoveredCell(null);
+    };
+
+    return (
+      <td
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{ position: "relative" }}
+      >
+        {value}
+        {hoveredCell &&
+          hoveredCell.rowIndex === rowIndex &&
+          hoveredCell.columnName === columnName && (
+            <div className={styles.hoverBox}>
+              {/* <h4>Candidates:</h4> */}
+              <ul>
+                {hoveredCell.names.map((name, index) => (
+                  <li key={index}>{name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+      </td>
+    );
   };
 
   return (
@@ -133,24 +174,98 @@ const InterviewDashboard = () => {
               {data.map((row, index) => (
                 <tr key={index}>
                   <td>{row.position}</td>
-                  <td>{row.noOfCandidatesApproached}</td>
-                  <td>{row.candidatesNotInterested}</td>
-                  <td>{row.firstRoundScheduled}</td>
-                  <td>{row.rejectedRound1}</td>
-                  <td>{row.onHoldRound1}</td>
-                  <td>{row.clearedRound1}</td>
-                  <td>{row.secondRoundScheduled}</td>
-                  <td>{row.rejectedRound2}</td>
-                  <td>{row.onHoldRound2}</td>
-                  <td>{row.clearedRound2}</td>
-                  <td>{row.negotiationStage}</td>
-                  <td>{row.offerWithdrawn}</td>
-                  <td>{row.offerAccepted}</td>
-                  <td>{row.candidateBackedOut}</td>
-                  <td>{row.candidateNames?.total || 'N/A'}</td>
+                  {renderCellWithHover(
+                    row.noOfCandidatesApproached,
+                    row.candidateNames,
+                    index,
+                    "noOfCandidatesApproached"
+                  )}
+                  {renderCellWithHover(
+                    row.candidatesNotInterested,
+                    row.candidateNames,
+                    index,
+                    "Candidate not Interested"
+                  )}
+                  {renderCellWithHover(
+                    row.firstRoundScheduled,
+                    row.candidateNames,
+                    index,
+                    "Scheduled R1"
+                  )}
+                  {renderCellWithHover(
+                    row.rejectedRound1,
+                    row.candidateNames,
+                    index,
+                    "Rejected R1"
+                  )}
+                  {renderCellWithHover(
+                    row.onHoldRound1,
+                    row.candidateNames,
+                    index,
+                    "On Hold R1"
+                  )}
+                  {renderCellWithHover(
+                    row.clearedRound1,
+                    row.candidateNames,
+                    index,
+                    "Cleared 1st Round"
+                  )}
+                  {renderCellWithHover(
+                    row.secondRoundScheduled,
+                    row.candidateNames,
+                    index,
+                    "Scheduled R2"
+                  )}
+                  {renderCellWithHover(
+                    row.rejectedRound2,
+                    row.candidateNames,
+                    index,
+                    "Rejected R2"
+                  )}
+                  {renderCellWithHover(
+                    row.onHoldRound2,
+                    row.candidateNames,
+                    index,
+                    "On Hold R2"
+                  )}
+                  {renderCellWithHover(
+                    row.clearedRound2,
+                    row.candidateNames,
+                    index,
+                    "Cleared 2nd Round"
+                  )}
+                  {renderCellWithHover(
+                    row.negotiationStage,
+                    row.candidateNames,
+                    index,
+                    "Negotiation Stage"
+                  )}
+                  {renderCellWithHover(
+                    row.offerWithdrawn,
+                    row.candidateNames,
+                    index,
+                    "Offer Withdrawn"
+                  )}
+                  {renderCellWithHover(
+                    row.offerAccepted,
+                    row.candidateNames,
+                    index,
+                    "Offer Issued"
+                  )}
+                  {renderCellWithHover(
+                    row.candidateBackedOut,
+                    row.candidateNames,
+                    index,
+                    "Another Offer/Backed out"
+                  )}
+                  {renderCellWithHover(
+                    row.candidateNames?.total || "N/A",
+                    row.candidateNames,
+                    index,
+                    "total"
+                  )}
                 </tr>
               ))}
-
             </tbody>
           </table>
         </div>

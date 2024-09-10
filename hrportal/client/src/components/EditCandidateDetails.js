@@ -400,7 +400,7 @@ const EditCandiadteDetails = () => {
                 const experience = e.target.value;
                 setEditedData((prevData) => ({
                   ...prevData,
-                  totalRelevantExperience: experience > 25 ? '25+' : experience,
+                  totalRelevantExperience: experience,
                 }));
               }}
               required

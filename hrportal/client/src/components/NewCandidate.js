@@ -368,7 +368,7 @@ const NewCandidate = () => {
                 const experienceValue = parseFloat(formData.totalRelevantExperienceDisplay);
                 setFormData((prevData) => ({
                   ...prevData,
-                  totalRelevantExperience: experienceValue <= 25 ? experienceValue : "25+",
+                  totalRelevantExperience: experienceValue,
                 }));
               }}
               required
@@ -398,7 +398,7 @@ const NewCandidate = () => {
                 const experienceValue = parseFloat(formData.itExperienceDisplay);
                 setFormData((prevData) => ({
                   ...prevData,
-                  itExperience: experienceValue <= 25 ? experienceValue : "25+",
+                  itExperience: experienceValue,
                 }));
               }}
               required
