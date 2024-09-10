@@ -37,6 +37,7 @@ import footer from "./components/footer";
 import PeriodicalDashboard from "./components/PeriodicalDashboard";
 import InterviewDashboard from "./components/InterviewDashboard";
 import JoiningDashboard from "./components/JoiningDashboard";
+import DeferredDashboard from "./components/DeferredDashboard";
 
 function App() {
   return (
@@ -132,6 +133,19 @@ function App() {
                   element={<JoiningDashboard />}
                 />
               </Route>
+
+              <Route
+                exact
+                path="/home/deferreddashboard"
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/deferreddashboard"
+                  element={<DeferredDashboard />}
+                />
+              </Route>
+
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route

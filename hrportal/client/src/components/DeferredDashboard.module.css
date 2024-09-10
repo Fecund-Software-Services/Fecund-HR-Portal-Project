@@ -1,7 +1,7 @@
 /*
 Project: Hiring Portal Project
 Author: Omkar
-Date: 03/09/2024
+Date: 04/09/2024
 Sprint: Phase 2 Sprint 5
 
 Modification Log:
@@ -11,6 +11,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 9/09/2024   |          Omkar            |     5      |    2    |   Report Table size changed
 -------------------------------------------------------------------------------------------------------
 // */
+
 .dashboardContainer {
     display: flex;
     flex-direction: column;
@@ -21,28 +22,26 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     background-position: center;
     height: 100vh;
 }
- 
+
 @font-face {
     font-family: Rastanty Cortez;
     src: url(../fonts/Rastanty\ Cortez.ttf);
-  }
- 
-  .rastanty_Cortez {
+}
+
+.rastanty_Cortez {
     font-family: Rastanty Cortez;
     font-size: 70px;
-    color:  #ffffff;
+    color: #ffffff;
     margin-bottom: 45px;
-  }
- 
- 
+}
+
 .title {
     font-size: 2rem; /* Adjust as needed */
     color: white;
     margin-top: 80px;
     margin-bottom: 20px;
-   
 }
- 
+
 .filterSection {
     display: flex;
     flex-direction: column;
@@ -53,7 +52,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     margin-top: 25px;
     margin-right: 600px;
 }
- 
+
 .dropdown {
     display: flex;
     flex-direction: row;
@@ -61,30 +60,39 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     color: #ffffff;
     width: 40%;
 }
- 
-.mainskill {
+
+.statusLabel {
     padding: 10px;
 }
- 
-.skillDropdown {
+
+/*.statusDropdown {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}*/
+
+.statusDropdown {
     display: flex;
     flex-direction: row;
     padding-right: 40px;
     justify-content: space-between;
-    width: 54%;
+    width: 52%;
     padding: 10px;
-}
- 
-.skillDropdown option {
+  }
+
+.statusDropdown option {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
 }
- 
+
 .date {
     margin-left: 8px;
     margin-right: 22px;
 }
- 
+
 .dateFields {
     display: flex;
     flex-direction: row;
@@ -92,14 +100,14 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     gap: 20px;
     color: white;
 }
- 
+
 .dateInput {
     width: 150px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
- 
+
 .generateReportBtn {
     padding: 10px 10px;
     background-color: #d4d4d4;
@@ -111,37 +119,34 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
- 
+
 .generateReportBtn:hover {
     background-color: #0069d9;
 }
- 
+
 .reportTableContainer {
     width: 80%;
     overflow-x: auto;
 }
- 
+
 .reportTable {
     width: 60%;
     border-collapse: collapse;
     margin-top: 20px;
 }
- 
+
 .reportTable th, .reportTable td {
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
     color: white;
 }
- 
+
 .reportTable th {
     background-color: #555;
 }
- 
+
 .error {
     color: red;
     margin-top: 10px;
 }
- 
-
-

@@ -7,18 +7,18 @@ User Story:Add New Candidate
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   |  Phase   |  Description 
 -------------------------------------------------------------------------------------------------------
-18/4/2024   |   Omkar & Vishal          |   2        |  Add New Candidate
-24/4/2024   |   Vishal                  |   3        |  Search Candidate
-29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
-09/05/2024  |   Harshini C              |   4        |  BG update to all screens
-10/05/2024  |   Vishal                  |   4        |  CSS and alignment based on BG image
-10/05/2024  |   Harshini C              |   4        |  Log Out button
-14/05/2024  |   Harshini C              |   4        |  CSS and alignment based on BG image
-18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
-26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
-28/08/2024  |   Harshini C              |   4        | Footer - Implementing the social media links
+18/4/2024   |   Omkar & Vishal          |   2        |  1       |  Add New Candidate
+24/4/2024   |   Vishal                  |   3        |  1       |  Search Candidate
+29/4/2024   |   Vishal                  |   3        |  1       |  Add New Candidate Validations - Code Integration
+09/05/2024  |   Harshini C              |   4        |  1       |  BG update to all screens
+10/05/2024  |   Vishal                  |   4        |  1       |  CSS and alignment based on BG image
+10/05/2024  |   Harshini C              |   4        |  1       |  Log Out button
+14/05/2024  |   Harshini C              |   4        |  1       |  CSS and alignment based on BG image
+18/07/2024  |   Vishal Garg             |   2        |  1       |  Front End Coding Navbar 
+26/8/2024   |   Vishal Garg             |   4        |  2       |  Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+28/08/2024  |   Harshini C              |   4        |  2       |  Footer - Implementing the social media links
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -726,6 +726,14 @@ const NewCandidate = () => {
           <span className={styles.asterisk}>(*)</span> are required.
         </p>
       </div>
+      <div className={styles.footerContainer}>
+          <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
+          <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
+          <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
+          <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
+          <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
+        </div>  
+
       {showPopup && (
         <div className={styles.popup} onClick={togglePopup}>
           <div
@@ -741,13 +749,6 @@ const NewCandidate = () => {
               </a>
             </p>
           </div>
-          <div className={styles.footerContainer}>
-            <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
-            <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
-            <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
-            <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
-            <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
-          </div>  
         </div>
       )}
     </div>
