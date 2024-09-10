@@ -65,14 +65,23 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     padding: 10px;
 }
 
-.statusDropdown {
+/*.statusDropdown {
     padding: 10px;
     font-size: 16px;
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     border: 1px solid #ddd;
     border-radius: 4px;
-}
+}*/
+
+.statusDropdown {
+    display: flex;
+    flex-direction: row;
+    padding-right: 40px;
+    justify-content: space-between;
+    width: 52%;
+    padding: 10px;
+  }
 
 .statusDropdown option {
     background-color: #ffffff;
