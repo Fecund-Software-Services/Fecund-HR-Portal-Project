@@ -108,20 +108,18 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     cursor: pointer;
     margin-top: 10px;
   } */
-
   .generateReportBtn {
     padding: 10px 10px;
-    background-color: #fcfcfc;
+    background-color: #d4d4d4;
     color: #000;
-    width: 20%;
-    /* margin: 10px 32%; */
-    margin-left: 10px;
+    width: 22%;
+    margin-left: 140px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+ 
   .generateReportBtn:hover {
     background-color: #0069d9;
   }
