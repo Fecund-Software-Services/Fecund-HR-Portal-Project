@@ -12,6 +12,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 3/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD<hover feature to include full name>
 3/9/24     | HS                      |5        |2     | JOINING DASHBOARD
 4/9/24     | HS                      |5        |2     | DEFFERED DASHBOARD
+11/9/24     | HS                      |5        |2     | VALIDATION
 -------------------------------------------------------------------------------------------------------
 // */
 
@@ -98,6 +99,11 @@ const periodicDashboard = async (req, res) => {
       negotiation: data.negotiation,
       backedOut: data.backedOut
     }));
+
+    // Check if there's no data
+    if (formattedResult.length === 0) {
+      return res.json({ message: "No Data for the selected Date Range" });
+    }
 
     // Calculate totals
     const total = formattedResult.reduce((acc, curr) => {
@@ -292,6 +298,11 @@ const interviewDashboard = async (req, res) => {
       ...data
     }));
 
+    // Check if there's no data
+    if (formattedResult.length === 0) {
+      return res.json({ message: "No Data for the selected Date Range" });
+    }
+
     // Calculate totals
     const total = formattedResult.reduce((acc, curr) => {
       Object.keys(curr).forEach(key => {
@@ -364,6 +375,11 @@ const joiningDashBoard = async (req, res) => {
       joiningDate: candidate.joiningDate.toString().split('T')[0],
     }));
 
+    // Check if there's no data
+    if (joinedCandidates.length === 0) {
+      return res.json({ message: "No Data for the selected Date Range" });
+    }
+
     res.status(200).json(joinedCandidates)
   } catch (error) {
     console.error(error);
@@ -425,6 +441,11 @@ const deferredDashbaord = async (req, res) => {
 
       return []; // Return empty array if no relevant status found
     });
+
+    // Check if there's no data
+    if (deferredCandidates.length === 0) {
+      return res.json({ message: "No Data for the selected Date Range" });
+    }
 
     res.status(200).json(deferredCandidates);
   } catch (error) {
