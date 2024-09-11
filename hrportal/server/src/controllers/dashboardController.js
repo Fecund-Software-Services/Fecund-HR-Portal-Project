@@ -100,11 +100,6 @@ const periodicDashboard = async (req, res) => {
       backedOut: data.backedOut
     }));
 
-    // Check if there's no data
-    if (formattedResult.length === 0) {
-      return res.json({ message: "No Data for the selected Date Range" });
-    }
-
     // Calculate totals
     const total = formattedResult.reduce((acc, curr) => {
       Object.keys(curr.subskills).forEach(key => {
@@ -118,7 +113,18 @@ const periodicDashboard = async (req, res) => {
 
     formattedResult.push(total);
 
-    res.json(formattedResult);
+    // Check if the result is empty or contains only zeroes
+    const isEmptyResult = formattedResult.length === 1 && 
+      total.offered === 0 && 
+      total.negotiation === 0 && 
+      total.backedOut === 0 && 
+      Object.values(total.subskills).every(value => value === 0);
+
+    if (isEmptyResult) {
+      res.json({ message: "No data in the specified date range" });
+    } else {
+      res.json(formattedResult);
+    }
 
   } catch (error) {
     console.error('Error fetching periodic dashboard data:', error);
@@ -298,11 +304,6 @@ const interviewDashboard = async (req, res) => {
       ...data
     }));
 
-    // Check if there's no data
-    if (formattedResult.length === 0) {
-      return res.json({ message: "No Data for the selected Date Range" });
-    }
-
     // Calculate totals
     const total = formattedResult.reduce((acc, curr) => {
       Object.keys(curr).forEach(key => {
@@ -315,7 +316,18 @@ const interviewDashboard = async (req, res) => {
 
     formattedResult.push(total);
 
-    res.json(formattedResult);
+    // Check if the result is empty or contains only zeroes
+    const isEmptyResult = formattedResult.length === 1 && 
+      Object.entries(total).every(([key, value]) => 
+        key === 'position' || (typeof value === 'number' && value === 0)
+      );
+
+    if (isEmptyResult) {
+      res.json({ message: "No data in the specified date range" });
+    } else {
+      res.json(formattedResult);
+    }
+  
   } catch (error) {
     console.error('Error fetching interview dashboard data:', error);
     res.status(500).json({ error: 'Internal server error' });
