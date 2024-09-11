@@ -88,9 +88,9 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     color: rgb(0, 0, 0);
 }
 
-.date {
+.dateLabel {
     margin-left: 8px;
-    margin-right: 22px;
+    margin-right: 26px;
 }
 
 .dateFields {
@@ -113,7 +113,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     background-color: #d4d4d4;
     color: #000;
     width: 22%;
-    margin-left: 135px;
+    margin-left: 140px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -125,12 +125,12 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 }
 
 .reportTableContainer {
-    width: 80%;
+    width: 100%;
     overflow-x: auto;
 }
 
 .reportTable {
-    width: 60%;
+    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }

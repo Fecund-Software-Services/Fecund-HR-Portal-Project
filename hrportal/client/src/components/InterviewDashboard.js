@@ -110,7 +110,7 @@ const InterviewDashboard = () => {
             onChange={handleSkillChange}
             className={styles.skillDropdown}
           >
-            <option value="None">None</option>
+            <option value="None">All</option>
             {skills.map((skill) => (
               <option key={skill._id} value={skill._id}>
                 {skill.skillname}
@@ -259,7 +259,7 @@ const InterviewDashboard = () => {
                     "Another Offer/Backed out"
                   )}
                   {renderCellWithHover(
-                    row.candidateNames?.total || "N/A",
+                    row.candidateNames?.total || "0",
                     row.candidateNames,
                     index,
                     "total"

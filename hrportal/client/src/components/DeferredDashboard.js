@@ -56,7 +56,7 @@ const DeferredDashboard = () => {
             onChange={handleStatusChange}
             className={styles.statusDropdown}
           >
-            <option value="None">None</option>
+            <option value="None">All</option>
             <option value="Candidate not Interested">Candidate not Interested</option>
             <option value="Offer Withdrawn">Offer Withdrawn</option>
             <option value="Another Offer/Backed out">Another Offer/Backed out</option>
