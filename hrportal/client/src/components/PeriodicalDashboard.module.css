@@ -156,3 +156,9 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 .asterisk {
   color: red;
 }
+
+.noDataMessage {
+  color: white;
+  font-size: 18px;
+  margin-top: 20px;
+}

@@ -14,6 +14,7 @@ Date        |   Author                  |   Sprint   |  Phase  | Description
 03/09/2024  |   Harshini C              |     5      |   2     | UI fixes
 -----------------------------------------------------------------------------------------------------------------------------------
  */
+  
 
 import React, { useState, useEffect } from "react";
 import styles from "./PeriodicalDashboard.module.css";
@@ -25,6 +26,10 @@ const PeriodicalDashboard = () => {
 
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [noDataMessage, setNoDataMessage] = useState(false);
+  const [reportGenerated, setReportGenerated] = useState(false);
+ 
+
 
   const {
     skills,
@@ -63,17 +68,72 @@ const PeriodicalDashboard = () => {
     // Reset date fields when switching skills
     setFromDate("");
     setToDate("");
+    setNoDataMessage(false);
 
     // Clear previous report data so the table is hidden
     setData(null);
   };
 
+  /*
   const handleGenerateReport = () => {
-    if (selectedSkill === "None") {
-      fetchSubSkills();
+    // Clear previous data and message when generating a new report
+    setData(null);
+    setNoDataMessage(false);
+  
+    // Check if the "To Date" is before the "From Date"
+    if (toDate && fromDate && new Date(toDate) < new Date(fromDate)) {
+      setError("To Date cannot be before From Date");
+      return;
     }
-    fetchReport(fromDate, toDate, selectedSkillId);
+  
+    // Only proceed if both dates are selected
+    if (!fromDate || !toDate) {
+      setError("Please select both From Date and To Date");
+      return;
+    }
+  
+    setError(""); // Clear any previous error message
+  
+    // Fetch the report data
+    fetchReport(fromDate, toDate, selectedSkillId).then((reportData) => {
+      // If the report data is empty or null, show the "No data" message
+      if (!reportData || reportData.length === 0) {
+        setNoDataMessage(true); // Show "No data" message
+      } else {
+        setData(reportData); // Set the report data
+        setNoDataMessage(false); // Hide the "No data" message if data exists
+      }
+    });
   };
+  */
+  const handleGenerateReport = () => {
+    // Clear previous data, message, and set that a report is being generated
+    setData(null);
+    setNoDataMessage(false);
+    setReportGenerated(true);
+  
+    // Check if the "To Date" is before the "From Date"
+    if (toDate && fromDate && new Date(toDate) < new Date(fromDate)) {
+      return; 
+    }
+  
+    // Only proceed if both dates are selected
+    if (!fromDate || !toDate) {
+      return; 
+    }
+  
+    // Fetch the report data
+    fetchReport(fromDate, toDate, selectedSkillId).then((reportData) => {
+      // If the report data is empty or null, show the "No data" message
+      if (!reportData || reportData.length === 0) {
+        setNoDataMessage(true);  // Show "No data" message
+      } else {
+        setData(reportData);  // Set the report data
+        setNoDataMessage(false);  // Hide the "No data" message if data exists
+      }
+    });
+  };
+  
 
   // Function to determine which subSkills have non-zero values in any row
   //  const nonZeroSubSkills = subSkills.filter((subSkill) => {
@@ -140,8 +200,11 @@ const PeriodicalDashboard = () => {
       </div>
 
       {loading && <p>Loading...</p>}
-      {error && <p className={styles.error}>{error}</p>}
-      {data && (
+      {error &&  <p className={styles.error}>{error}</p>}
+      {!loading && reportGenerated && noDataMessage && (
+      <p className={styles.noDataMessage}>No data under the selected Date Range</p>
+    )}
+      {!loading && data && data.length > 0 &&  (
         <div className={styles.reportTableContainer}>
           <table className={styles.reportTable}>
             <thead>
@@ -175,6 +238,7 @@ const PeriodicalDashboard = () => {
       )}
     </div>
   );
+  
 };
 
 export default PeriodicalDashboard;
