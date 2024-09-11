@@ -104,7 +104,7 @@ const PeriodicalDashboard = () => {
             className={styles.skillDropdown}
             required
           >
-            <option value="None">None</option>
+            <option value="None">All</option>
             {skills.map((skill) => (
               <option key={skill._id} value={skill._id}>
                 {skill.skillname}
