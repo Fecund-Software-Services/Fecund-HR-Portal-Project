@@ -167,6 +167,7 @@ const interviewDashboard = async (req, res) => {
       ...subskillFilter
     }).select({ firstName: 1, lastName: 1, statusHistory: 1, subskillset: 1, status: 1 });
 
+
     const result = candidates.reduce((acc, candidate) => {
       const latestStatus = getLatestStatusInRange(candidate.statusHistory, startDate, endDate);
       if (!latestStatus) {
@@ -453,6 +454,7 @@ const deferredDashbaord = async (req, res) => {
 
       return []; // Return empty array if no relevant status found
     });
+    
 
     // Check if there's no data
     if (deferredCandidates.length === 0) {
