@@ -142,6 +142,13 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     color: red;
     margin-top: 10px;
 }
+
+.noRecordsFound {
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-top: 2rem;
+  }
  
 
 

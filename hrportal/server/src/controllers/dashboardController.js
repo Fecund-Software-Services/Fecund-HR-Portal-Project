@@ -121,11 +121,13 @@ const periodicDashboard = async (req, res) => {
       Object.values(total.subskills).every(value => value === 0);
 
     if (isEmptyResult) {
-      res.json({ message: "No data in the specified date range" });
+      return res.status(400).json({ error: 'No records found.' });
+      // res.json({ message: "No data in the specified date range" });
     } else {
       res.json(formattedResult);
     }
-
+    
+      // res.json(formattedResult);
   } catch (error) {
     console.error('Error fetching periodic dashboard data:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -324,7 +326,7 @@ const interviewDashboard = async (req, res) => {
       );
 
     if (isEmptyResult) {
-      res.json({ message: "No data in the specified date range" });
+      return res.status(400).json({ error: 'No records found' });
     } else {
       res.json(formattedResult);
     }
@@ -389,9 +391,9 @@ const joiningDashBoard = async (req, res) => {
     }));
 
     // Check if there's no data
-    if (joinedCandidates.length === 0) {
-      return res.json({ message: "No Data for the selected Date Range" });
-    }
+    // if (joinedCandidates.length === 0) {
+    //   return res.json({ message: "No Data for the selected Date Range" });
+    // }
 
     res.status(200).json(joinedCandidates)
   } catch (error) {
@@ -457,9 +459,9 @@ const deferredDashbaord = async (req, res) => {
     
 
     // Check if there's no data
-    if (deferredCandidates.length === 0) {
-      return res.json({ message: "No Data for the selected Date Range" });
-    }
+    // if (deferredCandidates.length === 0) {
+    //   return res.json({ message: "No Data for the selected Date Range" });
+    // }
 
     res.status(200).json(deferredCandidates);
   } catch (error) {
