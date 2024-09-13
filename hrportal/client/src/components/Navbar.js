@@ -96,7 +96,7 @@ const Navbar = () => {
                 <Link to="/home/joiningdashboard">Joining</Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/deferreddashboard">Defferred</Link>
+                <Link to="/home/deferreddashboard">Deferred</Link>
               </ul>
             </ul>
           </li>

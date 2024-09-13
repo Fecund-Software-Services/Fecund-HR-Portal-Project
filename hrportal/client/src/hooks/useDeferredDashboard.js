@@ -21,14 +21,14 @@ const useDeferredDashboard = () => {
   const [error, setError] = useState(null);
 
   const fetchCandidates = async (startDate, endDate, status) => {
-    if (!startDate || !endDate) return;
+    // if (!startDate || !endDate) return;
 
     setLoading(true);
     setError(null);
 
     try {
       let url = `/api/dashboard/deferred?startDate=${startDate}&endDate=${endDate}`;
-      if (status!== 'None') {
+      if (status !== 'None') {
         url += `&status=${encodeURIComponent(status)}`;
       }
 
