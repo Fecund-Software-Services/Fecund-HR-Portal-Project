@@ -387,6 +387,21 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
+            <label htmlFor="itExperience">
+              Total IT Experience<span className={styles.asterisk}>*</span>{" "}
+              (Yrs):
+            </label>
+            <input
+              type="text"
+              name="itExperience"
+              id="totalITExperience"
+              value={editedData.itExperience}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div className={styles.sub_container}>
             <label htmlFor="totalRelevantExperience">
               Total Relevant Experience
               <span className={styles.asterisk}>*</span> (Yrs):
@@ -403,21 +418,6 @@ const EditCandiadteDetails = () => {
                   totalRelevantExperience: experience,
                 }));
               }}
-              required
-            />
-          </div>
-
-          <div className={styles.sub_container}>
-            <label htmlFor="itExperience">
-              Total IT Experience<span className={styles.asterisk}>*</span>{" "}
-              (Yrs):
-            </label>
-            <input
-              type="text"
-              name="itExperience"
-              id="totalITExperience"
-              value={editedData.itExperience}
-              onChange={handleInputChange}
               required
             />
           </div>

@@ -46,6 +46,11 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <ul className={styles.navLinks}>
+        <li className={styles.adminLink}>
+          <Link className={styles.adminDropdownToggle} to="/home">Home</Link>
+        </li>
+
+        {/* Admin Dropdown */}
         {userData.role === "admin" ? (
           <li
             className={styles.adminLink}

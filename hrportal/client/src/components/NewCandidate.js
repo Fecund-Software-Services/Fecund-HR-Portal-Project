@@ -346,36 +346,6 @@ const NewCandidate = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="totalRelevantExperience">
-              Total Relevant Experience (Yrs)
-              <span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="number"
-              name="totalRelevantExperience"
-              id="totalRelevantExperience"
-              value={formData.totalRelevantExperienceDisplay}
-              onChange={(e) => {
-                const experience = e.target.value;
-                // Update the display value with the user's input
-                setFormData((prevData) => ({
-                  ...prevData,
-                  totalRelevantExperienceDisplay: experience,
-                }));
-              }}
-              onBlur={() => {
-                // When the user leaves the input field, check if value is more than 25
-                const experienceValue = parseFloat(formData.totalRelevantExperienceDisplay);
-                setFormData((prevData) => ({
-                  ...prevData,
-                  totalRelevantExperience: experienceValue,
-                }));
-              }}
-              required
-            />
-          </div>
-
-          <div className={styles.sub_container}>
             <label htmlFor="itExperience">
               Total IT Experience (Yrs)
               <span className={styles.asterisk}>*</span>:
@@ -399,6 +369,36 @@ const NewCandidate = () => {
                 setFormData((prevData) => ({
                   ...prevData,
                   itExperience: experienceValue,
+                }));
+              }}
+              required
+            />
+          </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="totalRelevantExperience">
+              Total Relevant Experience (Yrs)
+              <span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="number"
+              name="totalRelevantExperience"
+              id="totalRelevantExperience"
+              value={formData.totalRelevantExperienceDisplay}
+              onChange={(e) => {
+                const experience = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperienceDisplay: experience,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, check if value is more than 25
+                const experienceValue = parseFloat(formData.totalRelevantExperienceDisplay);
+                setFormData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperience: experienceValue,
                 }));
               }}
               required
