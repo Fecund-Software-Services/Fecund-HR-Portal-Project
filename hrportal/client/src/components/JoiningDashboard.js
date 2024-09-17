@@ -98,7 +98,7 @@ const JoiningDashboard = () => {
 
       {error ? (
         <p className={styles.error}>{error}</p>
-      ) : joiningCandidates.length > 0 ? (
+      ) : isReportGenerated && joiningCandidates && joiningCandidates.length > 0 ? (
         <div className={styles.reportTableContainer}>
           <table className={styles.reportTable}>
             <thead>

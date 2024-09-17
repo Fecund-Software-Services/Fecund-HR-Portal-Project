@@ -23,6 +23,7 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
+import { Tooltip} from "react-tooltip";
 import { useAuth } from "../context/AuthContext.js";
 //import { FaDownload } from "react-icons/fa";
 import styles from "./ViewCandidateDetail.module.css";
@@ -54,7 +55,7 @@ function ViewCandidateDetail() {
     }
   };
 
-  console.log(candidateDetails)
+  console.log(candidateDetails);
 
   const fetchCandidateResume = async () => {
     try {
@@ -118,9 +119,7 @@ function ViewCandidateDetail() {
           </div>
           <div className={styles.sub_container}>
             <label>Total IT Experience:</label>
-            <p className={styles.text}>
-              {candidateDetails.itExperience}
-            </p>
+            <p className={styles.text}>{candidateDetails.itExperience}</p>
           </div>
           <div className={styles.sub_container}>
             <label>Total Relevant Experience:</label>
@@ -132,7 +131,7 @@ function ViewCandidateDetail() {
             <label>Skill Set:</label>
             <p className={styles.text}>{candidateDetails.skillSet}</p>
           </div>
-          
+
           <div className={styles.sub_container}>
             <label>Current Company:</label>
             <p className={styles.text}>{candidateDetails.currentCompany}</p>
@@ -145,7 +144,7 @@ function ViewCandidateDetail() {
             <label htmlFor="currentCTC">Current CTC (LPA):</label>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
           </div>
-          
+
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">Notice Period:</label>
             <p className={styles.text}>{candidateDetails.noticePeriod}</p>
@@ -178,8 +177,7 @@ function ViewCandidateDetail() {
           ) : (
             ""
           )}
-           {
-          candidateDetails.status === "Scheduled R1" ? (
+          {candidateDetails.status === "Scheduled R1" ? (
             <div className={styles.sub_container}>
               <label>Interview Date:</label>
               <p className={styles.text}>{candidateDetails.interviewDate}</p>
@@ -187,8 +185,7 @@ function ViewCandidateDetail() {
           ) : (
             ""
           )}
-          {
-          candidateDetails.status === "Scheduled R2" ? (
+          {candidateDetails.status === "Scheduled R2" ? (
             <div className={styles.sub_container}>
               <label>Interview Date:</label>
               <p className={styles.text}>{candidateDetails.interviewDate}</p>
@@ -197,7 +194,6 @@ function ViewCandidateDetail() {
             ""
           )}
 
-          
           <div className={styles.sub_container}>
             <label htmlFor="certified">Certified?:</label>
             <p className={styles.text}>
@@ -226,9 +222,29 @@ function ViewCandidateDetail() {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="resume">Resume:</label>
-            <div onClick={fetchCandidateResume}>
-              {candidateDetails.resume}&nbsp;&nbsp;
+            <div>
+              {/* Tooltip and resume link */}
+              <span
+                data-tooltip-content="Click to download"
+                data-tooltip-id="resumeTooltip"  // Link to the Tooltip component with an ID
+                onClick={fetchCandidateResume}
+                className={styles.resume_link}
+              >
+                {candidateDetails.resume}
+              </span>
+              <Tooltip id="resumeTooltip" place="top" effect="solid" />
+               
             </div>
+            {/* <div>
+              <span data-tip="Click to download" onClick={fetchCandidateResume}>
+                {candidateDetails.resume}
+              
+              <Tooltip />
+              </span>
+            </div> */}
+            {/* <div onClick={fetchCandidateResume}>
+              {candidateDetails.resume}&nbsp;&nbsp;
+            </div> */}
           </div>
 
           <div className={styles.sub_container}></div>

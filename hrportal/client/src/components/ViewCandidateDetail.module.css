@@ -240,6 +240,11 @@ textarea {
   color:  #ffffff;
 }
 
+.resume_link {
+  cursor: pointer;
+  color: #4382d4;
+}
+
 
 
 

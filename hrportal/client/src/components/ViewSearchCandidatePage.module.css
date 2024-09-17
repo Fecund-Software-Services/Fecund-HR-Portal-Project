@@ -178,6 +178,7 @@ Date        |   Author                  |   Sprint   |    Description
 
 .table_button {
   padding: 5px 10px;
+  margin-right: 10px;
   background-color: #ffffff;
   color: #000000;
   border: none;
