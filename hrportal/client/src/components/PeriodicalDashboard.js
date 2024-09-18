@@ -18,6 +18,7 @@ Date        |   Author                  |   Sprint   |  Phase  | Description
 import React, { useState, useEffect } from "react";
 import styles from "./PeriodicalDashboard.module.css";
 import usePeriodicDashboard from "../hooks/usePeriodicDashboard";
+import DownloadExcelReport from "./DownloadExcelReport";
 
 const PeriodicalDashboard = () => {
   const [selectedSkill, setSelectedSkill] = useState("None"); // This holds the skill name for display purposes
@@ -130,13 +131,19 @@ const PeriodicalDashboard = () => {
             onChange={(e) => setToDate(e.target.value)}
           />
         </div>
-
+        <div className={styles.reportButton}>
         <button
           onClick={handleGenerateReport}
           className={styles.generateReportBtn}
         >
           Generate Report
         </button>
+        <DownloadExcelReport
+            data={data}
+            dashboardName = "periodical"
+          />
+        </div>
+        
       </div>
 
       {loading && <p>Loading...</p>}
