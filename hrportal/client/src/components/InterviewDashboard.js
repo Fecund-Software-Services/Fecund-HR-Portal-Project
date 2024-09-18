@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./InterviewDashboard.module.css"; // Reuse or create a similar CSS file
 import useInterviewDashboard from "../hooks/useInterviewDashboard"; // Custom hook
+import DownloadExcelReport from "./DownloadExcelReport";
 // import CellWithTooltip from "./CellWithTooltip";
 
 const InterviewDashboard = () => {
@@ -135,13 +136,18 @@ const InterviewDashboard = () => {
             onChange={(e) => setToDate(e.target.value)}
           />
         </div>
-
-        <button
-          onClick={handleGenerateReport}
-          className={styles.generateReportBtn}
-        >
-          Generate Report
-        </button>
+        <div className={styles.reportButton}>
+          <button
+            onClick={handleGenerateReport}
+            className={styles.generateReportBtn}
+          >
+            Generate Report
+          </button>
+          <DownloadExcelReport
+            data={data}
+            dashboardName="interview"
+          />
+        </div>
       </div>
 
       {loading && <p>Loading...</p>}

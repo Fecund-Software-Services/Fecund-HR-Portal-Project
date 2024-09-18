@@ -15,6 +15,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 import React, { useState } from "react";
 import styles from "./DeferredDashboard.module.css";
 import useDeferredDashboard from "../hooks/useDeferredDashboard";
+import DownloadExcelReport from "./DownloadExcelReport";
 
 const DeferredDashboard = () => {
   const [startDate, setStartDate] = useState("");
@@ -90,13 +91,19 @@ const DeferredDashboard = () => {
             onChange={handleEndDateChange}
           />
         </div>
-
+        <div className={styles.reportButton}>
         <button
           onClick={handleGenerateReport}
           className={styles.generateReportBtn}
         >
           Generate Report
         </button>
+        <DownloadExcelReport
+            data={deferredCandidates}
+            dashboardName="deferred"
+          />
+        </div>
+        
       </div>
 
       {loading && <p>Loading...</p>}

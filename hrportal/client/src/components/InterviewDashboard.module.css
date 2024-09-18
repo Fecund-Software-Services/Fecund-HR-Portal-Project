@@ -198,3 +198,11 @@
   text-align: center;
   margin-top: 2rem;
 }
+
+.reportButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+}
+
