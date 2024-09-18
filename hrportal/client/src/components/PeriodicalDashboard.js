@@ -12,6 +12,7 @@ Date        |   Author                  |   Sprint   |  Phase  | Description
 29/08/2024  |   Omkar                   |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset
 30/08/2024  |   Omkar                   |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
 03/09/2024  |   Harshini C              |     5      |   2     | UI fixes
+17/09/2024  |  Vishal Garg              |     6      |   2     | Pericodical Dashboard download in excel format
 -----------------------------------------------------------------------------------------------------------------------------------
  */
 
@@ -76,10 +77,40 @@ const PeriodicalDashboard = () => {
     fetchReport(fromDate, toDate, selectedSkillId);
   };
 
-  // Function to determine which subSkills have non-zero values in any row
-  //  const nonZeroSubSkills = subSkills.filter((subSkill) => {
-  //    data.some((row) => row.subskills[subSkill.subsetname] > 0);
-  // });
+  const formatDataForExcel = (data, subSkills) => {
+    if (!data || data.length === 0) return [];
+
+    // Get all unique subskill names
+    const allSubSkills = subSkills.map((skill) => skill.subsetname);
+
+    return data.map((row) => {
+      // Start with the basic fields
+      let formattedRow = {
+        Experience: row.exp,
+      };
+
+      // Add all subskills, using 0 if the subskill is not present for this row
+      allSubSkills.forEach((subSkill) => {
+        formattedRow[subSkill] = row.subskills[subSkill] || 0;
+      });
+
+      // Add the remaining fields
+      formattedRow = {
+        ...formattedRow,
+        "Offered/Accepted": row.offered,
+        "Negotiation Stage": row.negotiation,
+        "Candidate Backed Out": row.backedOut,
+      };
+
+      return formattedRow;
+    });
+  };
+
+  // useEffect(() => {
+  //   if (formattedRow) {
+  //     console.log("Data fetched:", formattedRow);
+  //   }
+  // }, [formattedRow]);
 
   let nonZeroSubSkills;
 
@@ -98,7 +129,9 @@ const PeriodicalDashboard = () => {
       <p className={styles.rastanty_Cortez}>Periodical Dashboard</p>
       <div className={styles.filterSection}>
         <div className={styles.dropdown}>
-          <label className={styles.mainskill}>Main Skill<span className={styles.asterisk}>*</span>:</label>
+          <label className={styles.mainskill}>
+            Main Skill<span className={styles.asterisk}>*</span>:
+          </label>
           <select
             value={selectedSkillId || "None"} // Use ID as the value for the select
             onChange={handleSkillChange}
@@ -115,7 +148,9 @@ const PeriodicalDashboard = () => {
         </div>
 
         <div className={styles.dateFields}>
-          <label className={styles.date}>Date Range<span className={styles.asterisk}>*</span>:</label>
+          <label className={styles.date}>
+            Date Range<span className={styles.asterisk}>*</span>:
+          </label>
           <input
             type="date"
             value={fromDate}
@@ -132,18 +167,19 @@ const PeriodicalDashboard = () => {
           />
         </div>
         <div className={styles.reportButton}>
-        <button
-          onClick={handleGenerateReport}
-          className={styles.generateReportBtn}
-        >
-          Generate Report
-        </button>
-        <DownloadExcelReport
-            data={data}
-            dashboardName = "periodical"
-          />
+          <button
+            onClick={handleGenerateReport}
+            className={styles.generateReportBtn}
+          >
+            Generate Report
+          </button>
+          {data && (
+            <DownloadExcelReport
+              data={formatDataForExcel(data, subSkills)}
+              dashboardName="periodical"
+            />
+          )}
         </div>
-        
       </div>
 
       {loading && <p>Loading...</p>}

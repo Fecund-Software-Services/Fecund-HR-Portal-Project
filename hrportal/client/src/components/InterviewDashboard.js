@@ -1,3 +1,21 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 03/09/2024
+Sprint: Phase 2 Sprint 5
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |  Phase  |  Description 
+-------------------------------------------------------------------------------------------------------
+9/09/2024   |   Vishal                  |     4      |   2     | Integration modification of Generate Report data
+7/09/2024   |   Omkar                   |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset
+8/09/2024   |   Omkar                   |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
+12/09/2024  |   Vishal                  |     5      |   2     | UI fixes
+17/09/2024  |  Vishal Garg              |     5      |   2     |  Interview Dashboard download in excel format
+-------------------------------------------------------------------------------------------------------
+// */
+
 import React, { useState, useEffect } from "react";
 import styles from "./InterviewDashboard.module.css"; // Reuse or create a similar CSS file
 import useInterviewDashboard from "../hooks/useInterviewDashboard"; // Custom hook
@@ -143,10 +161,12 @@ const InterviewDashboard = () => {
           >
             Generate Report
           </button>
-          <DownloadExcelReport
-            data={data}
-            dashboardName="interview"
-          />
+          {data && (
+            <DownloadExcelReport
+              data={data}
+              dashboardName="interview"
+            />
+          )}
         </div>
       </div>
 
