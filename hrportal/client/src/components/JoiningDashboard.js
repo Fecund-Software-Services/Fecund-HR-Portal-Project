@@ -108,7 +108,7 @@ const JoiningDashboard = () => {
             Generate Report
           </button>
 
-          {isReportGenerated && (
+          {joiningCandidates.length > 0 && (
             <DownloadExcelReport
               data={joiningCandidates}
               dashboardName="joining"

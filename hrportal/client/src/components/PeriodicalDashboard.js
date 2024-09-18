@@ -80,37 +80,34 @@ const PeriodicalDashboard = () => {
   const formatDataForExcel = (data, subSkills) => {
     if (!data || data.length === 0) return [];
 
-    // Get all unique subskill names
-    const allSubSkills = subSkills.map((skill) => skill.subsetname);
+    const allSubSkills = subSkills.map(skill => skill.subsetname);
 
-    return data.map((row) => {
-      // Start with the basic fields
+    // Identify non-zero columns
+    const nonZeroColumns = allSubSkills.filter(subSkill => 
+      data.some(row => row.subskills[subSkill] > 0)
+    );
+
+    return data.map(row => {
       let formattedRow = {
         Experience: row.exp,
       };
 
-      // Add all subskills, using 0 if the subskill is not present for this row
-      allSubSkills.forEach((subSkill) => {
+      // Only include non-zero columns
+      nonZeroColumns.forEach(subSkill => {
         formattedRow[subSkill] = row.subskills[subSkill] || 0;
       });
 
       // Add the remaining fields
       formattedRow = {
         ...formattedRow,
-        "Offered/Accepted": row.offered,
-        "Negotiation Stage": row.negotiation,
-        "Candidate Backed Out": row.backedOut,
+        'Offered/Accepted': row.offered,
+        'Negotiation Stage': row.negotiation,
+        'Candidate Backed Out': row.backedOut
       };
 
       return formattedRow;
     });
   };
-
-  // useEffect(() => {
-  //   if (formattedRow) {
-  //     console.log("Data fetched:", formattedRow);
-  //   }
-  // }, [formattedRow]);
 
   let nonZeroSubSkills;
 
