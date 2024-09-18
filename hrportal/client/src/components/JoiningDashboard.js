@@ -8,7 +8,11 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
-
+9/09/2024   |   Vishal                  |     4      |   2     | Integration modification of Generate Report data
+7/09/2024   |   Omkar                   |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset
+8/09/2024   |   Omkar                   |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
+12/09/2024  |   Vishal                  |     5      |   2     | UI fixes
+17/09/2024  |  Vishal Garg              |     6      |   2     |  Joining Dashboard to be downloaded in excel format
 -------------------------------------------------------------------------------------------------------
 // */
 
@@ -104,10 +108,12 @@ const JoiningDashboard = () => {
             Generate Report
           </button>
 
-          <DownloadExcelReport
-            data={joiningCandidates}
-            dashboardName="joining"
-          />
+          {isReportGenerated && (
+            <DownloadExcelReport
+              data={joiningCandidates}
+              dashboardName="joining"
+            />
+          )}
         </div>
       </div>
 

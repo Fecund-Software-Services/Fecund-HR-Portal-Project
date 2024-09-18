@@ -1,3 +1,20 @@
+/*
+Project: Hiring Portal Project
+Author: Omkar
+Date: 03/09/2024
+Sprint: Phase 2 Sprint 5
+
+Modification Log:
+-------------------------------------------------------------------------------------------------------
+Date        |   Author                  |   Sprint   |  Phase  |  Description 
+-------------------------------------------------------------------------------------------------------
+7/09/2024   |   Omkar                   |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset
+8/09/2024   |   Omkar                   |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
+12/09/2024  |   Vishal                  |     5      |   2     | UI fixes
+17/09/2024  |  Vishal Garg              |     6      |   2     |  Interview Dashboard download in excel format
+-------------------------------------------------------------------------------------------------------
+// */
+
 .dashboardContainer {
   display: flex;
   flex-direction: column;
