@@ -102,7 +102,7 @@ const DeferredDashboard = () => {
           >
             Generate Report
           </button>
-          {isReportGenerated && (
+          {deferredCandidates.length > 0 && (
             <DownloadExcelReport
               data={deferredCandidates}
               dashboardName="deferred"

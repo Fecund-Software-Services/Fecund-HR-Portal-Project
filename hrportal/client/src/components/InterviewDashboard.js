@@ -80,6 +80,15 @@ const InterviewDashboard = () => {
     fetchReport(fromDate, toDate, selectedSkillId);
   };
 
+  const formatDataForExcel = (data) => {
+    if (!data || data.length === 0) return [];
+
+    return data.map(row => {
+      const { candidateNames, ...excelRow } = row;
+      return excelRow;
+    });
+  };
+
   const renderCellWithHover = (value, candidateNames, rowIndex, columnName) => {
     const handleMouseEnter = () => {
       if (candidateNames && candidateNames[columnName]) {
@@ -163,7 +172,7 @@ const InterviewDashboard = () => {
           </button>
           {data && (
             <DownloadExcelReport
-              data={data}
+              data={formatDataForExcel(data)}
               dashboardName="interview"
             />
           )}
