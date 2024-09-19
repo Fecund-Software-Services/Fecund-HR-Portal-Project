@@ -19,6 +19,7 @@ Date        |   Author                  |   Sprint   |  Phase |  Description
 14/8/2024   |   Vishal Garg             |   3        |   2    | Admin role 
 26/8/2024   |   Vishal Garg             |   3        |   2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
 03/09/2024  |   Harshini C              |   5        |   2    | UI fixes
+19/09/2024  |   Harshini C              |   6        |   2    | QA Defect - Multiple UI Issues
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -507,6 +508,57 @@ const EditCandiadteDetails = () => {
               required
             />
           </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="noticePeriod">
+              Notice Period<span className={styles.asterisk}>*</span> (Days):
+            </label>
+            <input
+              type="number"
+              name="noticePeriod"
+              id="noticePeriod"
+              value={editedData.noticePeriod}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          {editedData.status === "Scheduled R1" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="interviewDate">
+                Interview Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="interviewDate"
+                id="interviewDate"
+                value={editedData.interviewDate}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {editedData.status === "Scheduled R2" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="interviewDate">
+                Interview Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="interviewDate"
+                id="interviewDate"
+                value={editedData.interviewDate}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
           {userData.role === "admin" ? (
             <div className={styles.sub_container}>
               <label htmlFor="expectedCTC">
@@ -544,112 +596,6 @@ const EditCandiadteDetails = () => {
           )}
 
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">
-              Notice Period<span className={styles.asterisk}>*</span> (Days):
-            </label>
-            <input
-              type="number"
-              name="noticePeriod"
-              id="noticePeriod"
-              value={editedData.noticePeriod}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className={styles.sub_container}>
-            <label>Status<span className={styles.asterisk}>*</span>:</label>
-
-            <select
-              name="status"
-              id="status"
-              value={editedData.status}
-              onChange={handleInputChange}
-              required
-            >
-              {statusOptions.map((status, index) => (
-                <option key={index} value={status.name}>
-                  {status.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className={styles.sub_container}>
-            <label htmlFor="statusComments">Status Comments <span className={styles.asterisk}>*</span>:</label>
-            <textarea
-              name="statusComments"
-              id="statusComments"
-              value={editedData.statusComments}
-              onChange={handleInputChange}
-              required
-            ></textarea>
-          </div>
-
-          {editedData.status === "Offer Issued" ? (
-            <div className={styles.sub_container}>
-              <label htmlFor="joiningDate">
-                Joining Date<span className={styles.asterisk}>*</span>:
-              </label>
-              <input
-                type="date"
-                name="joiningDate"
-                id="joiningDate"
-                value={editedData.joiningDate}
-                onChange={handleInputChange}
-              />
-            </div>
-          ) : (
-            ""
-          )}
-
-          {editedData.status === "Scheduled R1" ? (
-            <div className={styles.sub_container}>
-              <label htmlFor="interviewDate">
-                Interview Date<span className={styles.asterisk}>*</span>:
-              </label>
-              <input
-                type="date"
-                name="interviewDate"
-                id="interviewDate"
-                value={editedData.interviewDate}
-                onChange={handleInputChange}
-              />
-            </div>
-          ) : (
-            ""
-          )}
-
-          {editedData.status === "Scheduled R2" ? (
-            <div className={styles.sub_container}>
-              <label htmlFor="interviewDate">
-                Interview Date<span className={styles.asterisk}>*</span>:
-              </label>
-              <input
-                type="date"
-                name="interviewDate"
-                id="interviewDate"
-                value={editedData.interviewDate}
-                onChange={handleInputChange}
-              />
-            </div>
-          ) : (
-            ""
-          )}
-
-          {/* <div className={styles.sub_container}>
-            <label htmlFor="StatusUpadteDate">
-              Status Update Day<span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="date"
-              name="StatusUpadteDate"
-              id="StatusUpdateDate"
-              value={editedData.statusUpdatedDate}
-              onChange={handleInputChange}
-            />
-          </div> */}
-          
-          <div className={styles.sub_container}>
             <label htmlFor="servingNoticePeriod">
               Serving Notice Period<span className={styles.asterisk}>*</span>:
             </label>
@@ -678,6 +624,51 @@ const EditCandiadteDetails = () => {
               </label>
             </div>
           </div>
+
+          <div className={styles.sub_container}>
+            <label>Status<span className={styles.asterisk}>*</span>:</label>
+
+            <select
+              name="status"
+              id="status"
+              value={editedData.status}
+              onChange={handleInputChange}
+              onFocus={(e)=>{e.target.size = 5}}
+              required
+            >
+              {statusOptions.map((status, index) => (
+                <option key={index} value={status.name}>
+                  {status.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="statusComments">Status Comments <span className={styles.asterisk}>*</span>:</label>
+            <textarea
+              name="statusComments"
+              id="statusComments"
+              value={editedData.statusComments}
+              onChange={handleInputChange}
+              required
+            ></textarea>
+          </div>
+
+          {/* <div className={styles.sub_container}>
+            <label htmlFor="StatusUpadteDate">
+              Status Update Day<span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="date"
+              name="StatusUpadteDate"
+              id="StatusUpdateDate"
+              value={editedData.statusUpdatedDate}
+              onChange={handleInputChange}
+            />
+          </div> */}
+          
+          
           <div className={styles.sub_container}>
             <label htmlFor="certified">
               Certified?<span className={styles.asterisk}>*</span>
@@ -732,6 +723,25 @@ const EditCandiadteDetails = () => {
               onChange={handleInputChange}
             ></textarea>
           </div>
+            
+          {editedData.status === "Offer Issued" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="joiningDate">
+                Joining Date<span className={styles.asterisk}>*</span>:
+              </label>
+              <input
+                type="date"
+                name="joiningDate"
+                id="joiningDate"
+                value={editedData.joiningDate}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
           <div className={styles.sub_container}>
             <label htmlFor="resume">Resume:</label>
             <input

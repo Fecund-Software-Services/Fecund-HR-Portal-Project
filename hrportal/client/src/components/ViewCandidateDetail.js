@@ -8,15 +8,16 @@ User Story: Successful Sign-up
  
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description
+Date        |   Author                  |   Sprint   |  Phase |  Description
 -------------------------------------------------------------------------------------------------------
- 8/05/2024  |   Vishal                  |    4       |  View candidate details
- 10/05/2024 |   Harshini C              |    4       |  Log Out button
- 14/05/2024 |   Harshini C              |    4       |  CSS and alignment based on BG image
- 18/07/2024 |   Vishal Garg             |   2        |    Front End Coding Navbar 
- 14/8/2024  |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
- 26/8/2024  |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
- 28/8/2024  |  HS                       | phase 2 sprint 4 | Status History Tracker
+ 8/05/2024  |   Vishal                  |    4       |    1   |  View candidate details
+ 10/05/2024 |   Harshini C              |    4       |    1   |  Log Out button
+ 14/05/2024 |   Harshini C              |    4       |    1   |  CSS and alignment based on BG image
+ 18/07/2024 |   Vishal Garg             |    2       |    1   |  Front End Coding Navbar 
+ 14/8/2024  |   Vishal Garg             |    3       |    1   |  Admin role 
+ 26/8/2024  |   Vishal Garg             |    4       |    1   |  Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+ 28/8/2024  |   HS                      |    4       |    1   |  Status History Tracker
+ 19/09/2024 |   Harshini C              |    6       |    1   |  QA Defect - Multiple UI Issues
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -149,6 +150,24 @@ function ViewCandidateDetail() {
             <label htmlFor="noticePeriod">Notice Period:</label>
             <p className={styles.text}>{candidateDetails.noticePeriod}</p>
           </div>
+
+          {candidateDetails.status === "Scheduled R1" ? (
+            <div className={styles.sub_container}>
+              <label>Interview Date:</label>
+              <p className={styles.text}>{candidateDetails.interviewDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+          {candidateDetails.status === "Scheduled R2" ? (
+            <div className={styles.sub_container}>
+              <label>Interview Date:</label>
+              <p className={styles.text}>{candidateDetails.interviewDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+
           {userData.role === "admin" ? (
             <div className={styles.sub_container}>
               <label htmlFor="expectedCTC">Expected CTC:</label>
@@ -169,31 +188,7 @@ function ViewCandidateDetail() {
                 : "No comments entered"}
             </p>
           </div>
-          {candidateDetails.status === "Offer Issued" ? (
-            <div className={styles.sub_container}>
-              <label>Joining Date:</label>
-              <p className={styles.text}>{candidateDetails.joiningDate}</p>
-            </div>
-          ) : (
-            ""
-          )}
-          {candidateDetails.status === "Scheduled R1" ? (
-            <div className={styles.sub_container}>
-              <label>Interview Date:</label>
-              <p className={styles.text}>{candidateDetails.interviewDate}</p>
-            </div>
-          ) : (
-            ""
-          )}
-          {candidateDetails.status === "Scheduled R2" ? (
-            <div className={styles.sub_container}>
-              <label>Interview Date:</label>
-              <p className={styles.text}>{candidateDetails.interviewDate}</p>
-            </div>
-          ) : (
-            ""
-          )}
-
+      
           <div className={styles.sub_container}>
             <label htmlFor="certified">Certified?:</label>
             <p className={styles.text}>
@@ -208,10 +203,11 @@ function ViewCandidateDetail() {
           </div>
           {candidateDetails.servingNoticePeriod === true && ( // Check if 'Yes' is selected
             <div className={styles.sub_container}>
-              <label htmlFor="lastWorkingDay">Last Working Day</label>
+              <label htmlFor="lastWorkingDay">Last Working Day:</label>
               <p className={styles.text}>{candidateDetails.lastWorkingDay}</p>
             </div>
           )}
+
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">Comments:</label>
             <p className={styles.text}>
@@ -220,6 +216,16 @@ function ViewCandidateDetail() {
                 : "No comments entered"}
             </p>
           </div>
+          
+          {candidateDetails.status === "Offer Issued" ? (
+            <div className={styles.sub_container}>
+              <label>Joining Date:</label>
+              <p className={styles.text}>{candidateDetails.joiningDate}</p>
+            </div>
+          ) : (
+            ""
+          )}
+          
           <div className={styles.sub_container}>
             <label htmlFor="resume">Resume:</label>
             <div>
