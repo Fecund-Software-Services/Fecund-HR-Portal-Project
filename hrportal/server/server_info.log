@@ -807,3 +807,106 @@
 {"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-19T05:46:03.593Z"}
 {"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-19T05:46:03.595Z"}
 {"level":"info","message":"/api/candidate/edit-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-19T05:46:37.737Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-19T06:32:34.413Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-19T06:32:34.437Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-19T06:32:34.438Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-19T06:32:34.445Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-19T06:32:34.449Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-19T06:32:34.454Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-19T06:32:34.460Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-19T06:32:34.466Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-19T06:32:34.467Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-19T06:32:34.471Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-19T06:32:34.474Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-19T06:32:34.476Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-19T06:32:34.478Z"}
+{"level":"info","message":"/api/candidate/view-candidate","timestamp":"2024-09-19T06:32:43.021Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-19T06:32:45.014Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-19T06:32:45.260Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-19T06:32:46.544Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:32:46.861Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-19T06:32:46.864Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-19T06:32:46.867Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:32:47.201Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-19T06:32:47.203Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-19T06:32:47.206Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:35:25.311Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-19T06:35:25.610Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:35:25.629Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-19T06:35:25.931Z"}
+{"level":"info","message":"/api/candidate/search-candidate","timestamp":"2024-09-19T06:37:07.515Z"}
+{"level":"info","message":"/api/candidate/search-candidate","timestamp":"2024-09-19T06:37:14.552Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66d7f1e1b09e40863fe8ec97","timestamp":"2024-09-19T06:37:18.057Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66d7f1e1b09e40863fe8ec97","timestamp":"2024-09-19T06:37:18.322Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-19T06:37:20.644Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:37:20.964Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66d7f1e1b09e40863fe8ec97","timestamp":"2024-09-19T06:37:20.967Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-19T06:37:20.970Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:37:21.306Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66d7f1e1b09e40863fe8ec97","timestamp":"2024-09-19T06:37:21.308Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-19T06:37:21.311Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:37:32.851Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:37:33.116Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-19T06:37:50.124Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-19T06:38:17.083Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:39:33.852Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T06:39:34.115Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-19T06:39:46.642Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-19T06:47:43.512Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-19T06:48:18.640Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-19T06:48:35.351Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T11:59:18.532Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-19T11:59:18.537Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-19T11:59:18.768Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-19T11:59:18.869Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-20T07:05:06.721Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-20T07:05:06.759Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-20T07:05:06.761Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-20T07:05:06.767Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-20T07:05:06.785Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-20T07:05:06.798Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-20T07:05:06.811Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-20T07:05:06.812Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-20T07:05:06.815Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-20T07:05:06.816Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-20T07:05:06.819Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-20T07:05:06.822Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-20T07:05:06.827Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-20T07:09:27.456Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-20T07:09:43.001Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-20T07:09:43.333Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-20T07:09:43.595Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-20T07:09:43.652Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-20T07:10:53.725Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-20T07:10:53.729Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-20T07:14:10.752Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-20T07:14:14.695Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-20T07:22:11.329Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-20T07:22:28.819Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-20T07:22:41.329Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-20T07:22:51.432Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-20T07:22:52.991Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-20T07:22:59.443Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-20T07:22:59.775Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-20T07:23:02.095Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-20T07:23:13.700Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-20T07:23:21.482Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-20T07:23:37.065Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-20T07:26:07.731Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-20T07:26:07.753Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-20T07:26:07.756Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-20T07:26:07.768Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-20T07:26:07.775Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-20T07:26:07.781Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-20T07:26:07.787Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-20T07:26:07.793Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-20T07:26:07.795Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-20T07:26:07.798Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-20T07:26:07.802Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-20T07:26:07.805Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-20T07:26:07.809Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-20T07:26:11.958Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-20T07:26:30.816Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-20T07:26:39.392Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-20T07:27:34.894Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-20T07:27:41.900Z"}
