@@ -350,7 +350,7 @@ const SkillSets = () => {
               value={selectedSkill}
               onChange={(e) => handleSelectSkill(e.target.value)}
             >
-              <option value="None">Select Skill</option>
+              <option value="None">All</option>
               {skills.map((skill, index) => (
                 <option key={index} value={skill._id}>
                   {skill.skillname}
