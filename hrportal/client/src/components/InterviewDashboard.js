@@ -74,6 +74,7 @@ const InterviewDashboard = () => {
   // console.log(data[1].candidateNames)
 
   const handleGenerateReport = () => {
+  setData(null)
     if (selectedSkill === "None") {
       fetchSubSkills();
     }
