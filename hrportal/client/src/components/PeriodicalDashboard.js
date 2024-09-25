@@ -71,6 +71,7 @@ const PeriodicalDashboard = () => {
   };
 
   const handleGenerateReport = () => {
+    setData(null)
     if (selectedSkill === "None") {
       fetchSubSkills();
     }
