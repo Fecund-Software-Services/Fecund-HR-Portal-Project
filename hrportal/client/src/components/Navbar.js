@@ -11,13 +11,14 @@ Date        |   Author                  |   Sprint   |    Description
 -------------------------------------------------------------------------------------------------------
 8/07/2024   |   Vishal Garg             |   1       |    Front End Coding Navbar
 26/07/2024  |   Vishal Garg             | ph2 sp4   |    Navbar Dashboard Link Implementation
+ 4/09/2024  |    Omkar Tajane           |     5      |   Joining Dashboard Implmentation
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
@@ -34,17 +35,22 @@ const Navbar = () => {
 
   const handleAdminDropdownToggle = (isOpen) => {
     setAdminDropdownOpen(isOpen);
-    // console.log(adminDropdownOpen);
+    
   };
 
   const handleDashboDropdownToggle = (isOpen) => {
     setDashboardDropdownOpen(isOpen);
-    // console.log(adminDropdownOpen);
+    
   };
 
   return (
     <nav className={styles.navbar}>
       <ul className={styles.navLinks}>
+        <li className={styles.adminLink}>
+          <Link className={styles.adminDropdownToggle} to="/home"><b>Home</b></Link>
+        </li>
+
+        {/* Admin Dropdown */}
         {userData.role === "admin" ? (
           <li
             className={styles.adminLink}
@@ -52,7 +58,7 @@ const Navbar = () => {
             onMouseLeave={() => handleAdminDropdownToggle(false)}
           >
             <a className={styles.adminDropdownToggle} href="#">
-              Admin
+              <b>Admin</b>
             </a>
             <ul
               className={`${styles.adminDropdown} ${
@@ -60,10 +66,10 @@ const Navbar = () => {
               }`}
             >
               <ul className={styles.link}>
-                <Link to="/home/skillset">SkillSet</Link>
+                <Link to="/home/skillset"><b>SkillSet</b></Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/status">Status</Link>
+                <Link to="/home/status"><b>Status</b></Link>
               </ul>
             </ul>
           </li>
@@ -78,7 +84,7 @@ const Navbar = () => {
             onMouseLeave={() => handleDashboDropdownToggle(false)}
           >
             <a className={styles.adminDropdownToggle} href="#">
-              Dashboard
+              <b>Dashboard</b>
             </a>
             <ul
               className={`${styles.adminDropdown} ${
@@ -86,16 +92,16 @@ const Navbar = () => {
               }`}
             >
               <ul className={styles.link}>
-                <Link to="/home/periodicdashboard">Periodical</Link>
+                <Link to="/home/periodicdashboard"><b>Periodical</b></Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/interview">Interview</Link>
+                <Link to="/home/interviewdashboard"><b>Interview</b></Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/joining">Joining</Link>
+                <Link to="/home/joiningdashboard"><b>Joining</b></Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/defferred">Defferred</Link>
+                <Link to="/home/deferreddashboard"><b>Deferred</b></Link>
               </ul>
             </ul>
           </li>
@@ -109,7 +115,7 @@ const Navbar = () => {
             title="Click here to Logout"
             onClick={handleLogout}
           >
-            Logout{" "}
+            <b>Logout{" "}</b>
           </div>
         </li>
       </ul>

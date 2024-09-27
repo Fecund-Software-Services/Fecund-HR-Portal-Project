@@ -14,8 +14,10 @@ Date        | Author                  | Sprint   | Phase | Description
 07/05/2024  | HS                      | 4        | 1    | Resume Handling
 08/05/2024  | HS                      | 4        | 2    | Update Resume Handling
 02/08/2024  | Harshini C              | 2        | 2    | Added logger library
-26/8/2024   |   Vishal Garg           | 4        | 2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
-27/8/24     | HS                      |4         |2     | Status Histroy Tracker
+26/8/2024   | Vishal Garg             | 4        | 2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+27/8/24     | HS                      | 4        | 2    | Status Histroy Tracker
+05/9/24     | HS                      | 5        | 2    | Mobile Number defect
+25/09/2024  | Harshini C              | 6        | 2    | SonarLint Code optimization task
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -93,29 +95,36 @@ const addCandidate = async (req, res) => {
       noticePeriod,
       servingNoticePeriod,
       lastWorkingDay,
-      status,
       certified,
       comments,
-      resume,
     } = req.body;
 
     //Contain info about the uploaded file
     const uploadedFile = req.file;
 
     // CHECKING IF THE CANDIDATE ALREADY EXISTS
-    let existingCandidate;
     try {
-      existingCandidate = await Candidate.findOne({ emailAddress });
+      const existingCandidate = await Candidate.findOne({ emailAddress });
+      if (existingCandidate) {
+        return res
+          .status(400)
+          .json({ message: "Error: Candidate already exists!" });
+      }
     } catch (error) {
       logger.error(error);
     }
 
-    if (existingCandidate) {
-      return res
-        .status(400)
-        .json({ message: "Error: Candidate already exists!" });
-    }
 
+      // TO CHECK FOR DUPLICATE MOBILE NUMBER
+    try {
+      const existingMobile = await Candidate.findOne({mobileNumber});
+      if (existingMobile) {
+        return res.status(400).json({message: "Error: Mobile Number already exists!"});
+      }
+    }catch (error) {
+      logger.error(error)
+    }
+    
     // CHECK FILE SIZE
     if (uploadedFile && uploadedFile.size > maxFileSize) {
       return res
@@ -240,7 +249,7 @@ const viewCandidateByYearMonth = async (req, res) => {
   }
 
   try {
-    candidateDetails = await Candidate.find(
+    const candidateDetails = await Candidate.find(
       query,
       "firstName lastName emailAddress mobileNumber status"
     ); // Find users matching the query
@@ -302,6 +311,33 @@ const editCandidate = async (req, res) => {
   const filter = { _id: candidateId };
   const updatedfile = req.file;
   const updatedStatus = req.body.status;
+
+   // Check for existing mobile number and email
+   const errors = [];
+
+   if (req.body.mobileNumber) {
+     const existingMobile = await Candidate.findOne({
+       mobileNumber: req.body.mobileNumber,
+       _id: { $ne: candidateId }
+     });
+     if (existingMobile) {
+       errors.push("Mobile Number you are trying to update already exists!");
+     }
+   }
+ 
+   if (req.body.emailAddress) {
+     const existingEmail = await Candidate.findOne({
+       emailAddress: req.body.emailAddress,
+       _id: { $ne: candidateId }
+     });
+     if (existingEmail) {
+       errors.push("Email you are trying to update already exists!");
+     }
+   }
+ 
+   if (errors.length > 0) {
+     return res.status(400).json({ message: "Error: " + errors.join(" and ") });
+   }
 
   const update = {
     $set: {

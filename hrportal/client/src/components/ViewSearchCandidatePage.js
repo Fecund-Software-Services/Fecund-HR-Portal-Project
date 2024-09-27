@@ -21,10 +21,8 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
-import { FaTwitterSquare } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
+//import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
+
 
 function ViewSearchCandidatePage() {
   const [searchType, setSearchType] = useState("date");
@@ -37,7 +35,7 @@ function ViewSearchCandidatePage() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(5);
+  const [resultsPerPage] = useState(5);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -182,7 +180,7 @@ function ViewSearchCandidatePage() {
                 className={styles.checkbox}
               />
               <label className={styles.radio_label} htmlFor="dateSearch">
-                View the candidates applied in
+                <b>View the candidates applied in</b>
               </label>
             </div>
             <div className={styles.flex_conatiner_b}>
@@ -196,84 +194,98 @@ function ViewSearchCandidatePage() {
                 className={styles.checkbox}
               />
               <label className={styles.radio_label} htmlFor="userSearch">
-                Search candidate
+                <b>Search candidate</b>
               </label>
             </div>
           </div>
           {searchType === "date" && (
-            <div className={styles.input_group}>
-              <div className={styles.flex_conatiner}>
-                <label className={styles.label}>Year<span className={styles.asterisk}>*</span>:</label>
-                <input
-                  type="text"
-                  name="year"
-                  placeholder="YYYY"
-                  value={searchData.year}
-                  onChange={handleInputChange}
-                  className={styles.input_field}
-                />
-              </div>
-              <div className={styles.flex_conatiner}>
-                <label className={styles.label}>Month<span className={styles.asterisk}>*</span>:</label>
-                <select
-                  id="month"
-                  name="month"
-                  value={searchData.month}
-                  onChange={handleInputChange}
-                  className={styles.input_field}
-                >
-                  <option value="">Select Month</option>
-                  <option value="1">January</option>
-                  <option value="2">February</option>
-                  <option value="3">March</option>
-                  <option value="4">April</option>
-                  <option value="5">May</option>
-                  <option value="6">June</option>
-                  <option value="7">July</option>
-                  <option value="8">August</option>
-                  <option value="9">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
-                  {/* Add more options as needed */}
-                </select>
-              </div>
-            </div>
-          )}
-          {searchType === "user" && (
-            <div className={styles.input_group}>
-              <div className={styles.flex_conatiner}>
-                <label className={styles.label}>First Name:</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={searchData.firstName}
-                  onChange={handleInputChange}
-                  className={styles.input_field}
-                />
-              </div>
-              <div className={styles.flex_conatiner}>
-                <label className={styles.label}>Last Name:</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={searchData.lastName}
-                  onChange={handleInputChange}
-                  className={styles.input_field}
-                />
-              </div>
-              <div className={styles.flex_conatiner}>
-                <label className={styles.label}>Email:</label>
-                <input
-                  type="text"
-                  name="email"
-                  value={searchData.email}
-                  onChange={handleInputChange}
-                  className={styles.input_field}
-                />
-              </div>
-            </div>
-          )}
+  <div className={styles.input_group}>
+    <div className={styles.flex_conatiner}>
+      <label className={styles.label} htmlFor="year">
+        <b>Year<span className={styles.asterisk}>*</span>:</b>
+      </label>
+      <input
+        type="text"
+        id="year"              
+        name="year"
+        placeholder="YYYY"
+        value={searchData.year}
+        onChange={handleInputChange}
+        className={styles.input_field}
+      />
+    </div>
+    <div className={styles.flex_conatiner}>
+      <label className={styles.label} htmlFor="month">
+       <b>Month<span className={styles.asterisk}>*</span>:</b>
+      </label>
+      <select
+        id="month"             
+        name="month"
+        value={searchData.month}
+        onChange={handleInputChange}
+        className={styles.input_field}
+      >
+        <option value="">Select Month</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+)}
+{searchType === "user" && (
+  <div className={styles.input_group}>
+    <div className={styles.flex_conatiner}>
+      <label className={styles.label} htmlFor="firstName">
+        <b>First Name:</b>
+      </label>
+      <input
+        type="text"
+        id="firstName"           /* Added id for label association */
+        name="firstName"
+        value={searchData.firstName}
+        onChange={handleInputChange}
+        className={styles.input_field}
+      />
+    </div>
+    <div className={styles.flex_conatiner}>
+      <label className={styles.label} htmlFor="lastName">
+        <b>Last Name:</b>
+      </label>
+      <input
+        type="text"
+        id="lastName"            /* Added id for label association */
+        name="lastName"
+        value={searchData.lastName}
+        onChange={handleInputChange}
+        className={styles.input_field}
+      />
+    </div>
+    <div className={styles.flex_conatiner}>
+      <label className={styles.label} htmlFor="email">
+        <b>Email:</b>
+      </label>
+      <input
+        type="text"
+        id="email"               /* Added id for label association */
+        name="email"
+        value={searchData.email}
+        onChange={handleInputChange}
+        className={styles.input_field}
+      />
+    </div>
+  </div>
+)}
+
           {error && <p className={styles.errorMessage}>{error}</p>}
           <div className={styles.button_container}>
             <button
@@ -300,7 +312,7 @@ function ViewSearchCandidatePage() {
               </thead>
               <tbody>
                 {currentResults.map((item, index) => (
-                  <tr key={index}>
+                  <tr key={item._id}>
                     <td>
                       <button
                         onClick={() => handleViewDetails(item._id)}
@@ -338,13 +350,6 @@ function ViewSearchCandidatePage() {
           </div>
         )}
       </div>
-      <div className={styles.footerContainer}>
-          <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
-          <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
-      </div>  
     </div>
   );
 }

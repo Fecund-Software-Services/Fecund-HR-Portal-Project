@@ -22,10 +22,10 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./ResetPassword.module.css"; // Import the CSS file
 import { useForgotPassword } from "../hooks/useForgotPassword";
-import { FaTwitterSquare } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
+import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
+
+
+
 
 const securityQuestions = [
   {
@@ -93,7 +93,7 @@ function ResetPassword() {
           <form onSubmit={handleSubmit} className={styles.reset_password_form}>
             <div className={styles.form_field}>
               <label htmlFor="employeeId" className={styles.form_label}>
-                Employee ID:
+                <b>Employee ID:</b>
               </label>
               <input
                 type="number"
@@ -106,7 +106,7 @@ function ResetPassword() {
             </div>
             <div className={styles.form_field}>
               <label htmlFor="emailId" className={styles.form_label}>
-                Email ID:
+                <b>Email ID:</b>
               </label>
               <input
                 type="email"
@@ -119,7 +119,7 @@ function ResetPassword() {
             </div>
             <div className={styles.form_field}>
               <label htmlFor="securityQuestion" className={styles.form_label}>
-                Security Question:
+                <b>Security Question:</b>
               </label>
               <select
                 id="securityQuestion"
@@ -138,7 +138,7 @@ function ResetPassword() {
             </div>
             <div className={styles.form_field}>
               <label htmlFor="answer" className={styles.form_label}>
-                Answer:
+                <b>Answer:</b>
               </label>
               <input
                 type="text"
@@ -183,10 +183,10 @@ function ResetPassword() {
       {isSecurityQuestionCorrect && (
         <div className={styles.link_container}>
           <p className={styles.verified_text}>
-            Security question verified. Proceed to set new password.
+            <b>Security question verified. Proceed to set new password.</b>
           </p>
           <Link className={styles.link} to={`/new-password/${employeeId}`}>
-            Next
+            <b>Next</b>
           </Link>
         </div>
       )}

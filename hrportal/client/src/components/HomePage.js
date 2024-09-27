@@ -22,10 +22,10 @@ Date        |   Author                  |   Sprint   |    Description
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
-import { FaTwitterSquare } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
+import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
+
+
+
 
 function HomePage() {
   return (
@@ -35,10 +35,10 @@ function HomePage() {
       <div className={styles.container}>
         <div className={styles.link_container}>
           <Link to="/home/search-candidate" className={styles.link}>
-            <p>View/Search Candidate</p>
+            <p><b>View/Search Candidate</b></p>
           </Link>
           <Link to="/home/add-new-candidate" className={styles.link}>
-            <p>Add New Candidate</p>
+            <p><b>Add New Candidate</b></p>
           </Link>
         </div>
       </div>

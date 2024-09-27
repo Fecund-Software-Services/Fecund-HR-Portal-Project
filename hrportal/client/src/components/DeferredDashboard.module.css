@@ -1,16 +1,15 @@
 /*
 Project: Hiring Portal Project
 Author: Omkar
-Date: 21/08/2024
-Sprint: Phase 2 Sprint 4
+Date: 04/09/2024
+Sprint: Phase 2 Sprint 5
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
- 30/08/2024 |   Vishal                  |     4      |   2     | CSS Coloring and Field Alignment
- 03/09/2024 |   Harshini C              |     5      |   2     | UI fixes
- 17/09/2024 |  Vishal Garg              |     6      |   2     | Pericodical Dashboard download in excel format
+9/09/2024   |          Omkar            |     5      |    2    |   Report Table size changed
+17/09/2024  |  Vishal Garg              |     6      |   2     |  Deferred Dashboard download in excel format
 -------------------------------------------------------------------------------------------------------
 // */
 
@@ -22,53 +21,52 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     background-image: url('../assets/backgroundImages.png');
     background-size: cover;
     background-position: center;
-    /* width: 100%; */
     height: 100vh;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: Rastanty Cortez;
     src: url(../fonts/Rastanty\ Cortez.ttf);
-  } 
-  
-  .rastanty_Cortez {
+}
+
+.rastanty_Cortez {
     font-family: Rastanty Cortez;
     font-size: 70px;
-    color:  #ffffff;
+    color: #ffffff;
     margin-bottom: 45px;
-  }
+}
 
-  .title {
+.title {
     font-size: 2rem; /* Adjust as needed */
     color: white;
     margin-top: 80px;
     margin-bottom: 20px;
-  }
-  
-  .filterSection {
+}
+
+.filterSection {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
-    width: 50% ;
+    width: 50%;
     margin-bottom: 20px;
     margin-top: 25px;
     margin-right: 600px;
-  }
+}
 
-  .dropdown {
+.dropdown {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     color: #ffffff;
     width: 40%;
-  }
+}
 
-  .mainskill {
+.statusLabel {
     padding: 10px;
-  }
- 
-  .skillDropdown {
+}
+
+.statusDropdown {
     display: flex;
     flex-direction: row;
     padding-right: 40px;
@@ -77,39 +75,32 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     padding: 10px;
   }
 
-  .skillDropdown option {
-    background-color: #ffffff; /* Match dropdown background */
-    color: rgb(0, 0, 0); /* Ensure option text is visible */
-  }
+.statusDropdown option {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
 
-  .date {
-    margin-left: 8px;
-    margin-right: 22px;
-  }
-  
-  .dateFields {
+.dateLabel {
+    margin-left: 4px;
+    margin-right: 26px;
+}
+
+.dateFields {
     display: flex;
     flex-direction: row;
-    width: 120%;
+    width: 100%;
     gap: 20px;
     color: white;
-  }
+}
 
-  .dateInput {
-    /* Styles specific to the date input fields */
-    width: 150px; /* Adjust the width as needed */
+.dateInput {
+    width: 150px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-  
-  /* .generateReportBtn {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-  } */
-  .generateReportBtn {
+
+.generateReportBtn {
     padding: 10px 10px;
     background-color: #d4d4d4;
     color: #000;
@@ -119,49 +110,54 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
- 
-  .generateReportBtn:hover {
+}
+
+.generateReportBtn:hover {
     background-color: #0069d9;
-  }
-  
-  .reportTableContainer {
-    width: 100%;
+}
+
+.reportTableContainer {
+    width: 80%;
     overflow-x: auto;
-  }
-  
-  .reportTable {
-    width: 100%;
+}
+
+.reportTable {
+    width: 60%;
     border-collapse: collapse;
     margin-top: 20px;
-  }
-  
-  .reportTable th, .reportTable td {
+}
+
+.reportTable th, .reportTable td {
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
     color: white;
-  }
-  
-  .reportTable th {
-    background-color: #555; /* Darkened header background for contrast */
-  }
-  
-  .error {
+}
+
+.reportTable th {
+    background-color: #555;
+}
+
+.error {
     color: red;
     margin-top: 10px;
 }
 
 .noRecordsFound {
-  font-size: 1.2rem;
-  color: #666;
-  text-align: center;
-  margin-top: 2rem;
-}
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-top: 2rem;
+  }
 
-.reportButton {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 80%;
-}
+  .reportButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+  }
+
+  .asterisk {
+    color: red;
+  }
+ 

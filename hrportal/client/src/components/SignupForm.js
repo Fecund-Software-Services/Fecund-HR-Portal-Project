@@ -21,7 +21,7 @@ Date        | Author                  | Sprint   | Description
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import popupBackground from "../assets/PopupBackgroundImage.png";
+import popupBackground from "../assets/backgroundImages.png";
 import styles from "./SignupForm.module.css";
 // importing "useSignup" from hooks
 import { useSignup } from "../hooks/useSignup.js";
@@ -60,7 +60,7 @@ const SignUpForm = () => {
   const handleCancel = (e) => navigateToLogin("/");
 
   const togglePopup = () => {
-    //setShowPopup(!showPopup);
+  
     navigateToPopup("/");
   };
 
@@ -81,7 +81,7 @@ const SignUpForm = () => {
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
-            Employee First Name <span className={styles.asterisk}>*</span>:
+            <b>Employee First Name <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="text"
@@ -97,7 +97,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeLastName" className={styles.label_type}>
-            Employee Last Name <span className={styles.asterisk}>*</span>:
+            <b>Employee Last Name <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="text"
@@ -112,7 +112,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeID" className={styles.label_type}>
-            Employee ID <span className={styles.asterisk}>*</span>:
+            <b>Employee ID <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="number"
@@ -127,7 +127,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>
-            Email ID <span className={styles.asterisk}>*</span>:
+            <b>Email ID <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="email"
@@ -142,7 +142,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="password" className={styles.label_type}>
-            Password <span className={styles.asterisk}>*</span>:
+            <b>Password <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="password"
@@ -156,81 +156,82 @@ const SignUpForm = () => {
         {/* <br /> */}
 
         <div>
-          <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>
-              Security Question 1 <span className={styles.asterisk}>*</span>
-            </label>
-            <p htmlFor="SecurityQuestion1" className={styles.p_type}>
-              What is your first pet name ?
-            </p>
-          </div>
-          <div className={styles.sub_container}>
-            <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="password"
-              value={answer1}
-              // onChange={(e) => setEmployeeFirstName(e.target.value)}
-              onChange={(e) => setAnswer1(e.target.value)}
-              className={styles.login_input}
-              name="SecurityQuestion1"
-              required
-            />
-          </div>
-        </div>
+  <div className={styles.sub_container_question}>
+    <label className={styles.label_type_q} htmlFor="SecurityQuestion1">
+      <b>Security Question 1 <span className={styles.asterisk}>*</span></b>
+    </label>
+    <p className={styles.p_type}>
+      <b>What is your first pet name?</b>
+    </p>
+  </div>
+  <div className={styles.sub_container}>
+    <label className={styles.label_type} htmlFor="answer1">
+      <b>Answer <span className={styles.asterisk}>*</span>:</b>
+    </label>
+    <input
+      type="password"
+      value={answer1}
+      onChange={(e) => setAnswer1(e.target.value)}
+      className={styles.login_input}
+      id="answer1"
+      name="SecurityQuestion1"
+      required
+    />
+  </div>
+</div>
 
-        <div>
-          <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>
-              Security Question 2 <span className={styles.asterisk}>*</span>
-            </label>
-            <p htmlFor="SecurityQuestion2" className={styles.p_type}>
-              What was your childhood nickname ?
-            </p>
-          </div>
-          <div className={styles.sub_container}>
-            <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="password"
-              value={answer2}
-              // onChange={(e) => setEmployeeFirstName(e.target.value)}
-              onChange={(e) => setAnswer2(e.target.value)}
-              className={styles.login_input}
-              name="SecurityQuestion2"
-              required
-            />
-          </div>
-        </div>
+<div>
+  <div className={styles.sub_container_question}>
+    <label className={styles.label_type_q} htmlFor="SecurityQuestion2">
+      <b>Security Question 2 <span className={styles.asterisk}>*</span></b>
+    </label>
+    <p className={styles.p_type}>
+      <b>What was your childhood nickname?</b>
+    </p>
+  </div>
+  <div className={styles.sub_container}>
+    <label className={styles.label_type} htmlFor="answer2">
+     <b> Answer <span className={styles.asterisk}>*</span>:</b>
+    </label>
+    <input
+      type="password"
+      value={answer2}
+      onChange={(e) => setAnswer2(e.target.value)}
+      className={styles.login_input}
+      id="answer2"
+      name="SecurityQuestion2"
+      required
+    />
+  </div>
+</div>
 
-        <div>
-          <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>
-              Security Question 3 <span className={styles.asterisk}>*</span>
-            </label>
-            <p htmlFor="SecurityQuestion3" className={styles.p_type}>
-              What was your first mobile brand name ?
-            </p>
-          </div>
-          <div className={styles.sub_container}>
-            <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="password"
-              value={answer3}
-              // onChange={(e) => setEmployeeFirstName(e.target.value)}
-              onChange={(e) => setAnswer3(e.target.value)}
-              className={styles.login_input}
-              name="SecurityQuestion3"
-              required
-            />
-          </div>
-        </div>
-        <br />
+<div>
+  <div className={styles.sub_container_question}>
+    <label className={styles.label_type_q} htmlFor="SecurityQuestion3">
+      <b>Security Question 3 <span className={styles.asterisk}>*</span></b>
+    </label>
+    <p className={styles.p_type}>
+      <b>What was your first mobile brand name?</b>
+    </p>
+  </div>
+  <div className={styles.sub_container}>
+    <label className={styles.label_type} htmlFor="answer3">
+      <b>Answer <span className={styles.asterisk}>*</span>:</b>
+    </label>
+    <input
+      type="password"
+      value={answer3}
+      onChange={(e) => setAnswer3(e.target.value)}
+      className={styles.login_input}
+      id="answer3"
+      name="SecurityQuestion3"
+      required
+    />
+  </div>
+</div>
+<br />
 
+       
         {error && <p className={styles.errorMessage}>{error}</p>}
 
         <div className={styles.Signup_button_container}>
@@ -255,8 +256,7 @@ const SignUpForm = () => {
 
       <div className={styles.disclaimer}>
         <p>
-          Fields marked with an asterisk (
-          <span className={styles.asterisk}>*</span>) are required.
+          Fields marked with an asterisk (<span className={styles.asterisk}>*</span>) are required.
         </p>
       </div>
 
@@ -267,11 +267,16 @@ const SignUpForm = () => {
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
             <p className={styles.popup_message}>
-              Form submitted successfully!
+             <b> Form submitted successfully!</b>
               <br />
-              <a href="#" className={styles.login_here} onClick={handleClick}>
-                Login Here
-              </a>
+              <button 
+              type="button" 
+              className={styles.login_here} 
+              onClick={handleClick}
+             >
+              <b>Login Here</b>
+             </button>
+
             </p>
             {/* <button className={styles.popup_close_button} onClick={togglePopup}>
               Close

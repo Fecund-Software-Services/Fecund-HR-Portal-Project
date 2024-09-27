@@ -12,6 +12,7 @@ Date        |   Author                  |   Sprint   |    Description
 17/4/2024     Vishal Garg                    2         Authentication & Authorization - Login
 28/4/2024     Omkar And Vishal               3         View Candidate Details
 8/07/2024   |   Vishal Garg             |    1       |    Front End Coding Navbar
+4/09/2024  |    Omkar Tajane           |     5      |   Joining Dashboard Implmentation
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -29,11 +30,12 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import ViewCandidateDetail from "./components/ViewCandidateDetail";
 import EditCanidateDetails from "./components/EditCandidateDetails";
 import Layout from "./components/Layout";
-import Navbar from "./components/Navbar";
 import SkillSets from "./components/SkillSets";
 import Status from "./components/Status";
-import footer from "./components/footer";
 import PeriodicalDashboard from "./components/PeriodicalDashboard";
+import InterviewDashboard from "./components/InterviewDashboard";
+import JoiningDashboard from "./components/JoiningDashboard";
+import DeferredDashboard from "./components/DeferredDashboard";
 
 function App() {
   return (
@@ -107,6 +109,41 @@ function App() {
                   element={<PeriodicalDashboard />}
                 />
               </Route>
+              <Route
+                exact
+                path="/home/interviewdashboard"
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/interviewdashboard"
+                  element={<InterviewDashboard />}
+                />
+              </Route>
+              <Route
+                exact
+                path="/home/joiningdashboard"
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/joiningdashboard"
+                  element={<JoiningDashboard />}
+                />
+              </Route>
+
+              <Route
+                exact
+                path="/home/deferreddashboard"
+                element={<ProtectedRoute />}
+              >
+                <Route
+                  exact
+                  path="/home/deferreddashboard"
+                  element={<DeferredDashboard />}
+                />
+              </Route>
+
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route
@@ -124,6 +161,9 @@ function App() {
 export default App;
 
 
+
+ 
+ 
 
 
 

@@ -7,17 +7,19 @@ User Story:Edit Candidate Details - Resume Handling
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   |  Phase |  Description 
 -------------------------------------------------------------------------------------------------------
-5/9/2024    |   Vishal                  |   4        |   Edit Candidate Details - Resume Handling
-09/05/2024  |   Harshini C              |   4        |   BG update to all screens
-5/9/2024    |   Vishal                  |   4        |   Resume handling - View/Edit candidate - Resume Handling - Back End
-10/05/2024  |   Vishal                  |   4        |   CSS and alignment based on BG image
-10/05/2024  |   Harshini C              |   4        |   Log Out button
-10/05/2024  |   Harshini C              |   4        |   CSS and alignment based on BG image
-18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
-14/8/2024   |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
-26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+5/9/2024    |   Vishal                  |   4        |   1    | Edit Candidate Details - Resume Handling
+09/05/2024  |   Harshini C              |   4        |   1    | BG update to all screens
+5/9/2024    |   Vishal                  |   4        |   1    | Resume handling - View/Edit candidate - Resume Handling - Back End
+10/05/2024  |   Vishal                  |   4        |   1    | CSS and alignment based on BG image
+10/05/2024  |   Harshini C              |   4        |   1    | Log Out button
+10/05/2024  |   Harshini C              |   4        |   1    | CSS and alignment based on BG image
+18/07/2024  |   Vishal Garg             |   2        |   1    | Front End Coding Navbar 
+14/8/2024   |   Vishal Garg             |   3        |   2    | Admin role 
+26/8/2024   |   Vishal Garg             |   3        |   2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+03/09/2024  |   Harshini C              |   5        |   2    | UI fixes
+19/09/2024  |   Harshini C              |   6        |   2    | QA Defect - Multiple UI Issues
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -26,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import styles from "./EditCandidateDetails.module.css";
-import popupBackground from "../assets/PopupBackgroundImage.png";
+import popupBackground from "../assets/backgroundImages.png";
 
 const EditCandiadteDetails = () => {
   const { id } = useParams(); // Get the Candidate ID from URL parameters
@@ -77,7 +79,7 @@ const EditCandiadteDetails = () => {
         `/api/candidate/view-candidate/${CandidateId}`
       );
       const candidateData = await response.json();
-      // setCandidateDetails(candidateData);
+      
       setEditedData({ ...candidateData });
       setEditedData((prevData) => ({ ...prevData, currentCTCDisplay:candidateData.currentCTC }))
       setEditedData((prevData) => ({ ...prevData, expectedCTCDisplay:candidateData.expectedCTC }))
@@ -187,7 +189,6 @@ const EditCandiadteDetails = () => {
 
   const handleCheckboxChange = (e) => {
     const { name } = e.target;
-    // let newValue = checked;
     setEditedData((prevData) => ({ ...prevData, [name]: !prevData.certified }));
   };
 
@@ -252,7 +253,7 @@ const EditCandiadteDetails = () => {
     formDataToSend.append("emailAddress", editedData.emailAddress);
     formDataToSend.append("mobileNumber", editedData.mobileNumber);
     formDataToSend.append("skillSet", editedData.skillSet);
-    formDataToSend.append("subskillSet", editedData.subskillset);
+    formDataToSend.append("subskillset", editedData.subskillset);
     formDataToSend.append("itExperience", editedData.itExperience);
     formDataToSend.append(
       "totalRelevantExperience",
@@ -263,7 +264,7 @@ const EditCandiadteDetails = () => {
     formDataToSend.append("expectedCTC", editedData.expectedCTC);
     formDataToSend.append("interviewDate", editedData.interviewDate);
     formDataToSend.append("joiningDate", editedData.joiningDate);
-    // formDataToSend.append("statusUpdatedDate", editedData.statusUpdatedDate);
+    
     formDataToSend.append("statusComments", editedData.statusComments);
     formDataToSend.append("noticePeriod", editedData.noticePeriod);
     formDataToSend.append(
@@ -331,7 +332,7 @@ const EditCandiadteDetails = () => {
           {/* Left side form fields here */}
           <div className={styles.sub_container}>
             <label htmlFor="firstName">
-              First Name<span className={styles.asterisk}>*</span>:
+              <b>First Name<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -345,7 +346,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="lastName">
-              Last Name<span className={styles.asterisk}>*</span>:
+             <b>Last Name<span className={styles.asterisk}>*</span>:</b> 
             </label>
             <input
               type="text"
@@ -359,7 +360,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="emailAddress">
-              Email ID<span className={styles.asterisk}>*</span>:
+              <b>Email ID<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="email"
@@ -372,7 +373,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="mobileNumber">
-              Mobile Number<span className={styles.asterisk}>*</span>:
+              <b>Mobile Number<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="tel"
@@ -386,30 +387,9 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="totalRelevantExperience">
-              Total Relevant Experience
-              <span className={styles.asterisk}>*</span> (Yrs):
-            </label>
-            <input
-              type="text"
-              name="totalRelevantExperience"
-              id="totalRelevantExperience"
-              value={editedData.totalRelevantExperience}
-              onChange={(e) => {
-                const experience = e.target.value;
-                setEditedData((prevData) => ({
-                  ...prevData,
-                  totalRelevantExperience: experience > 25 ? '25+' : experience,
-                }));
-              }}
-              required
-            />
-          </div>
-
-          <div className={styles.sub_container}>
             <label htmlFor="itExperience">
-              Total IT Experience<span className={styles.asterisk}>*</span>{" "}
-              (Yrs):
+              <b>Total IT Experience<span className={styles.asterisk}>*</span>{" "}
+              (Yrs):</b>
             </label>
             <input
               type="text"
@@ -422,8 +402,29 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
+            <label htmlFor="totalRelevantExperience">
+              <b>Total Relevant Experience
+              <span className={styles.asterisk}>*</span> (Yrs):</b>
+            </label>
+            <input
+              type="text"
+              name="totalRelevantExperience"
+              id="totalRelevantExperience"
+              value={editedData.totalRelevantExperience}
+              onChange={(e) => {
+                const experience = e.target.value;
+                setEditedData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperience: experience,
+                }));
+              }}
+              required
+            />
+          </div>
+
+          <div className={styles.sub_container}>
             <label htmlFor="skillSet">
-              Skill Set<span className={styles.asterisk}>*</span>:
+             <b> Skill Set<span className={styles.asterisk}>*</span>:</b>
             </label>
             <select
               name="skillSet"
@@ -443,7 +444,7 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="subskillset">
-              Sub Skill Set<span className={styles.asterisk}>*</span>:
+              <b>Sub Skill Set<span className={styles.asterisk}>*</span>:</b>
             </label>
             <select
               name="subskillset"
@@ -464,7 +465,7 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="currentCompany">
-              Current Company<span className={styles.asterisk}>*</span>:
+              <b>Current Company<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -477,7 +478,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="currentCTC">
-              Current CTC (LPA)<span className={styles.asterisk}>*</span>:
+              <b>Current CTC (LPA)<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="number"
@@ -506,10 +507,61 @@ const EditCandiadteDetails = () => {
               required
             />
           </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="noticePeriod">
+              <b>Notice Period<span className={styles.asterisk}>*</span> (Days):</b>
+            </label>
+            <input
+              type="number"
+              name="noticePeriod"
+              id="noticePeriod"
+              value={editedData.noticePeriod}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          {editedData.status === "Scheduled R1" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="interviewDate">
+                <b>Interview Date<span className={styles.asterisk}>*</span>:</b>
+              </label>
+              <input
+                type="date"
+                name="interviewDate"
+                id="interviewDate"
+                value={editedData.interviewDate}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {editedData.status === "Scheduled R2" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="interviewDate">
+                <b>Interview Date<span className={styles.asterisk}>*</span>:</b>
+              </label>
+              <input
+                type="date"
+                name="interviewDate"
+                id="interviewDate"
+                value={editedData.interviewDate}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
           {userData.role === "admin" ? (
             <div className={styles.sub_container}>
               <label htmlFor="expectedCTC">
-                Expected CTC<span className={styles.asterisk}>*</span>:
+                <b>Expected CTC<span className={styles.asterisk}>*</span>:</b>
               </label>
               <input
                 type="number"
@@ -543,26 +595,44 @@ const EditCandiadteDetails = () => {
           )}
 
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">
-              Notice Period<span className={styles.asterisk}>*</span> (Days):
+            <label htmlFor="servingNoticePeriod">
+              <b>Serving Notice Period<span className={styles.asterisk}>*</span>:</b>
             </label>
-            <input
-              type="number"
-              name="noticePeriod"
-              id="noticePeriod"
-              value={editedData.noticePeriod}
-              onChange={handleInputChange}
-              required
-            />
+            <div className={styles.checkbox_container}>
+              <label>
+                <input
+                  type="checkbox"
+                  name="servingNoticePeriod"
+                  // id="servingNoticePeriod"
+                  value="Yes"
+                  onChange={handleServingNoticePeriodChange}
+                  checked={editedData.servingNoticePeriod === true} // Check if the value is 'Yes'
+                />
+                <b>Yes</b>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="servingNoticePeriod"
+                  // id="servingNoticePeriod"
+                  value="No"
+                  onChange={handleServingNoticePeriodChange}
+                  checked={editedData.servingNoticePeriod === false} // Check if the value is 'No'
+                />
+                <b>No</b>
+              </label>
+            </div>
           </div>
+
           <div className={styles.sub_container}>
-            <label>Status:</label>
+            <label><b>Status</b><span className={styles.asterisk}>*</span>:</label>
 
             <select
               name="status"
               id="status"
               value={editedData.status}
               onChange={handleInputChange}
+              onFocus={(e)=>{e.target.size = 5}}
               required
             >
               {statusOptions.map((status, index) => (
@@ -574,7 +644,7 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="statusComments">Status Comments:<span className={styles.asterisk}>*</span></label>
+            <label htmlFor="statusComments"><b>Status Comments</b> <span className={styles.asterisk}>*</span>:</label>
             <textarea
               name="statusComments"
               id="statusComments"
@@ -583,57 +653,6 @@ const EditCandiadteDetails = () => {
               required
             ></textarea>
           </div>
-
-          {editedData.status === "Offer Issued" ? (
-            <div className={styles.sub_container}>
-              <label htmlFor="joiningDate">
-                Joining Date<span className={styles.asterisk}>*</span>:
-              </label>
-              <input
-                type="date"
-                name="joiningDate"
-                id="joiningDate"
-                value={editedData.joiningDate}
-                onChange={handleInputChange}
-              />
-            </div>
-          ) : (
-            ""
-          )}
-
-          {editedData.status === "Scheduled R1" ? (
-            <div className={styles.sub_container}>
-              <label htmlFor="interviewDate">
-                Interview Date<span className={styles.asterisk}>*</span>:
-              </label>
-              <input
-                type="date"
-                name="interviewDate"
-                id="interviewDate"
-                value={editedData.interviewDate}
-                onChange={handleInputChange}
-              />
-            </div>
-          ) : (
-            ""
-          )}
-
-          {editedData.status === "Scheduled R2" ? (
-            <div className={styles.sub_container}>
-              <label htmlFor="interviewDate">
-                Interview Date<span className={styles.asterisk}>*</span>:
-              </label>
-              <input
-                type="date"
-                name="interviewDate"
-                id="interviewDate"
-                value={editedData.interviewDate}
-                onChange={handleInputChange}
-              />
-            </div>
-          ) : (
-            ""
-          )}
 
           {/* <div className={styles.sub_container}>
             <label htmlFor="StatusUpadteDate">
@@ -648,38 +667,10 @@ const EditCandiadteDetails = () => {
             />
           </div> */}
           
-          <div className={styles.sub_container}>
-            <label htmlFor="servingNoticePeriod">
-              Serving Notice Period<span className={styles.asterisk}>*</span>:
-            </label>
-            <div className={styles.checkbox_container}>
-              <label>
-                <input
-                  type="checkbox"
-                  name="servingNoticePeriod"
-                  // id="servingNoticePeriod"
-                  value="Yes"
-                  onChange={handleServingNoticePeriodChange}
-                  checked={editedData.servingNoticePeriod === true} // Check if the value is 'Yes'
-                />
-                Yes
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="servingNoticePeriod"
-                  // id="servingNoticePeriod"
-                  value="No"
-                  onChange={handleServingNoticePeriodChange}
-                  checked={editedData.servingNoticePeriod === false} // Check if the value is 'No'
-                />
-                No
-              </label>
-            </div>
-          </div>
+          
           <div className={styles.sub_container}>
             <label htmlFor="certified">
-              Certified?<span className={styles.asterisk}>*</span>
+              <b>Certified?</b><span className={styles.asterisk}>*</span>
             </label>
             <div className={styles.checkbox_container}>
               <label>
@@ -691,7 +682,7 @@ const EditCandiadteDetails = () => {
                   onChange={handleCheckboxChange}
                   checked={editedData.certified === true} // Check if the value is 'Yes'
                 />
-                Yes
+                <b>Yes</b>
               </label>
               <label>
                 <input
@@ -702,14 +693,14 @@ const EditCandiadteDetails = () => {
                   onChange={handleCheckboxChange}
                   checked={editedData.certified === false} // Check if the value is 'No'
                 />
-                No
+               <b>No</b> 
               </label>
             </div>
           </div>
           {editedData.servingNoticePeriod === true && ( // Check if 'Yes' is selected
             <div className={styles.sub_container}>
               <label htmlFor="lastWorkingDay">
-                Last Working Day<span className={styles.asterisk}>*</span>:
+                <b>Last Working Day<span className={styles.asterisk}>*</span>:</b>
               </label>
               <input
                 type="date"
@@ -717,12 +708,13 @@ const EditCandiadteDetails = () => {
                 id="lastWorkingDay"
                 value={editedData.lastWorkingDay}
                 onChange={handleInputChange}
+                required
               />
             </div>
           )}
 
           <div className={styles.sub_container}>
-            <label htmlFor="comments">Comments:</label>
+            <label htmlFor="comments"><b>Comments:</b></label>
             <textarea
               name="comments"
               id="comments"
@@ -730,8 +722,27 @@ const EditCandiadteDetails = () => {
               onChange={handleInputChange}
             ></textarea>
           </div>
+            
+          {editedData.status === "Offer Issued" ? (
+            <div className={styles.sub_container}>
+              <label htmlFor="joiningDate">
+               <b>Joining Date<span className={styles.asterisk}>*</span>:</b> 
+              </label>
+              <input
+                type="date"
+                name="joiningDate"
+                id="joiningDate"
+                value={editedData.joiningDate}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
           <div className={styles.sub_container}>
-            <label htmlFor="resume">Resume:</label>
+            <label htmlFor="resume"><b>Resume:</b></label>
             <input
               type="file"
               name="resume"

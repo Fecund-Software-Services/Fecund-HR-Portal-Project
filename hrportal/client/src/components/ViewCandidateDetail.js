@@ -8,23 +8,24 @@ User Story: Successful Sign-up
  
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description
+Date        |   Author                  |   Sprint   |  Phase |  Description
 -------------------------------------------------------------------------------------------------------
- 8/05/2024  |   Vishal                  |    4       |  View candidate details
- 10/05/2024 |   Harshini C              |    4       |  Log Out button
- 14/05/2024 |   Harshini C              |    4       |  CSS and alignment based on BG image
- 18/07/2024 |   Vishal Garg             |   2        |    Front End Coding Navbar 
- 14/8/2024  |   Vishal Garg             |Ph2  Sp 3   |   Admin role 
- 26/8/2024  |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
- 28/8/2024  |  HS                       | phase 2 sprint 4 | Status History Tracker
+ 8/05/2024  |   Vishal                  |    4       |    1   |  View candidate details
+ 10/05/2024 |   Harshini C              |    4       |    1   |  Log Out button
+ 14/05/2024 |   Harshini C              |    4       |    1   |  CSS and alignment based on BG image
+ 18/07/2024 |   Vishal Garg             |    2       |    1   |  Front End Coding Navbar 
+ 14/8/2024  |   Vishal Garg             |    3       |    1   |  Admin role 
+ 26/8/2024  |   Vishal Garg             |    4       |    1   |  Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+ 28/8/2024  |   HS                      |    4       |    1   |  Status History Tracker
+ 19/09/2024 |   Harshini C              |    6       |    1   |  QA Defect - Multiple UI Issues
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
+import { useNavigate , useParams } from "react-router-dom"; // Import useHistory and useParams hooks
+import { Tooltip} from "react-tooltip";
 import { useAuth } from "../context/AuthContext.js";
-//import { FaDownload } from "react-icons/fa";
+
 import styles from "./ViewCandidateDetail.module.css";
 
 function ViewCandidateDetail() {
@@ -54,7 +55,7 @@ function ViewCandidateDetail() {
     }
   };
 
-  console.log(candidateDetails)
+  console.log(candidateDetails);
 
   const fetchCandidateResume = async () => {
     try {
@@ -71,10 +72,10 @@ function ViewCandidateDetail() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      // a.download = 'candidate_details.pdf';
+      
       const fileName = candidateDetails.resume;
       console.log(fileName);
-      // a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
+      
       a.download = `${fileName}`;
       document.body.appendChild(a);
       a.click();
@@ -100,135 +101,157 @@ function ViewCandidateDetail() {
       </div>
       <div className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
-          <div className={styles.sub_container}>
-            <label>First Name:</label>
+        <div className={styles.sub_container}>
+            <b><label>First Name:</label></b>
             <p className={styles.text}>{candidateDetails.firstName}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Last Name:</label>
+          <b><label>Last Name:</label></b>
             <p className={styles.text}>{candidateDetails.lastName}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Email ID:</label>
+           <b><label>Email ID:</label></b> 
             <p className={styles.text}>{candidateDetails.emailAddress}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Mobile Number:</label>
+            <b><label>Mobile Number:</label></b>
             <p className={styles.text}>{candidateDetails.mobileNumber}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Total IT Experience:</label>
-            <p className={styles.text}>
-              {candidateDetails.itExperience}
-            </p>
+            <b><label>Total IT Experience:</label></b>
+            <p className={styles.text}>{candidateDetails.itExperience}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Total Relevant Experience:</label>
+            <b><label>Total Relevant Experience:</label></b>
             <p className={styles.text}>
               {candidateDetails.totalRelevantExperience}
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label>Skill Set:</label>
+            <b><label>Skill Set:</label></b>
             <p className={styles.text}>{candidateDetails.skillSet}</p>
           </div>
-          
+
           <div className={styles.sub_container}>
-            <label>Current Company:</label>
+            <b><label>Current Company:</label></b>
             <p className={styles.text}>{candidateDetails.currentCompany}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Sub Skill:</label>
+            <b><label>Sub Skill:</label></b>
             <p className={styles.text}>{candidateDetails.subskillset}</p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="currentCTC">Current CTC (LPA):</label>
+            <b><label htmlFor="currentCTC">Current CTC (LPA):</label></b>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
           </div>
-          
+
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Notice Period:</label>
+            <b><label htmlFor="noticePeriod">Notice Period:</label></b>
             <p className={styles.text}>{candidateDetails.noticePeriod}</p>
           </div>
-          {userData.role === "admin" ? (
+
+          {candidateDetails.status === "Scheduled R1" ? (
             <div className={styles.sub_container}>
-              <label htmlFor="expectedCTC">Expected CTC:</label>
-              <p className={styles.text}>{candidateDetails.expectedCTC}</p>
-            </div>
-          ) : (
-            ""
-          )}
-          <div className={styles.sub_container}>
-            <label>Status:</label>
-            <p className={styles.text}>{candidateDetails.status}</p>
-          </div>
-          <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Status Comments:</label>
-            <p className={styles.text}>
-              {candidateDetails.statusComments
-                ? candidateDetails.statusComments
-                : "No comments entered"}
-            </p>
-          </div>
-          {candidateDetails.status === "Offer Issued" ? (
-            <div className={styles.sub_container}>
-              <label>Joining Date:</label>
-              <p className={styles.text}>{candidateDetails.joiningDate}</p>
-            </div>
-          ) : (
-            ""
-          )}
-           {
-          candidateDetails.status === "Scheduled R1" ? (
-            <div className={styles.sub_container}>
-              <label>Interview Date:</label>
+              <b><label>Interview Date:</label></b>
               <p className={styles.text}>{candidateDetails.interviewDate}</p>
             </div>
           ) : (
             ""
           )}
-          {
-          candidateDetails.status === "Scheduled R2" ? (
+          {candidateDetails.status === "Scheduled R2" ? (
             <div className={styles.sub_container}>
-              <label>Interview Date:</label>
+              <b><label>Interview Date:</label></b>
               <p className={styles.text}>{candidateDetails.interviewDate}</p>
             </div>
           ) : (
             ""
           )}
 
-          
+          {userData.role === "admin" ? (
+            <div className={styles.sub_container}>
+              <b><label htmlFor="expectedCTC">Expected CTC:</label></b>
+              <p className={styles.text}>{candidateDetails.expectedCTC}</p>
+            </div>
+          ) : (
+            ""
+          )}
           <div className={styles.sub_container}>
-            <label htmlFor="certified">Certified?:</label>
+            <b><label>Status:</label></b>
+            <p className={styles.text}>{candidateDetails.status}</p>
+          </div>
+          <div className={styles.sub_container}>
+            <b><label htmlFor="noticePeriod">Status Comments:</label></b>
+            <p className={styles.text}>
+              {candidateDetails.statusComments
+                ? candidateDetails.statusComments
+                : "No comments entered"}
+            </p>
+          </div>
+      
+          <div className={styles.sub_container}>
+            <b><label htmlFor="certified">Certified?:</label></b>
             <p className={styles.text}>
               {candidateDetails.servingNoticePeriod ? "Yes" : "No"}
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="servingNoticedPeriod">Serving Notice Period:</label>
+            <b><label htmlFor="servingNoticedPeriod">Serving Notice Period:</label></b>
             <p className={styles.text}>
               {candidateDetails.certified ? "Yes" : "No"}
             </p>
           </div>
           {candidateDetails.servingNoticePeriod === true && ( // Check if 'Yes' is selected
             <div className={styles.sub_container}>
-              <label htmlFor="lastWorkingDay">Last Working Day</label>
+              <b><label htmlFor="lastWorkingDay">Last Working Day:</label></b>
               <p className={styles.text}>{candidateDetails.lastWorkingDay}</p>
             </div>
           )}
+
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Comments:</label>
+            <b><label htmlFor="noticePeriod">Comments:</label></b>
             <p className={styles.text}>
               {candidateDetails.comments
                 ? candidateDetails.comments
                 : "No comments entered"}
             </p>
           </div>
-          <div className={styles.sub_container}>
-            <label htmlFor="resume">Resume:</label>
-            <div onClick={fetchCandidateResume}>
-              {candidateDetails.resume}&nbsp;&nbsp;
+          
+          {candidateDetails.status === "Offer Issued" ? (
+            <div className={styles.sub_container}>
+              <b><label>Joining Date:</label></b>
+              <p className={styles.text}>{candidateDetails.joiningDate}</p>
             </div>
+          ) : (
+            ""
+          )}
+          
+          <div className={styles.sub_container}>
+            <b><label htmlFor="resume">Resume:</label></b>
+            <div>
+              {/* Tooltip and resume link */}
+              <span
+                data-tooltip-content="Click to download"
+                data-tooltip-id="resumeTooltip"  // Link to the Tooltip component with an ID
+                onClick={fetchCandidateResume}
+                className={styles.resume_link}
+              >
+                {candidateDetails.resume}
+              </span>
+  
+
+              <Tooltip id="resumeTooltip" place="top" effect="solid" />
+               
+            </div>
+            {/* <div>
+              <span data-tip="Click to download" onClick={fetchCandidateResume}>
+                {candidateDetails.resume}
+              
+              <Tooltip />
+              </span>
+            </div> */}
+            {/* <div onClick={fetchCandidateResume}>
+              {candidateDetails.resume}&nbsp;&nbsp;
+            </div> */}
           </div>
 
           <div className={styles.sub_container}></div>

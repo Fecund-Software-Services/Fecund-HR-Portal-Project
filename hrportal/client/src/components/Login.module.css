@@ -18,7 +18,7 @@ Date        |   Author                  |   Sprint   |    Description
 /* Login.css */
 
 .login_container {
-  background-image: url("../assets/loginScreen.png");
+  background-image: url("../assets/BGV-Portal.png");
   background-size: 100% 100%;
   display: flex;
   justify-content: center;

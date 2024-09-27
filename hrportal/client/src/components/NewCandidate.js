@@ -7,29 +7,25 @@ User Story:Add New Candidate
 
 Modification Log:
 -------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |    Description 
+Date        |   Author                  |   Sprint   |  Phase   |  Description 
 -------------------------------------------------------------------------------------------------------
-18/4/2024   |   Omkar & Vishal          |   2        |  Add New Candidate
-24/4/2024   |   Vishal                  |   3        |  Search Candidate
-29/4/2024   |   Vishal                  |   3        |  Add New Candidate Validations - Code Integration
-09/05/2024  |   Harshini C              |   4        |  BG update to all screens
-10/05/2024  |   Vishal                  |   4        |  CSS and alignment based on BG image
-10/05/2024  |   Harshini C              |   4        |  Log Out button
-14/05/2024  |   Harshini C              |   4        |  CSS and alignment based on BG image
-18/07/2024  |   Vishal Garg             |   2        |    Front End Coding Navbar 
-26/8/2024   |   Vishal Garg             |ph2  sp 4   |   Add New Candidate - Total Relevant experience, Interview Date and Joining Date
-28/08/2024  |   Harshini C              |   4        | Footer - Implementing the social media links
+18/4/2024   |   Omkar & Vishal          |   2        |  1       |  Add New Candidate
+24/4/2024   |   Vishal                  |   3        |  1       |  Search Candidate
+29/4/2024   |   Vishal                  |   3        |  1       |  Add New Candidate Validations - Code Integration
+09/05/2024  |   Harshini C              |   4        |  1       |  BG update to all screens
+10/05/2024  |   Vishal                  |   4        |  1       |  CSS and alignment based on BG image
+10/05/2024  |   Harshini C              |   4        |  1       |  Log Out button
+14/05/2024  |   Harshini C              |   4        |  1       |  CSS and alignment based on BG image
+18/07/2024  |   Vishal Garg             |   2        |  1       |  Front End Coding Navbar 
+26/8/2024   |   Vishal Garg             |   4        |  2       |  Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+28/08/2024  |   Harshini C              |   4        |  2       |  Footer - Implementing the social media links
 -------------------------------------------------------------------------------------------------------
 */
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
-import popupBackground from "../assets/PopupBackgroundImage.png";
-import { FaTwitterSquare } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
+import popupBackground from "../assets/backgroundImages.png";
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({
@@ -150,13 +146,13 @@ const NewCandidate = () => {
 
   const handleCheckboxChange = (e) => {
     const { name } = e.target;
-    // let newValue = checked;
+    
     setFormData((prevData) => ({ ...prevData, [name]: !prevData.certified }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
     const { name } = e.target;
-    // let newValue = checked;
+    
     setFormData((prevData) => ({
       ...prevData,
       [name]: !prevData.servingNoticePeriod,
@@ -223,10 +219,7 @@ const NewCandidate = () => {
     formDataToSend.append("currentCompany", formData.currentCompany);
     formDataToSend.append("currentCTC", formData.currentCTC);
     formDataToSend.append("expectedCTC", formData.expectedCTC);
-    // formDataToSend.append("interviewDate", formData.interviewDate);
-    // formDataToSend.append("joiningDate", formData.joiningDate);
-    // formDataToSend.append("statusUpdatedDate", formData.statusUpdatedDate);
-    // formDataToSend.append("statusComments", formData.statusComments);
+    
     formDataToSend.append("noticePeriod", formData.noticePeriod);
     formDataToSend.append("servingNoticePeriod", formData.servingNoticePeriod);
     formDataToSend.append("lastWorkingDay", formData.lastWorkingDay);
@@ -269,7 +262,7 @@ const NewCandidate = () => {
   };
 
   const togglePopup = () => {
-    //setShowPopup(!showPopup);
+    
     navigateToPopup("/home");
   };
 
@@ -291,7 +284,7 @@ const NewCandidate = () => {
           {/* Left side form fields here */}
           <div className={styles.sub_container}>
             <label htmlFor="firstName">
-              First Name<span className={styles.asterisk}>*</span>:
+              <b>First Name<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -305,7 +298,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="lastName">
-              Last Name<span className={styles.asterisk}>*</span>:
+            <b>Last Name<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -319,7 +312,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="emailAddress">
-              Email ID<span className={styles.asterisk}>*</span>:
+            <b>Email ID<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="email"
@@ -332,7 +325,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="mobileNumber">
-              Mobile Number<span className={styles.asterisk}>*</span>:
+            <b>Mobile Number<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="tel"
@@ -346,38 +339,8 @@ const NewCandidate = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="totalRelevantExperience">
-              Total Relevant Experience (Yrs)
-              <span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="number"
-              name="totalRelevantExperience"
-              id="totalRelevantExperience"
-              value={formData.totalRelevantExperienceDisplay}
-              onChange={(e) => {
-                const experience = e.target.value;
-                // Update the display value with the user's input
-                setFormData((prevData) => ({
-                  ...prevData,
-                  totalRelevantExperienceDisplay: experience,
-                }));
-              }}
-              onBlur={() => {
-                // When the user leaves the input field, check if value is more than 25
-                const experienceValue = parseFloat(formData.totalRelevantExperienceDisplay);
-                setFormData((prevData) => ({
-                  ...prevData,
-                  totalRelevantExperience: experienceValue <= 25 ? experienceValue : "25+",
-                }));
-              }}
-              required
-            />
-          </div>
-
-          <div className={styles.sub_container}>
             <label htmlFor="itExperience">
-              Total IT Experience (Yrs)
+            <b> Total IT Experience (Yrs)</b>
               <span className={styles.asterisk}>*</span>:
             </label>
             <input
@@ -398,7 +361,37 @@ const NewCandidate = () => {
                 const experienceValue = parseFloat(formData.itExperienceDisplay);
                 setFormData((prevData) => ({
                   ...prevData,
-                  itExperience: experienceValue <= 25 ? experienceValue : "25+",
+                  itExperience: experienceValue,
+                }));
+              }}
+              required
+            />
+          </div>
+
+          <div className={styles.sub_container}>
+            <label htmlFor="totalRelevantExperience">
+            <b> Total Relevant Experience (Yrs)</b>
+              <span className={styles.asterisk}>*</span>:
+            </label>
+            <input
+              type="number"
+              name="totalRelevantExperience"
+              id="totalRelevantExperience"
+              value={formData.totalRelevantExperienceDisplay}
+              onChange={(e) => {
+                const experience = e.target.value;
+                // Update the display value with the user's input
+                setFormData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperienceDisplay: experience,
+                }));
+              }}
+              onBlur={() => {
+                // When the user leaves the input field, check if value is more than 25
+                const experienceValue = parseFloat(formData.totalRelevantExperienceDisplay);
+                setFormData((prevData) => ({
+                  ...prevData,
+                  totalRelevantExperience: experienceValue,
                 }));
               }}
               required
@@ -407,7 +400,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="skillSet">
-              Skill Set<span className={styles.asterisk}>*</span>:
+            <b>Skill Set<span className={styles.asterisk}>*</span>:</b>
             </label>
             <select
               name="skillSet"
@@ -428,7 +421,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="subskillSet">
-              Sub Skill Set<span className={styles.asterisk}>*</span>:
+            <b>Sub Skill Set<span className={styles.asterisk}>*</span>:</b>
             </label>
             <select
               name="subskillSet"
@@ -470,7 +463,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="currentCompany">
-              Current Company<span className={styles.asterisk}>*</span>:
+            <b>Current Company<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -483,7 +476,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="currentCTC">
-              Current CTC (LPA)<span className={styles.asterisk}>*</span>:
+            <b>Current CTC (LPA)<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="number"
@@ -514,7 +507,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="expectedCTC">
-              Expected CTC<span className={styles.asterisk}>*</span>:
+            <b>Expected CTC<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="number"
@@ -590,7 +583,7 @@ const NewCandidate = () => {
           </div> */}
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
-              Notice Period (Days)<span className={styles.asterisk}>*</span>:
+            <b> Notice Period (Days)<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="number"
@@ -603,7 +596,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="servingNoticePeriod">
-              Serving Notice Period<span className={styles.asterisk}>*</span>:
+            <b>Serving Notice Period<span className={styles.asterisk}>*</span>:</b>
             </label>
             <div className={styles.checkbox_container}>
               <label>
@@ -615,7 +608,7 @@ const NewCandidate = () => {
                   onChange={handleServingNoticePeriodChange}
                   checked={formData.servingNoticePeriod === true} // Check if the value is 'Yes'
                 />
-                Yes
+                <b>Yes</b>
               </label>
               <label>
                 <input
@@ -626,13 +619,13 @@ const NewCandidate = () => {
                   onChange={handleServingNoticePeriodChange}
                   checked={formData.servingNoticePeriod === false} // Check if the value is 'No'
                 />
-                No
+               <b>No</b> 
               </label>
             </div>
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="certified">
-              Certified?<span className={styles.asterisk}>*</span>:
+            <b>Certified?<span className={styles.asterisk}>*</span>:</b>
             </label>
             <div className={styles.checkbox_container}>
               <label>
@@ -644,7 +637,7 @@ const NewCandidate = () => {
                   onChange={handleCheckboxChange}
                   checked={formData.certified === true} // Check if the value is 'Yes'
                 />
-                Yes
+                <b>Yes</b>
               </label>
               <label>
                 <input
@@ -655,14 +648,14 @@ const NewCandidate = () => {
                   onChange={handleCheckboxChange}
                   checked={formData.certified === false} // Check if the value is 'No'
                 />
-                No
+                <b>No</b>
               </label>
             </div>
           </div>
           {formData.servingNoticePeriod === true && ( // Check if 'Yes' is selected
             <div className={styles.sub_container}>
               <label htmlFor="lastWorkingDay">
-                Last Working Day<span className={styles.asterisk}>*</span>:
+              <b>Last Working Day<span className={styles.asterisk}>*</span>:</b>
               </label>
               <input
                 type="date"
@@ -670,12 +663,13 @@ const NewCandidate = () => {
                 id="lastWorkingDay"
                 value={formData.lastWorkingDay}
                 onChange={handleInputChange}
+                required
               />
             </div>
           )}
 
           <div className={styles.sub_container}>
-            <label htmlFor="comments">Comments:</label>
+            <label htmlFor="comments"><b>Comments:</b></label>
             <textarea
               name="comments"
               id="comments"
@@ -685,7 +679,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="resume">
-              Resume<span className={styles.asterisk}>*</span>:
+            <b> Resume<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="file"
@@ -725,6 +719,7 @@ const NewCandidate = () => {
           <span className={styles.asterisk}>(*)</span> are required.
         </p>
       </div>
+
       {showPopup && (
         <div className={styles.popup} onClick={togglePopup}>
           <div
@@ -740,13 +735,6 @@ const NewCandidate = () => {
               </a>
             </p>
           </div>
-          <div className={styles.footerContainer}>
-            <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
-            <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
-            <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
-            <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
-            <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
-          </div>  
         </div>
       )}
     </div>

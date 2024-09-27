@@ -57,7 +57,7 @@ const Login = () => {
       <form onSubmit={handleLogin} className={styles.login_form}>
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>
-            Email ID
+           <b>Email ID</b>
           </label>
           <input
             type="email"
@@ -72,7 +72,7 @@ const Login = () => {
         <br />
         <div className={styles.sub_container}>
           <label htmlFor="password" className={styles.label_type}>
-            Password
+            <b>Password</b>
           </label>
           <input
             type="password"
@@ -97,13 +97,13 @@ const Login = () => {
         <br />
 
         <a href="/reset-password" className={styles.login_link}>
-          Reset Password
+          <b>Reset Password</b>
         </a>
         <br />
 
         <div>
           <a href="/signup" className={styles.signup_link}>
-            Sign up to create new Account
+            <b>Sign up to create new Account</b>
           </a>
         </div>
       </form>

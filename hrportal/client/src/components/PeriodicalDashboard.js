@@ -6,18 +6,20 @@ Sprint: Phase 2 Sprint 4
 
 Modification Log:
 ------------------------------------------------------------------------------------------------------------------------------------
-Date        |   Author                  |   Sprint   |  Phase  |  Description 
+Date        |   Author                  |   Sprint   |  Phase  | Description 
 ----------------------------------------------------------------------------------------------------------------------------------
- 29/08/2024  |   Vishal                 |     4      |   2     | Integration modification of Generate Report data
- --------------------------------------------------------------------------------------------------------------------------------
-29/08/2024  | Omkar                     |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset, 
+ 29/08/2024 |   Vishal                  |     4      |   2     | Integration modification of Generate Report data
+29/08/2024  |   Omkar                   |     4      |   2     | Issue resolvement: Dropdown Update,Date Reset
+30/08/2024  |   Omkar                   |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
+03/09/2024  |   Harshini C              |     5      |   2     | UI fixes
+17/09/2024  |  Vishal Garg              |     6      |   2     | Pericodical Dashboard download in excel format
 -----------------------------------------------------------------------------------------------------------------------------------
-30/08/2024 |  Omkar                     |     4      |   2     | Issue Resolvement:Initial Load of None, Subskill data fetching
-// */
+ */
 
 import React, { useState, useEffect } from "react";
 import styles from "./PeriodicalDashboard.module.css";
 import usePeriodicDashboard from "../hooks/usePeriodicDashboard";
+import DownloadExcelReport from "./DownloadExcelReport";
 
 const PeriodicalDashboard = () => {
   const [selectedSkill, setSelectedSkill] = useState("None"); // This holds the skill name for display purposes
@@ -35,13 +37,13 @@ const PeriodicalDashboard = () => {
     fetchReport,
     fetchSubSkills,
     fetchSkillsets,
-    setData,  // Exported setData from the hook
+    setData, // Exported setData from the hook
   } = usePeriodicDashboard();
 
   useEffect(() => {
     fetchSkillsets(); // Fetch skills when the component mounts
-    fetchSubSkills(); // Fetch all subskills by default on initial load
-  }, [fetchSkillsets, fetchSubSkills]);
+    // fetchSubSkills(); // Fetch all subskills by default on initial load
+  }, [fetchSkillsets]);
 
   const handleSkillChange = (e) => {
     const selectedValue = e.target.value;
@@ -50,6 +52,7 @@ const PeriodicalDashboard = () => {
       setSelectedSkill("None");
       setSelectedSkillId("");
       fetchSubSkills(); // Fetch all subskills if "None" is selected
+      console.log(fetchSubSkills);
     } else {
       const foundSkill = skills.find((skill) => skill._id === selectedValue);
       if (foundSkill) {
@@ -68,21 +71,72 @@ const PeriodicalDashboard = () => {
   };
 
   const handleGenerateReport = () => {
+    setData(null)
+    if (selectedSkill === "None") {
+      fetchSubSkills();
+    }
     fetchReport(fromDate, toDate, selectedSkillId);
   };
+
+  const formatDataForExcel = (data, subSkills) => {
+    if (!data || data.length === 0) return [];
+
+    const allSubSkills = subSkills.map(skill => skill.subsetname);
+
+    // Identify non-zero columns
+    const nonZeroColumns = allSubSkills.filter(subSkill => 
+      data.some(row => row.subskills[subSkill] > 0)
+    );
+
+    return data.map(row => {
+      let formattedRow = {
+        Experience: row.exp,
+      };
+
+      // Only include non-zero columns
+      nonZeroColumns.forEach(subSkill => {
+        formattedRow[subSkill] = row.subskills[subSkill] || 0;
+      });
+
+      // Add the remaining fields
+      formattedRow = {
+        ...formattedRow,
+        'Offered/Accepted': row.offered,
+        'Negotiation Stage': row.negotiation,
+        'Candidate Backed Out': row.backedOut
+      };
+
+      return formattedRow;
+    });
+  };
+
+  let nonZeroSubSkills;
+
+  {
+    data &&
+      (nonZeroSubSkills =
+        data.length > 0
+          ? subSkills.filter((subSkill) =>
+              data.some((row) => row.subskills[subSkill.subsetname] > 0)
+            )
+          : []);
+  }
 
   return (
     <div className={styles.dashboardContainer}>
       <p className={styles.rastanty_Cortez}>Periodical Dashboard</p>
       <div className={styles.filterSection}>
         <div className={styles.dropdown}>
-          <label className={styles.mainskill}>Main Skill:</label>
+          <label className={styles.mainskill}>
+            <b>Main Skill</b>:
+          </label>
           <select
-            value={selectedSkillId || "None"}  // Use ID as the value for the select
+            value={selectedSkillId || "None"} // Use ID as the value for the select
             onChange={handleSkillChange}
             className={styles.skillDropdown}
+            required
           >
-            <option value="None">None</option>
+            <option value="None">All</option>
             {skills.map((skill) => (
               <option key={skill._id} value={skill._id}>
                 {skill.skillname}
@@ -92,14 +146,17 @@ const PeriodicalDashboard = () => {
         </div>
 
         <div className={styles.dateFields}>
-          <label className={styles.date}>Date Range:</label>
+          <label className={styles.date}>
+            <b>Date Range</b>:
+          </label>
           <input
             type="date"
             value={fromDate}
             className={styles.dateInput}
             onChange={(e) => setFromDate(e.target.value)}
+            required
           />
-          <label>To</label>
+          <label><b>To</b></label>
           <input
             type="date"
             value={toDate}
@@ -107,13 +164,20 @@ const PeriodicalDashboard = () => {
             onChange={(e) => setToDate(e.target.value)}
           />
         </div>
-
-        <button
-          onClick={handleGenerateReport}
-          className={styles.generateReportBtn}
-        >
-          Generate Report
-        </button>
+        <div className={styles.reportButton}>
+          <button
+            onClick={handleGenerateReport}
+            className={styles.generateReportBtn}
+          >
+            Generate Report
+          </button>
+          {data && (
+            <DownloadExcelReport
+              data={formatDataForExcel(data, subSkills)}
+              dashboardName="periodical"
+            />
+          )}
+        </div>
       </div>
 
       {loading && <p>Loading...</p>}
@@ -124,7 +188,7 @@ const PeriodicalDashboard = () => {
             <thead>
               <tr>
                 <th>Experience</th>
-                {subSkills.map((subSkill, index) => (
+                {nonZeroSubSkills.map((subSkill, index) => (
                   <th key={index}>{subSkill.subsetname}</th>
                 ))}
                 <th>Offered/Accepted</th>
@@ -136,8 +200,10 @@ const PeriodicalDashboard = () => {
               {data.map((row, index) => (
                 <tr key={index}>
                   <td>{row.exp}</td>
-                  {subSkills.map((subSkill, subIndex) => (
-                    <td key={subIndex}>{row.subskills[subSkill.subsetname] || 0}</td>
+                  {nonZeroSubSkills.map((subSkill, subIndex) => (
+                    <td key={subIndex}>
+                      {row.subskills[subSkill.subsetname] || 0}
+                    </td>
                   ))}
                   <td>{row.offered}</td>
                   <td>{row.negotiation}</td>

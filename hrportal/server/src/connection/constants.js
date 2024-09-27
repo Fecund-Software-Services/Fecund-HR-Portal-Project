@@ -8,16 +8,18 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase   | Description 
 -------------------------------------------------------------------------------------------------------
-7/5/2024           HS                          3                 Resume Handling
-11/7/2024          HS                           1         2       Added Skillset constant values
+7/5/2024    |   HS                      |   3        |  1       | Resume Handling
+11/7/2024   |   HS                      |   1        |  2       | Added Skillset constant values
+25/09/2024  |   Harshini C              |   6        |  2       | SonarLint Code optimization task
 -------------------------------------------------------------------------------------------------------
 */
 
 const localhost = '//localhost:27017/';
 const databaseName = 'FecundHiringPortal';
 const databaseURL = localhost.concat("",databaseName)
-server_PORT = 4000
-client_PORT = "http://localhost:3000"
+
+const server_PORT = 4000
+const client_PORT = "http://localhost:3000"
 
 module.exports.databaseURL = databaseURL;
 module.exports.localhost = localhost;
