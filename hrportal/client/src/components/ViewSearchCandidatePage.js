@@ -21,7 +21,7 @@ Date        |   Author                  |   Sprint   |    Description
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ViewSearchCandidatePage.module.css"; // Import CSS module
-import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
+//import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
 
 
 function ViewSearchCandidatePage() {
@@ -180,7 +180,7 @@ function ViewSearchCandidatePage() {
                 className={styles.checkbox}
               />
               <label className={styles.radio_label} htmlFor="dateSearch">
-                View the candidates applied in
+                <b>View the candidates applied in</b>
               </label>
             </div>
             <div className={styles.flex_conatiner_b}>
@@ -194,7 +194,7 @@ function ViewSearchCandidatePage() {
                 className={styles.checkbox}
               />
               <label className={styles.radio_label} htmlFor="userSearch">
-                Search candidate
+                <b>Search candidate</b>
               </label>
             </div>
           </div>
@@ -202,7 +202,7 @@ function ViewSearchCandidatePage() {
   <div className={styles.input_group}>
     <div className={styles.flex_conatiner}>
       <label className={styles.label} htmlFor="year">
-        Year<span className={styles.asterisk}>*</span>:
+        <b>Year<span className={styles.asterisk}>*</span>:</b>
       </label>
       <input
         type="text"
@@ -216,7 +216,7 @@ function ViewSearchCandidatePage() {
     </div>
     <div className={styles.flex_conatiner}>
       <label className={styles.label} htmlFor="month">
-        Month<span className={styles.asterisk}>*</span>:
+       <b>Month<span className={styles.asterisk}>*</span>:</b>
       </label>
       <select
         id="month"             
@@ -246,7 +246,7 @@ function ViewSearchCandidatePage() {
   <div className={styles.input_group}>
     <div className={styles.flex_conatiner}>
       <label className={styles.label} htmlFor="firstName">
-        First Name:
+        <b>First Name:</b>
       </label>
       <input
         type="text"
@@ -259,7 +259,7 @@ function ViewSearchCandidatePage() {
     </div>
     <div className={styles.flex_conatiner}>
       <label className={styles.label} htmlFor="lastName">
-        Last Name:
+        <b>Last Name:</b>
       </label>
       <input
         type="text"
@@ -272,7 +272,7 @@ function ViewSearchCandidatePage() {
     </div>
     <div className={styles.flex_conatiner}>
       <label className={styles.label} htmlFor="email">
-        Email:
+        <b>Email:</b>
       </label>
       <input
         type="text"
@@ -350,13 +350,6 @@ function ViewSearchCandidatePage() {
           </div>
         )}
       </div>
-      <div className={styles.footerContainer}>
-          <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
-          <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
-      </div>  
     </div>
   );
 }

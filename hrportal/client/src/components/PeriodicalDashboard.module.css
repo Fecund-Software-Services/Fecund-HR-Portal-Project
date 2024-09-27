@@ -152,10 +152,6 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
     margin-top: 10px;
 }
 
-.asterisk {
-  color: red;
-}
-
 .noRecordsFound {
   font-size: 1.2rem;
   color: #666;

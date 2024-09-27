@@ -189,7 +189,6 @@ const EditCandiadteDetails = () => {
 
   const handleCheckboxChange = (e) => {
     const { name } = e.target;
-    // let newValue = checked;
     setEditedData((prevData) => ({ ...prevData, [name]: !prevData.certified }));
   };
 
@@ -333,7 +332,7 @@ const EditCandiadteDetails = () => {
           {/* Left side form fields here */}
           <div className={styles.sub_container}>
             <label htmlFor="firstName">
-              First Name<span className={styles.asterisk}>*</span>:
+              <b>First Name<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -347,7 +346,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="lastName">
-              Last Name<span className={styles.asterisk}>*</span>:
+             <b>Last Name<span className={styles.asterisk}>*</span>:</b> 
             </label>
             <input
               type="text"
@@ -361,7 +360,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="emailAddress">
-              Email ID<span className={styles.asterisk}>*</span>:
+              <b>Email ID<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="email"
@@ -374,7 +373,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="mobileNumber">
-              Mobile Number<span className={styles.asterisk}>*</span>:
+              <b>Mobile Number<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="tel"
@@ -389,8 +388,8 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="itExperience">
-              Total IT Experience<span className={styles.asterisk}>*</span>{" "}
-              (Yrs):
+              <b>Total IT Experience<span className={styles.asterisk}>*</span>{" "}
+              (Yrs):</b>
             </label>
             <input
               type="text"
@@ -404,8 +403,8 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="totalRelevantExperience">
-              Total Relevant Experience
-              <span className={styles.asterisk}>*</span> (Yrs):
+              <b>Total Relevant Experience
+              <span className={styles.asterisk}>*</span> (Yrs):</b>
             </label>
             <input
               type="text"
@@ -425,7 +424,7 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="skillSet">
-              Skill Set<span className={styles.asterisk}>*</span>:
+             <b> Skill Set<span className={styles.asterisk}>*</span>:</b>
             </label>
             <select
               name="skillSet"
@@ -445,7 +444,7 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="subskillset">
-              Sub Skill Set<span className={styles.asterisk}>*</span>:
+              <b>Sub Skill Set<span className={styles.asterisk}>*</span>:</b>
             </label>
             <select
               name="subskillset"
@@ -466,7 +465,7 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="currentCompany">
-              Current Company<span className={styles.asterisk}>*</span>:
+              <b>Current Company<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -479,7 +478,7 @@ const EditCandiadteDetails = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="currentCTC">
-              Current CTC (LPA)<span className={styles.asterisk}>*</span>:
+              <b>Current CTC (LPA)<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="number"
@@ -511,7 +510,7 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
-              Notice Period<span className={styles.asterisk}>*</span> (Days):
+              <b>Notice Period<span className={styles.asterisk}>*</span> (Days):</b>
             </label>
             <input
               type="number"
@@ -526,7 +525,7 @@ const EditCandiadteDetails = () => {
           {editedData.status === "Scheduled R1" ? (
             <div className={styles.sub_container}>
               <label htmlFor="interviewDate">
-                Interview Date<span className={styles.asterisk}>*</span>:
+                <b>Interview Date<span className={styles.asterisk}>*</span>:</b>
               </label>
               <input
                 type="date"
@@ -544,7 +543,7 @@ const EditCandiadteDetails = () => {
           {editedData.status === "Scheduled R2" ? (
             <div className={styles.sub_container}>
               <label htmlFor="interviewDate">
-                Interview Date<span className={styles.asterisk}>*</span>:
+                <b>Interview Date<span className={styles.asterisk}>*</span>:</b>
               </label>
               <input
                 type="date"
@@ -562,7 +561,7 @@ const EditCandiadteDetails = () => {
           {userData.role === "admin" ? (
             <div className={styles.sub_container}>
               <label htmlFor="expectedCTC">
-                Expected CTC<span className={styles.asterisk}>*</span>:
+                <b>Expected CTC<span className={styles.asterisk}>*</span>:</b>
               </label>
               <input
                 type="number"
@@ -597,7 +596,7 @@ const EditCandiadteDetails = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="servingNoticePeriod">
-              Serving Notice Period<span className={styles.asterisk}>*</span>:
+              <b>Serving Notice Period<span className={styles.asterisk}>*</span>:</b>
             </label>
             <div className={styles.checkbox_container}>
               <label>
@@ -609,7 +608,7 @@ const EditCandiadteDetails = () => {
                   onChange={handleServingNoticePeriodChange}
                   checked={editedData.servingNoticePeriod === true} // Check if the value is 'Yes'
                 />
-                Yes
+                <b>Yes</b>
               </label>
               <label>
                 <input
@@ -620,13 +619,13 @@ const EditCandiadteDetails = () => {
                   onChange={handleServingNoticePeriodChange}
                   checked={editedData.servingNoticePeriod === false} // Check if the value is 'No'
                 />
-                No
+                <b>No</b>
               </label>
             </div>
           </div>
 
           <div className={styles.sub_container}>
-            <label>Status<span className={styles.asterisk}>*</span>:</label>
+            <label><b>Status</b><span className={styles.asterisk}>*</span>:</label>
 
             <select
               name="status"
@@ -645,7 +644,7 @@ const EditCandiadteDetails = () => {
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="statusComments">Status Comments <span className={styles.asterisk}>*</span>:</label>
+            <label htmlFor="statusComments"><b>Status Comments</b> <span className={styles.asterisk}>*</span>:</label>
             <textarea
               name="statusComments"
               id="statusComments"
@@ -671,7 +670,7 @@ const EditCandiadteDetails = () => {
           
           <div className={styles.sub_container}>
             <label htmlFor="certified">
-              Certified?<span className={styles.asterisk}>*</span>
+              <b>Certified?</b><span className={styles.asterisk}>*</span>
             </label>
             <div className={styles.checkbox_container}>
               <label>
@@ -683,7 +682,7 @@ const EditCandiadteDetails = () => {
                   onChange={handleCheckboxChange}
                   checked={editedData.certified === true} // Check if the value is 'Yes'
                 />
-                Yes
+                <b>Yes</b>
               </label>
               <label>
                 <input
@@ -694,14 +693,14 @@ const EditCandiadteDetails = () => {
                   onChange={handleCheckboxChange}
                   checked={editedData.certified === false} // Check if the value is 'No'
                 />
-                No
+               <b>No</b> 
               </label>
             </div>
           </div>
           {editedData.servingNoticePeriod === true && ( // Check if 'Yes' is selected
             <div className={styles.sub_container}>
               <label htmlFor="lastWorkingDay">
-                Last Working Day<span className={styles.asterisk}>*</span>:
+                <b>Last Working Day<span className={styles.asterisk}>*</span>:</b>
               </label>
               <input
                 type="date"
@@ -715,7 +714,7 @@ const EditCandiadteDetails = () => {
           )}
 
           <div className={styles.sub_container}>
-            <label htmlFor="comments">Comments:</label>
+            <label htmlFor="comments"><b>Comments:</b></label>
             <textarea
               name="comments"
               id="comments"
@@ -727,7 +726,7 @@ const EditCandiadteDetails = () => {
           {editedData.status === "Offer Issued" ? (
             <div className={styles.sub_container}>
               <label htmlFor="joiningDate">
-                Joining Date<span className={styles.asterisk}>*</span>:
+               <b>Joining Date<span className={styles.asterisk}>*</span>:</b> 
               </label>
               <input
                 type="date"
@@ -743,7 +742,7 @@ const EditCandiadteDetails = () => {
           )}
 
           <div className={styles.sub_container}>
-            <label htmlFor="resume">Resume:</label>
+            <label htmlFor="resume"><b>Resume:</b></label>
             <input
               type="file"
               name="resume"

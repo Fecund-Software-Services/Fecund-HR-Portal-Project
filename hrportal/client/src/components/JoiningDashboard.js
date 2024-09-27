@@ -77,7 +77,7 @@ const JoiningDashboard = () => {
       <p className={styles.rastanty_Cortez}>Joining Dashboard</p>
       <div className={styles.filterSection}>
         <div className={styles.dropdown}>
-          <label className={styles.mainskill}>Main Skill:</label>
+          <label className={styles.mainskill}><b>Main Skill:</b></label>
           <select
             value={selectedskillsetid || "None"}
             onChange={handleSkillChange}
@@ -93,14 +93,14 @@ const JoiningDashboard = () => {
         </div>
 
         <div className={styles.dateFields}>
-          <label className={styles.date}>Date Range:</label>
+          <label className={styles.date}><b>Date Range:</b></label>
           <input
             type="date"
             value={startDate}
             className={styles.dateInput}
             onChange={(e) => setStartDate(e.target.value)}
           />
-          <label>To</label>
+          <label><b>To</b></label>
           <input
             type="date"
             value={endDate}
