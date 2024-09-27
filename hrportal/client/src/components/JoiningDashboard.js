@@ -24,6 +24,8 @@ import DownloadExcelReport from "./DownloadExcelReport";
 
 const JoiningDashboard = () => {
   const {
+    buttonClicked,
+    setButtonClicked,
     startDate,
     setStartDate,
     endDate,
@@ -46,8 +48,8 @@ const JoiningDashboard = () => {
 
   const handleGenerateReport = () => {
     generateReport();
-    // setIsReportGenerated(true); // Set the flag to true when a report is generated
-    // setShowReport(true);  // Show the report table when the report is generated
+    setButtonClicked(true);
+    
   };
 
   // Use useEffect to update isReportGenerated based on joiningCandidates data
@@ -66,13 +68,9 @@ const JoiningDashboard = () => {
     handleSortChange(newSortOrder);
   };
 
-  // const handleDownloadReport = () => {
-  //   setDownloadReport(true);
-  // };
+  
 
-  // useEffect(() => {
-  //   console.log(joiningCandidates);
-  // }, joiningCandidates);
+  
 
   return (
     <div className={styles.dashboardContainer}>
@@ -160,7 +158,7 @@ const JoiningDashboard = () => {
           </table>
         </div>
       ) : (
-        !isReportGenerated && <p className={styles.error}>No records found</p> // Show this message only if a report is generated and no records are found
+        buttonClicked && <p className={styles.error}>No records found</p> // Show this message only if a report is generated and no records are found
       )}
 
       {/* Conditional rendering based on showReport */}

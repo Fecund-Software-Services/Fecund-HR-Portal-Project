@@ -60,7 +60,7 @@ const SignUpForm = () => {
   const handleCancel = (e) => navigateToLogin("/");
 
   const togglePopup = () => {
-    //setShowPopup(!showPopup);
+  
     navigateToPopup("/");
   };
 
@@ -156,81 +156,82 @@ const SignUpForm = () => {
         {/* <br /> */}
 
         <div>
-          <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>
-              Security Question 1 <span className={styles.asterisk}>*</span>
-            </label>
-            <p htmlFor="SecurityQuestion1" className={styles.p_type}>
-              What is your first pet name ?
-            </p>
-          </div>
-          <div className={styles.sub_container}>
-            <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="password"
-              value={answer1}
-              // onChange={(e) => setEmployeeFirstName(e.target.value)}
-              onChange={(e) => setAnswer1(e.target.value)}
-              className={styles.login_input}
-              name="SecurityQuestion1"
-              required
-            />
-          </div>
-        </div>
+  <div className={styles.sub_container_question}>
+    <label className={styles.label_type_q} htmlFor="SecurityQuestion1">
+      Security Question 1 <span className={styles.asterisk}>*</span>
+    </label>
+    <p className={styles.p_type}>
+      What is your first pet name?
+    </p>
+  </div>
+  <div className={styles.sub_container}>
+    <label className={styles.label_type} htmlFor="answer1">
+      Answer <span className={styles.asterisk}>*</span>:
+    </label>
+    <input
+      type="password"
+      value={answer1}
+      onChange={(e) => setAnswer1(e.target.value)}
+      className={styles.login_input}
+      id="answer1"
+      name="SecurityQuestion1"
+      required
+    />
+  </div>
+</div>
 
-        <div>
-          <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>
-              Security Question 2 <span className={styles.asterisk}>*</span>
-            </label>
-            <p htmlFor="SecurityQuestion2" className={styles.p_type}>
-              What was your childhood nickname ?
-            </p>
-          </div>
-          <div className={styles.sub_container}>
-            <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="password"
-              value={answer2}
-              // onChange={(e) => setEmployeeFirstName(e.target.value)}
-              onChange={(e) => setAnswer2(e.target.value)}
-              className={styles.login_input}
-              name="SecurityQuestion2"
-              required
-            />
-          </div>
-        </div>
+<div>
+  <div className={styles.sub_container_question}>
+    <label className={styles.label_type_q} htmlFor="SecurityQuestion2">
+      Security Question 2 <span className={styles.asterisk}>*</span>
+    </label>
+    <p className={styles.p_type}>
+      What was your childhood nickname?
+    </p>
+  </div>
+  <div className={styles.sub_container}>
+    <label className={styles.label_type} htmlFor="answer2">
+      Answer <span className={styles.asterisk}>*</span>:
+    </label>
+    <input
+      type="password"
+      value={answer2}
+      onChange={(e) => setAnswer2(e.target.value)}
+      className={styles.login_input}
+      id="answer2"
+      name="SecurityQuestion2"
+      required
+    />
+  </div>
+</div>
 
-        <div>
-          <div className={styles.sub_container_question}>
-            <label className={styles.label_type_q}>
-              Security Question 3 <span className={styles.asterisk}>*</span>
-            </label>
-            <p htmlFor="SecurityQuestion3" className={styles.p_type}>
-              What was your first mobile brand name ?
-            </p>
-          </div>
-          <div className={styles.sub_container}>
-            <label className={styles.label_type}>
-              Answer <span className={styles.asterisk}>*</span>:
-            </label>
-            <input
-              type="password"
-              value={answer3}
-              // onChange={(e) => setEmployeeFirstName(e.target.value)}
-              onChange={(e) => setAnswer3(e.target.value)}
-              className={styles.login_input}
-              name="SecurityQuestion3"
-              required
-            />
-          </div>
-        </div>
-        <br />
+<div>
+  <div className={styles.sub_container_question}>
+    <label className={styles.label_type_q} htmlFor="SecurityQuestion3">
+      Security Question 3 <span className={styles.asterisk}>*</span>
+    </label>
+    <p className={styles.p_type}>
+      What was your first mobile brand name?
+    </p>
+  </div>
+  <div className={styles.sub_container}>
+    <label className={styles.label_type} htmlFor="answer3">
+      Answer <span className={styles.asterisk}>*</span>:
+    </label>
+    <input
+      type="password"
+      value={answer3}
+      onChange={(e) => setAnswer3(e.target.value)}
+      className={styles.login_input}
+      id="answer3"
+      name="SecurityQuestion3"
+      required
+    />
+  </div>
+</div>
+<br />
 
+       
         {error && <p className={styles.errorMessage}>{error}</p>}
 
         <div className={styles.Signup_button_container}>
@@ -255,8 +256,7 @@ const SignUpForm = () => {
 
       <div className={styles.disclaimer}>
         <p>
-          Fields marked with an asterisk (
-          <span className={styles.asterisk}>*</span>) are required.
+          Fields marked with an asterisk (<span className={styles.asterisk}>*</span>) are required.
         </p>
       </div>
 
@@ -269,9 +269,14 @@ const SignUpForm = () => {
             <p className={styles.popup_message}>
               Form submitted successfully!
               <br />
-              <a href="#" className={styles.login_here} onClick={handleClick}>
-                Login Here
-              </a>
+              <button 
+              type="button" 
+              className={styles.login_here} 
+              onClick={handleClick}
+             >
+              Login Here
+             </button>
+
             </p>
             {/* <button className={styles.popup_close_button} onClick={togglePopup}>
               Close
