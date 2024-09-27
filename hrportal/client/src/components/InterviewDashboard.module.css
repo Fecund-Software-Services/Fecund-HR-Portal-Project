@@ -20,7 +20,7 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-image: url("../assets/commonBGImage.png");
+  background-image: url("../assets/backgroundImages.png");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -124,9 +124,9 @@ Date        |   Author                  |   Sprint   |  Phase  |  Description
 }
 
 .reportTable {
-  width: 100%;
+  width: 200%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .reportTable th,

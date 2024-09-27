@@ -51,7 +51,7 @@ const Navbar = () => {
         </li>
 
         {/* Admin Dropdown */}
-        {userData.role === "admin" ? (
+        {userData.role === "user" ? (
           <li
             className={styles.adminLink}
             onMouseEnter={() => handleAdminDropdownToggle(true)}
@@ -77,7 +77,7 @@ const Navbar = () => {
           " "
         )}
 
-        {userData.role === "admin" ? (
+        {userData.role === "user" ? (
           <li
             className={styles.adminLink}
             onMouseEnter={() => handleDashboDropdownToggle(true)}

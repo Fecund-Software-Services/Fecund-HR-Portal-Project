@@ -28,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import styles from "./EditCandidateDetails.module.css";
-import popupBackground from "../assets/PopupBackgroundImage.png";
+import popupBackground from "../assets/backgroundImages.png";
 
 const EditCandiadteDetails = () => {
   const { id } = useParams(); // Get the Candidate ID from URL parameters
