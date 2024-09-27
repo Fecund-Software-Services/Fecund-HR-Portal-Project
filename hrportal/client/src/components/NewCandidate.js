@@ -25,8 +25,7 @@ Date        |   Author                  |   Sprint   |  Phase   |  Description
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
-import popupBackground from "../assets/PopupBackgroundImage.png";
-import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
+import popupBackground from "../assets/backgroundImages.png";
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({
@@ -720,13 +719,6 @@ const NewCandidate = () => {
           <span className={styles.asterisk}>(*)</span> are required.
         </p>
       </div>
-      <div className={styles.footerContainer}>
-          <a className={styles.footer} href={"https://x.com/FecundSoftware"}><p><FaTwitterSquare /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.facebook.com/FECUNDServices"}><p><FaFacebook /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.linkedin.com/company/fecund-software-services-pvt-ltd-/mycompany/"}><p><FaLinkedin /></p></a>&nbsp;
-          <a className={styles.footer} href={"https://www.instagram.com/fecundservices/"}><p><FaInstagramSquare /></p></a>&nbsp;
-          <a className={styles.fecundWebsite} href={"https://www.fecundservices.com/"}>www.fecundservices.com</a>   
-        </div>  
 
       {showPopup && (
         <div className={styles.popup} onClick={togglePopup}>

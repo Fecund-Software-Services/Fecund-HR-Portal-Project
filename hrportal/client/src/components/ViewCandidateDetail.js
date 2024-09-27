@@ -101,58 +101,58 @@ function ViewCandidateDetail() {
       </div>
       <div className={styles.addcandidateform_form}>
         <div className={styles.form_left}>
-          <div className={styles.sub_container}>
-            <label>First Name:</label>
+        <div className={styles.sub_container}>
+            <b><label>First Name:</label></b>
             <p className={styles.text}>{candidateDetails.firstName}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Last Name:</label>
+          <b><label>Last Name:</label></b>
             <p className={styles.text}>{candidateDetails.lastName}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Email ID:</label>
+           <b><label>Email ID:</label></b> 
             <p className={styles.text}>{candidateDetails.emailAddress}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Mobile Number:</label>
+            <b><label>Mobile Number:</label></b>
             <p className={styles.text}>{candidateDetails.mobileNumber}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Total IT Experience:</label>
+            <b><label>Total IT Experience:</label></b>
             <p className={styles.text}>{candidateDetails.itExperience}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Total Relevant Experience:</label>
+            <b><label>Total Relevant Experience:</label></b>
             <p className={styles.text}>
               {candidateDetails.totalRelevantExperience}
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label>Skill Set:</label>
+            <b><label>Skill Set:</label></b>
             <p className={styles.text}>{candidateDetails.skillSet}</p>
           </div>
 
           <div className={styles.sub_container}>
-            <label>Current Company:</label>
+            <b><label>Current Company:</label></b>
             <p className={styles.text}>{candidateDetails.currentCompany}</p>
           </div>
           <div className={styles.sub_container}>
-            <label>Sub Skill:</label>
+            <b><label>Sub Skill:</label></b>
             <p className={styles.text}>{candidateDetails.subskillset}</p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="currentCTC">Current CTC (LPA):</label>
+            <b><label htmlFor="currentCTC">Current CTC (LPA):</label></b>
             <p className={styles.text}>{candidateDetails.currentCTC}</p>
           </div>
 
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Notice Period:</label>
+            <b><label htmlFor="noticePeriod">Notice Period:</label></b>
             <p className={styles.text}>{candidateDetails.noticePeriod}</p>
           </div>
 
           {candidateDetails.status === "Scheduled R1" ? (
             <div className={styles.sub_container}>
-              <label>Interview Date:</label>
+              <b><label>Interview Date:</label></b>
               <p className={styles.text}>{candidateDetails.interviewDate}</p>
             </div>
           ) : (
@@ -160,7 +160,7 @@ function ViewCandidateDetail() {
           )}
           {candidateDetails.status === "Scheduled R2" ? (
             <div className={styles.sub_container}>
-              <label>Interview Date:</label>
+              <b><label>Interview Date:</label></b>
               <p className={styles.text}>{candidateDetails.interviewDate}</p>
             </div>
           ) : (
@@ -169,18 +169,18 @@ function ViewCandidateDetail() {
 
           {userData.role === "admin" ? (
             <div className={styles.sub_container}>
-              <label htmlFor="expectedCTC">Expected CTC:</label>
+              <b><label htmlFor="expectedCTC">Expected CTC:</label></b>
               <p className={styles.text}>{candidateDetails.expectedCTC}</p>
             </div>
           ) : (
             ""
           )}
           <div className={styles.sub_container}>
-            <label>Status:</label>
+            <b><label>Status:</label></b>
             <p className={styles.text}>{candidateDetails.status}</p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Status Comments:</label>
+            <b><label htmlFor="noticePeriod">Status Comments:</label></b>
             <p className={styles.text}>
               {candidateDetails.statusComments
                 ? candidateDetails.statusComments
@@ -189,26 +189,26 @@ function ViewCandidateDetail() {
           </div>
       
           <div className={styles.sub_container}>
-            <label htmlFor="certified">Certified?:</label>
+            <b><label htmlFor="certified">Certified?:</label></b>
             <p className={styles.text}>
               {candidateDetails.servingNoticePeriod ? "Yes" : "No"}
             </p>
           </div>
           <div className={styles.sub_container}>
-            <label htmlFor="servingNoticedPeriod">Serving Notice Period:</label>
+            <b><label htmlFor="servingNoticedPeriod">Serving Notice Period:</label></b>
             <p className={styles.text}>
               {candidateDetails.certified ? "Yes" : "No"}
             </p>
           </div>
           {candidateDetails.servingNoticePeriod === true && ( // Check if 'Yes' is selected
             <div className={styles.sub_container}>
-              <label htmlFor="lastWorkingDay">Last Working Day:</label>
+              <b><label htmlFor="lastWorkingDay">Last Working Day:</label></b>
               <p className={styles.text}>{candidateDetails.lastWorkingDay}</p>
             </div>
           )}
 
           <div className={styles.sub_container}>
-            <label htmlFor="noticePeriod">Comments:</label>
+            <b><label htmlFor="noticePeriod">Comments:</label></b>
             <p className={styles.text}>
               {candidateDetails.comments
                 ? candidateDetails.comments
@@ -218,7 +218,7 @@ function ViewCandidateDetail() {
           
           {candidateDetails.status === "Offer Issued" ? (
             <div className={styles.sub_container}>
-              <label>Joining Date:</label>
+              <b><label>Joining Date:</label></b>
               <p className={styles.text}>{candidateDetails.joiningDate}</p>
             </div>
           ) : (
@@ -226,7 +226,7 @@ function ViewCandidateDetail() {
           )}
           
           <div className={styles.sub_container}>
-            <label htmlFor="resume">Resume:</label>
+            <b><label htmlFor="resume">Resume:</label></b>
             <div>
               {/* Tooltip and resume link */}
               <span

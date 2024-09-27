@@ -65,7 +65,7 @@ function NewPassword() {
         
         <div className={styles.formField}>
           <label htmlFor="employeeId" className={styles.fieldLabel}>
-            Employee ID:
+            <b>Employee ID:</b>
           </label>
           <input
             type="text"
@@ -77,7 +77,7 @@ function NewPassword() {
         </div>
         <div className={styles.formField}>
           <label htmlFor="newPassword" className={styles.fieldLabel}>
-            New Password:
+            <b>New Password:</b>
           </label>
           <input
             type="password"
@@ -109,10 +109,10 @@ function NewPassword() {
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
             <p className={styles.popup_message}>
-              Password change successfully!
+              <b>Password change successfully!</b>
               <br />
               <a href="/" className={styles.login_here}>  
-                Login Here
+                <b>Login Here</b>
               </a>
             </p>
           </div>

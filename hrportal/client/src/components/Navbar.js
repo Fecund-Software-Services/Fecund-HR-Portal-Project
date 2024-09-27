@@ -47,18 +47,18 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <ul className={styles.navLinks}>
         <li className={styles.adminLink}>
-          <Link className={styles.adminDropdownToggle} to="/home">Home</Link>
+          <Link className={styles.adminDropdownToggle} to="/home"><b>Home</b></Link>
         </li>
 
         {/* Admin Dropdown */}
-        {userData.role === "user" ? (
+        {userData.role === "admin" ? (
           <li
             className={styles.adminLink}
             onMouseEnter={() => handleAdminDropdownToggle(true)}
             onMouseLeave={() => handleAdminDropdownToggle(false)}
           >
             <a className={styles.adminDropdownToggle} href="#">
-              Admin
+              <b>Admin</b>
             </a>
             <ul
               className={`${styles.adminDropdown} ${
@@ -66,10 +66,10 @@ const Navbar = () => {
               }`}
             >
               <ul className={styles.link}>
-                <Link to="/home/skillset">SkillSet</Link>
+                <Link to="/home/skillset"><b>SkillSet</b></Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/status">Status</Link>
+                <Link to="/home/status"><b>Status</b></Link>
               </ul>
             </ul>
           </li>
@@ -77,14 +77,14 @@ const Navbar = () => {
           " "
         )}
 
-        {userData.role === "user" ? (
+        {userData.role === "admin" ? (
           <li
             className={styles.adminLink}
             onMouseEnter={() => handleDashboDropdownToggle(true)}
             onMouseLeave={() => handleDashboDropdownToggle(false)}
           >
             <a className={styles.adminDropdownToggle} href="#">
-              Dashboard
+              <b>Dashboard</b>
             </a>
             <ul
               className={`${styles.adminDropdown} ${
@@ -92,16 +92,16 @@ const Navbar = () => {
               }`}
             >
               <ul className={styles.link}>
-                <Link to="/home/periodicdashboard">Periodical</Link>
+                <Link to="/home/periodicdashboard"><b>Periodical</b></Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/interviewdashboard">Interview</Link>
+                <Link to="/home/interviewdashboard"><b>Interview</b></Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/joiningdashboard">Joining</Link>
+                <Link to="/home/joiningdashboard"><b>Joining</b></Link>
               </ul>
               <ul className={styles.link}>
-                <Link to="/home/deferreddashboard">Deferred</Link>
+                <Link to="/home/deferreddashboard"><b>Deferred</b></Link>
               </ul>
             </ul>
           </li>
@@ -115,7 +115,7 @@ const Navbar = () => {
             title="Click here to Logout"
             onClick={handleLogout}
           >
-            Logout{" "}
+            <b>Logout{" "}</b>
           </div>
         </li>
       </ul>

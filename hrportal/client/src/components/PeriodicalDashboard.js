@@ -128,7 +128,7 @@ const PeriodicalDashboard = () => {
       <div className={styles.filterSection}>
         <div className={styles.dropdown}>
           <label className={styles.mainskill}>
-            Main Skill<span className={styles.asterisk}>*</span>:
+            <b>Main Skill</b>:
           </label>
           <select
             value={selectedSkillId || "None"} // Use ID as the value for the select
@@ -147,7 +147,7 @@ const PeriodicalDashboard = () => {
 
         <div className={styles.dateFields}>
           <label className={styles.date}>
-            Date Range<span className={styles.asterisk}>*</span>:
+            <b>Date Range</b>:
           </label>
           <input
             type="date"
@@ -156,7 +156,7 @@ const PeriodicalDashboard = () => {
             onChange={(e) => setFromDate(e.target.value)}
             required
           />
-          <label>To</label>
+          <label><b>To</b></label>
           <input
             type="date"
             value={toDate}

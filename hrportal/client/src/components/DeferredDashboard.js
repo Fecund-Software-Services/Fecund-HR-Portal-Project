@@ -62,7 +62,7 @@ const DeferredDashboard = () => {
       <p className={styles.rastanty_Cortez}>Deferred Dashboard</p>
       <div className={styles.filterSection}>
         <div className={styles.dropdown}>
-          <label className={styles.statusLabel}>Status:</label>
+          <label className={styles.statusLabel}><b>Status:</b></label>
           <select
             value={status}
             onChange={handleStatusChange}
@@ -80,7 +80,7 @@ const DeferredDashboard = () => {
         </div>
 
         <div className={styles.dateFields}>
-          <label className={styles.dateLabel}>Date Range:</label>
+          <label className={styles.dateLabel}><b>Date Range:</b></label>
           <input
             type="date"
             value={startDate}
@@ -133,8 +133,7 @@ const DeferredDashboard = () => {
             </tbody>
           </table>
         </div>
-      ) : (
-        isReportGenerated && <p className={styles.error}>No records found</p> // Show this message only if a report is generated and no records are found
+      ) : (isReportGenerated && <p className={styles.error}>No records found</p> // Show this message only if a report is generated and no records are found
       )}
     </div>
   );

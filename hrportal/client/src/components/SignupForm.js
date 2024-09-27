@@ -81,7 +81,7 @@ const SignUpForm = () => {
       <form onSubmit={handleSubmit} className={styles.signup_form}>
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeFirstName" className={styles.label_type}>
-            Employee First Name <span className={styles.asterisk}>*</span>:
+            <b>Employee First Name <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="text"
@@ -97,7 +97,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeLastName" className={styles.label_type}>
-            Employee Last Name <span className={styles.asterisk}>*</span>:
+            <b>Employee Last Name <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="text"
@@ -112,7 +112,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="EmployeeID" className={styles.label_type}>
-            Employee ID <span className={styles.asterisk}>*</span>:
+            <b>Employee ID <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="number"
@@ -127,7 +127,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="email" className={styles.label_type}>
-            Email ID <span className={styles.asterisk}>*</span>:
+            <b>Email ID <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="email"
@@ -142,7 +142,7 @@ const SignUpForm = () => {
 
         <div className={styles.sub_container}>
           <label htmlFor="password" className={styles.label_type}>
-            Password <span className={styles.asterisk}>*</span>:
+            <b>Password <span className={styles.asterisk}>*</span>:</b>
           </label>
           <input
             type="password"
@@ -158,15 +158,15 @@ const SignUpForm = () => {
         <div>
   <div className={styles.sub_container_question}>
     <label className={styles.label_type_q} htmlFor="SecurityQuestion1">
-      Security Question 1 <span className={styles.asterisk}>*</span>
+      <b>Security Question 1 <span className={styles.asterisk}>*</span></b>
     </label>
     <p className={styles.p_type}>
-      What is your first pet name?
+      <b>What is your first pet name?</b>
     </p>
   </div>
   <div className={styles.sub_container}>
     <label className={styles.label_type} htmlFor="answer1">
-      Answer <span className={styles.asterisk}>*</span>:
+      <b>Answer <span className={styles.asterisk}>*</span>:</b>
     </label>
     <input
       type="password"
@@ -183,15 +183,15 @@ const SignUpForm = () => {
 <div>
   <div className={styles.sub_container_question}>
     <label className={styles.label_type_q} htmlFor="SecurityQuestion2">
-      Security Question 2 <span className={styles.asterisk}>*</span>
+      <b>Security Question 2 <span className={styles.asterisk}>*</span></b>
     </label>
     <p className={styles.p_type}>
-      What was your childhood nickname?
+      <b>What was your childhood nickname?</b>
     </p>
   </div>
   <div className={styles.sub_container}>
     <label className={styles.label_type} htmlFor="answer2">
-      Answer <span className={styles.asterisk}>*</span>:
+     <b> Answer <span className={styles.asterisk}>*</span>:</b>
     </label>
     <input
       type="password"
@@ -208,15 +208,15 @@ const SignUpForm = () => {
 <div>
   <div className={styles.sub_container_question}>
     <label className={styles.label_type_q} htmlFor="SecurityQuestion3">
-      Security Question 3 <span className={styles.asterisk}>*</span>
+      <b>Security Question 3 <span className={styles.asterisk}>*</span></b>
     </label>
     <p className={styles.p_type}>
-      What was your first mobile brand name?
+      <b>What was your first mobile brand name?</b>
     </p>
   </div>
   <div className={styles.sub_container}>
     <label className={styles.label_type} htmlFor="answer3">
-      Answer <span className={styles.asterisk}>*</span>:
+      <b>Answer <span className={styles.asterisk}>*</span>:</b>
     </label>
     <input
       type="password"
@@ -267,14 +267,14 @@ const SignUpForm = () => {
             style={{ backgroundImage: `url(${popupBackground})` }}
           >
             <p className={styles.popup_message}>
-              Form submitted successfully!
+             <b> Form submitted successfully!</b>
               <br />
               <button 
               type="button" 
               className={styles.login_here} 
               onClick={handleClick}
              >
-              Login Here
+              <b>Login Here</b>
              </button>
 
             </p>

@@ -1211,3 +1211,228 @@
 {"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T08:30:45.531Z"}
 {"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T08:30:45.789Z"}
 {"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T08:39:41.267Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-27T11:24:54.213Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-27T11:24:54.242Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-27T11:24:54.243Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-27T11:24:54.251Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-27T11:24:54.258Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-27T11:24:54.264Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-27T11:24:54.271Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-27T11:24:54.277Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-27T11:24:54.278Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-27T11:24:54.280Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-27T11:24:54.283Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-27T11:24:54.285Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-27T11:24:54.289Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-27T11:24:57.430Z"}
+{"level":"info","message":"/main.9a6e6527b333346caa68.hot-update.json","timestamp":"2024-09-27T11:25:05.844Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:25:55.840Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:25:56.087Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6d0","timestamp":"2024-09-27T11:26:18.768Z"}
+{"level":"info","message":"/api/candidate/add-candidate","timestamp":"2024-09-27T11:27:08.237Z"}
+{"level":"info","message":"/api/candidate/add-candidate","timestamp":"2024-09-27T11:27:53.597Z"}
+{"level":"info","message":"/api/candidate/view-candidate","timestamp":"2024-09-27T11:28:21.901Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T11:28:32.939Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T11:28:33.215Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T11:29:21.778Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T11:29:22.087Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:29:22.089Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T11:29:22.098Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T11:29:22.418Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:29:22.420Z"}
+{"level":"info","message":"/api/candidate/view-candidate","timestamp":"2024-09-27T11:29:52.751Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T11:29:54.045Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T11:29:54.377Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T11:29:56.888Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:29:57.211Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T11:29:57.215Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T11:29:57.218Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:29:57.550Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T11:29:57.553Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-27T11:29:57.556Z"}
+{"level":"info","message":"/api/candidate/search-candidate","timestamp":"2024-09-27T11:30:06.572Z"}
+{"level":"info","message":"/api/candidate/search-candidate","timestamp":"2024-09-27T11:30:16.406Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66d7f1e1b09e40863fe8ec97","timestamp":"2024-09-27T11:30:19.573Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66d7f1e1b09e40863fe8ec97","timestamp":"2024-09-27T11:30:19.837Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T11:30:21.327Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:30:21.647Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T11:30:21.649Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66d7f1e1b09e40863fe8ec97","timestamp":"2024-09-27T11:30:21.652Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:30:21.985Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66d7f1e1b09e40863fe8ec97","timestamp":"2024-09-27T11:30:21.987Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-27T11:30:21.989Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:30:30.542Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-27T11:30:30.545Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:30:30.801Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/","timestamp":"2024-09-27T11:30:30.864Z"}
+{"level":"info","message":"/api/skillset/search-skills","timestamp":"2024-09-27T11:30:36.166Z"}
+{"level":"info","message":"/api/skillset/search-skills","timestamp":"2024-09-27T11:30:42.357Z"}
+{"level":"info","message":"/api/skillset/addSkillSet","timestamp":"2024-09-27T11:30:50.807Z"}
+{"level":"error","message":"Error adding the skill set","timestamp":"2024-09-27T11:30:50.818Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:30:51.141Z"}
+{"level":"info","message":"/api/skillset/addSkillSet","timestamp":"2024-09-27T11:30:57.563Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66f6976a53597b3740f75942","timestamp":"2024-09-27T11:31:02.593Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66f3ee116d4870a594de2dd3","timestamp":"2024-09-27T11:31:07.248Z"}
+{"level":"info","message":"/api/skillset/editSkillSet/66f3ee116d4870a594de2dd3","timestamp":"2024-09-27T11:31:14.500Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:31:14.836Z"}
+{"level":"info","message":"/api/skillset/addSubSkillSet","timestamp":"2024-09-27T11:31:28.003Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66f3ee116d4870a594de2dd3","timestamp":"2024-09-27T11:31:28.328Z"}
+{"level":"info","message":"/api/skillset/editSubSkillSet/66f6979053597b3740f7594e","timestamp":"2024-09-27T11:31:36.572Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T11:31:39.352Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T11:31:39.615Z"}
+{"level":"info","message":"/api/status/add-status","timestamp":"2024-09-27T11:31:44.511Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:31:55.508Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-27T11:31:58.379Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:32:06.322Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6ce","timestamp":"2024-09-27T11:32:10.074Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:32:17.826Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:32:21.889Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:32:30.962Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:32:51.529Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:33:01.300Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:33:11.097Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:33:18.493Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:33:18.738Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T11:33:26.034Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T11:33:34.803Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T11:33:45.525Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T11:33:48.547Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T11:33:50.083Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T11:34:06.268Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T11:34:18.605Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T11:34:29.067Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T11:34:30.260Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T11:34:31.632Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:34:40.666Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:34:47.868Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:34:57.888Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:34:59.619Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-27T11:35:48.576Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:37:31.715Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:37:32.031Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:37:35.107Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:37:35.425Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:37:38.853Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:37:39.169Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:41:54.413Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:43:11.278Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:44:40.493Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:44:40.754Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:50:09.097Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:50:18.146Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:50:38.416Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:51:21.474Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:51:27.865Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:51:35.930Z"}
+{"level":"info","message":"/api/dashboard/periodic","timestamp":"2024-09-27T11:51:37.568Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:53:31.681Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:53:48.319Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:54:05.858Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c8","timestamp":"2024-09-27T11:54:08.722Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:54:15.291Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:54:26.501Z"}
+{"level":"info","message":"/api/dashboard/interview","timestamp":"2024-09-27T11:54:30.443Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:54:35.607Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:54:35.850Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:57:12.693Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:58:19.263Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:58:58.886Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T11:58:59.128Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T12:02:23.757Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-27T12:05:03.358Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:05:12.497Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:05:12.821Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-27T12:06:05.266Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:06:08.522Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:06:08.536Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T12:06:19.340Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T12:06:34.188Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T12:06:48.842Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T12:07:01.828Z"}
+{"level":"info","message":"/api/dashboard/joining","timestamp":"2024-09-27T12:07:10.664Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T12:10:00.194Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T12:10:11.005Z"}
+{"level":"info","message":"/api/dashboard/deferred","timestamp":"2024-09-27T12:10:19.453Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:10:29.311Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:10:29.577Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T12:10:36.953Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T12:10:37.277Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:10:50.587Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:10:50.851Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:11:45.521Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:14:22.871Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:14:22.889Z"}
+{"level":"info","message":"/api/candidate/view-candidate","timestamp":"2024-09-27T12:17:31.283Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:17:33.464Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:17:33.479Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:17:53.562Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:18:10.809Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:18:48.357Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:22:13.208Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:23:51.782Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:26:38.218Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T12:26:45.481Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:26:45.485Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:26:45.488Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T12:26:45.804Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:26:45.822Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:26:45.824Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-27T12:26:45.835Z"}
+{"level":"info","message":"/api/candidate/view-candidate","timestamp":"2024-09-27T12:27:01.444Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:27:02.711Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:27:03.034Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T12:27:05.305Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:27:05.628Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:27:05.630Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T12:27:05.633Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:27:05.970Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:27:05.973Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-27T12:27:05.975Z"}
+{"level":"info","message":"/api/candidate/view-candidate","timestamp":"2024-09-27T12:49:44.455Z"}
+{"level":"info","message":"/api/candidate/search-candidate","timestamp":"2024-09-27T12:51:33.228Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:51:45.007Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:51:45.333Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T12:51:47.323Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:51:47.644Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:51:47.646Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T12:51:47.647Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T12:51:47.902Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T12:51:47.964Z"}
+{"level":"info","message":"/api/skillset/onLoadSubskill/66ced6c381c9013fd361f6c4","timestamp":"2024-09-27T12:51:47.977Z"}
+{"level":"info","message":"/api/candidate/view-candidate","timestamp":"2024-09-27T13:07:44.102Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T13:07:46.988Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T13:07:47.000Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T13:07:49.982Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T13:07:49.985Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T13:07:49.987Z"}
+{"level":"info","message":"/api/status/get-status","timestamp":"2024-09-27T13:07:50.240Z"}
+{"level":"info","message":"/api/candidate/view-candidate/66cf110681c9013fd361f726","timestamp":"2024-09-27T13:07:50.319Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T13:07:50.322Z"}
+{"level":"info","message":"/api/user/forgotPassword","timestamp":"2024-09-27T13:14:47.197Z"}
+{"level":"info","message":"/api/user/forgotPassword","timestamp":"2024-09-27T13:15:09.479Z"}
+{"level":"info","message":"/api/user/forgotPassword","timestamp":"2024-09-27T13:15:15.076Z"}
+{"level":"info","message":"/api/user/resetPassword","timestamp":"2024-09-27T13:24:53.996Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-27T13:40:32.750Z"}
+{"level":"info","message":"/api/user/forgotPassword","timestamp":"2024-09-27T13:41:05.603Z"}
+{"level":"info","message":"/api/user/resetPassword","timestamp":"2024-09-27T13:41:13.523Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-27T13:41:20.074Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T13:41:27.816Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T13:41:28.143Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T13:47:22.524Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T13:47:22.537Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T13:47:22.547Z"}
+{"level":"info","message":"/api/skillset/onLoadSkillSet","timestamp":"2024-09-27T13:47:22.871Z"}
+{"level":"info","message":"connected to Database and listening on port","timestamp":"2024-09-27T13:53:17.863Z"}
+{"level":"info","message":"Status collection already populated.","timestamp":"2024-09-27T13:53:17.881Z"}
+{"level":"info","message":"Permission collection already populated","timestamp":"2024-09-27T13:53:17.883Z"}
+{"level":"info","message":"Collection already exists: candidates","timestamp":"2024-09-27T13:53:17.892Z"}
+{"level":"info","message":"Collection already exists: users","timestamp":"2024-09-27T13:53:17.897Z"}
+{"level":"info","message":"Collection already exists: resumes","timestamp":"2024-09-27T13:53:17.902Z"}
+{"level":"info","message":"Collection already exists: skillsets","timestamp":"2024-09-27T13:53:17.908Z"}
+{"level":"info","message":"Skillset Collection already Populated","timestamp":"2024-09-27T13:53:17.913Z"}
+{"level":"info","message":"Roles collection already populated.","timestamp":"2024-09-27T13:53:17.914Z"}
+{"level":"info","message":"Collection already exists: subskillsets","timestamp":"2024-09-27T13:53:17.918Z"}
+{"level":"info","message":"Collection already exists: status","timestamp":"2024-09-27T13:53:17.921Z"}
+{"level":"info","message":"Collection already exists: roles","timestamp":"2024-09-27T13:53:17.924Z"}
+{"level":"info","message":"Collection already exists: permissions","timestamp":"2024-09-27T13:53:17.926Z"}
+{"level":"info","message":"/api/user/login","timestamp":"2024-09-27T13:53:22.603Z"}
