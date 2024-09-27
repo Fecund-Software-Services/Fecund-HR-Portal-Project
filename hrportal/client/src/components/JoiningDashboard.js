@@ -24,6 +24,8 @@ import DownloadExcelReport from "./DownloadExcelReport";
 
 const JoiningDashboard = () => {
   const {
+    buttonClicked,
+    setButtonClicked,
     startDate,
     setStartDate,
     endDate,
@@ -40,15 +42,25 @@ const JoiningDashboard = () => {
   } = useJoiningDashboard();
 
   const [isReportGenerated, setIsReportGenerated] = useState(false); // New state to track if a report is generated
-  const [downloadReport, setDownloadReport] = useState(false);
+  // const [downloadReport, setDownloadReport] = useState(false);
   // State to control report visibility
   // const [showReport, setShowReport] = useState(false);
 
   const handleGenerateReport = () => {
     generateReport();
-    setIsReportGenerated(true); // Set the flag to true when a report is generated
-    // setShowReport(true);  // Show the report table when the report is generated
+    setButtonClicked(true);
+    
   };
+
+  // Use useEffect to update isReportGenerated based on joiningCandidates data
+  useEffect(() => {
+    // If joiningCandidates has data, set the report as generated
+    if (joiningCandidates && joiningCandidates.length > 0) {
+      setIsReportGenerated(true);
+    } else {
+      setIsReportGenerated(false);  // Reset if no data is found
+    }
+  }, [joiningCandidates]); // This effect runs whenever joiningCandidates changes
 
   // Function to toggle sort order
   const toggleSortOrder = () => {
@@ -56,13 +68,9 @@ const JoiningDashboard = () => {
     handleSortChange(newSortOrder);
   };
 
-  const handleDownloadReport = () => {
-    setDownloadReport(true);
-  };
+  
 
-  useEffect(() => {
-    console.log(joiningCandidates);
-  }, joiningCandidates);
+  
 
   return (
     <div className={styles.dashboardContainer}>
@@ -108,7 +116,8 @@ const JoiningDashboard = () => {
             Generate Report
           </button>
 
-          {joiningCandidates.length > 0 && (
+          {
+          isReportGenerated && (
             <DownloadExcelReport
               data={joiningCandidates}
               dashboardName="joining"
@@ -120,8 +129,10 @@ const JoiningDashboard = () => {
       {error ? (
         <p className={styles.error}>{error}</p>
       ) : isReportGenerated &&
-        joiningCandidates &&
-        joiningCandidates.length > 0 ? (
+        joiningCandidates 
+        // &&
+        // joiningCandidates.length > 0 
+        ? (
         <div className={styles.reportTableContainer}>
           <table className={styles.reportTable}>
             <thead>
@@ -147,7 +158,7 @@ const JoiningDashboard = () => {
           </table>
         </div>
       ) : (
-        isReportGenerated && <p className={styles.error}>No records found</p> // Show this message only if a report is generated and no records are found
+        buttonClicked && <p className={styles.error}>No records found</p> // Show this message only if a report is generated and no records are found
       )}
 
       {/* Conditional rendering based on showReport */}

@@ -22,11 +22,10 @@ Date        |   Author                  |   Sprint   |  Phase |  Description
 */
 
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom"; // Import useHistory and useParams hooks
+import { useNavigate , useParams } from "react-router-dom"; // Import useHistory and useParams hooks
 import { Tooltip} from "react-tooltip";
 import { useAuth } from "../context/AuthContext.js";
-//import { FaDownload } from "react-icons/fa";
+
 import styles from "./ViewCandidateDetail.module.css";
 
 function ViewCandidateDetail() {
@@ -73,10 +72,10 @@ function ViewCandidateDetail() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      // a.download = 'candidate_details.pdf';
+      
       const fileName = candidateDetails.resume;
       console.log(fileName);
-      // a.download = `${fileName.slice(0, fileName.lastIndexOf("."))}.pdf`;
+      
       a.download = `${fileName}`;
       document.body.appendChild(a);
       a.click();
@@ -238,6 +237,8 @@ function ViewCandidateDetail() {
               >
                 {candidateDetails.resume}
               </span>
+  
+
               <Tooltip id="resumeTooltip" place="top" effect="solid" />
                
             </div>

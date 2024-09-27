@@ -22,10 +22,10 @@ Date        |   Author                  |   Sprint   |    Description
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
-import { FaTwitterSquare } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
+import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
+
+
+
 
 function HomePage() {
   return (

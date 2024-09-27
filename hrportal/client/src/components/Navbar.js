@@ -16,9 +16,9 @@ Date        |   Author                  |   Sprint   |    Description
 */
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
@@ -35,12 +35,12 @@ const Navbar = () => {
 
   const handleAdminDropdownToggle = (isOpen) => {
     setAdminDropdownOpen(isOpen);
-    // console.log(adminDropdownOpen);
+    
   };
 
   const handleDashboDropdownToggle = (isOpen) => {
     setDashboardDropdownOpen(isOpen);
-    // console.log(adminDropdownOpen);
+    
   };
 
   return (

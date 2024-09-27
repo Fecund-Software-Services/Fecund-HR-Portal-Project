@@ -79,7 +79,7 @@ const EditCandiadteDetails = () => {
         `/api/candidate/view-candidate/${CandidateId}`
       );
       const candidateData = await response.json();
-      // setCandidateDetails(candidateData);
+      
       setEditedData({ ...candidateData });
       setEditedData((prevData) => ({ ...prevData, currentCTCDisplay:candidateData.currentCTC }))
       setEditedData((prevData) => ({ ...prevData, expectedCTCDisplay:candidateData.expectedCTC }))
@@ -265,7 +265,7 @@ const EditCandiadteDetails = () => {
     formDataToSend.append("expectedCTC", editedData.expectedCTC);
     formDataToSend.append("interviewDate", editedData.interviewDate);
     formDataToSend.append("joiningDate", editedData.joiningDate);
-    // formDataToSend.append("statusUpdatedDate", editedData.statusUpdatedDate);
+    
     formDataToSend.append("statusComments", editedData.statusComments);
     formDataToSend.append("noticePeriod", editedData.noticePeriod);
     formDataToSend.append(

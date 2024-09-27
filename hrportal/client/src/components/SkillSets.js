@@ -37,7 +37,7 @@ const SkillSets = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showPagination, setShowPagination] = useState(false);
   const [currentSearchPage, setCurrentSearchPage] = useState(1);
-  const [showSearchPagination, setShowSearchPagination] = useState(false);
+  const [ setShowSearchPagination] = useState(false);
   const [error, setError] = useState(""); // General error message state
   const [searchError, setSearchError] = useState(""); // Specific for search errors
   const [showSearchResults, setShowSearchResults] = useState(false); // Track if search was performed
@@ -332,8 +332,6 @@ const SkillSets = () => {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const paginateSearchResults = (pageNumber) =>
-    setCurrentSearchPage(pageNumber);
 
   return (
     <div className={styles.mainConatiner}>
@@ -352,7 +350,7 @@ const SkillSets = () => {
             >
               <option value="None">All</option>
               {skills.map((skill, index) => (
-                <option key={index} value={skill._id}>
+                <option key={skill._id} value={skill._id}>
                   {skill.skillname}
                 </option>
               ))}

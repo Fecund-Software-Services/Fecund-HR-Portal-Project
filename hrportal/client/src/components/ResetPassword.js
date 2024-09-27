@@ -22,10 +22,10 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./ResetPassword.module.css"; // Import the CSS file
 import { useForgotPassword } from "../hooks/useForgotPassword";
-import { FaTwitterSquare } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
+import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
+
+
+
 
 const securityQuestions = [
   {
