@@ -24,6 +24,8 @@ import DownloadExcelReport from "./DownloadExcelReport";
 
 const JoiningDashboard = () => {
   const {
+    buttonClicked,
+    setButtonClicked,
     startDate,
     setStartDate,
     endDate,
@@ -40,12 +42,13 @@ const JoiningDashboard = () => {
   } = useJoiningDashboard();
 
   const [isReportGenerated, setIsReportGenerated] = useState(false); // New state to track if a report is generated
-  // const [downloadReport, setDownloadReport] = useState(false);
+  // const [re, setRe] = useState(false);
   // State to control report visibility
   // const [showReport, setShowReport] = useState(false);
 
   const handleGenerateReport = () => {
     generateReport();
+    setButtonClicked(true);
     // setIsReportGenerated(true); // Set the flag to true when a report is generated
     // setShowReport(true);  // Show the report table when the report is generated
   };
@@ -160,7 +163,8 @@ const JoiningDashboard = () => {
           </table>
         </div>
       ) : (
-        !isReportGenerated && <p className={styles.error}>No records found</p> // Show this message only if a report is generated and no records are found
+        buttonClicked && 
+         <p className={styles.error}>No records found</p> // Show this message only if a report is generated and no records are found
       )}
 
       {/* Conditional rendering based on showReport */}

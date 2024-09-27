@@ -24,6 +24,7 @@ const useHiringHook = () => {
     const [joiningCandidates, setJoiningCandidates] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [buttonClicked, setButtonClicked] = useState(false)
 
 
     const fetchSkillsets = async () => {
@@ -45,6 +46,7 @@ const useHiringHook = () => {
 
     // IF SKILLSET IS SELECTED FROM DROPDOWN PASS THE SELECTED SKILL ID
     const handleSkillChange = (e) => {
+        setButtonClicked(false);
         const selectedValue = e.target.value;
         if (selectedValue === "None") {
             setSelectedSkill("None");
@@ -95,6 +97,8 @@ const useHiringHook = () => {
     };
 
     return {
+        buttonClicked,
+        setButtonClicked,
         startDate,
         setStartDate,
         endDate,
