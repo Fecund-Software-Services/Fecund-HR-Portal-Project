@@ -26,10 +26,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
 import popupBackground from "../assets/PopupBackgroundImage.png";
-import { FaTwitterSquare } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
+import { FaTwitterSquare , FaFacebook , FaLinkedin , FaInstagramSquare } from "react-icons/fa";
+
+
+
 
 const NewCandidate = () => {
   const [formData, setFormData] = useState({
@@ -150,13 +150,13 @@ const NewCandidate = () => {
 
   const handleCheckboxChange = (e) => {
     const { name } = e.target;
-    // let newValue = checked;
+    
     setFormData((prevData) => ({ ...prevData, [name]: !prevData.certified }));
   };
 
   const handleServingNoticePeriodChange = (e) => {
     const { name } = e.target;
-    // let newValue = checked;
+    
     setFormData((prevData) => ({
       ...prevData,
       [name]: !prevData.servingNoticePeriod,
@@ -223,10 +223,7 @@ const NewCandidate = () => {
     formDataToSend.append("currentCompany", formData.currentCompany);
     formDataToSend.append("currentCTC", formData.currentCTC);
     formDataToSend.append("expectedCTC", formData.expectedCTC);
-    // formDataToSend.append("interviewDate", formData.interviewDate);
-    // formDataToSend.append("joiningDate", formData.joiningDate);
-    // formDataToSend.append("statusUpdatedDate", formData.statusUpdatedDate);
-    // formDataToSend.append("statusComments", formData.statusComments);
+    
     formDataToSend.append("noticePeriod", formData.noticePeriod);
     formDataToSend.append("servingNoticePeriod", formData.servingNoticePeriod);
     formDataToSend.append("lastWorkingDay", formData.lastWorkingDay);
@@ -269,7 +266,7 @@ const NewCandidate = () => {
   };
 
   const togglePopup = () => {
-    //setShowPopup(!showPopup);
+    
     navigateToPopup("/home");
   };
 

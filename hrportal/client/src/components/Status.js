@@ -28,7 +28,7 @@ const Status = () => {
   const [isAddingStatus, setIsAddingStatus] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(5);
+  const [resultsPerPage] = useState(5);
   const [currentIndex, setCurrentIndex] = useState(null);
 
   const handleAddStatus = async () => {

@@ -20,7 +20,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./InterviewDashboard.module.css"; // Reuse or create a similar CSS file
 import useInterviewDashboard from "../hooks/useInterviewDashboard"; // Custom hook
 import DownloadExcelReport from "./DownloadExcelReport";
-// import CellWithTooltip from "./CellWithTooltip";
+
 
 const InterviewDashboard = () => {
   const [selectedSkill, setSelectedSkill] = useState("None");
@@ -31,7 +31,6 @@ const InterviewDashboard = () => {
 
   const {
     skills,
-    subSkills,
     data,
     loading,
     error,
