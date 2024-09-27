@@ -132,7 +132,7 @@ const InterviewDashboard = () => {
       <p className={styles.rastanty_Cortez}>Interview Dashboard</p>
       <div className={styles.filterSection}>
         <div className={styles.dropdown}>
-          <label className={styles.mainskill}>Main Skill:</label>
+          <label className={styles.mainskill}><b>Main Skill:</b></label>
           <select
             value={selectedSkillId || "None"}
             onChange={handleSkillChange}
@@ -148,7 +148,7 @@ const InterviewDashboard = () => {
         </div>
 
         <div className={styles.dateFields}>
-          <label className={styles.date}>Date Range:</label>
+          <label className={styles.date}><b>Date Range:</b></label>
           <input
             type="date"
             value={fromDate}

@@ -14,9 +14,10 @@ Date        | Author                  | Sprint   | Phase | Description
 07/05/2024  | HS                      | 4        | 1    | Resume Handling
 08/05/2024  | HS                      | 4        | 2    | Update Resume Handling
 02/08/2024  | Harshini C              | 2        | 2    | Added logger library
-26/8/2024   |   Vishal Garg           | 4        | 2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
-27/8/24     | HS                      |4         |2     | Status Histroy Tracker
-05/9/24     | HS                      |5        |2     | Mobile Number defect
+26/8/2024   | Vishal Garg             | 4        | 2    | Add New Candidate - Total Relevant experience, Interview Date and Joining Date
+27/8/24     | HS                      | 4        | 2    | Status Histroy Tracker
+05/9/24     | HS                      | 5        | 2    | Mobile Number defect
+25/09/2024  | Harshini C              | 6        | 2    | SonarLint Code optimization task
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -94,10 +95,8 @@ const addCandidate = async (req, res) => {
       noticePeriod,
       servingNoticePeriod,
       lastWorkingDay,
-      status,
       certified,
       comments,
-      resume,
     } = req.body;
 
     //Contain info about the uploaded file
@@ -250,7 +249,7 @@ const viewCandidateByYearMonth = async (req, res) => {
   }
 
   try {
-    candidateDetails = await Candidate.find(
+    const candidateDetails = await Candidate.find(
       query,
       "firstName lastName emailAddress mobileNumber status"
     ); // Find users matching the query

@@ -16,7 +16,7 @@ Date        |   Author                  |   Sprint   |    Description
 */
 
 .home_page_container {
-  background-image: url("../assets/commonBGImage.png");
+  background-image: url("../assets/backgroundImages.png");
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;

@@ -8,11 +8,12 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   |  Phase  |  Description 
 -------------------------------------------------------------------------------------------------------
-2/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD
-3/9/24     | HS                      |5        |2     | INTERVIEW DASHBOAD<hover feature to include full name>
-3/9/24     | HS                      |5        |2     | JOINING DASHBOARD
-4/9/24     | HS                      |5        |2     | DEFFERED DASHBOARD
-11/9/24     | HS                      |5        |2     | VALIDATION
+2/9/24      |   HS                      |   5        |  2      | INTERVIEW DASHBOAD
+3/9/24      |   HS                      |   5        |  2      | INTERVIEW DASHBOAD<hover feature to include full name>
+3/9/24      |   HS                      |   5        |  2      | JOINING DASHBOARD
+4/9/24      |   HS                      |   5        |  2      | DEFFERED DASHBOARD
+11/9/24     |   HS                      |   5        |  2      | VALIDATION
+25/09/2024  |   Harshini C              |   6        |  2      | SonarLint Code optimization task
 -------------------------------------------------------------------------------------------------------
 // */
 
@@ -122,12 +123,9 @@ const periodicDashboard = async (req, res) => {
 
     if (isEmptyResult) {
       return res.status(400).json({ error: 'No records found.' });
-      // res.json({ message: "No data in the specified date range" });
     } else {
       res.json(formattedResult);
     }
-    
-      // res.json(formattedResult);
   } catch (error) {
     console.error('Error fetching periodic dashboard data:', error);
     res.status(500).json({ error: 'Internal server error' });

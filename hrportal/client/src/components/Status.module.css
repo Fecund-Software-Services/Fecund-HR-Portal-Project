@@ -13,7 +13,7 @@ Date        |   Author                  |   Sprint   |    Description
 
 */
 .statusContainer {
-  background-image: url("../assets/commonBGImage.png");
+  background-image: url("../assets/backgroundImages.png");
   background-size: 100% 100%;
   display: flex;
   /* justify-content: space-around; */

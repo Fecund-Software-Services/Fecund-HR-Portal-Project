@@ -25,7 +25,7 @@ Date        |   Author                  |   Sprint   |  Phase   |  Description
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NewCandidate.module.css";
-import popupBackground from "../assets/PopupBackgroundImage.png";
+import popupBackground from "../assets/backgroundImages.png";
 import { FaTwitterSquare } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -291,7 +291,7 @@ const NewCandidate = () => {
           {/* Left side form fields here */}
           <div className={styles.sub_container}>
             <label htmlFor="firstName">
-              First Name<span className={styles.asterisk}>*</span>:
+              <b>First Name<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -305,7 +305,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="lastName">
-              Last Name<span className={styles.asterisk}>*</span>:
+            <b>Last Name<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -319,7 +319,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="emailAddress">
-              Email ID<span className={styles.asterisk}>*</span>:
+            <b>Email ID<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="email"
@@ -332,7 +332,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="mobileNumber">
-              Mobile Number<span className={styles.asterisk}>*</span>:
+            <b>Mobile Number<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="tel"
@@ -347,7 +347,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="itExperience">
-              Total IT Experience (Yrs)
+            <b> Total IT Experience (Yrs)</b>
               <span className={styles.asterisk}>*</span>:
             </label>
             <input
@@ -377,7 +377,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="totalRelevantExperience">
-              Total Relevant Experience (Yrs)
+            <b> Total Relevant Experience (Yrs)</b>
               <span className={styles.asterisk}>*</span>:
             </label>
             <input
@@ -407,7 +407,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="skillSet">
-              Skill Set<span className={styles.asterisk}>*</span>:
+            <b>Skill Set<span className={styles.asterisk}>*</span>:</b>
             </label>
             <select
               name="skillSet"
@@ -428,7 +428,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="subskillSet">
-              Sub Skill Set<span className={styles.asterisk}>*</span>:
+            <b>Sub Skill Set<span className={styles.asterisk}>*</span>:</b>
             </label>
             <select
               name="subskillSet"
@@ -470,7 +470,7 @@ const NewCandidate = () => {
 
           <div className={styles.sub_container}>
             <label htmlFor="currentCompany">
-              Current Company<span className={styles.asterisk}>*</span>:
+            <b>Current Company<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="text"
@@ -483,7 +483,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="currentCTC">
-              Current CTC (LPA)<span className={styles.asterisk}>*</span>:
+            <b>Current CTC (LPA)<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="number"
@@ -514,7 +514,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="expectedCTC">
-              Expected CTC<span className={styles.asterisk}>*</span>:
+            <b>Expected CTC<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="number"
@@ -590,7 +590,7 @@ const NewCandidate = () => {
           </div> */}
           <div className={styles.sub_container}>
             <label htmlFor="noticePeriod">
-              Notice Period (Days)<span className={styles.asterisk}>*</span>:
+            <b> Notice Period (Days)<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="number"
@@ -603,7 +603,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="servingNoticePeriod">
-              Serving Notice Period<span className={styles.asterisk}>*</span>:
+            <b>Serving Notice Period<span className={styles.asterisk}>*</span>:</b>
             </label>
             <div className={styles.checkbox_container}>
               <label>
@@ -615,7 +615,7 @@ const NewCandidate = () => {
                   onChange={handleServingNoticePeriodChange}
                   checked={formData.servingNoticePeriod === true} // Check if the value is 'Yes'
                 />
-                Yes
+                <b>Yes</b>
               </label>
               <label>
                 <input
@@ -626,13 +626,13 @@ const NewCandidate = () => {
                   onChange={handleServingNoticePeriodChange}
                   checked={formData.servingNoticePeriod === false} // Check if the value is 'No'
                 />
-                No
+               <b>No</b> 
               </label>
             </div>
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="certified">
-              Certified?<span className={styles.asterisk}>*</span>:
+            <b>Certified?<span className={styles.asterisk}>*</span>:</b>
             </label>
             <div className={styles.checkbox_container}>
               <label>
@@ -644,7 +644,7 @@ const NewCandidate = () => {
                   onChange={handleCheckboxChange}
                   checked={formData.certified === true} // Check if the value is 'Yes'
                 />
-                Yes
+                <b>Yes</b>
               </label>
               <label>
                 <input
@@ -655,14 +655,14 @@ const NewCandidate = () => {
                   onChange={handleCheckboxChange}
                   checked={formData.certified === false} // Check if the value is 'No'
                 />
-                No
+                <b>No</b>
               </label>
             </div>
           </div>
           {formData.servingNoticePeriod === true && ( // Check if 'Yes' is selected
             <div className={styles.sub_container}>
               <label htmlFor="lastWorkingDay">
-                Last Working Day<span className={styles.asterisk}>*</span>:
+              <b>Last Working Day<span className={styles.asterisk}>*</span>:</b>
               </label>
               <input
                 type="date"
@@ -676,7 +676,7 @@ const NewCandidate = () => {
           )}
 
           <div className={styles.sub_container}>
-            <label htmlFor="comments">Comments:</label>
+            <label htmlFor="comments"><b>Comments:</b></label>
             <textarea
               name="comments"
               id="comments"
@@ -686,7 +686,7 @@ const NewCandidate = () => {
           </div>
           <div className={styles.sub_container}>
             <label htmlFor="resume">
-              Resume<span className={styles.asterisk}>*</span>:
+            <b> Resume<span className={styles.asterisk}>*</span>:</b>
             </label>
             <input
               type="file"

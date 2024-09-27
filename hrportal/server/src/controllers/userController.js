@@ -9,9 +9,10 @@ Modification Log:
 -------------------------------------------------------------------------------------------------------
 Date        |   Author                  |   Sprint   | Phase   | Description 
 -------------------------------------------------------------------------------------------------------
-16/04/2024      HS                            2         1         Authentication & Authorization - Login
-17/7/2024       HS                            1         2         User roles and permissions
-12/07/2024      Harshini C                    1         2         Adding logger to all nodeJS files
+16/04/2024  |   HS                      |    2       | 1       | Authentication & Authorization - Login
+17/7/2024   |   HS                      |    1       | 2       | User roles and permissions
+12/07/2024  |   Harshini C              |    1       | 2       | Adding logger to all nodeJS files
+25/09/2024  |   Harshini C              |    6       | 2       | SonarLint Code optimization task
 -------------------------------------------------------------------------------------------------------
 */
 
@@ -45,9 +46,6 @@ const loginUser = async (req, res) => {
     return res.status(404).json({ message: "Error: Email ID not found!" });
   }
   
-  // const userName = existingUser.firstName;
-  // const userRole = existingUser.role
-
   const { firstName, role } = existingUser;
 
   // Domain Check
@@ -70,8 +68,6 @@ const loginUser = async (req, res) => {
   const token = createToken(existingUser._id)
 
   return res.status(201).json({ user: {firstName, email, role}, token });
-
- // return res.status(200).json({ message: "Sucessfully logged in " });
 };
 
 // signup user

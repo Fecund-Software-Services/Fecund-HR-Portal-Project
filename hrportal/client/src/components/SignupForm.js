@@ -21,7 +21,7 @@ Date        | Author                  | Sprint   | Description
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import popupBackground from "../assets/PopupBackgroundImage.png";
+import popupBackground from "../assets/backgroundImages.png";
 import styles from "./SignupForm.module.css";
 // importing "useSignup" from hooks
 import { useSignup } from "../hooks/useSignup.js";
